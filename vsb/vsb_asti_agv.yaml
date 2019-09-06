@@ -144,44 +144,11 @@ serviceSequence:
   - vsComponentId: 'Ctrl'
     endPointId: 'CpCtrlRAN'
 contexts: ['ctx_id_1', 'ctx_id_2']
+applicationMetrics:
+  - metricId: 'connected_robots'
+    name: 'Number of currently connected robots'
+    type: 'GAUGE'
+    unit: 'ms'
+    interval: 'robots'
+    topic: '/app/asti/connected-robots'
 
-# TODO fields to discuss
-
-# sites: ['spain']
-
-# sst: 'URLLC'
-
-# sla:
-#   - sla_req_id: 'SapRANVs_bw'
-#     sla_req_name: 'SapRANVs minimum bandwidth'
-#     sla_req_type: 'bandwidth'
-#     end_point_ids: ['SapRANVs']
-#     min_value: '10'
-#     unit: 'Mbps'
-#   - sla_req_id: 'Ran_Ctrl_lat'
-#     sla_req_name: 'Ran to Controller latency'
-#     sla_req_type: 'latency'
-#     end_point_ids: ['CpRanCtrl', 'CpCtrlRan']
-#     min_value: '20'
-#     unit: 'ms'
-#   - sla_req_id: 'availability'
-#     sla_req_name: 'Service availability level'
-#     sla_req_type: 'service_availability'
-#     end_point_ids: []
-#     min_value: 'on-demand'
-#     unit: 'level'
-
-# constraints:
-#   - constraint_id: 'CoverageArea'
-#     constraint_name: 'Radio Coverage Area'
-#     constraint_value: 'sap_location'
-
-# capabilities: ['provider_managed']
-
-#monitoring:
-#  - metric_id: 'sapUu_bw'
-#    metric_name: 'sapUu bandwidth'
-#    metric_type: 'bandwidth'
-
-# lifetime: 'on-demand'
-# charging: 'tbd'
