@@ -1,0 +1,80 @@
+# cb_bg_traffic
+---
+ctxBlueprintId: 'cb_bg_traffic'
+version: '1.0'
+name: 'Context Blueprint Background Traffic'
+description: 'Context Blueprint to add artificial background traffic to a VSB.'
+imgUrl: ''
+parameters:
+  - parameterId: 'bg_rate'
+    parameterName: 'Background Traffic rate'
+    parameterType: 'number'
+    parameterDescription: 'The amount of background traffic in Mpbs.'
+    applicabilityField: 'context'
+atomicComponents:
+  - componentId: 'BG_SRC'
+    serversNumber: 1
+    # componentName: 'Background Traffic Source'
+    imagesUrls: ['/path/to/bg_src.qcow']
+    endPointsIds: ['CpBgSrc']
+    lifecycleOperations:
+      instantiate: 'scripts/instantiate'
+      terminate: 'scripts/terminate'
+      update: 'scripts/update'
+      heal: 'scripts/heal'
+    # scalingRules: []
+  - componentId: 'BG_DST'
+    serversNumber: 1
+    # componentName: 'Background Traffic Destination'
+    imagesUrls: ['/path/to/bg_dst.qcow']
+    endPointsIds: ['CpBgDst']
+    lifecycleOperations:
+      instantiate: 'scripts/instantiate'
+      terminate: 'scripts/terminate'
+      update: 'scripts/update'
+      heal: 'scripts/heal'
+    # scalingRules: []
+endPoints:
+  - endPointId: 'CpBgSrc'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpBgDst'
+    external: false
+    management: false
+    ranConnection: false
+translationRules:
+  - input:
+      - parameterId: 'bg_rate'
+        minValue: 1
+        maxValue: 100
+    nsdId: 'nsd_bg_small'
+    nsdVersion: '1.0'
+    nsFlavourId: 'fl_bg_small'
+    nsInstantiationLevelId: 'il_bg_small'
+  - input:
+      - parameterId: 'number_of_registered_users'
+        minValue: 101
+        maxValue: 1000
+    nsdId: 'nsd_bg_medium'
+    nsdVersion: '1.0'
+    nsFlavourId: 'fl_bg_medium'
+    nsInstantiationLevelId: 'il_bg_medium'
+constraints:
+  compositionOrder: 0
+metrics:
+  - metricId: 'delay_src_dst'
+    name: 'Traffic delay between SRC and DST'
+    type: 'GAUGE'
+    unit: 'ms'
+    interval: '1s'
+  - metricId: 'traffic_rate_dst'
+    name: 'Traffic rate measured at DST'
+    type: 'GAUGE'
+    unit: 'Mpbs'
+    interval: '2s'
+  - metricId: 'lost_packets'
+    name: 'Lost packets between SRC and DST'
+    type: 'CUMULATIVE'
+    unit: 'count'
+    interval: '5s'

@@ -1,0 +1,77 @@
+# expb_asti_bg_traffic.yaml
+# TODO review. Everything is a placeholder at the moment.
+---
+expBlueprintId: 'expb_asti_bg_traffic'
+version: '1.0'
+name: 'Experiment background traffic ASTI.'
+description: 'Experiment to test the impact of background traffic on ASTI AGV use-case.'
+imgUrl: ''
+atomicComponents:
+  - componentId: 'RAN'
+    serversNumber: 1
+    # componentName: 'Radio Access Network'
+    imagesUrls: []
+    endPointsIds: ['SapRANVs', 'CpRANCtrl']
+    lifecycleOperations: {}
+    # scalingRules: []
+endPoints:
+  - endPointId: 'SapRANVs'
+    external: true
+    management: false
+    ranConnection: true
+translationRules:
+  - input:
+      - parameterId: 'number_of_AGVs'
+        minValue: 0
+        maxValue: 3
+      - parameterId: 'no_of_ctrl_servers'
+        minValue: 1
+        maxValue: 3
+    nsdId: 'nsd_asti_bg_exp_small'
+    nsdVersion: '1.0'
+    nsFlavourId: 'fl_asti_bg_exp_small'
+    nsInstantiationLevelId: 'il_asti_bg_exp_small'
+  - input:
+      - parameterId: 'number_of_AGVs'
+        minValue: 4
+        maxValue: 10
+      - parameterId: 'no_of_ctrl_servers'
+        minValue: 3
+        maxValue: 5
+    nsdId: 'nsd_asti_bg_exp_medium'
+    nsdVersion: '1.0'
+    nsFlavourId: 'fl_asti_bg_exp_medium'
+    nsInstantiationLevelId: 'il_asti_bg_exp_medium'
+connectivityServices:
+  - endPointIds: ['CpRanCtrl', 'CpCtrlRan']
+    external: false
+  - endPointIds: ['CpCtrlEPC', 'CpEPCCtrl']
+    external: false
+  - endPointIds: ['SapCoreExt', 'SapMgmt']
+    external: false
+serviceSequence:
+  - vsComponentId: 'RAN'
+    endPointId: 'SapRANVs'
+  - vsComponentId: 'RAN'
+    endPointId: 'CpRANCtrl'
+  - vsComponentId: 'Ctrl'
+    endPointId: 'CpCtrlRAN'
+vsb: '513e154e-4bee-45f1-9a11-40716dbbb684'
+contexts: ['cb_bg_traffic']
+sites: ['spain']
+kpis:
+  - kpiId: 'kpi_delay_less_10ms'
+    name: 'Delay is less than 10ms.'
+    formula: 'delay_src_dst'
+    unit: 'ms'
+    objective: '<10'
+    metrics: ['delay_src_dst']
+    interval: '5s'
+  - kpiId: 'kpi_lost_packets_ratio'
+    name: 'Percentage of lost packets less than 1%.'
+    formula: 'lost_packets*100/tot_packets'
+    unit: '%'
+    objective: '<1'
+    metrics: ['lost_packets', 'tot_packets']
+    interval: '1m'
+#test_blueprint: 'asti_bg_template'

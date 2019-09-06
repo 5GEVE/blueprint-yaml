@@ -1,0 +1,115 @@
+# vsb_ARES2T_SmartTransport_2
+---
+# TODO fix with Ares2T
+vsBlueprintId: 'f5391ab6-cf40-4a30-bfb0-7d2bdf28ed0a'
+version: '1.0'
+name: '5G EVE Urban Mobility service'
+description: 'Blueprint for 5G EVE Urban Mobility service using 5G network to enhance multi-modality between railway network and other collective transportation utilities'
+imgUrl: ''
+parameters:
+  - parameterId: 'number_of_registered_users'
+    parameterName: 'Number of registered users'
+    parameterType: 'number'
+    parameterDescription: 'Number of devices equipped with the 5G EVE Recognition Service (Mandatory)'
+    applicabilityField: 'Service Constraints/Geographical area'
+atomicComponents:
+  - componentId: 'RAN'
+    serversNumber: 1
+    # componentName: 'Radio Access Network'
+    imagesUrls: []
+    endPointsIds: ['SapRANVs', 'CpRANCtrl']
+    lifecycleOperations: {}
+    # scalingRules: []
+  - componentId: 'recognition_service'
+    # componentName: '5G EVE Recognition service'
+    serversNumber: 1
+    imagesUrls: ['ctrl_image']
+    endPointsIds: ['CpCtrlRAN', 'CpCtrlEPC']
+    lifecycleOperations:
+      instantiate: 'scripts/instantiate'
+      terminate: 'scripts/terminate'
+      update: 'scripts/update'
+      heal: 'scripts/heal'
+    # scaling_rules: ['scale out if load > 60% for 2 mins']
+endPoints:
+  - endPointId: 'SapRANVs'
+    external: true
+    management: false
+    ranConnection: true
+  - endPointId: 'CpRANCtrl'
+    external: false
+    management: false
+    ranConnection: false
+translationRules:
+  - input:
+      - parameterId: 'number_of_registered_users'
+        minValue: 1
+        maxValue: 20
+    nsdId: 'nsd_ares2t_3_small'
+    nsdVersion: '1.0'
+    nsFlavourId: 'fl_ares2t_3_small'
+    nsInstantiationLevelId: 'il_ares2t_3_small'
+  - input:
+      - parameterId: 'number_of_registered_users'
+        minValue: 20
+        maxValue: 100
+    nsdId: 'nsd_ares2t_3_medium'
+    nsdVersion: '1.0'
+    nsFlavourId: 'fl_ares2t_3_medium'
+    nsInstantiationLevelId: 'il_ares2t_3_medium'
+connectivityServices:
+  - endPointIds: ['CpRanCtrl', 'CpCtrlRan']
+    external: false
+  - endPointIds: ['CpCtrlEPC', 'CpEPCCtrl']
+    external: false
+  - endPointIds: ['SapCoreExt', 'SapMgmt']
+    external: false
+serviceSequence:
+  - vsComponentId: 'RAN'
+    endPointId: 'SapRANVs'
+  - vsComponentId: 'RAN'
+    endPointId: 'CpRANCtrl'
+  - vsComponentId: 'Ctrl'
+    endPointId: 'CpCtrlRAN'
+contexts: ['ctx_id_1', 'ctx_id_2']
+
+# TODO fields to discuss
+
+# sites: ['spain']
+
+# sst: 'URLLC'
+
+# sla:
+#   - sla_req_id: 'SapRANVs_bw'
+#     sla_req_name: 'SapRANVs minimum bandwidth'
+#     sla_req_type: 'bandwidth'
+#     end_point_ids: ['SapRANVs']
+#     min_value: '10'
+#     unit: 'Mbps'
+#   - sla_req_id: 'Ran_Ctrl_lat'
+#     sla_req_name: 'Ran to Controller latency'
+#     sla_req_type: 'latency'
+#     end_point_ids: ['CpRanCtrl', 'CpCtrlRan']
+#     min_value: '20'
+#     unit: 'ms'
+#   - sla_req_id: 'availability'
+#     sla_req_name: 'Service availability level'
+#     sla_req_type: 'service_availability'
+#     end_point_ids: []
+#     min_value: 'on-demand'
+#     unit: 'level'
+
+# constraints:
+#   - constraint_id: 'CoverageArea'
+#     constraint_name: 'Radio Coverage Area'
+#     constraint_value: 'sap_location'
+
+# capabilities: ['provider_managed']
+
+#monitoring:
+#  - metric_id: 'sapUu_bw'
+#    metric_name: 'sapUu bandwidth'
+#    metric_type: 'bandwidth'
+
+# lifetime: 'on-demand'
+# charging: 'tbd'
