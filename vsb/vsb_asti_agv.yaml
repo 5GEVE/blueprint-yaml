@@ -44,11 +44,11 @@ atomicComponents:
     endPointsIds: ['SapRANVs', 'CpRANEpc']
     lifecycleOperations: {}
     # scalingRules: []
-  - componentId: 'Ctrl'
+  - componentId: 'Master_PLC'
     componentName: 'Robot Controller Server'
     serversNumber: 1
-    imagesUrls: ['ctrl_image']
-    endPointsIds: ['CpCtrl']
+    imagesUrls: ['master_plc_image']
+    endPointsIds: ['CpMPLC']
     lifecycleOperations:
       instantiate: 'scripts/instantiate'
       terminate: 'scripts/terminate'
@@ -82,7 +82,7 @@ endPoints:
     external: false
     management: false
     ranConnection: false
-  - endPointId: 'CpCtrl'
+  - endPointId: 'CpMPLC'
     external: false
     management: false
     ranConnection: false
@@ -103,7 +103,7 @@ endPoints:
     management: false
     ranConnection: false
 connectivityServices:
-  - endPointIds: ['CpRanEpc', 'CpCtrl', 'CpEpcRan']
+  - endPointIds: ['CpRanEpc', 'CpMPLC', 'CpEpcRan']
     external: false
   - endPointIds: ['SapCoreExt', 'SapMgmt']
     external: false
@@ -114,7 +114,7 @@ serviceSequence:
   - vsComponentId: 'RAN'
     endPointId: 'CpRANEpc'
   - vsComponentId: 'Ctrl'
-    endPointId: 'CpCtrl'
+    endPointId: 'CpMPLC'
 translationRules:
   - input:
       - parameterId: 'number_of_AGVs'
