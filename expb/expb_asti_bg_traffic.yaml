@@ -56,9 +56,12 @@ serviceSequence:
     endPointId: 'CpRANCtrl'
   - vsComponentId: 'Ctrl'
     endPointId: 'CpCtrlRAN'
+siteId: 'spain'
 vsb: '513e154e-4bee-45f1-9a11-40716dbbb684'
 contexts: ['cb_bg_traffic']
-sites: ['spain']
+infrastructureMetrics:
+  - 'DELAY'
+  - 'BANDWIDTH'
 kpis:
   - kpiId: 'kpi_delay_less_10ms'
     name: 'Delay is less than 10ms.'
@@ -74,4 +77,5 @@ kpis:
     objective: '<1'
     metrics: ['lost_packets', 'tot_packets']
     interval: '1m'
-#test_blueprint: 'asti_bg_template'
+testCases: ['asti_bg_testcase_1', 'asti_bg_testcase_2']
+
