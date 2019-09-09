@@ -149,6 +149,6 @@ applicationMetrics:
     name: 'Number of currently connected robots'
     type: 'GAUGE'
     unit: 'ms'
-    interval: 'robots'
+    interval: '15s'
     topic: '/app/asti/connected-robots'
 
