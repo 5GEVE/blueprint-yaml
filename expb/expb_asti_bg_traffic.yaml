@@ -64,17 +64,17 @@ infrastructureMetrics:
   - 'BANDWIDTH'
 kpis:
   - kpiId: 'kpi_delay_less_10ms'
+    kpiType: 'TYPE_ENUM'
     name: 'Delay is less than 10ms.'
     formula: 'delay_src_dst'
     unit: 'ms'
-    objective: '<10'
     metrics: ['delay_src_dst']
     interval: '5s'
   - kpiId: 'kpi_lost_packets_ratio'
+    kpiType: 'TYPE_ENUM'
     name: 'Percentage of lost packets less than 1%.'
     formula: 'lost_packets*100/tot_packets'
     unit: '%'
-    objective: '<1'
     metrics: ['lost_packets', 'tot_packets']
     interval: '1m'
 testCases: ['asti_bg_testcase_1', 'asti_bg_testcase_2']
