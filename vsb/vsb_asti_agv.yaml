@@ -39,16 +39,16 @@ parameters:
 atomicComponents:
   - componentId: 'RAN'
     serversNumber: 1
-    # componentName: 'Radio Access Network'
+    componentName: 'Radio Access Network'
     imagesUrls: []
-    endPointsIds: ['SapRANVs', 'CpRANCtrl']
+    endPointsIds: ['SapRANVs', 'CpRANEpc']
     lifecycleOperations: {}
     # scalingRules: []
   - componentId: 'Ctrl'
-    # componentName: 'Robot Controller Server'
+    componentName: 'Robot Controller Server'
     serversNumber: 1
     imagesUrls: ['ctrl_image']
-    endPointsIds: ['CpCtrlRAN', 'CpCtrlEPC']
+    endPointsIds: ['CpCtrl']
     lifecycleOperations:
       instantiate: 'scripts/instantiate'
       terminate: 'scripts/terminate'
@@ -59,13 +59,13 @@ atomicComponents:
     # component_name: 'Virtualized EPC'
     serversNumber: 1
     imagesUrls: []
-    endPointsIds: ['cpEPCCtrl', 'SapCoreExt']
+    endPointsIds: ['cpEPCRan', 'SapCoreExt']
     lifecycleOperations: null
     # scaling_rules: []
   - componentId: 'Mgmt'
     # component_name: 'Robot Management Server'
     serversNumber: 1
-    imagesUrls: ['path/to/img_robot_mgmt.qcow']
+    imagesUrls: ['mgmt_image']
     endPointsIds: ['SapMgmt', 'SapAdmin']
     lifecycleOperations:
       instantiate: 'scripts/instantiate'
@@ -78,19 +78,15 @@ endPoints:
     external: true
     management: false
     ranConnection: true
-  - endPointId: 'CpRANCtrl'
+  - endPointId: 'CpRANEpc'
     external: false
     management: false
     ranConnection: false
-  - endPointId: 'CpCtrlRAN'
+  - endPointId: 'CpCtrl'
     external: false
     management: false
     ranConnection: false
-  - endPointId: 'CpCtrlEPC'
-    external: false
-    management: false
-    ranConnection: false
-  - endPointId: 'CpEPCCtrl'
+  - endPointId: 'CpEPCRan'
     external: false
     management: false
     ranConnection: false
@@ -106,6 +102,19 @@ endPoints:
     external: true
     management: false
     ranConnection: false
+connectivityServices:
+  - endPointIds: ['CpRanEpc', 'CpCtrl', 'CpEpcRan']
+    external: false
+  - endPointIds: ['SapCoreExt', 'SapMgmt']
+    external: false
+serviceSequence:
+  # sensor data flow
+  - vsComponentId: 'RAN'
+    endPointId: 'SapRANVs'
+  - vsComponentId: 'RAN'
+    endPointId: 'CpRANEpc'
+  - vsComponentId: 'Ctrl'
+    endPointId: 'CpCtrl'
 translationRules:
   - input:
       - parameterId: 'number_of_AGVs'
@@ -129,20 +138,6 @@ translationRules:
     nsdVersion: '1.0'
     nsFlavourId: 'fl_asti_medium'
     nsInstantiationLevelId: 'il_asti_medium'
-connectivityServices:
-  - endPointIds: ['CpRanCtrl', 'CpCtrlRan']
-    external: false
-  - endPointIds: ['CpCtrlEPC', 'CpEPCCtrl']
-    external: false
-  - endPointIds: ['SapCoreExt', 'SapMgmt']
-    external: false
-serviceSequence:
-  - vsComponentId: 'RAN'
-    endPointId: 'SapRANVs'
-  - vsComponentId: 'RAN'
-    endPointId: 'CpRANCtrl'
-  - vsComponentId: 'Ctrl'
-    endPointId: 'CpCtrlRAN'
 contexts: ['ctx_id_1', 'ctx_id_2']
 applicationMetrics:
   - metricId: 'connected_robots'
