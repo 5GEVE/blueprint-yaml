@@ -62,19 +62,22 @@ translationRules:
     nsInstantiationLevelId: 'il_bg_medium'
 constraints:
   compositionOrder: 0
-metrics:
+applicationMetrics:
   - metricId: 'delay_src_dst'
     name: 'Traffic delay between SRC and DST'
     type: 'GAUGE'
     unit: 'ms'
     interval: '1s'
+    topic: '/app/cb_bg_traffic/delay'
   - metricId: 'traffic_rate_dst'
     name: 'Traffic rate measured at DST'
     type: 'GAUGE'
     unit: 'Mpbs'
     interval: '2s'
+    topic: '/app/cb_bg_traffic/traffic_rate'
   - metricId: 'lost_packets'
     name: 'Lost packets between SRC and DST'
     type: 'CUMULATIVE'
     unit: 'count'
     interval: '5s'
+    topic: '/app/cb_bg_traffic/lost_packets'

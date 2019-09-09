@@ -54,9 +54,11 @@ translationRules:
     nsInstantiationLevelId: 'il_dealy_medium'
 constraints:
   compositionOrder: 10
-metrics:
+applicationMetrics:
   - metricId: 'delay_iface'
     name: 'Traffic delay measured on interface'
     type: 'GAUGE'
     unit: 'ms'
     interval: '1s'
+    topic: '/app/cb_delay/delay_iface'
+
