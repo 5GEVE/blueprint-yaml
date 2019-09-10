@@ -113,25 +113,49 @@ translationRules:
   - input:
       - parameterId: 'number_of_AGVs'
         minValue: 0
-        maxValue: 3
-      - parameterId: 'no_of_ctrl_servers'
-        minValue: 1
-        maxValue: 3
-    nsdId: 'nsd_asti_bg_exp_small'
+        maxValue: 5
+    nsdId: 'nsd_asti_del_small'
     nsdVersion: '1.0'
-    nsFlavourId: 'fl_asti_bg_exp_small'
-    nsInstantiationLevelId: 'il_asti_bg_exp_small'
+    nsFlavourId: 'fl_asti_del_small'
+    nsInstantiationLevelId: 'il_asti_del_small'
   - input:
       - parameterId: 'number_of_AGVs'
-        minValue: 4
+        minValue: 6
         maxValue: 10
-      - parameterId: 'no_of_ctrl_servers'
-        minValue: 3
-        maxValue: 5
-    nsdId: 'nsd_asti_bg_exp_medium'
+    nsdId: 'nsd_asti_del_medium_id'
     nsdVersion: '1.0'
-    nsFlavourId: 'fl_asti_bg_exp_medium'
-    nsInstantiationLevelId: 'il_asti_bg_exp_medium'
+    nsFlavourId: 'fl_asti_del_medium'
+    nsInstantiationLevelId: 'il_asti_del_medium'
+  - input:
+      - parameterId: 'number_of_AGVs'
+        minValue: 6
+        maxValue: 10
+      - parameterId: 'delay_avg' # if delay is very large we need more cache
+        minValue: '1000'
+        maxValue: '9000'
+    nsdId: 'nsd_asti_del_medium2_id'
+    nsdVersion: '1.0'
+    nsFlavourId: 'fl_asti_del_medium2'
+    nsInstantiationLevelId: 'il_asti_del_medium2'
+  - input:
+      - parameterId: 'number_of_AGVs'
+        minValue: 11
+        maxValue: 50
+    nsdId: 'nsd_asti_del_big_id'
+    nsdVersion: '1.0'
+    nsFlavourId: 'fl_asti_del_big'
+    nsInstantiationLevelId: 'il_asti_del_big'
+  - input:
+      - parameterId: 'number_of_AGVs'
+        minValue: 11
+        maxValue: 50
+      - parameterId: 'delay_avg' # if delay is very large we need more cache
+        minValue: '1000'
+        maxValue: '9000'
+    nsdId: 'nsd_asti_del_big2_id'
+    nsdVersion: '1.0'
+    nsFlavourId: 'fl_asti_del_big2'
+    nsInstantiationLevelId: 'il_asti_del_big2'
 siteId: 'spain'
 vsb: '513e154e-4bee-45f1-9a11-40716dbbb684'
 contexts: ['cb_bg_traffic']
