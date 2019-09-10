@@ -62,20 +62,27 @@ contexts: ['cb_bg_traffic']
 infrastructureMetrics:
   - 'DELAY'
 kpis:
-  - kpiId: 'kpi_delay_less_10ms'
+  - kpiId: 'kpi_navigation_level'
     kpiType: 'TYPE_ENUM'
-    name: 'Delay is less than 10ms.'
-    formula: 'delay_src_dst'
-    unit: 'ms'
-    metrics: ['delay_src_dst']
-    interval: '5s'
-  - kpiId: 'kpi_lost_packets_ratio'
+    name: 'Navigation level must be greater than or equal to objective.'
+    formula: 'navigation_level'
+    unit: ''
+    metrics: ['navigation_level']
+    interval: '1s'
+  - kpiId: 'consumption'
     kpiType: 'TYPE_ENUM'
-    name: 'Percentage of lost packets less than 1%.'
-    formula: 'lost_packets*100/tot_packets'
-    unit: '%'
-    metrics: ['lost_packets', 'tot_packets']
-    interval: '1m'
+    name: 'AGV energy consumption must be less than or equal to objective.'
+    formula: 'consumption'
+    unit: 'watt'
+    metrics: ['consumption']
+    interval: '1s'
+  - kpiId: 'time_to_lose_guide'
+    kpiType: 'TYPE_ENUM'
+    name: 'Amount after which the AGV lost the guide.'
+    formula: 'guide_ok*uptime'
+    unit: 's'
+    metrics: ['guide_ok', 'uptime']
+    interval: '1s'
 testCases:
   - scriptId: 'asti_bg_testcase_1'
     script: '### Code ###'
