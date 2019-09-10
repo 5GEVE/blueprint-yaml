@@ -11,31 +11,6 @@ parameters:
     parameterType: 'number'
     parameterDescription: 'Number of AGVs (Mandatory)'
     applicabilityField: 'autonomous_vehicle'
-  - parameterId: 'location_of_AGVs'
-    parameterName: 'Location of the AGVs'
-    parameterType: 'geolocation'
-    parameterDescription: 'Location of AGVs (Mandatory)'
-    applicabilityField: 'autonomous_vehicle'
-  - parameterId: 'no_of_ctrl_servers'
-    parameterName: 'Number of controller servers'
-    parameterType: 'number'
-    parameterDescription: 'Number of VNF instances to be used for the Controller'
-    applicabilityField: 'autonomous_vehicle'
-  - parameterId: 'ctrl_image'
-    parameterName: 'PLC virtual image'
-    parameterType: 'string'
-    parameterDescription: 'Path or URL to the image of PLC software (Mandatory)'
-    applicabilityField: 'autonomous_vehicle'
-  - parameterId: 'average_data_rate_per_AGV'
-    parameterName: 'Average data rate per AGV'
-    parameterType: 'number'
-    parameterDescription: 'Average data rate per AGV (Optional)'
-    applicabilityField: 'autonomous_vehicle'
-  - parameterId: 'sap_location'
-    parameterName: 'Service Access Point location'
-    parameterType: 'geolocation'
-    parameterDescription: 'Service Access Point Location (Optional)'
-    applicabilityField: 'access_network'
 atomicComponents:
   - componentId: 'RAN'
     serversNumber: 1
@@ -119,25 +94,27 @@ translationRules:
   - input:
       - parameterId: 'number_of_AGVs'
         minValue: 0
-        maxValue: 3
-      - parameterId: 'no_of_ctrl_servers'
-        minValue: 1
-        maxValue: 3
+        maxValue: 5
     nsdId: 'nsd_asti_small'
     nsdVersion: '1.0'
     nsFlavourId: 'fl_asti_small'
     nsInstantiationLevelId: 'il_asti_small'
   - input:
       - parameterId: 'number_of_AGVs'
-        minValue: 4
+        minValue: 6
         maxValue: 10
-      - parameterId: 'no_of_ctrl_servers'
-        minValue: 3
-        maxValue: 5
     nsdId: 'nsd_asti_medium_id'
     nsdVersion: '1.0'
     nsFlavourId: 'fl_asti_medium'
     nsInstantiationLevelId: 'il_asti_medium'
+  - input:
+      - parameterId: 'number_of_AGVs'
+        minValue: 11
+        maxValue: 50
+    nsdId: 'nsd_asti_big_id'
+    nsdVersion: '1.0'
+    nsFlavourId: 'fl_asti_big'
+    nsInstantiationLevelId: 'il_asti_big'
 contexts: ['ctx_id_1', 'ctx_id_2']
 applicationMetrics:
   - metricId: 'navigation_level'
