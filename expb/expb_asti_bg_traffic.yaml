@@ -1,24 +1,114 @@
 # expb_asti_bg_traffic.yaml
-# TODO review. Everything is a placeholder at the moment.
 ---
-expBlueprintId: 'expb_asti_bg_traffic'
+expBlueprintId: 'expb_asti_delay'
 version: '1.0'
-name: 'Experiment background traffic ASTI.'
-description: 'Experiment to test the impact of background traffic on ASTI AGV use-case.'
+name: 'Experiment with artificial delay for ASTI use case.'
+description: 'Experiment to test the impact of packet delay on ASTI AGV use-case.'
 imgUrl: ''
 atomicComponents:
   - componentId: 'RAN'
     serversNumber: 1
-    # componentName: 'Radio Access Network'
+    componentName: 'Radio Access Network'
     imagesUrls: []
-    endPointsIds: ['SapRANVs', 'CpRANCtrl']
+    endPointsIds: ['SapRANVs', 'CpRANEpc']
     lifecycleOperations: {}
     # scalingRules: []
+  - componentId: 'DEL'
+    serversNumber: 1
+    # componentName: 'Artificial Delay'
+    imagesUrls: ['/path/to/delay.qcow']
+    endPointsIds: ['CpDelIn', 'CpDelOut']
+    lifecycleOperations:
+      instantiate: 'scripts/instantiate'
+      terminate: 'scripts/terminate'
+      update: 'scripts/update'
+      heal: 'scripts/heal'
+    # scalingRules: []
+  - componentId: 'Master_PLC'
+    componentName: 'Robot Controller Server'
+    serversNumber: 1
+    imagesUrls: ['master_plc_image']
+    endPointsIds: ['CpMPLC']
+    lifecycleOperations:
+      instantiate: 'scripts/instantiate'
+      terminate: 'scripts/terminate'
+      update: 'scripts/update'
+      heal: 'scripts/heal'
+    # scaling_rules: ['scale out if load > 60% for 2 mins']
+  - componentId: 'vEPC'
+    # component_name: 'Virtualized EPC'
+    serversNumber: 1
+    imagesUrls: []
+    endPointsIds: ['cpEPCRan', 'SapCoreExt']
+    lifecycleOperations: null
+    # scaling_rules: []
+  - componentId: 'Mgmt'
+    # component_name: 'Robot Management Server'
+    serversNumber: 1
+    imagesUrls: ['mgmt_image']
+    endPointsIds: ['SapMgmt', 'SapAdmin']
+    lifecycleOperations:
+      instantiate: 'scripts/instantiate'
+      terminate: 'scripts/terminate'
+      update: 'scripts/update'
+      heal: 'scripts/heal'
+    # scaling_rules: ['scale up if load > 90% for 2 mins']
 endPoints:
   - endPointId: 'SapRANVs'
     external: true
     management: false
     ranConnection: true
+  - endPointId: 'CpRANEpc'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpMPLC'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpEPCRan'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'SapCoreExt'
+    external: true
+    management: false
+    ranConnection: false
+  - endPointId: 'SapMgmt'
+    external: true
+    management: false
+    ranConnection: false
+  - endPointId: 'SapAdmin'
+    external: true
+    management: false
+    ranConnection: false
+  - endPointId: 'CpDelIn'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpDelOut'
+    external: false
+    management: false
+    ranConnection: false
+connectivityServices:
+  - endPointIds: ['CpRanEpc', 'CpDelIn', 'CpEpcRan']
+    external: false
+  - endPointIds: ['CpMPLC', 'CpDelOut']
+    external: false
+  - endPointIds: ['SapCoreExt', 'SapMgmt']
+    external: false
+serviceSequence:
+  # sensor data flow
+  - vsComponentId: 'RAN'
+    endPointId: 'SapRANVs'
+  - vsComponentId: 'RAN'
+    endPointId: 'CpRANEpc'
+  - vsComponentId: 'DEL'
+    endPointId: 'CpDelIn'
+  - vsComponentId: 'DEL'
+    endPointId: 'CpDelOut'
+  - vsComponentId: 'Master_PLC'
+    endPointId: 'CpMPLC'
 translationRules:
   - input:
       - parameterId: 'number_of_AGVs'
@@ -42,20 +132,6 @@ translationRules:
     nsdVersion: '1.0'
     nsFlavourId: 'fl_asti_bg_exp_medium'
     nsInstantiationLevelId: 'il_asti_bg_exp_medium'
-connectivityServices:
-  - endPointIds: ['CpRanCtrl', 'CpCtrlRan']
-    external: false
-  - endPointIds: ['CpCtrlEPC', 'CpEPCCtrl']
-    external: false
-  - endPointIds: ['SapCoreExt', 'SapMgmt']
-    external: false
-serviceSequence:
-  - vsComponentId: 'RAN'
-    endPointId: 'SapRANVs'
-  - vsComponentId: 'RAN'
-    endPointId: 'CpRANCtrl'
-  - vsComponentId: 'Ctrl'
-    endPointId: 'CpCtrlRAN'
 siteId: 'spain'
 vsb: '513e154e-4bee-45f1-9a11-40716dbbb684'
 contexts: ['cb_bg_traffic']
