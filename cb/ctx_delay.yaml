@@ -56,7 +56,7 @@ constraints:
   compositionOrder: 10
 applicationMetrics:
   - metricId: 'delay_iface'
-    name: 'Traffic delay measured on interface'
+    name: 'Traffic delay measured between In and Out interfaces'
     type: 'GAUGE'
     unit: 'ms'
     interval: '1s'
