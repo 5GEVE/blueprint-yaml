@@ -88,7 +88,7 @@ serviceSequence:
     endPointId: 'SapRANVs'
   - vsComponentId: 'RAN'
     endPointId: 'CpRANEpc'
-  - vsComponentId: 'Ctrl'
+  - vsComponentId: 'Master_PLC'
     endPointId: 'CpMPLC'
 translationRules:
   - input:
