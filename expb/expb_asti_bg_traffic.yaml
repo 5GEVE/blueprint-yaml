@@ -61,7 +61,6 @@ vsb: '513e154e-4bee-45f1-9a11-40716dbbb684'
 contexts: ['cb_bg_traffic']
 infrastructureMetrics:
   - 'DELAY'
-  - 'BANDWIDTH'
 kpis:
   - kpiId: 'kpi_delay_less_10ms'
     kpiType: 'TYPE_ENUM'
