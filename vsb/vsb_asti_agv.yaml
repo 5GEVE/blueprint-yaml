@@ -1,6 +1,6 @@
-# vsb_asti_agv
+# vsb_asti_agv.yaml
 ---
-vsBlueprintId: '513e154e-4bee-45f1-9a11-40716dbbb684'
+vsBlueprintId: 'vsb_asti_agv'
 version: '1.0'
 name: 'ASTI AGV control and automation'
 description: 'Blueprint for AGVs using 5G network for Automation and Control purposes'

@@ -1,4 +1,4 @@
-# expb_asti_bg_traffic.yaml
+# expb_asti_delay.yaml
 ---
 expBlueprintId: 'expb_asti_delay'
 version: '1.0'
@@ -157,7 +157,7 @@ translationRules:
     nsFlavourId: 'fl_asti_del_big2'
     nsInstantiationLevelId: 'il_asti_del_big'
 siteId: 'spain'
-vsb: '513e154e-4bee-45f1-9a11-40716dbbb684'
+vsb: 'vsb_asti_agv'
 contexts: ['cb_delay']
 infrastructureMetrics:
   - 'DELAY'
