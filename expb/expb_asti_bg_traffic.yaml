@@ -158,7 +158,7 @@ translationRules:
     nsInstantiationLevelId: 'il_asti_del_big'
 siteId: 'spain'
 vsb: '513e154e-4bee-45f1-9a11-40716dbbb684'
-contexts: ['cb_bg_traffic']
+contexts: ['cb_delay']
 infrastructureMetrics:
   - 'DELAY'
 kpis:
