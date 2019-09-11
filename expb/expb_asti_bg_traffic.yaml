@@ -179,9 +179,9 @@ kpis:
   - kpiId: 'time_to_lose_guide'
     kpiType: 'TYPE_ENUM'
     name: 'Amount after which the AGV lost the guide.'
-    formula: 'guide_ok*uptime'
+    formula: 'time_to_lose_guide'
     unit: 's'
-    metrics: ['guide_ok', 'uptime']
+    metrics: ['time_to_lose_guide']
     interval: '1s'
 testCases:
   - scriptId: 'asti_bg_testcase_1'
