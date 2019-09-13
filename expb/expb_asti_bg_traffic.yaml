@@ -184,15 +184,17 @@ kpis:
     metrics: ['time_to_lose_guide']
     interval: '1s'
 testCases:
-  - scriptId: 'asti_bg_testcase_1'
+  - scriptId: 'asti_delay_testcase_1'
     script: '### Code ###'
-    userParameters: []
+    userParameters:
+      delay_avg: '$$var_delay'
     infrastructureParameters:
       $$varX: 'ns.nsd_id.vnf.vnfd_id.cp.cpId1.idAddr'
       $$varY: 'ns.nsd_id.vnf.vnfd_id.cp.cpId2.idAddr'
-  - scriptId: 'asti_bg_testcase_2'
+  - scriptId: 'asti_delay_testcase_2'
     script: '### Code ###'
-    userParameters: []
+    userParameters:
+      delay_avg: '$$var_delay'
     infrastructureParameters:
       $$varX: 'ns.nsd_id.vnf.vnfd_id.cp.cpId1.idAddr'
       $$varY: 'ns.nsd_id.vnf.vnfd_id.cp.cpId2.idAddr'
