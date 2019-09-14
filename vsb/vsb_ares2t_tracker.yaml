@@ -1,0 +1,127 @@
+# vsb_ares2t_tracker.yaml
+---
+vsBlueprintId: 'vsb_ares2t_tracker'
+version: '1.0'
+name: 'ARES2T Tracker service'
+description: 'Blueprint for 5G EVE Tracker service using 5G network to collect mobility data user devices.'
+imgUrl: ''
+parameters:
+  - parameterId: 'number_of_tracked_devices'
+    parameterName: 'Number of tracked devices'
+    parameterType: 'number'
+    parameterDescription: 'Number of devices equipped with the 5G EVE Tracking Service (Mandatory)'
+    applicabilityField: 'Service Constraints/Geographical area'
+atomicComponents:
+  - componentId: 'RAN'
+    serversNumber: 1
+    # componentName: 'Radio Access Network'
+    imagesUrls: []
+    endPointsIds: ['SapRanVs', 'CpRanEpc']
+    lifecycleOperations: {}
+    # scalingRules: []
+  - componentId: 'vEPC'
+    # component_name: 'Virtualized EPC'
+    serversNumber: 1
+    imagesUrls: []
+    endPointsIds: ['CpEpcRan', 'CpEpcTrack']
+    lifecycleOperations: {}
+    # scaling_rules: []
+  - componentId: 'tracker_backend'
+    # componentName: 'External Application Server'
+    serversNumber: 1
+    imagesUrls: ['tracker_backend_img']
+    endPointsIds: ['CpTrackEpc', 'CpTrackVis']
+    lifecycleOperations:
+      instantiate: 'scripts/instantiate'
+      terminate: 'scripts/terminate'
+      update: 'scripts/update'
+      heal: 'scripts/heal'
+    # scaling_rules: ['scale out if load > 60% for 2 mins']
+  - componentId: 'visualization_tool'
+    # componentName: 'External Application Server'
+    serversNumber: 1
+    imagesUrls: ['vis_tool_img']
+    endPointsIds: ['CpVisTrack', 'SapVis']
+    lifecycleOperations:
+      instantiate: 'scripts/instantiate'
+      terminate: 'scripts/terminate'
+      update: 'scripts/update'
+      heal: 'scripts/heal'
+    # scaling_rules: ['scale out if load > 60% for 2 mins']
+endPoints:
+  - endPointId: 'SapRanVs'
+    external: true
+    management: false
+    ranConnection: true
+  - endPointId: 'CpRanEpc'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpEpcRan'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpEpcTrack'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpTrackEpc'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpTrackVis'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpVisTrack'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'SapVis'
+    external: true
+    management: false
+    ranConnection: false
+translationRules:
+  - input:
+      - parameterId: 'number_of_tracked_devices'
+        minValue: 1
+        maxValue: 20
+    nsdId: 'nsd_ares2t_tracker_small'
+    nsdVersion: '1.0'
+    nsFlavourId: 'fl_ares2t_tracker_small'
+    nsInstantiationLevelId: 'il_ares2t_tracker_small'
+  - input:
+      - parameterId: 'number_of_tracked_devices'
+        minValue: 21
+        maxValue: 100
+    nsdId: 'nsd_ares2t_tracker_medium'
+    nsdVersion: '1.0'
+    nsFlavourId: 'fl_ares2t_tracker_medium'
+    nsInstantiationLevelId: 'il_ares2t_tracker_medium'
+connectivityServices:
+  - endPointIds: ['CpRanEpc', 'CpEpcRan']
+    external: false
+  - endPointIds: ['CpEpcTrack', 'CpTrackEpc']
+    external: false
+  - endPointIds: ['CpTrackVis', 'CpVisTrack']
+    external: false
+serviceSequence:
+  - vsComponentId: 'RAN'
+    endPointId: 'SapRANVs'
+  - vsComponentId: 'RAN'
+    endPointId: 'CpRanEpc'
+  - vsComponentId: 'vEPC'
+    endPointId: 'CpEpcRan'
+  - vsComponentId: 'vEPC'
+    endPointId: 'CpEpcTrack'
+  - vsComponentId: 'tracker_backend'
+    endPointId: 'CpTrackEpc'
+contexts: ['cb_delay']
+applicationMetrics:
+  - metricId: 'number_of_requests'
+    name: 'Number of currently fulfilled requests'
+    type: 'GAUGE'
+    unit: 'reqs'
+    interval: '5s'
+    topic: '/app/ares2t1/requests'
+
