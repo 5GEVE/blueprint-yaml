@@ -16,21 +16,21 @@ atomicComponents:
     serversNumber: 1
     # componentName: 'Radio Access Network'
     imagesUrls: []
-    endPointsIds: ['SapRANVs', 'CpRANEpc']
+    endPointsIds: ['SapRanVs', 'CpRanEpc']
     lifecycleOperations: {}
     # scalingRules: []
   - componentId: 'vEPC'
     # component_name: 'Virtualized EPC'
     serversNumber: 1
     imagesUrls: []
-    endPointsIds: ['CpEPCRan', 'CpEPCTrack']
+    endPointsIds: ['CpEpcRan', 'CpEpcTrack']
     lifecycleOperations: {}
     # scaling_rules: []
   - componentId: 'tracker_backend'
     # componentName: 'External Application Server'
     serversNumber: 1
     imagesUrls: ['tracker_backend_img']
-    endPointsIds: ['CpTrackEPC', 'CpTrackVis']
+    endPointsIds: ['CpTrackEpc', 'CpTrackVis']
     lifecycleOperations:
       instantiate: 'scripts/instantiate'
       terminate: 'scripts/terminate'
@@ -49,12 +49,36 @@ atomicComponents:
       heal: 'scripts/heal'
     # scaling_rules: ['scale out if load > 60% for 2 mins']
 endPoints:
-  - endPointId: 'SapRANVs'
+  - endPointId: 'SapRanVs'
     external: true
     management: false
     ranConnection: true
-  - endPointId: 'CpRANCtrl'
+  - endPointId: 'CpRanEpc'
     external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpEpcRan'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpEpcTrack'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpTrackEpc'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpTrackVis'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpVisTrack'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'SapVis'
+    external: true
     management: false
     ranConnection: false
 translationRules:
