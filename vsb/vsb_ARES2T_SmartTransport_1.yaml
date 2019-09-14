@@ -1,10 +1,9 @@
 # vsb_ARES2T_SmartTransport_1.yaml
 ---
-# TODO fix with Ares2T
-vsBlueprintId: '2bfb454d-4520-4080-a9f4-4767bd1eccb3'
+vsBlueprintId: 'vsb_ARES2T_tracker'
 version: '1.0'
-name: '5G EVE Tracking service'
-description: 'Blueprint for 5G EVE Tracking service using 5G network to collect mobility data from different transport operators'
+name: 'ARES2T Tracker service'
+description: 'Blueprint for 5G EVE Tracker service using 5G network to collect mobility data user devices.'
 imgUrl: ''
 parameters:
   - parameterId: 'number_of_tracked_devices'
@@ -17,14 +16,32 @@ atomicComponents:
     serversNumber: 1
     # componentName: 'Radio Access Network'
     imagesUrls: []
-    endPointsIds: ['SapRANVs', 'CpRANCtrl']
+    endPointsIds: ['SapRANVs', 'CpRANEpc']
     lifecycleOperations: {}
     # scalingRules: []
-  - componentId: 'ext_app_server'
+  - componentId: 'vEPC'
+    # component_name: 'Virtualized EPC'
+    serversNumber: 1
+    imagesUrls: []
+    endPointsIds: ['CpEPCRan', 'CpEPCTrack']
+    lifecycleOperations: {}
+    # scaling_rules: []
+  - componentId: 'tracker_backend'
     # componentName: 'External Application Server'
     serversNumber: 1
-    imagesUrls: ['ctrl_image']
-    endPointsIds: ['CpCtrlRAN', 'CpCtrlEPC']
+    imagesUrls: ['tracker_backend_img']
+    endPointsIds: ['CpTrackEPC', 'CpTrackVis']
+    lifecycleOperations:
+      instantiate: 'scripts/instantiate'
+      terminate: 'scripts/terminate'
+      update: 'scripts/update'
+      heal: 'scripts/heal'
+    # scaling_rules: ['scale out if load > 60% for 2 mins']
+  - componentId: 'visualization_tool'
+    # componentName: 'External Application Server'
+    serversNumber: 1
+    imagesUrls: ['vis_tool_img']
+    endPointsIds: ['CpVisTrack', 'SapVis']
     lifecycleOperations:
       instantiate: 'scripts/instantiate'
       terminate: 'scripts/terminate'
@@ -45,18 +62,18 @@ translationRules:
       - parameterId: 'number_of_tracked_devices'
         minValue: 1
         maxValue: 20
-    nsdId: 'nsd_ares2t_1_small'
+    nsdId: 'nsd_ares2t_tracker_small'
     nsdVersion: '1.0'
-    nsFlavourId: 'fl_ares2t_1_small'
-    nsInstantiationLevelId: 'il_ares2t_1_small'
+    nsFlavourId: 'fl_ares2t_tracker_small'
+    nsInstantiationLevelId: 'il_ares2t_tracker_small'
   - input:
       - parameterId: 'number_of_tracked_devices'
-        minValue: 20
+        minValue: 21
         maxValue: 100
-    nsdId: 'nsd_ares2t_1_medium'
+    nsdId: 'nsd_ares2t_tracker_medium'
     nsdVersion: '1.0'
-    nsFlavourId: 'fl_ares2t_1_medium'
-    nsInstantiationLevelId: 'il_ares2t_1_medium'
+    nsFlavourId: 'fl_ares2t_tracker_medium'
+    nsInstantiationLevelId: 'il_ares2t_tracker_medium'
 connectivityServices:
   - endPointIds: ['CpRanCtrl', 'CpCtrlRan']
     external: false
@@ -71,7 +88,7 @@ serviceSequence:
     endPointId: 'CpRANCtrl'
   - vsComponentId: 'Ctrl'
     endPointId: 'CpCtrlRAN'
-contexts: ['ctx_id_1', 'ctx_id_2']
+contexts: ['cb_delay']
 applicationMetrics:
   - metricId: 'number_of_requests'
     name: 'Number of currently fulfilled requests'
