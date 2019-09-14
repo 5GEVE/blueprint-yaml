@@ -1,6 +1,6 @@
-# vsb_ARES2T_SmartTransport_1.yaml
+# vsb_ares2t_tracker.yaml
 ---
-vsBlueprintId: 'vsb_ARES2T_tracker'
+vsBlueprintId: 'vsb_ares2t_tracker'
 version: '1.0'
 name: 'ARES2T Tracker service'
 description: 'Blueprint for 5G EVE Tracker service using 5G network to collect mobility data user devices.'
