@@ -99,11 +99,11 @@ translationRules:
     nsFlavourId: 'fl_ares2t_tracker_medium'
     nsInstantiationLevelId: 'il_ares2t_tracker_medium'
 connectivityServices:
-  - endPointIds: ['CpRanCtrl', 'CpCtrlRan']
+  - endPointIds: ['CpRanEpc', 'CpEpcRan']
     external: false
-  - endPointIds: ['CpCtrlEPC', 'CpEPCCtrl']
+  - endPointIds: ['CpEpcTrack', 'CpTrackEpc']
     external: false
-  - endPointIds: ['SapCoreExt', 'SapMgmt']
+  - endPointIds: ['CpTrackVis', 'CpVisTrack']
     external: false
 serviceSequence:
   - vsComponentId: 'RAN'
