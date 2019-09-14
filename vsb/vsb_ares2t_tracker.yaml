@@ -109,9 +109,13 @@ serviceSequence:
   - vsComponentId: 'RAN'
     endPointId: 'SapRANVs'
   - vsComponentId: 'RAN'
-    endPointId: 'CpRANCtrl'
-  - vsComponentId: 'Ctrl'
-    endPointId: 'CpCtrlRAN'
+    endPointId: 'CpRanEpc'
+  - vsComponentId: 'vEPC'
+    endPointId: 'CpEpcRan'
+  - vsComponentId: 'vEPC'
+    endPointId: 'CpEpcTrack'
+  - vsComponentId: 'tracker_backend'
+    endPointId: 'CpTrackEpc'
 contexts: ['cb_delay']
 applicationMetrics:
   - metricId: 'number_of_requests'
