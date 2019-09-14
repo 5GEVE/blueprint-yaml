@@ -20,7 +20,7 @@ atomicComponents:
     lifecycleOperations: {}
     # scalingRules: []
   - componentId: 'vEPC'
-    # component_name: 'Virtualized EPC'
+    # componentName: 'Virtualized EPC'
     serversNumber: 1
     imagesUrls: []
     endPointsIds: ['CpEpcRan', 'CpEpcTrack']

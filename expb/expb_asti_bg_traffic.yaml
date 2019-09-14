@@ -8,7 +8,7 @@ imgUrl: ''
 atomicComponents:
   - componentId: 'RAN'
     serversNumber: 1
-    componentName: 'Radio Access Network'
+    # componentName: 'Radio Access Network'
     imagesUrls: []
     endPointsIds: ['SapRANVs', 'CpRANEpc']
     lifecycleOperations: {}
@@ -25,7 +25,7 @@ atomicComponents:
       heal: 'scripts/heal'
     # scalingRules: []
   - componentId: 'Master_PLC'
-    componentName: 'Robot Controller Server'
+    # componentName: 'Robot Controller Server'
     serversNumber: 1
     imagesUrls: ['master_plc_image']
     endPointsIds: ['CpMPLC']
@@ -36,14 +36,14 @@ atomicComponents:
       heal: 'scripts/heal'
     # scaling_rules: ['scale out if load > 60% for 2 mins']
   - componentId: 'vEPC'
-    # component_name: 'Virtualized EPC'
+    # componentName: 'Virtualized EPC'
     serversNumber: 1
     imagesUrls: []
     endPointsIds: ['cpEPCRan', 'SapCoreExt']
     lifecycleOperations: null
     # scaling_rules: []
   - componentId: 'Mgmt'
-    # component_name: 'Robot Management Server'
+    # componentName: 'Robot Management Server'
     serversNumber: 1
     imagesUrls: ['mgmt_image']
     endPointsIds: ['SapMgmt', 'SapAdmin']
