@@ -123,5 +123,5 @@ applicationMetrics:
     type: 'GAUGE'
     unit: 'reqs'
     interval: '5s'
-    topic: '/app/ares2t1/requests'
+    topic: '/app/requests'
 

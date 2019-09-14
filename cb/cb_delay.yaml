@@ -62,5 +62,5 @@ applicationMetrics:
     type: 'GAUGE'
     unit: 'ms'
     interval: '1s'
-    topic: '/app/cb_delay/delay_iface'
+    topic: '/app/delay_iface'
 

@@ -140,5 +140,5 @@ applicationMetrics:
     type: 'GAUGE'
     unit: ''
     interval: '5s'
-    topic: '/app/asti/connected-robots'
+    topic: '/app/connected-robots'
 

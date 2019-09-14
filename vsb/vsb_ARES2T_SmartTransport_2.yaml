@@ -78,5 +78,5 @@ applicationMetrics:
     type: 'GAUGE'
     unit: 'reqs'
     interval: '5s'
-    topic: '/app/ares2t2/requests'
+    topic: '/app/requests'
 
