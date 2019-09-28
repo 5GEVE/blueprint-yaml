@@ -160,7 +160,7 @@ siteId: 'spain'
 vsb: 'vsb_asti_agv'
 contexts: ['cb_delay']
 infrastructureMetrics:
-  - 'DELAY'
+  - 'LATENCY'
 kpis:
   - kpiId: 'kpi_navigation_level'
     kpiType: 'TYPE_ENUM'
