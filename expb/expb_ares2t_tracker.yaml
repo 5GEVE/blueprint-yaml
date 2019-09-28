@@ -1,0 +1,149 @@
+# expb_ares2t_tracker.yaml
+---
+vsBlueprintId: 'expb_ares2t_tracker'
+version: '1.0'
+name: 'ARES2T Tracker experiment'
+description: 'Experiment blueprint for 5G EVE Tracker service.'
+imgUrl: ''
+atomicComponents:
+  - componentId: 'RAN'
+    serversNumber: 1
+    # componentName: 'Radio Access Network'
+    imagesUrls: []
+    endPointsIds: ['SapRanVs', 'CpRanEpc']
+    lifecycleOperations: {}
+    # scalingRules: []
+  - componentId: 'vEPC'
+    # componentName: 'Virtualized EPC'
+    serversNumber: 1
+    imagesUrls: []
+    endPointsIds: ['CpEpcRan', 'CpEpcTrack']
+    lifecycleOperations: {}
+    # scaling_rules: []
+  - componentId: 'tracker_backend'
+    # componentName: 'External Application Server'
+    serversNumber: 1
+    imagesUrls: ['tracker_backend_img']
+    endPointsIds: ['CpTrackEpc', 'CpTrackVis']
+    lifecycleOperations:
+      instantiate: 'scripts/instantiate'
+      terminate: 'scripts/terminate'
+      update: 'scripts/update'
+      heal: 'scripts/heal'
+    # scaling_rules: ['scale out if load > 60% for 2 mins']
+  - componentId: 'visualization_tool'
+    # componentName: 'External Application Server'
+    serversNumber: 1
+    imagesUrls: ['vis_tool_img']
+    endPointsIds: ['CpVisTrack', 'SapVis']
+    lifecycleOperations:
+      instantiate: 'scripts/instantiate'
+      terminate: 'scripts/terminate'
+      update: 'scripts/update'
+      heal: 'scripts/heal'
+    # scaling_rules: ['scale out if load > 60% for 2 mins']
+endPoints:
+  - endPointId: 'SapRanVs'
+    external: true
+    management: false
+    ranConnection: true
+  - endPointId: 'CpRanEpc'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpEpcRan'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpEpcTrack'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpTrackEpc'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpTrackVis'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpVisTrack'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'SapVis'
+    external: true
+    management: false
+    ranConnection: false
+connectivityServices:
+  - endPointIds: ['CpRanEpc', 'CpEpcRan']
+    external: false
+  - endPointIds: ['CpEpcTrack', 'CpTrackEpc']
+    external: false
+  - endPointIds: ['CpTrackVis', 'CpVisTrack']
+    external: false
+serviceSequence:
+  - vsComponentId: 'RAN'
+    endPointId: 'SapRANVs'
+  - vsComponentId: 'RAN'
+    endPointId: 'CpRanEpc'
+  - vsComponentId: 'vEPC'
+    endPointId: 'CpEpcRan'
+  - vsComponentId: 'vEPC'
+    endPointId: 'CpEpcTrack'
+  - vsComponentId: 'tracker_backend'
+    endPointId: 'CpTrackEpc'
+translationRules:
+  - input:
+      - parameterId: 'number_of_tracked_devices'
+        minValue: 1
+        maxValue: 20
+    nsdId: 'nsd_ares2t_tracker_small'
+    nsdVersion: '1.0'
+    nsFlavourId: 'fl_ares2t_tracker_small'
+    nsInstantiationLevelId: 'il_ares2t_tracker_small'
+  - input:
+      - parameterId: 'number_of_tracked_devices'
+        minValue: 21
+        maxValue: 100
+    nsdId: 'nsd_ares2t_tracker_medium'
+    nsdVersion: '1.0'
+    nsFlavourId: 'fl_ares2t_tracker_medium'
+    nsInstantiationLevelId: 'il_ares2t_tracker_medium'
+siteId: 'italy'
+vsb: 'vsb_ares2t_tracker'
+contexts: []
+infrastructureMetrics:
+  - 'CPU_CONSUMPTION'
+  - 'MEMORY_CONSUMPTION'
+kpis:
+  - kpiId: 'kpi_tracking_response_time'
+    kpiType: 'TYPE_ENUM'
+    name: 'Response time must be lower than or equal to the objective.'
+    formula: 'tracking_response_time'
+    unit: ''
+    metrics: ['tracking_response_time']
+    interval: '1s'
+  - kpiId: 'kpi_memory_usage'
+    kpiType: 'TYPE_ENUM'
+    name: 'Memory usage must be lower than or equal to the objective.'
+    formula: 'tracking_memory_usage'
+    unit: ''
+    metrics: ['tracking_memory_usage']
+    interval: '1s'
+testCases:
+  - scriptId: 'ares2t_testcase_1'
+    script: '### Code ###'
+    userParameters:
+      delay_avg: '$$var_delay'
+    infrastructureParameters:
+      ns.nsd_id.vnf.vnfd_id.cp.cpId1.idAddr: '$$varX'
+      ns.nsd_id.vnf.vnfd_id.cp.cpId2.idAddr: '$$varY'
+  - scriptId: 'ares2t_testcase_2'
+    script: '### Code ###'
+    userParameters:
+      delay_avg: '$$var_delay'
+    infrastructureParameters:
+      ns.nsd_id.vnf.vnfd_id.cp.cpId1.idAddr: '$$varX'
+      ns.nsd_id.vnf.vnfd_id.cp.cpId2.idAddr: '$$varY'
+
