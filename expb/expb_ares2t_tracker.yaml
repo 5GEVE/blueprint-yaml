@@ -34,5 +34,5 @@ metrics:
     interval: '1s'
     iMetricType: 'MEMORY_CONSUMPTION'
 vsBlueprintId: 'vsb_ares2t_tracker'
-ctxBlueprintIds: ['cb_delay']
+ctxBlueprintIds: ['ctx_delay']
 tcBlueprintIds: ['ares2t_testcase_1', 'ares2t_testcase_2']

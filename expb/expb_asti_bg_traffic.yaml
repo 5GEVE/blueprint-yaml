@@ -34,5 +34,5 @@ metrics:
     interval: '1s'
     iMetricType: 'LATENCY'
 vsBlueprintId: 'vsb_asti_agv'
-ctxBlueprintIds: ['cb_delay']
+ctxBlueprintIds: ['ctx_delay']
 tcBlueprintIds: ['asti_delay_testcase_1', 'asti_delay_testcase_2']
