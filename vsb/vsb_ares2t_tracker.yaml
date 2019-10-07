@@ -1,10 +1,9 @@
 # vsb_ares2t_tracker.yaml
 ---
-vsBlueprintId: 'vsb_ares2t_tracker'
+blueprintId: 'vsb_ares2t_tracker'
 version: '1.0'
 name: 'ARES2T Tracker service'
 description: 'Blueprint for 5G EVE Tracker service using 5G network to collect mobility data user devices.'
-imgUrl: ''
 parameters:
   - parameterId: 'number_of_tracked_devices'
     parameterName: 'Number of tracked devices'
@@ -81,23 +80,6 @@ endPoints:
     external: true
     management: false
     ranConnection: false
-translationRules:
-  - input:
-      - parameterId: 'number_of_tracked_devices'
-        minValue: 1
-        maxValue: 20
-    nsdId: 'nsd_ares2t_tracker_small'
-    nsdVersion: '1.0'
-    nsFlavourId: 'fl_ares2t_tracker_small'
-    nsInstantiationLevelId: 'il_ares2t_tracker_small'
-  - input:
-      - parameterId: 'number_of_tracked_devices'
-        minValue: 21
-        maxValue: 100
-    nsdId: 'nsd_ares2t_tracker_medium'
-    nsdVersion: '1.0'
-    nsFlavourId: 'fl_ares2t_tracker_medium'
-    nsInstantiationLevelId: 'il_ares2t_tracker_medium'
 connectivityServices:
   - endPointIds: ['CpRanEpc', 'CpEpcRan']
     external: false
@@ -106,39 +88,40 @@ connectivityServices:
   - endPointIds: ['CpTrackVis', 'CpVisTrack']
     external: false
 serviceSequence:
-  - vsComponentId: 'RAN'
-    endPointId: 'SapRANVs'
-  - vsComponentId: 'RAN'
-    endPointId: 'CpRanEpc'
-  - vsComponentId: 'vEPC'
-    endPointId: 'CpEpcRan'
-  - vsComponentId: 'vEPC'
-    endPointId: 'CpEpcTrack'
-  - vsComponentId: 'tracker_backend'
-    endPointId: 'CpTrackEpc'
-contexts: ['cb_delay']
+  - hopEndPoints:
+    - vsComponentId: 'RAN'
+      endPointId: 'SapRANVs'
+    - vsComponentId: 'RAN'
+      endPointId: 'CpRanEpc'
+    - vsComponentId: 'vEPC'
+      endPointId: 'CpEpcRan'
+    - vsComponentId: 'vEPC'
+      endPointId: 'CpEpcTrack'
+    - vsComponentId: 'tracker_backend'
+      endPointId: 'CpTrackEpc'
+compatibleContextBlueprint: ['cb_delay']
 applicationMetrics:
   - metricId: 'tracked_devices'
     name: 'Number of total tracked devices'
-    type: 'CUMULATIVE'
+    metricCollectionType: 'CUMULATIVE'
     unit: 'devices'
     interval: '5s'
     topic: '/app/tracked_devices'
   - metricId: 'processed_records'
     name: 'Number of total processed records'
-    type: 'CUMULATIVE'
+    metricCollectionType: 'CUMULATIVE'
     unit: 'records'
     interval: '5s'
     topic: '/app/processed_records'
   - metricId: 'tracking_response_time'
     name: 'Max response time in milliseconds'
-    type: 'GAUGE'
+    metricCollectionType: 'GAUGE'
     unit: 'ms'
     interval: '1s'
     topic: '/app/tracking_response_time'
   - metricId: 'tracking_memory_usage'
     name: 'Memory usage in %'
-    type: 'GAUGE'
+    metricCollectionType: 'GAUGE'
     unit: '%'
     interval: '1s'
     topic: '/app/tracking_memory_usage'
