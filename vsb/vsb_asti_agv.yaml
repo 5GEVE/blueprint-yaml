@@ -90,7 +90,7 @@ serviceSequence:
       endPointId: 'CpRANEpc'
     - vsComponentId: 'Master_PLC'
       endPointId: 'CpMPLC'
-compatibleContextBlueprint: ['ctx_id_1', 'ctx_id_2']
+compatibleContextBlueprint: ['ctx_delay', 'ctx_bg_traffic']
 applicationMetrics:
   - metricId: 'navigation_level'
     name: 'Measurement of the quality of the AGV navigation.'

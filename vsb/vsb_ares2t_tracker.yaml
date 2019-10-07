@@ -99,7 +99,7 @@ serviceSequence:
       endPointId: 'CpEpcTrack'
     - vsComponentId: 'tracker_backend'
       endPointId: 'CpTrackEpc'
-compatibleContextBlueprint: ['cb_delay']
+compatibleContextBlueprint: ['ctx_delay']
 applicationMetrics:
   - metricId: 'tracked_devices'
     name: 'Number of total tracked devices'
