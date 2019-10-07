@@ -4,198 +4,35 @@ expBlueprintId: 'expb_asti_delay'
 version: '1.0'
 name: 'Experiment with artificial delay for ASTI use case.'
 description: 'Experiment to test the impact of packet delay on ASTI AGV use-case.'
-imgUrl: ''
-atomicComponents:
-  - componentId: 'RAN'
-    serversNumber: 1
-    # componentName: 'Radio Access Network'
-    imagesUrls: []
-    endPointsIds: ['SapRANVs', 'CpRANEpc']
-    lifecycleOperations: {}
-    # scalingRules: []
-  - componentId: 'DEL'
-    serversNumber: 1
-    # componentName: 'Artificial Delay'
-    imagesUrls: ['/path/to/delay.qcow']
-    endPointsIds: ['CpDelIn', 'CpDelOut']
-    lifecycleOperations:
-      instantiate: 'scripts/instantiate'
-      terminate: 'scripts/terminate'
-      update: 'scripts/update'
-      heal: 'scripts/heal'
-    # scalingRules: []
-  - componentId: 'Master_PLC'
-    # componentName: 'Robot Controller Server'
-    serversNumber: 1
-    imagesUrls: ['master_plc_image']
-    endPointsIds: ['CpMPLC']
-    lifecycleOperations:
-      instantiate: 'scripts/instantiate'
-      terminate: 'scripts/terminate'
-      update: 'scripts/update'
-      heal: 'scripts/heal'
-    # scaling_rules: ['scale out if load > 60% for 2 mins']
-  - componentId: 'vEPC'
-    # componentName: 'Virtualized EPC'
-    serversNumber: 1
-    imagesUrls: []
-    endPointsIds: ['cpEPCRan', 'SapCoreExt']
-    lifecycleOperations: null
-    # scaling_rules: []
-  - componentId: 'Mgmt'
-    # componentName: 'Robot Management Server'
-    serversNumber: 1
-    imagesUrls: ['mgmt_image']
-    endPointsIds: ['SapMgmt', 'SapAdmin']
-    lifecycleOperations:
-      instantiate: 'scripts/instantiate'
-      terminate: 'scripts/terminate'
-      update: 'scripts/update'
-      heal: 'scripts/heal'
-    # scaling_rules: ['scale up if load > 90% for 2 mins']
-endPoints:
-  - endPointId: 'SapRANVs'
-    external: true
-    management: false
-    ranConnection: true
-  - endPointId: 'CpRANEpc'
-    external: false
-    management: false
-    ranConnection: false
-  - endPointId: 'CpMPLC'
-    external: false
-    management: false
-    ranConnection: false
-  - endPointId: 'CpEPCRan'
-    external: false
-    management: false
-    ranConnection: false
-  - endPointId: 'SapCoreExt'
-    external: true
-    management: false
-    ranConnection: false
-  - endPointId: 'SapMgmt'
-    external: true
-    management: false
-    ranConnection: false
-  - endPointId: 'SapAdmin'
-    external: true
-    management: false
-    ranConnection: false
-  - endPointId: 'CpDelIn'
-    external: false
-    management: false
-    ranConnection: false
-  - endPointId: 'CpDelOut'
-    external: false
-    management: false
-    ranConnection: false
-connectivityServices:
-  - endPointIds: ['CpRanEpc', 'CpDelIn', 'CpEpcRan']
-    external: false
-  - endPointIds: ['CpMPLC', 'CpDelOut']
-    external: false
-  - endPointIds: ['SapCoreExt', 'SapMgmt']
-    external: false
-serviceSequence:
-  # sensor data flow
-  - vsComponentId: 'RAN'
-    endPointId: 'SapRANVs'
-  - vsComponentId: 'RAN'
-    endPointId: 'CpRANEpc'
-  - vsComponentId: 'DEL'
-    endPointId: 'CpDelIn'
-  - vsComponentId: 'DEL'
-    endPointId: 'CpDelOut'
-  - vsComponentId: 'Master_PLC'
-    endPointId: 'CpMPLC'
-translationRules:
-  - input:
-      - parameterId: 'number_of_AGVs'
-        minValue: 0
-        maxValue: 5
-    nsdId: 'nsd_asti_del_small'
-    nsdVersion: '1.0'
-    nsFlavourId: 'fl_asti_del_small'
-    nsInstantiationLevelId: 'il_asti_del_small'
-  - input:
-      - parameterId: 'number_of_AGVs'
-        minValue: 6
-        maxValue: 10
-    nsdId: 'nsd_asti_del_medium_id'
-    nsdVersion: '1.0'
-    nsFlavourId: 'fl_asti_del_medium'
-    nsInstantiationLevelId: 'il_asti_del_medium'
-  - input:
-      - parameterId: 'number_of_AGVs'
-        minValue: 6
-        maxValue: 10
-      - parameterId: 'delay_avg' # if delay is very large we need more cache
-        minValue: '1000'
-        maxValue: '9000'
-    nsdId: 'nsd_asti_del_medium2_id'
-    nsdVersion: '1.0'
-    nsFlavourId: 'fl_asti_del_medium2'
-    nsInstantiationLevelId: 'il_asti_del_medium2'
-  - input:
-      - parameterId: 'number_of_AGVs'
-        minValue: 11
-        maxValue: 50
-    nsdId: 'nsd_asti_del_big_id'
-    nsdVersion: '1.0'
-    nsFlavourId: 'fl_asti_del_big'
-    nsInstantiationLevelId: 'il_asti_del_big'
-  - input:
-      - parameterId: 'number_of_AGVs'
-        minValue: 11
-        maxValue: 50
-      - parameterId: 'delay_avg' # if delay is very large we need more cache
-        minValue: '1000'
-        maxValue: '9000'
-    nsdId: 'nsd_asti_del_big2_id'
-    nsdVersion: '1.0'
-    nsFlavourId: 'fl_asti_del_big2'
-    nsInstantiationLevelId: 'il_asti_del_big'
-siteId: 'spain'
-vsb: 'vsb_asti_agv'
-contexts: ['cb_delay']
-infrastructureMetrics:
-  - 'LATENCY'
+sites:
+  - ITALY_TURIN
+  - SPAIN_5TONIC
 kpis:
   - kpiId: 'kpi_navigation_level'
-    kpiType: 'TYPE_ENUM'
     name: 'Navigation level must be greater than or equal to objective.'
     formula: 'navigation_level'
     unit: ''
-    metrics: ['navigation_level']
     interval: '1s'
+    metricIds: ['navigation_level']
   - kpiId: 'consumption'
-    kpiType: 'TYPE_ENUM'
     name: 'AGV energy consumption must be less than or equal to objective.'
     formula: 'consumption'
     unit: 'watt'
-    metrics: ['consumption']
     interval: '1s'
+    metricIds: ['consumption']
   - kpiId: 'time_to_lose_guide'
-    kpiType: 'TYPE_ENUM'
     name: 'Amount after which the AGV lost the guide.'
     formula: 'time_to_lose_guide'
     unit: 's'
-    metrics: ['time_to_lose_guide']
     interval: '1s'
-testCases:
-  - scriptId: 'asti_delay_testcase_1'
-    script: '### Code ###'
-    userParameters:
-      delay_avg: '$$var_delay'
-    infrastructureParameters:
-      ns.nsd_id.vnf.vnfd_id.cp.cpId1.idAddr: '$$varX'
-      ns.nsd_id.vnf.vnfd_id.cp.cpId2.idAddr: '$$varY'
-  - scriptId: 'asti_delay_testcase_2'
-    script: '### Code ###'
-    userParameters:
-      delay_avg: '$$var_delay'
-    infrastructureParameters:
-      ns.nsd_id.vnf.vnfd_id.cp.cpId1.idAddr: '$$varX'
-      ns.nsd_id.vnf.vnfd_id.cp.cpId2.idAddr: '$$varY'
-
+    metricIds: ['time_to_lose_guide']
+metrics:
+  - metricId: 'latency'
+    name: 'Measurement of latency.'
+    metricCollectionType: 'GAUGE'
+    unit: 'ms'
+    interval: '1s'
+    iMetricType: 'LATENCY'
+vsBlueprintId: 'vsb_asti_agv'
+ctxBlueprintIds: ['cb_delay']
+tcBlueprintIds: ['asti_delay_testcase_1', 'asti_delay_testcase_2']
