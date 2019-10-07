@@ -1,10 +1,9 @@
 # vsb_asti_agv.yaml
 ---
-vsBlueprintId: 'vsb_asti_agv'
+blueprintId: 'vsb_asti_agv'
 version: '1.0'
 name: 'ASTI AGV control and automation'
 description: 'Blueprint for AGVs using 5G network for Automation and Control purposes'
-imgUrl: ''
 parameters:
   - parameterId: 'number_of_AGVs'
     parameterName: 'Number of AGVs'
@@ -84,60 +83,36 @@ connectivityServices:
     external: false
 serviceSequence:
   # sensor data flow
-  - vsComponentId: 'RAN'
-    endPointId: 'SapRANVs'
-  - vsComponentId: 'RAN'
-    endPointId: 'CpRANEpc'
-  - vsComponentId: 'Master_PLC'
-    endPointId: 'CpMPLC'
-translationRules:
-  - input:
-      - parameterId: 'number_of_AGVs'
-        minValue: 0
-        maxValue: 5
-    nsdId: 'nsd_asti_small'
-    nsdVersion: '1.0'
-    nsFlavourId: 'fl_asti_small'
-    nsInstantiationLevelId: 'il_asti_small'
-  - input:
-      - parameterId: 'number_of_AGVs'
-        minValue: 6
-        maxValue: 10
-    nsdId: 'nsd_asti_medium_id'
-    nsdVersion: '1.0'
-    nsFlavourId: 'fl_asti_medium'
-    nsInstantiationLevelId: 'il_asti_medium'
-  - input:
-      - parameterId: 'number_of_AGVs'
-        minValue: 11
-        maxValue: 50
-    nsdId: 'nsd_asti_big_id'
-    nsdVersion: '1.0'
-    nsFlavourId: 'fl_asti_big'
-    nsInstantiationLevelId: 'il_asti_big'
-contexts: ['ctx_id_1', 'ctx_id_2']
+  - hopEndPoints:
+    - vsComponentId: 'RAN'
+      endPointId: 'SapRANVs'
+    - vsComponentId: 'RAN'
+      endPointId: 'CpRANEpc'
+    - vsComponentId: 'Master_PLC'
+      endPointId: 'CpMPLC'
+compatibleContextBlueprint: ['ctx_id_1', 'ctx_id_2']
 applicationMetrics:
   - metricId: 'navigation_level'
     name: 'Measurement of the quality of the AGV navigation.'
-    type: 'GAUGE'
+    metricCollectionType: 'GAUGE'
     unit: ''
     interval: '1s'
     topic: '/app/navigation_level'
   - metricId: 'power_consumption'
     name: 'Measurement of the power consumption from the AGV.'
-    type: 'GAUGE'
+    metricCollectionType: 'GAUGE'
     unit: 'watt'
     interval: '1s'
     topic: '/app/power_consumption'
   - metricId: 'time_to_lose_guide'
     name: 'Amount after which the AGV lost the guide.'
-    type: 'CUMULATIVE'
+    metricCollectionType: 'CUMULATIVE'
     unit: 's'
     interval: '1s'
     topic: '/app/time_to_lose_guide'
   - metricId: 'connected_robots'
     name: 'Number of currently connected robots'
-    type: 'GAUGE'
+    metricCollectionType: 'GAUGE'
     unit: ''
     interval: '5s'
     topic: '/app/connected-robots'
