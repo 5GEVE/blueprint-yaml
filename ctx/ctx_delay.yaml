@@ -1,6 +1,6 @@
-# cb_delay.yaml
+# ctx_delay.yaml
 ---
-blueprintId: 'cb_delay'
+blueprintId: 'ctx_delay'
 version: '1.0'
 name: 'Context Blueprint Artificial Delay'
 description: 'Context Blueprint to add artificial delay to a VSB.'

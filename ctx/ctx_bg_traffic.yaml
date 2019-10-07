@@ -1,6 +1,6 @@
-# cb_bg_traffic.yaml
+# ctx_bg_traffic.yaml
 ---
-blueprintId: 'cb_bg_traffic'
+blueprintId: 'ctx_bg_traffic'
 version: '1.0'
 name: 'Context Blueprint Background Traffic'
 description: 'Context Blueprint to add artificial background traffic to a VSB.'
