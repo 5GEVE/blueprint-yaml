@@ -1,0 +1,17 @@
+translationRules:
+  - input:
+      - parameterId: 'delay_avg'
+        minValue: 1
+        maxValue: 50
+    nsdId: 'nsd_delay_small'
+    nsdVersion: '1.0'
+    nsFlavourId: 'fl_delay_small'
+    nsInstantiationLevelId: 'il_delay_small'
+  - input:
+      - parameterId: 'delay_avg'
+        minValue: 51
+        maxValue: 100
+    nsdId: 'nsd_delay_medium'
+    nsdVersion: '1.0'
+    nsFlavourId: 'fl_dealy_medium'
+    nsInstantiationLevelId: 'il_dealy_medium'
