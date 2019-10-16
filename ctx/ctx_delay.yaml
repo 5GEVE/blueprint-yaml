@@ -1,10 +1,9 @@
-# cb_delay.yaml
+# ctx_delay.yaml
 ---
-ctxBlueprintId: 'cb_delay'
+blueprintId: 'ctx_delay'
 version: '1.0'
 name: 'Context Blueprint Artificial Delay'
 description: 'Context Blueprint to add artificial delay to a VSB.'
-imgUrl: ''
 parameters:
   - parameterId: 'delay_avg'
     parameterName: 'Delay average'
@@ -37,30 +36,14 @@ endPoints:
     external: false
     management: false
     ranConnection: false
-translationRules:
-  - input:
-      - parameterId: 'delay_avg'
-        minValue: 1
-        maxValue: 50
-    nsdId: 'nsd_delay_small'
-    nsdVersion: '1.0'
-    nsFlavourId: 'fl_delay_small'
-    nsInstantiationLevelId: 'il_delay_small'
-  - input:
-      - parameterId: 'delay_avg'
-        minValue: 51
-        maxValue: 100
-    nsdId: 'nsd_delay_medium'
-    nsdVersion: '1.0'
-    nsFlavourId: 'fl_dealy_medium'
-    nsInstantiationLevelId: 'il_dealy_medium'
-constraints:
-  compositionOrder: 10
 applicationMetrics:
   - metricId: 'delay_iface'
     name: 'Traffic delay measured between In and Out interfaces'
-    type: 'GAUGE'
+    metricCollectionType: 'GAUGE'
     unit: 'ms'
     interval: '1s'
     topic: '/app/delay_iface'
+compatibleSites:
+  - ITALY_TURIN
+  - SPAIN_5TONIC
 

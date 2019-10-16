@@ -1,0 +1,17 @@
+translationRules:
+  - input:
+      - parameterId: 'number_of_tracked_devices'
+        minValue: 1
+        maxValue: 20
+    nsdId: 'nsd_ares2t_tracker_small'
+    nsdVersion: '1.0'
+    nsFlavourId: 'fl_ares2t_tracker_small'
+    nsInstantiationLevelId: 'il_ares2t_tracker_small'
+  - input:
+      - parameterId: 'number_of_tracked_devices'
+        minValue: 21
+        maxValue: 100
+    nsdId: 'nsd_ares2t_tracker_medium'
+    nsdVersion: '1.0'
+    nsFlavourId: 'fl_ares2t_tracker_medium'
+    nsInstantiationLevelId: 'il_ares2t_tracker_medium'

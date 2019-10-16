@@ -1,0 +1,10 @@
+# tcb_asti_delay_1.yaml
+---
+testcaseBlueprintId: 'asti_delay_testcase_1'
+script: '### Code ###'
+userParameters:
+  delay_avg: '$$var_delay'
+infrastructureParameters:
+  ns.nsd_id.vnf.vnfd_id.cp.cpId1.idAddr: '$$varX'
+  ns.nsd_id.vnf.vnfd_id.cp.cpId2.idAddr: '$$varY'
+
