@@ -1,6 +1,9 @@
 # tcb_asti_delay_2.yaml
 ---
 testcaseBlueprintId: 'asti_delay_testcase_2'
+version: '1.0'
+name: 'ASTI AGV delay test case 2'
+description: ''
 script: '### Code ###'
 userParameters:
   delay_avg: '$$var_delay'

@@ -1,6 +1,9 @@
 # tcb_ares2t_tracker_1.yaml
 ---
 testcaseBlueprintId: 'ares2t_testcase_1'
+version: '1.0'
+name: 'Ares2T tracker test case 1'
+description: ''
 script: '### Code ###'
 userParameters:
   delay_avg: '$$var_delay'
