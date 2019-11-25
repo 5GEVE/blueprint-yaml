@@ -27,3 +27,12 @@ yq . ctx_bg_traffic.yaml
 yq . ctx_bg_traffic.yaml > ctx_bg_traffic.json
 ```
 
+### Contributors
+
+- Matteo Pergolesi (CNIT)
+- Gerardo Corsaletti (Ares2T)
+- Vincenzo Suraci (Ares2T)
+- Winnie Nakimuli (UC3M)
+- Evangelos Kosmatos (Wings)
+- Christos Ntogkas (Wings)
+
