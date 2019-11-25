@@ -1,0 +1,16 @@
+# tcb_wings_impairments_1.yaml
+---
+testcaseBlueprintId: 'wings_impairments_testcase_1'
+script: '### Code ###'
+userParameters:
+  delay: '$$var_delay'
+  jitter: '$$var_jitter'
+  jitter_distribution: '$$var_jitter_distribution'
+  correlation_value: '$$var_correlation_value'
+  loss: '$$var_loss'
+  corruption: '$$var_corruption'
+  duplicaiton: '$$var_duplication'
+infrastructureParameters:
+  # not sure about these. what is their purpose exactly?
+  ns.nsd_id.vnf.vnfd_id.cp.cpId1.idAddr: '$$varX'
+  ns.nsd_id.vnf.vnfd_id.cp.cpId2.idAddr: '$$varY'

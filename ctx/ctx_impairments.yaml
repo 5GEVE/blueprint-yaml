@@ -1,0 +1,96 @@
+# ctx_impairments.yaml
+---
+blueprintId: 'ctx_impairments'
+version: '1.0'
+name: 'Context Blueprint Artificial Network Impairments'
+description: 'Context Blueprint to add artificial network impairments to a VSB.'
+parameters:
+  - parameterId: 'delay'
+    parameterName: 'Delay'
+    parameterType: 'number'
+    parameterDescription: 'The amount of delay in ms.'
+    applicabilityField: 'context'
+  - parameterId: 'jitter'
+    parameterName: 'Jitter'
+    parameterType: 'number'
+    parameterDescription: 'The jitter of the packets in ms.'
+    applicabilityField: 'context'
+  - parameterId: 'jitter_distribution'
+    parameterName: 'Jitter Distribution'
+    parameterType: 'string'
+    parameterDescription: 'The jitter distribution type.'
+    applicabilityField: 'context'
+  - parameterId: 'correlation_value'
+    parameterName: 'Correlation value'
+    parameterType: 'number'
+    parameterDescription: 'The correlation value  for the uniform distribution of jitter in percentage'
+    applicabilityField: 'context'
+  - parameterId: 'loss'
+    parameterName: 'Packet Loss'
+    parameterType: 'number'
+    parameterDescription: 'The packet loss rate in percentage.'
+    applicabilityField: 'context'
+  - parameterId: 'corruption'
+    parameterName: 'Packet Corruption'
+    parameterType: 'number'
+    parameterDescription: 'The packet corruption rate in percentage.'
+    applicabilityField: 'context'
+  - parameterId: 'duplication'
+    parameterName: 'Packet Duplication'
+    parameterType: 'number'
+    parameterDescription: 'The packet duplication rate in percentage.'
+    applicabilityField: 'context'
+atomicComponents:
+  - componentId: 'Impairment_Node'
+    serversNumber: 1
+    # componentName: 'Impairment Node'
+    imagesUrls: ['/path/to/impairment_node.qcow']
+    endPointsIds: ['CpImpIn', 'CpImpOut']
+    lifecycleOperations:
+      instantiate: 'scripts/instantiate'
+      terminate: 'scripts/terminate'
+      update: 'scripts/update'
+      heal: 'scripts/heal'
+    # scalingRules: []
+endPoints:
+  - endPointId: 'CpImpIn'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpImpOut'
+    external: false
+    management: false
+    ranConnection: false
+applicationMetrics:
+  - metricId: 'delay_node'
+    name: 'Traffic delay applied on the traffic passing through the node'
+    metricCollectionType: 'GAUGE'
+    unit: 'ms'
+    interval: '1s'
+    topic: '/app/delay_node'
+  - metricId: 'jitter_node'
+    name: 'Traffic jitter applied on the traffic passing through the node'
+    metricCollectionType: 'GAUGE'
+    unit: 'ms'
+    interval: '1s'
+    topic: '/app/jitter_node'
+  - metricId: 'loss_node'
+    name: 'Traffic packet loss applied on the traffic passing through the node'
+    metricCollectionType: 'GAUGE'
+    unit: 'percent'
+    interval: '1s'
+    topic: '/app/loss_node'
+  - metricId: 'corruption_node'
+    name: 'Traffic packet corruption applied on the traffic passing through the node'
+    metricCollectionType: 'GAUGE'
+    unit: 'percent'
+    interval: '1s'
+    topic: '/app/corruption_node'
+  - metricId: 'duplication_node'
+    name: 'Traffic packet duplication applied on the traffic passing through the node'
+    metricCollectionType: 'GAUGE'
+    unit: 'percent'
+    interval: '1s'
+    topic: '/app/duplication_node'
+compatibleSites:
+  - GREECE-OTE
