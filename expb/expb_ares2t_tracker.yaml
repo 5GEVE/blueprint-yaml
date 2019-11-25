@@ -11,13 +11,13 @@ kpis:
   - kpiId: 'kpi_tracking_response_time'
     name: 'Response time must be lower than or equal to the objective.'
     formula: 'tracking_response_time'
-    unit: ''
+    unit: 'ms'
     interval: '1s'
     metricIds: ['tracking_response_time']
   - kpiId: 'kpi_memory_usage'
     name: 'Memory usage must be lower than or equal to the objective.'
     formula: 'tracking_memory_usage'
-    unit: ''
+    unit: 'MB'
     interval: '1s'
     metricIds: ['tracking_memory_usage']
 metrics:

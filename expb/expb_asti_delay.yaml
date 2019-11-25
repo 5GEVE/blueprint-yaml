@@ -11,7 +11,7 @@ kpis:
   - kpiId: 'kpi_navigation_level'
     name: 'Navigation level must be greater than or equal to objective.'
     formula: 'navigation_level'
-    unit: ''
+    unit: 'lvl'
     interval: '1s'
     metricIds: ['navigation_level']
   - kpiId: 'consumption'
