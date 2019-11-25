@@ -94,3 +94,4 @@ applicationMetrics:
     topic: '/app/duplication_node'
 compatibleSites:
   - GREECE_ATHENS
+

@@ -35,7 +35,7 @@ atomicComponents:
     serversNumber: 1
     imagesUrls: ['utilities_platform_image']
     endPointsIds: ['SapPlatform', 'CpPlatformEPC']
-    lifecycleOperations: 
+    lifecycleOperations:
       instantiate: 'scripts/instantiate'
       terminate: 'scripts/terminate'
       update: 'scripts/update'
@@ -45,7 +45,7 @@ atomicComponents:
     serversNumber: 1
     imagesUrls: ['mgmt_image']
     endPointsIds: ['SapMgmt', 'SapAdmin']
-    lifecycleOperations: 
+    lifecycleOperations:
       instantiate: 'scripts/instantiate'
       terminate: 'scripts/terminate'
       update: 'scripts/update'
@@ -129,3 +129,4 @@ applicationMetrics:
     unit: 'ms'
     interval: '1s'
     topic: '/app/power_restoration_decision_time'
+

@@ -27,7 +27,7 @@ parameters:
     applicabilityField: 'context'
   - parameterId: 'bg_client_behavior'
     parameterName: 'Background Requests Traffic Clients Behavior'
-    parameterType: 'script' 
+    parameterType: 'script'
     # is 'script' a valid option? client behavior is defined in a python file that can be part of the VNF or provided as an input
     parameterDescription: 'The time period for the continuous requests generation in seconds.'
     applicabilityField: 'context'
@@ -93,3 +93,4 @@ applicationMetrics:
     topic: '/app/rate'
 compatibleSites:
   - GREECE_ATHENS
+

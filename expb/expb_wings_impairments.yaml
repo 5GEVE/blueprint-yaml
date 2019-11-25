@@ -1,4 +1,4 @@
-# expb_wings_delay.yaml
+# expb_wings_impairments.yaml
 ---
 expBlueprintId: 'expb_wings_impairments'
 version: '1.0'
@@ -35,3 +35,4 @@ metrics:
 vsBlueprintId: 'vsb_wings_utilities'
 ctxBlueprintIds: ['ctx_impairments']
 tcBlueprintIds: ['wings_impairments_testcase_1']
+

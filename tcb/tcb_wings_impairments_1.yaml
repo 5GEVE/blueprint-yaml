@@ -17,3 +17,4 @@ infrastructureParameters:
   # not sure about these. what is their purpose exactly?
   ns.nsd_id.vnf.vnfd_id.cp.cpId1.idAddr: '$$varX'
   ns.nsd_id.vnf.vnfd_id.cp.cpId2.idAddr: '$$varY'
+
