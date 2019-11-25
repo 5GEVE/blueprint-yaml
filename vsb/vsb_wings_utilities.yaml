@@ -1,0 +1,132 @@
+# vsb_wings_utilities.yaml
+---
+blueprintId: 'vsb_wings_utilities'
+version: '1.0'
+name: 'Utilities service'
+description: 'Blueprint for 5G EVE utilities service using 5G network to monitor and configure the power grid.'
+parameters:
+  - parameterId: 'number_of_p_nodes'
+    parameterName: 'Number of Physical Nodes'
+    parameterType: 'number'
+    parameterDescription: 'Number of Physical Nodes (Mandatory)'
+    applicabilityField: 'physical_node'
+  - parameterId: 'number_of_e_nodes'
+    parameterName: 'Number of Emulated Nodes'
+    parameterType: 'number'
+    parameterDescription: 'Number of Emulated Nodes (Optional)'
+    applicabilityField: 'emulated_node'
+atomicComponents:
+  - componentId: 'RAN'
+    serversNumber: 1
+    # componentName: 'Radio Access Network'
+    imagesUrls: []
+    endPointsIds: ['SapRANNs', 'CpRANEPC']
+    lifecycleOperations: {}
+    # scalingRules: []
+  - componentId: 'vEPC'
+    # componentName: 'Virtualized EPC'
+    serversNumber: 1
+    imagesUrls: []
+    endPointsIds: ['CpEPCRAN', 'CpEPCPlatform', 'SapCoreExt']
+    lifecycleOperations: null
+    # scaling_rules: []
+  - componentId: 'UtilitiesPlatform'
+    # componentName: 'Utilities Platform'
+    serversNumber: 1
+    imagesUrls: ['utilities_platform_image']
+    endPointsIds: ['SapPlatform', 'CpPlatformEPC']
+    lifecycleOperations:
+      instantiate: 'scripts/instantiate'
+      terminate: 'scripts/terminate'
+      update: 'scripts/update'
+      heal: 'scripts/heal'
+  - componentId: 'Mgmt'
+    # componentName: 'Management Server'
+    serversNumber: 1
+    imagesUrls: ['mgmt_image']
+    endPointsIds: ['SapMgmt', 'SapAdmin']
+    lifecycleOperations:
+      instantiate: 'scripts/instantiate'
+      terminate: 'scripts/terminate'
+      update: 'scripts/update'
+      heal: 'scripts/heal'
+    # scaling_rules: ['scale up if load > 90% for 2 mins']
+endPoints:
+  - endPointId: 'SapRANNs'
+    external: true
+    management: false
+    ranConnection: true
+  - endPointId: 'CpRANEPC'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpEPCRAN'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpEPCPlatform'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpPlatformEPC'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'SapCoreExt'
+    external: true
+    management: false
+    ranConnection: false
+  - endPointId: 'SapMgmt'
+    external: true
+    management: false
+    ranConnection: false
+  - endPointId: 'SapPlatform'
+    external: true
+    management: false
+    ranConnection: false
+  - endPointId: 'SapAdmin'
+    external: true
+    management: false
+    ranConnection: false
+connectivityServices:
+  - endPointIds: ['CpRANEPC', 'CpEPCRAN']
+    external: false
+  - endPointIds: ['CpEPCPlatform', 'CpPlatformEPC']
+    external: false
+  - endPointIds: ['SapCoreExt', 'SapMgmt', 'SapPlatform']
+    external: false
+serviceSequence:
+  # voltage/current sensors data flow
+  - hopEndPoints:
+    - vsComponentId: 'RAN'
+      endPointId: 'SapRANNs'
+    - vsComponentId: 'RAN'
+      endPointId: 'CpRANEPC'
+    - vsComponentId: 'vEPC'
+      endPointId: 'CpEPCRAN'
+    - vsComponentId: 'vEPC'
+      endPointId: 'SapCoreExt'
+    - vsComponentId: 'UtilitiesPlatform'
+      endPointId: 'SapPlatform'
+compatibleContextBlueprint: ['ctx_impairments', 'ctx_bg_req_traffic']
+applicationMetrics:
+  # Example
+  - metricId: 'tracked_nodes'
+    name: 'Number of total tracked nodes'
+    metricCollectionType: 'GAUGE'
+    unit: 'nodes'
+    interval: '5s'
+    topic: '/app/tracked_nodes'
+  - metricId: 'power_restoration_time'
+    name: 'Measurement of the time to restore power to a node'
+    metricCollectionType: GAUGE
+    unit: 'ms'
+    interval: '1s'
+    topic: '/app/power_restoration_time'
+  - metricId: 'power_restoration_decision_time'
+    name: 'Measurement of the time to decide the route that will restore power to a node'
+    metricCollectionType: GAUGE
+    unit: 'ms'
+    interval: '1s'
+    topic: '/app/power_restoration_decision_time'
+

@@ -1,0 +1,38 @@
+# expb_wings_impairments.yaml
+---
+expBlueprintId: 'expb_wings_impairments'
+version: '1.0'
+name: 'Experiment with artificial network impairments for WINGS Utilities use case.'
+description: 'Experiment to test the impact of network impairments and number of requests on WINGS  Utilities use-case.'
+sites:
+  - GREECE_ATHENS
+kpis:
+  - kpiId: 'power_restoration_time'
+    name: 'Power restoration time must be lower or equal to the objective'
+    formula: 'power_restoration_time'
+    unit: 'ms'
+    interval: '1s'
+    metricIds: ['power_restoration_time']
+  - kpiId: 'power_restoration_decision_time'
+    name: 'Power restoration decision time must be lower or equal to the objective'
+    formula: 'power_restoration_decision_time'
+    unit: 'ms'
+    interval: '1s'
+    metricIds: ['power_restoration_decision_time']
+metrics:
+  - metricId: 'latency'
+    name: 'Measurement of latency.'
+    metricCollectionType: 'GAUGE'
+    unit: 'ms'
+    interval: '1s'
+    iMetricType: 'LATENCY'
+  - metricId: 'packet_loss'
+    name: 'Measurement of packet loss rate.'
+    metricCollectionType: 'GAUGE'
+    unit: 'percent'
+    interval: '1s'
+    iMetricType: 'LOST_PKT'   # not sure about this one? what does it refer to
+vsBlueprintId: 'vsb_wings_utilities'
+ctxBlueprintIds: ['ctx_impairments']
+tcBlueprintIds: ['wings_impairments_testcase_1']
+
