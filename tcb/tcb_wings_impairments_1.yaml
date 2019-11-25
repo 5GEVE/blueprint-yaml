@@ -1,6 +1,9 @@
 # tcb_wings_impairments_1.yaml
 ---
 testcaseBlueprintId: 'wings_impairments_testcase_1'
+version: '1.0'
+name: 'TcB Wings Impairments'
+description: ''
 script: '### Code ###'
 userParameters:
   delay: '$$var_delay'

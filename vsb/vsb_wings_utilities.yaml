@@ -34,7 +34,7 @@ atomicComponents:
     # componentName: 'Utilities Platform'
     serversNumber: 1
     imagesUrls: ['utilities_platform_image']
-    endPointsIds: 'SapPlatform', 'CpPlatformEPC']
+    endPointsIds: ['SapPlatform', 'CpPlatformEPC']
     lifecycleOperations: 
       instantiate: 'scripts/instantiate'
       terminate: 'scripts/terminate'
@@ -44,7 +44,7 @@ atomicComponents:
     # componentName: 'Management Server'
     serversNumber: 1
     imagesUrls: ['mgmt_image']
-    endPointsIds: 'SapMgmt', 'SapAdmin']
+    endPointsIds: ['SapMgmt', 'SapAdmin']
     lifecycleOperations: 
       instantiate: 'scripts/instantiate'
       terminate: 'scripts/terminate'

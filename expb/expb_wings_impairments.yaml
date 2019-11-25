@@ -5,7 +5,7 @@ version: '1.0'
 name: 'Experiment with artificial network impairments for WINGS Utilities use case.'
 description: 'Experiment to test the impact of network impairments and number of requests on WINGS  Utilities use-case.'
 sites:
-  - GREECE_OTE
+  - GREECE_ATHENS
 kpis:
   - kpiId: 'power_restoration_time'
     name: 'Power restoration time must be lower or equal to the objective'
@@ -31,7 +31,7 @@ metrics:
     metricCollectionType: 'GAUGE'
     unit: 'percent'
     interval: '1s'
-    iMetricType: 'PACKET_LOSS'   # not sure about this one? what does it refer to
+    iMetricType: 'LOST_PKT'   # not sure about this one? what does it refer to
 vsBlueprintId: 'vsb_wings_utilities'
 ctxBlueprintIds: ['ctx_impairments']
 tcBlueprintIds: ['wings_impairments_testcase_1']

@@ -92,4 +92,4 @@ applicationMetrics:
     interval: '1s'
     topic: '/app/rate'
 compatibleSites:
-  - GREECE-OTE
+  - GREECE_ATHENS

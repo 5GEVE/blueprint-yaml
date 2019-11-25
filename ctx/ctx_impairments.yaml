@@ -93,4 +93,4 @@ applicationMetrics:
     interval: '1s'
     topic: '/app/duplication_node'
 compatibleSites:
-  - GREECE-OTE
+  - GREECE_ATHENS
