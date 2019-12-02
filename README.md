@@ -27,6 +27,11 @@ yq . ctx_bg_traffic.yaml
 yq . ctx_bg_traffic.yaml > ctx_bg_traffic.json
 ```
 
+### Blueprint Validator
+
+A command-line blueprint validator can be found here:
+[blueprint-validator](https://github.com/5GEVE/blueprint-validator)
+
 ### Contributors
 
 - Matteo Pergolesi (CNIT)
