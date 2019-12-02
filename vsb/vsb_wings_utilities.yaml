@@ -5,16 +5,11 @@ version: '1.0'
 name: 'Utilities service'
 description: 'Blueprint for 5G EVE utilities service using 5G network to monitor and configure the power grid.'
 parameters:
-  - parameterId: 'number_of_p_nodes'
-    parameterName: 'Number of Physical Nodes'
+  - parameterId: 'number_of_nodes'
+    parameterName: 'Number of monitored Nodes'
     parameterType: 'number'
-    parameterDescription: 'Number of Physical Nodes (Mandatory)'
-    applicabilityField: 'physical_node'
-  - parameterId: 'number_of_e_nodes'
-    parameterName: 'Number of Emulated Nodes'
-    parameterType: 'number'
-    parameterDescription: 'Number of Emulated Nodes (Optional)'
-    applicabilityField: 'emulated_node'
+    parameterDescription: 'Number of Monitored Nodes (Mandatory)'
+    applicabilityField: 'monitored_node'
 atomicComponents:
   - componentId: 'RAN'
     serversNumber: 1
@@ -34,7 +29,7 @@ atomicComponents:
     # componentName: 'Utilities Platform'
     serversNumber: 1
     imagesUrls: ['utilities_platform_image']
-    endPointsIds: ['SapPlatform', 'CpPlatformEPC']
+    endPointsIds: 'SapPlatform', 'CpPlatformEPC']
     lifecycleOperations:
       instantiate: 'scripts/instantiate'
       terminate: 'scripts/terminate'
@@ -44,7 +39,7 @@ atomicComponents:
     # componentName: 'Management Server'
     serversNumber: 1
     imagesUrls: ['mgmt_image']
-    endPointsIds: ['SapMgmt', 'SapAdmin']
+    endPointsIds: 'SapMgmt', 'SapAdmin']
     lifecycleOperations:
       instantiate: 'scripts/instantiate'
       terminate: 'scripts/terminate'
@@ -110,13 +105,12 @@ serviceSequence:
       endPointId: 'SapPlatform'
 compatibleContextBlueprint: ['ctx_impairments', 'ctx_bg_req_traffic']
 applicationMetrics:
-  # Example
-  - metricId: 'tracked_nodes'
-    name: 'Number of total tracked nodes'
+  - metricId: 'monitored_nodes'
+    name: 'Number of total monitored nodes'
     metricCollectionType: 'GAUGE'
     unit: 'nodes'
     interval: '5s'
-    topic: '/app/tracked_nodes'
+    topic: '/app/monitored_nodes'
   - metricId: 'power_restoration_time'
     name: 'Measurement of the time to restore power to a node'
     metricCollectionType: GAUGE
@@ -129,4 +123,3 @@ applicationMetrics:
     unit: 'ms'
     interval: '1s'
     topic: '/app/power_restoration_decision_time'
-
