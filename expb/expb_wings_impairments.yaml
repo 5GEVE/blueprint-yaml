@@ -31,8 +31,7 @@ metrics:
     metricCollectionType: 'GAUGE'
     unit: 'percent'
     interval: '1s'
-    iMetricType: 'LOST_PKT'   # not sure about this one? what does it refer to
+    iMetricType: 'LOST_PKT'
 vsBlueprintId: 'vsb_wings_utilities'
 ctxBlueprintIds: ['ctx_impairments']
 tcBlueprintIds: ['wings_impairments_testcase_1']
-
