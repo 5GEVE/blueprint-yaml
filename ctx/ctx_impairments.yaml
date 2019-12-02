@@ -80,18 +80,5 @@ applicationMetrics:
     unit: 'percent'
     interval: '1s'
     topic: '/app/loss_node'
-  - metricId: 'corruption_node'
-    name: 'Traffic packet corruption applied on the traffic passing through the node'
-    metricCollectionType: 'GAUGE'
-    unit: 'percent'
-    interval: '1s'
-    topic: '/app/corruption_node'
-  - metricId: 'duplication_node'
-    name: 'Traffic packet duplication applied on the traffic passing through the node'
-    metricCollectionType: 'GAUGE'
-    unit: 'percent'
-    interval: '1s'
-    topic: '/app/duplication_node'
 compatibleSites:
   - GREECE_ATHENS
-

@@ -15,11 +15,6 @@ parameters:
     parameterType: 'number'
     parameterDescription: 'The rate of clients spawning in clients per second.'
     applicabilityField: 'context'
-  - parameterId: 'bg_client'
-    parameterName: 'Background Requests Traffic Number Of Clients'
-    parameterType: 'number'
-    parameterDescription: 'The number of clients generating background requests traffic.'
-    applicabilityField: 'context'
   - parameterId: 'bg_timeout'
     parameterName: 'Background Requests Traffic Timeout Period'
     parameterType: 'number'
@@ -28,7 +23,6 @@ parameters:
   - parameterId: 'bg_client_behavior'
     parameterName: 'Background Requests Traffic Clients Behavior'
     parameterType: 'script'
-    # is 'script' a valid option? client behavior is defined in a python file that can be part of the VNF or provided as an input
     parameterDescription: 'The time period for the continuous requests generation in seconds.'
     applicabilityField: 'context'
 atomicComponents:
@@ -93,4 +87,3 @@ applicationMetrics:
     topic: '/app/rate'
 compatibleSites:
   - GREECE_ATHENS
-
