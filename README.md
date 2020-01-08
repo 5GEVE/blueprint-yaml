@@ -12,8 +12,8 @@ sensible information about verticals.
 
 To use blueprints in REST request body it may be useful to convert it to JSON.
 To convert from YAML to JSON you can use yq
-([yq on GitHub](https://github.com/mikefarah/yq/),
-[docs](https://mikefarah.github.io/yq/))
+([yq on GitHub](https://github.com/kislyuk/yq),
+[docs](https://kislyuk.github.io/yq/))
 
 Command example:
 
