@@ -27,6 +27,12 @@ yq . ctx_bg_traffic.yaml
 yq . ctx_bg_traffic.yaml > ctx_bg_traffic.json
 ```
 
+*Note:* Reverse conversion (JSON to YAML is also possible):
+
+```
+yq -y . ctx_bg_traffic.json > ctx_bg_traffic.yaml
+```
+
 ### Blueprint Validator
 
 A command-line blueprint validator can be found here:
