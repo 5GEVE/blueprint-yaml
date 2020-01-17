@@ -2,12 +2,14 @@
 ---
 testcaseBlueprintId: 'ares2t_testcase_1'
 version: '1.0'
-name: 'Ares2T tracker test case 1'
-description: ''
-script: '### Code ###'
+name: TCB Ares2T Tracking with delay
+description: Test case to run the Ares2T tracking service with traffic delay
+script: "## TODO ## \nsudo tc qdisc add dev eth2 root netem delay $$var$$.delay\
+    \ $$var$$.delay_var $$var$$.dep%"
 userParameters:
-  delay_avg: '$$var_delay'
+  delay: $$var$$.delay
+  delay variance: $$var$$.delay_var
+  consecutive delay dependency percentage: $$var$$.dep
 infrastructureParameters:
   ns.nsd_id.vnf.vnfd_id.cp.cpId1.idAddr: '$$varX'
   ns.nsd_id.vnf.vnfd_id.cp.cpId2.idAddr: '$$varY'
-
