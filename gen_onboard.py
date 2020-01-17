@@ -48,13 +48,13 @@ if __name__ == '__main__':
                              "tcb")
     args = parser.parse_args()
     if args.type == "vsb":
-        res = gen_onboard("vsBlueprint", args.path)
+        request = gen_onboard("vsBlueprint", args.path)
     elif args.type == "ctx":
-        res = gen_onboard("ctxBlueprint", args.path)
+        request = gen_onboard("ctxBlueprint", args.path)
     elif args.type == "expb":
-        res = gen_onboard("expBlueprint", args.path)
+        request = gen_onboard("expBlueprint", args.path)
     elif args.type == "tcb":
-        res = gen_onboard_tcb(args.path)
+        request = gen_onboard_tcb(args.path)
     else:
         raise TypeError
-    print(json.dumps(res, indent=2))
+    print(json.dumps(request, indent=2))
