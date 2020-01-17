@@ -2,127 +2,97 @@
 ---
 blueprintId: 'vsb_ares2t_tracker'
 version: '1.0'
-name: 'ARES2T Tracker service'
-description: 'Blueprint for 5G EVE Tracker service using 5G network to collect mobility data user devices.'
+name: ARES2T Tracker service
+description: Blueprint for 5G EVE Tracker service using 5G network to collect mobility
+  data user devices.
 parameters:
-  - parameterId: 'number_of_tracked_devices'
-    parameterName: 'Number of tracked devices'
-    parameterType: 'number'
-    parameterDescription: 'Number of devices equipped with the 5G EVE Tracking Service (Mandatory)'
-    applicabilityField: 'Service Constraints/Geographical area'
+  - parameterId: number_of_tracked_devices
+    parameterName: Number of tracked devices
+    parameterType: number
+    parameterDescription: Number of devices equipped with the 5G EVE Tracking Service
+      (Mandatory)
+    applicabilityField: Smart transport
 atomicComponents:
-  - componentId: 'RAN'
+  - componentId: tracker_backend
     serversNumber: 1
-    # componentName: 'Radio Access Network'
-    imagesUrls: []
-    endPointsIds: ['SapRanVs', 'CpRanEpc']
-    lifecycleOperations: {}
-    # scalingRules: []
-  - componentId: 'vEPC'
-    # componentName: 'Virtualized EPC'
+    endPointsIds:
+      - cp_tracker_ext_in
+      - cp_tracker_data
+      - cp_tracker_mgt
+  - componentId: visualization_tool
     serversNumber: 1
-    imagesUrls: []
-    endPointsIds: ['CpEpcRan', 'CpEpcTrack']
-    lifecycleOperations: {}
-    # scaling_rules: []
-  - componentId: 'tracker_backend'
-    # componentName: 'External Application Server'
-    serversNumber: 1
-    imagesUrls: ['tracker_backend_img']
-    endPointsIds: ['CpTrackEpc', 'CpTrackVis']
-    lifecycleOperations:
-      instantiate: 'scripts/instantiate'
-      terminate: 'scripts/terminate'
-      update: 'scripts/update'
-      heal: 'scripts/heal'
-    # scaling_rules: ['scale out if load > 60% for 2 mins']
-  - componentId: 'visualization_tool'
-    # componentName: 'External Application Server'
-    serversNumber: 1
-    imagesUrls: ['vis_tool_img']
-    endPointsIds: ['CpVisTrack', 'SapVis']
-    lifecycleOperations:
-      instantiate: 'scripts/instantiate'
-      terminate: 'scripts/terminate'
-      update: 'scripts/update'
-      heal: 'scripts/heal'
-    # scaling_rules: ['scale out if load > 60% for 2 mins']
+    endPointsIds:
+      - cp_vis_data
+      - cp_vis_mgt
 endPoints:
-  - endPointId: 'SapRanVs'
+  - endPointId: cp_tracker_ext_in
     external: true
     management: false
     ranConnection: true
-  - endPointId: 'CpRanEpc'
+  - endPointId: cp_tracker_data
     external: false
     management: false
     ranConnection: false
-  - endPointId: 'CpEpcRan'
+  - endPointId: cp_tracker_mgt
+    external: true
+    management: true
+    ranConnection: false
+  - endPointId: cp_vis_data
     external: false
     management: false
     ranConnection: false
-  - endPointId: 'CpEpcTrack'
-    external: false
-    management: false
+  - endPointId: cp_vis_mgt
+    external: true
+    management: true
     ranConnection: false
-  - endPointId: 'CpTrackEpc'
-    external: false
-    management: false
-    ranConnection: false
-  - endPointId: 'CpTrackVis'
-    external: false
-    management: false
-    ranConnection: false
-  - endPointId: 'CpVisTrack'
-    external: false
-    management: false
-    ranConnection: false
-  - endPointId: 'SapVis'
+  - endPointId: sap_tracking_mobile
     external: true
     management: false
+    ranConnection: true
+  - endPointId: sap_tracking_mgt
+    external: true
+    management: true
     ranConnection: false
 connectivityServices:
-  - endPointIds: ['CpRanEpc', 'CpEpcRan']
+  - endPointIds:
+      - sap_tracking_mobile
+      - cp_tracker_ext_in
+    external: true
+  - endPointIds:
+      - cp_vis_data
+      - cp_tracker_data
     external: false
-  - endPointIds: ['CpEpcTrack', 'CpTrackEpc']
-    external: false
-  - endPointIds: ['CpTrackVis', 'CpVisTrack']
-    external: false
-serviceSequence:
-  - hopEndPoints:
-    - vsComponentId: 'RAN'
-      endPointId: 'SapRANVs'
-    - vsComponentId: 'RAN'
-      endPointId: 'CpRanEpc'
-    - vsComponentId: 'vEPC'
-      endPointId: 'CpEpcRan'
-    - vsComponentId: 'vEPC'
-      endPointId: 'CpEpcTrack'
-    - vsComponentId: 'tracker_backend'
-      endPointId: 'CpTrackEpc'
-compatibleContextBlueprint: ['ctx_delay']
+  - endPointIds:
+      - sap_tracking_mgt
+      - cp_vis_mgt
+      - cp_tracker_mgt
+    external: true
+compatibleContextBlueprint:
+  - '{{cb_id}}'
 applicationMetrics:
-  - metricId: 'tracked_devices'
-    name: 'Number of total tracked devices'
-    metricCollectionType: 'CUMULATIVE'
-    unit: 'devices'
-    interval: '5s'
-    topic: '/app/tracked_devices'
-  - metricId: 'processed_records'
-    name: 'Number of total processed records'
-    metricCollectionType: 'CUMULATIVE'
-    unit: 'records'
-    interval: '5s'
-    topic: '/app/processed_records'
-  - metricId: 'tracking_response_time'
-    name: 'Max response time in milliseconds'
-    metricCollectionType: 'GAUGE'
-    unit: 'ms'
-    interval: '1s'
-    topic: '/app/tracking_response_time'
-  - metricId: 'tracking_memory_usage'
-    name: 'Memory usage in %'
-    metricCollectionType: 'GAUGE'
+  - metricId: tracked_devices
+    name: Number of total tracked devices
+    metricCollectionType: CUMULATIVE
+    unit: devices
+    interval: 5s
+    topic: /app/tracked_devices
+  - metricId: processed_records
+    name: Number of total processed records
+    metricCollectionType: CUMULATIVE
+    unit: records
+    interval: 5s
+    topic: /app/processed_records
+  - metricId: tracking_response_time
+    name: Max response time in milliseconds
+    metricCollectionType: GAUGE
+    unit: ms
+    interval: 1s
+    topic: /app/tracking_response_time
+  - metricId: tracking_memory_usage
+    name: Memory usage in %
+    metricCollectionType: GAUGE
     unit: '%'
-    interval: '1s'
-    topic: '/app/tracking_memory_usage'
-
+    interval: 1s
+    topic: /app/tracking_memory_usage
+compatibleSites:
+  - ITALY_TURIN
