@@ -2,11 +2,10 @@
 ---
 expBlueprintId: 'expb_ares2t_tracker'
 version: '1.0'
-name: 'ARES2T Tracker experiment'
-description: 'Experiment blueprint for 5G EVE Tracker service.'
+name: Ares2T tracking experiment
+description: Ares2T tracking service with delay experiment
 sites:
   - ITALY_TURIN
-  - GREECE_ATHENS
 kpis:
   - kpiId: 'kpi_tracking_response_time'
     name: 'Response time must be lower than or equal to the objective.'
@@ -33,6 +32,8 @@ metrics:
     unit: 'GB'
     interval: '1s'
     iMetricType: 'MEMORY_CONSUMPTION'
-vsBlueprintId: 'vsb_ares2t_tracker'
-ctxBlueprintIds: ['ctx_delay']
-tcBlueprintIds: ['ares2t_testcase_1', 'ares2t_testcase_2']
+vsBlueprintId: '{{vsb_id}}'
+ctxBlueprintIds:
+  - '{{cb_id}}'
+tcBlueprintIds:
+  - '{{tcb_id}}'
