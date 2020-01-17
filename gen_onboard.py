@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 import json
-from os import listdir, path
 from argparse import ArgumentParser, RawTextHelpFormatter
+from os import listdir, path
 from typing import Dict
 
 import yaml
 
 
-def gen_onboard_vsb(folder: str) -> Dict:
+def gen_onboard(blueprintType: str, folder: str) -> Dict:
     res = {
-        "vsBlueprint": {},
+        blueprintType: {},
         "nsds": [],
         "translationRules": []
     }
@@ -20,20 +20,8 @@ def gen_onboard_vsb(folder: str) -> Dict:
             elif filename.endswith("_nsds.yaml"):
                 res["nsds"] = yaml.load(f, Loader=yaml.SafeLoader)
             else:
-                res["vsBlueprint"] = yaml.load(f, Loader=yaml.SafeLoader)
+                res[blueprintType] = yaml.load(f, Loader=yaml.SafeLoader)
     return res
-
-
-def gen_onboard_ctx(folder: str) -> Dict:
-    raise NotImplementedError("Method not implemented")
-
-
-def gen_onboard_expb(folder: str) -> Dict:
-    raise NotImplementedError("Method not implemented")
-
-
-def gen_onboard_tcb(folder: str) -> Dict:
-    raise NotImplementedError("Method not implemented")
 
 
 if __name__ == '__main__':
@@ -49,13 +37,13 @@ if __name__ == '__main__':
     parser.add_argument("folder", type=str, help="Folder containing the files")
     args = parser.parse_args()
     if args.type == "vsb":
-        res = gen_onboard_vsb(args.folder)
+        res = gen_onboard("vsBlueprint", args.folder)
     elif args.type == "ctx":
-        res = gen_onboard_ctx(args.folder)
+        res = gen_onboard("ctxBlueprint", args.folder)
     elif args.type == "expb":
-        res = gen_onboard_expb(args.folder)
+        res = gen_onboard("expBlueprint", args.folder)
     elif args.type == "tcb":
-        res = gen_onboard_tcb(args.folder)
+        res = gen_onboard("testCaseBlueprint", args.folder)
     else:
         raise TypeError
     print(json.dumps(res, indent=2))
