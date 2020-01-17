@@ -37,12 +37,12 @@ if __name__ == '__main__':
     descr = """
     Prints a JSON onboard request to standard output.
     Just redirect output to write to file:
-    $ ./gen_onboard.py -t vsb ./folder > onboard_vsb.json
+    $ ./gen_onboard.py vsb ./folder > onboard_vsb.json
     """
     parser = ArgumentParser("./gen_onboard.py", description=descr,
                             formatter_class=RawTextHelpFormatter)
-    parser.add_argument("--type", "-t", choices=["vsb", "ctx", "expb", "tcb"],
-                        required=True, help="blueprint type")
+    parser.add_argument("type", choices=["vsb", "ctx", "expb", "tcb"],
+                        help="blueprint type")
     parser.add_argument("path", type=str,
                         help="Folder path for vsb, ctx, expb or filepath for "
                              "tcb")
