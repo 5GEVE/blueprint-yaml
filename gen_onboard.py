@@ -37,8 +37,9 @@ def gen_onboard_tcb(folder: str):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser("JSON onboard request generator")
-    parser.add_argument("--type", "-t", choices=["vsb", "ctx", "expb", "tcb"], help="blueprint type")
+    parser = argparse.ArgumentParser("./gen_onboard.py")
+    parser.add_argument("--type", "-t", choices=["vsb", "ctx", "expb", "tcb"],
+                        required=True, help="blueprint type")
     parser.add_argument("folder", type=str, help="Folder containing the files")
     args = parser.parse_args()
     if args.type == "vsb":
