@@ -1,17 +1,10 @@
-translationRules:
-  - input:
-      - parameterId: 'delay_avg'
-        minValue: 1
-        maxValue: 50
-    nsdId: 'nsd_delay_small'
-    nsdVersion: '1.0'
-    nsFlavourId: 'fl_delay_small'
-    nsInstantiationLevelId: 'il_delay_small'
-  - input:
-      - parameterId: 'delay_avg'
-        minValue: 51
-        maxValue: 100
-    nsdId: 'nsd_delay_medium'
-    nsdVersion: '1.0'
-    nsFlavourId: 'fl_dealy_medium'
-    nsInstantiationLevelId: 'il_dealy_medium'
+# ctx_delay_nsds.yaml
+---
+- nsdId: Netem_Delay_Generator
+  nsdVersion: '1.0'
+  nsFlavourId: ns_Netem_Delay_Generator_df
+  nsInstantiationLevelId: ns_Netem_Delay_Generator_il
+  input:
+    - parameterId: incoming_traffic_load
+      minValue: '1'
+      maxValue: '1000'

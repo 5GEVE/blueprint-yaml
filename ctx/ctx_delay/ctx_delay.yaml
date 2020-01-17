@@ -2,40 +2,65 @@
 ---
 blueprintId: 'ctx_delay'
 version: '1.0'
-name: 'Context Blueprint Artificial Delay'
-description: 'Context Blueprint to add artificial delay to a VSB.'
+name: Delay Generator
+description: NETEM Traffic Delay Generator Service
 parameters:
-  - parameterId: 'delay_avg'
-    parameterName: 'Delay average'
-    parameterType: 'number'
-    parameterDescription: 'The amount of delay (average) in ms.'
-    applicabilityField: 'context'
-  - parameterId: 'delay_var'
-    parameterName: 'Delay variance'
-    parameterType: 'number'
-    parameterDescription: 'The variance (jitter) of delay.'
-    applicabilityField: 'context'
+  - parameterId: incoming_traffic_load
+    parameterName: Incoming Traffic Load
+    parameterType: number
+    parameterDescription: Maximum bw of the incoming traffic in Mbps
+    applicabilityField: Traffic shaping
+configurableParameters:
+  - delay_avg
+  - delay_var
+  - consecutive_delay_dependency_percentage
 atomicComponents:
-  - componentId: 'DEL'
+  - componentId: delay_generator
     serversNumber: 1
-    # componentName: 'Artificial Delay'
-    imagesUrls: ['/path/to/delay.qcow']
-    endPointsIds: ['CpDelIn', 'CpDelOut']
-    lifecycleOperations:
-      instantiate: 'scripts/instantiate'
-      terminate: 'scripts/terminate'
-      update: 'scripts/update'
-      heal: 'scripts/heal'
-    # scalingRules: []
+    endPointsIds:
+      - cp_dg_traffic_in
+      - cp_dg_traffic_out
+      - cp_dg_mgt
 endPoints:
-  - endPointId: 'CpDelIn'
-    external: false
+  - endPointId: cp_dg_traffic_in
+    external: true
+    management: false
+    ranConnection: true
+  - endPointId: cp_dg_traffic_out
+    external: true
     management: false
     ranConnection: false
-  - endPointId: 'CpDelOut'
-    external: false
+  - endPointId: cp_dg_mgt
+    external: true
+    management: true
+    ranConnection: false
+  - endPointId: sap_dg_in
+    external: true
+    management: false
+    ranConnection: true
+  - endPointId: sap_dg_out
+    external: true
     management: false
     ranConnection: false
+  - endPointId: sap_dg_mgt
+    external: true
+    management: true
+    ranConnection: false
+compatibleSites:
+  - ITALY_TURIN
+connectivityServices:
+  - endPointIds:
+      - sap_dg_mgt
+      - cp_dg_mgt
+    external: true
+  - endPointIds:
+      - sap_dg_out
+      - cp_dg_traffic_out
+    external: true
+  - endPointIds:
+      - sap_dg_in
+      - cp_dg_traffic_in
+    external: true
 applicationMetrics:
   - metricId: 'delay_iface'
     name: 'Traffic delay measured between In and Out interfaces'
@@ -43,7 +68,3 @@ applicationMetrics:
     unit: 'ms'
     interval: '1s'
     topic: '/app/delay_iface'
-compatibleSites:
-  - ITALY_TURIN
-  - SPAIN_5TONIC
-
