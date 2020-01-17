@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-import argparse
 import json
-import os
+from os import listdir, path
+from argparse import ArgumentParser, RawTextHelpFormatter
 from typing import Dict
 
 import yaml
@@ -13,8 +13,8 @@ def gen_onboard_vsb(folder: str) -> Dict:
         "nsds": [],
         "translationRules": []
     }
-    for filename in os.listdir(folder):
-        with open(os.path.join(folder, filename)) as f:
+    for filename in listdir(folder):
+        with open(path.join(folder, filename)) as f:
             if filename.endswith("_tr.yaml"):
                 res["translationRules"] = yaml.load(f, Loader=yaml.SafeLoader)
             elif filename.endswith("_nsds.yaml"):
@@ -37,7 +37,13 @@ def gen_onboard_tcb(folder: str) -> Dict:
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser("./gen_onboard.py")
+    descr = """
+    Prints a JSON onboard request to standard output.
+    Just redirect output to write to file:
+    $ ./gen_onboard.py -t vsb ./folder > onboard_vsb.json
+    """
+    parser = ArgumentParser("./gen_onboard.py", description=descr,
+                            formatter_class=RawTextHelpFormatter)
     parser.add_argument("--type", "-t", choices=["vsb", "ctx", "expb", "tcb"],
                         required=True, help="blueprint type")
     parser.add_argument("folder", type=str, help="Folder containing the files")
