@@ -24,16 +24,16 @@ def gen_onboard_vsb(folder: str) -> Dict:
     return res
 
 
-def gen_onboard_ctx(folder: str):
-    raise NotImplementedError
+def gen_onboard_ctx(folder: str) -> Dict:
+    raise NotImplementedError("Method not implemented")
 
 
-def gen_onboard_expb(folder: str):
-    raise NotImplementedError
+def gen_onboard_expb(folder: str) -> Dict:
+    raise NotImplementedError("Method not implemented")
 
 
-def gen_onboard_tcb(folder: str):
-    raise NotImplementedError
+def gen_onboard_tcb(folder: str) -> Dict:
+    raise NotImplementedError("Method not implemented")
 
 
 if __name__ == '__main__':
