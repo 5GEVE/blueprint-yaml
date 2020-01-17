@@ -24,7 +24,7 @@ def gen_onboard(blueprintType: str, folder: str) -> Dict:
     return res
 
 
-def gen_onboard_tcb(filepath: str):
+def gen_onboard_tcb(filepath: str) -> Dict:
     res = {
         "testCaseBlueprint": {}
     }
