@@ -24,6 +24,15 @@ def gen_onboard(blueprintType: str, folder: str) -> Dict:
     return res
 
 
+def gen_onboard_tcb(filepath: str):
+    res = {
+        "testCaseBlueprint": {}
+    }
+    with open(filepath) as f:
+        res["testCaseBlueprint"] = yaml.load(f, Loader=yaml.SafeLoader)
+    return res
+
+
 if __name__ == '__main__':
     descr = """
     Prints a JSON onboard request to standard output.
@@ -34,16 +43,18 @@ if __name__ == '__main__':
                             formatter_class=RawTextHelpFormatter)
     parser.add_argument("--type", "-t", choices=["vsb", "ctx", "expb", "tcb"],
                         required=True, help="blueprint type")
-    parser.add_argument("folder", type=str, help="Folder containing the files")
+    parser.add_argument("path", type=str,
+                        help="Folder path for vsb, ctx, expb or filepath for "
+                             "tcb")
     args = parser.parse_args()
     if args.type == "vsb":
-        res = gen_onboard("vsBlueprint", args.folder)
+        res = gen_onboard("vsBlueprint", args.path)
     elif args.type == "ctx":
-        res = gen_onboard("ctxBlueprint", args.folder)
+        res = gen_onboard("ctxBlueprint", args.path)
     elif args.type == "expb":
-        res = gen_onboard("expBlueprint", args.folder)
+        res = gen_onboard("expBlueprint", args.path)
     elif args.type == "tcb":
-        res = gen_onboard("testCaseBlueprint", args.folder)
+        res = gen_onboard_tcb(args.path)
     else:
         raise TypeError
     print(json.dumps(res, indent=2))
