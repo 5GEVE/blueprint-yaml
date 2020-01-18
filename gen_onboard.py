@@ -33,7 +33,7 @@ def gen_onboard_tcb(filepath: str) -> Dict:
     return res
 
 
-if __name__ == '__main__':
+def main():
     descr = """
     Prints a JSON onboard request to standard output.
     Just redirect output to write to file:
@@ -58,3 +58,7 @@ if __name__ == '__main__':
     else:
         raise TypeError
     print(json.dumps(request, indent=2))
+
+
+if __name__ == '__main__':
+    main()
