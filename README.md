@@ -5,8 +5,10 @@ use-cases in 5G EVE project.
 The blueprints include "real-world values", according to the test-plans
 provided.
 
-*Note*: The repository is made private on Github as it contains some possibly
-sensible information about verticals.
+### Blueprint Validator
+
+A command-line blueprint validator can be found here:
+[blueprint-validator](https://github.com/5GEVE/blueprint-validator)
 
 ### Convert YAML to JSON
 
@@ -65,11 +67,6 @@ yq . ctx_bg_traffic.yaml > ctx_bg_traffic.json
 ```
 yq -y . ctx_bg_traffic.json > ctx_bg_traffic.yaml
 ```
-
-### Blueprint Validator
-
-A command-line blueprint validator can be found here:
-[blueprint-validator](https://github.com/5GEVE/blueprint-validator)
 
 ### Contributors
 
