@@ -55,7 +55,7 @@ compatibleContextBlueprint: ['vs_delay']
 applicationMetrics:
   - metricId: 'delay'
     name: 'Measurement of the delay from the HMD to VS.'
-    metricCollectionType: 'Delay'
+    metricCollectionType: 'GAUGE'
     unit: ''
     interval: '10ms'
     topic: '/app/navigation_level'
