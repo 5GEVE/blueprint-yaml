@@ -1,0 +1,8 @@
+translationRules: # test examples
+  - input:
+      - parameterId: 'number_of_UEs' #or servers ???
+        minValue: 0
+        maxValue: 1
+    nsdId: 'nsd_terminal'
+
+ 

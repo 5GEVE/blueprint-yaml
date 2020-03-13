@@ -1,0 +1,63 @@
+# vsb_video_360.yaml
+---
+blueprintId: 'vsb_video_360'
+version: '1.0'
+name: 'Video 360'
+description: 'Blueprint for video 360'
+atomicComponents:
+  - componentId: 'RAN'
+    serversNumber: 1
+    # componentName: 'Radio Access Network'
+    imagesUrls: []
+    endPointsIds: ['RanVT', 'Ranwef']
+    lifecycleOperations: {}
+    # scalingRules: []
+  - componentId: 'Video server'
+    # componentName: ''
+    serversNumber: 1
+    imagesUrls: ['video-server']
+    endPointsIds: ['VSint'] #verify endpoints
+    lifecycleOperations: #TBC with Anne
+      instantiate: 'scripts/instantiate'
+      terminate: 'scripts/terminate'
+      update: 'scripts/update'
+      heal: 'scripts/heal'
+
+  - componentId: 'WEF' # WEF or the components of the WEF ( SPGw enodeB)
+    serversNumber: 1
+    imagesUrls: []
+    endPointsIds: ['wefint']
+    lifecycleOperations: null
+    # scaling_rules: [ scale out if...]
+  endPoints:
+  - endPointId: 'RanVT'
+    external: true
+    management: false
+    ranConnection: true
+  - endPointId: 'Ranwef'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'VSint'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'wefint'
+    external: false
+    management: false
+    ranConnection: false
+  connectivityServices:
+  - endPointIds: ['Ranwef', 'wefint', 'VSint']
+    external: false
+serviceSequence:
+  
+compatibleContextBlueprint: ['vs_delay']
+applicationMetrics:
+  - metricId: 'delay'
+    name: 'Measurement of the delay from the HMD to VS.'
+    metricCollectionType: 'Delay'
+    unit: ''
+    interval: '10ms'
+    topic: '/app/navigation_level'
+  
+
