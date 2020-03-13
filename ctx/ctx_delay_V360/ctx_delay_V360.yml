@@ -19,7 +19,7 @@ atomicComponents:
   - componentId: 'DEL'
     serversNumber: 1
     # componentName: 'Artificial Delay'
-    imagesUrls: [' '] 
+    imagesUrls: [' ']
     endPointsIds: ['CpDelIn', 'CpDelOut']
     lifecycleOperations:
       instantiate: 'scripts/instantiate'
@@ -44,6 +44,6 @@ applicationMetrics:
     interval: '1s'
     topic: '/app/delay_iface'
 compatibleSites:
-  - FRANCE_LANNION
-  - FRANCE_CHATILLON
+  # - FRANCE_LANNION
+  # - FRANCE_CHATILLON
   - FRANCE_RENNES
