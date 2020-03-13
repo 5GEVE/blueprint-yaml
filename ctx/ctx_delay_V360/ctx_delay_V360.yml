@@ -1,0 +1,49 @@
+# ctx_delay.yaml
+---
+blueprintId: 'ctx_delay_V360'
+version: '1.0'
+name: 'Context Blueprint Artificial Delay'
+description: 'Context Blueprint to add artificial delay.'
+parameters:
+  - parameterId: 'delay_UE'
+    parameterName: 'Delay average'
+    parameterType: 'number'
+    parameterDescription: 'The amount of delay (average) in ms.'
+    applicabilityField: 'context'
+  - parameterId: 'delay_var'
+    parameterName: 'Delay variance'
+    parameterType: 'number'
+    parameterDescription: 'The variance (jitter) of delay.'
+    applicabilityField: 'context'
+atomicComponents:
+  - componentId: 'DEL'
+    serversNumber: 1
+    # componentName: 'Artificial Delay'
+    imagesUrls: [' ']
+    endPointsIds: ['CpDelIn', 'CpDelOut']
+    lifecycleOperations:
+      instantiate: 'scripts/instantiate'
+      terminate: 'scripts/terminate'
+      update: 'scripts/update'
+      heal: 'scripts/heal'
+    # scalingRules: []
+endPoints:
+  - endPointId: 'CpDelIn'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'CpDelOut'
+    external: false
+    management: false
+    ranConnection: false
+applicationMetrics:
+  - metricId: 'delay_iface'
+    name: 'Traffic delay measured between In and Out interfaces'
+    metricCollectionType: 'GAUGE'
+    unit: 'ms'
+    interval: '1s'
+    topic: '/app/delay_iface'
+compatibleSites:
+  # - FRANCE_LANNION
+  # - FRANCE_CHATILLON
+  - FRANCE_RENNES
