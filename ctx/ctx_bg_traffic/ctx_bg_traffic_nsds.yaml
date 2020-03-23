@@ -114,23 +114,3 @@
     signature: "FC_NSD_SIGNATURE"
     algorithm: "FC_NSD_ALGORITHM"
     certificate: "FC_NSD_CERTIFICATE"
-
-  16:34:55.524 [main] DEBUG it.cnit.blueprint.composer.nsd.generate.NsdGenerator - Graph AFTER generation with ctx_bg_traffic_nsd:
-    strict graph G {
-    splines=false;
-    overlap=false;
-    mindist=2.0;
-    527506361 [ label="bg_traffic_src_vnfp" shape="box" style="filled" fillcolor="yellowgreen" ];
-    1529354360 [ label="bg_traffic_dst_vnfp" shape="box" style="filled" fillcolor="yellowgreen" ];
-    2036793562 [ label="vld_0_vlp" shape="oval" style="filled" fillcolor="dodgerblue" ];
-    2037717083 [ label="vld_1_vlp" shape="oval" style="filled" fillcolor="dodgerblue" ];
-    -765194978 [ label="sap_bg_mgmt" shape="oval" style="filled" fillcolor="darksalmon" ];
-    527506361 -- 2036793562 [ label="bg_traffic_src_vnfp_cp_bg_src_data" ];
-    527506361 -- 2037717083 [ label="bg_traffic_src_vnfp_cp_bg_src_mgmt" ];
-    1529354360 -- 2036793562 [ label="bg_traffic_dst_vnfp_cp_bg_dst_data" ];
-    1529354360 -- 2037717083 [ label="bg_traffic_dst_vnfp_cp_bg_dst_mgmt" ];
-    -765194978 -- 2037717083 [ label="sap_bg_mgmt" ];
-}
-
-
-  Process finished with exit code 0
