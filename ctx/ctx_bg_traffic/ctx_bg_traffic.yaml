@@ -5,50 +5,54 @@ version: '1.0'
 name: 'Context Blueprint Background Traffic'
 description: 'Context Blueprint to add artificial background traffic to a VSB.'
 parameters:
-  - parameterId: 'bg_rate'
+  - parameterId: 'bg_traffic_rate'
     parameterName: 'Background Traffic rate'
     parameterType: 'number'
     parameterDescription: 'The amount of background traffic in Mpbs.'
-    applicabilityField: 'context'
+    applicabilityField: Traffic shaping
+configurableParameters:
+  - 'bg_traffic_rate'
 atomicComponents:
-  - componentId: 'BG_SRC'
+  - componentId: bg_traffic_src
     serversNumber: 1
-    # componentName: 'Background Traffic Source'
-    imagesUrls: ['/path/to/bg_src.qcow']
-    endPointsIds: ['CpBgSrc']
-    lifecycleOperations:
-      instantiate: 'scripts/instantiate'
-      terminate: 'scripts/terminate'
-      update: 'scripts/update'
-      heal: 'scripts/heal'
-    # scalingRules: []
-  - componentId: 'BG_DST'
+    endPointsIds:
+      - cp_bg_src_data
+      - cp_bg_src_mgmt
+  - componentId: bg_traffic_dst
     serversNumber: 1
-    # componentName: 'Background Traffic Destination'
-    imagesUrls: ['/path/to/bg_dst.qcow']
-    endPointsIds: ['CpBgDst']
-    lifecycleOperations:
-      instantiate: 'scripts/instantiate'
-      terminate: 'scripts/terminate'
-      update: 'scripts/update'
-      heal: 'scripts/heal'
-    # scalingRules: []
+    endPointsIds:
+      - cp_bg_dst_data
+      - cp_bg_dst_mgmt
 endPoints:
-  - endPointId: 'CpBgSrc'
+  - endPointId: cp_bg_src_data
     external: false
     management: false
     ranConnection: false
-  - endPointId: 'CpBgDst'
+  - endPointId: cp_bg_src_mgmt
+    external: false
+    management: true
+    ranConnection: false
+  - endPointId: cp_bg_dst_data
     external: false
     management: false
     ranConnection: false
+  - endPointId: cp_bg_dst_mgmt
+    external: false
+    management: true
+    ranConnection: false
+  - endPointId: sap_bg_mgmt
+    external: true
+    management: true
+    ranConnection: false
+connectivityServices:
+  - endPointIds:
+      - cp_bg_src_data
+      - cp_bg_dst_data
+  - endPointIds:
+      - cp_bg_src_mgmt
+      - cp_bg_dst_mgmt
+      - sap_bg_mgmt
 applicationMetrics:
-  - metricId: 'delay_src_dst'
-    name: 'Traffic delay between SRC and DST'
-    metricCollectionType: 'GAUGE'
-    unit: 'ms'
-    interval: '1s'
-    topic: '/app/delay'
   - metricId: 'traffic_rate_dst'
     name: 'Traffic rate measured at DST'
     metricCollectionType: 'GAUGE'
@@ -61,4 +65,3 @@ applicationMetrics:
     unit: 'count'
     interval: '5s'
     topic: '/app/lost_packets'
-
