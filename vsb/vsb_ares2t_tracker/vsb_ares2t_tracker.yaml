@@ -81,7 +81,7 @@ connectivityServices:
       - sap_vis_user
     external: true
 compatibleContextBlueprint:
-  - '{{cb_id}}'
+  - 'ctx_delay'
 applicationMetrics:
   - metricId: tracked_devices
     name: Number of total tracked devices
