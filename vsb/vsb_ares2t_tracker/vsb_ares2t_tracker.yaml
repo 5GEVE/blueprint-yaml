@@ -16,14 +16,15 @@ atomicComponents:
   - componentId: tracker_backend
     serversNumber: 1
     endPointsIds:
-      - cp_tracker_ext_in
+      - cp_tracker_ext_mobile
       - cp_tracker_data
       - cp_tracker_mgt
-  - componentId: visualization_tool
+  - componentId: visualizer
     serversNumber: 1
     endPointsIds:
       - cp_vis_data
       - cp_vis_mgt
+      - cp_vis_user
 endPoints:
   - endPointId: cp_tracker_ext_in
     external: true
@@ -55,8 +56,8 @@ endPoints:
     ranConnection: false
 connectivityServices:
   - endPointIds:
-      - sap_tracking_mobile
-      - cp_tracker_ext_in
+      - sap_tracking_ran
+      - cp_tracker_ext_mobile
     external: true
   - endPointIds:
       - cp_vis_data
@@ -67,6 +68,9 @@ connectivityServices:
       - cp_vis_mgt
       - cp_tracker_mgt
     external: true
+  - endPointIds:
+      - cp_vis_user
+      - sap_vis_user
 compatibleContextBlueprint:
   - '{{cb_id}}'
 applicationMetrics:
