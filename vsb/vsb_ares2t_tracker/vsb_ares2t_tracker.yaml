@@ -46,6 +46,10 @@ endPoints:
     external: true
     management: true
     ranConnection: false
+  - endPointId: cp_vis_user
+    external: true
+    management: false
+    ranConnection: false
   - endPointId: sap_tracking_mobile
     external: true
     management: false
@@ -71,6 +75,7 @@ connectivityServices:
   - endPointIds:
       - cp_vis_user
       - sap_vis_user
+    external: true
 compatibleContextBlueprint:
   - '{{cb_id}}'
 applicationMetrics:
