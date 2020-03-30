@@ -23,7 +23,7 @@
           numberOfIpAddress: 1
       sapAddressAssignment: false
       nsVirtualLinkDescId: vl_tracking_exp_mobile
-    - cpdId: sap_tracking_exp_mgt
+    - cpdId: sap_tracking_exp_mgmt
       description: SAP for management
       layerProtocol: IPV4
       cpRole: ROOT
@@ -34,8 +34,34 @@
           iPAddressType: IPv4
           numberOfIpAddress: 1
       sapAddressAssignment: false
-      nsVirtualLinkDescId: vl_tracking_exp_mgt
+      nsVirtualLinkDescId: vl_tracking_exp_mgmt
+    - cpdId: sap_visualizer_exp_user
+      description: SAP for user visualization
+      layerProtocol: IPV4
+      cpRole: ROOT
+      addressData:
+        - addressType: IP_ADDRESS
+          iPAddressAssignment: false
+          floatingIpActivated: true
+          iPAddressType: IPv4
+          numberOfIpAddress: 1
+      sapAddressAssignment: false
+      nsVirtualLinkDescId: vl_visualizer_exp_user
   virtualLinkDesc:
+    - virtualLinkDescId: vl_visualizer_exp_user
+      virtualLinkDescProvider: NXW
+      virtuaLinkDescVersion: '1.0'
+      connectivityType:
+        layerProtocol: IPV4
+      virtualLinkDf:
+        - flavourId: df_vl_visualizer_exp_user
+          qos:
+            latency: 0
+            packetDelayVariation: 0
+            packetLossRatio: 0
+            priority: 0
+          serviceAvaibilityLevel: LEVEL_1
+      description: Network to connect to the mobile user equipment
     - virtualLinkDescId: vl_tracking_exp_mobile
       virtualLinkDescProvider: NXW
       virtuaLinkDescVersion: '1.0'
@@ -50,13 +76,13 @@
             priority: 0
           serviceAvaibilityLevel: LEVEL_1
       description: Network to connect to the mobile user equipment
-    - virtualLinkDescId: vl_tracking_exp_mgt
+    - virtualLinkDescId: vl_tracking_exp_mgmt
       virtualLinkDescProvider: NXW
       virtuaLinkDescVersion: '1.0'
       connectivityType:
         layerProtocol: IPV4
       virtualLinkDf:
-        - flavourId: df_vl_tracking_exp_mgt
+        - flavourId: df_vl_tracking_exp_mgmt
           qos:
             latency: 0
             packetDelayVariation: 0
@@ -109,9 +135,9 @@
             - virtualLinkProfileId: vlp_vl_tracking_exp_data
               cpdId:
                 - cp_tracker_data
-            - virtualLinkProfileId: vlp_vl_tracking_exp_mgt
+            - virtualLinkProfileId: vlp_vl_tracking_exp_mgmt
               cpdId:
-                - cp_tracker_mgt
+                - cp_tracker_mgmt
         - vnfProfileId: vnfp_big_Ares2T_Tracker_exp
           vnfdId: c84b227e-520e-43c0-a75e-e52781dd54dd
           flavourId: vnf_df_Ares2T_Tracker
@@ -125,9 +151,9 @@
             - virtualLinkProfileId: vlp_vl_tracking_exp_data
               cpdId:
                 - cp_tracker_data
-            - virtualLinkProfileId: vlp_vl_tracking_exp_mgt
+            - virtualLinkProfileId: vlp_vl_tracking_exp_mgmt
               cpdId:
-                - cp_tracker_mgt
+                - cp_tracker_mgmt
         - vnfProfileId: vnfp_Ares2T_Vis_exp
           vnfdId: 51c420e3-c83d-4ce9-a5bf-0dbe339b351d
           flavourId: vnf_df_Ares2T_Vis
@@ -138,9 +164,12 @@
             - virtualLinkProfileId: vlp_vl_tracking_exp_data
               cpdId:
                 - cp_vis_data
-            - virtualLinkProfileId: vlp_vl_tracking_exp_mgt
+            - virtualLinkProfileId: vlp_vl_tracking_exp_mgmt
               cpdId:
-                - cp_vis_mgt
+                - cp_vis_mgmt
+            - virtualLinkProfileId: vlp_vl_visualizer_exp_user
+              cpdId:
+                - cp_vis_user
         - vnfProfileId: vnfp_netem_exp
           vnfdId: 396d1b6b-331b-4dd7-b48e-376517d3654a
           flavourId: vnf_df_netem
@@ -151,9 +180,9 @@
             - virtualLinkProfileId: vlp_vl_tracking_exp_in
               cpdId:
                 - cp_dg_traffic_out
-            - virtualLinkProfileId: vlp_vl_tracking_exp_mgt
+            - virtualLinkProfileId: vlp_vl_tracking_exp_mgmt
               cpdId:
-                - cp_dg_mgt
+                - cp_dg_mgmt
             - virtualLinkProfileId: vlp_vl_tracking_exp_mobile
               cpdId:
                 - cp_dg_traffic_in
@@ -167,9 +196,18 @@
           minBitrateRequirements:
             root: '1'
             leaf: '1'
-        - virtualLinkProfileId: vlp_vl_tracking_exp_mgt
-          virtualLinkDescId: vl_tracking_exp_mgt
-          flavourId: df_vl_tracking_exp_mgt
+        - virtualLinkProfileId: vlp_vl_visualizer_exp_user
+          virtualLinkDescId: vl_visualizer_exp_user
+          flavourId: df_vl_visualizer_exp_user
+          maxBitrateRequirements:
+            root: '1'
+            leaf: '1'
+          minBitrateRequirements:
+            root: '1'
+            leaf: '1'
+        - virtualLinkProfileId: vlp_vl_tracking_exp_mgmt
+          virtualLinkDescId: vl_tracking_exp_mgmt
+          flavourId: df_vl_tracking_exp_mgmt
           maxBitrateRequirements:
             root: '1'
             leaf: '1'
@@ -209,7 +247,7 @@
               bitRateRequirements:
                 root: '1'
                 leaf: '1'
-            - virtualLinkProfileId: vlp_vl_tracking_exp_mgt
+            - virtualLinkProfileId: vlp_vl_tracking_exp_mgmt
               bitRateRequirements:
                 root: '1'
                 leaf: '1'
@@ -218,6 +256,10 @@
                 root: '1'
                 leaf: '1'
             - virtualLinkProfileId: vlp_vl_tracking_exp_data
+              bitRateRequirements:
+                root: '1'
+                leaf: '1'
+            - virtualLinkProfileId: vlp_vl_visualizer_exp_user
               bitRateRequirements:
                 root: '1'
                 leaf: '1'
@@ -235,7 +277,7 @@
               bitRateRequirements:
                 root: '1'
                 leaf: '1'
-            - virtualLinkProfileId: vlp_vl_tracking_exp_mgt
+            - virtualLinkProfileId: vlp_vl_tracking_exp_mgmt
               bitRateRequirements:
                 root: '1'
                 leaf: '1'
@@ -244,6 +286,10 @@
                 root: '1'
                 leaf: '1'
             - virtualLinkProfileId: vlp_vl_tracking_exp_data
+              bitRateRequirements:
+                root: '1'
+                leaf: '1'
+            - virtualLinkProfileId: vlp_vl_visualizer_exp_user
               bitRateRequirements:
                 root: '1'
                 leaf: '1'
