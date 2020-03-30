@@ -77,6 +77,20 @@
             priority: 0
           serviceAvaibilityLevel: LEVEL_1
       description: Internal network to connect the tracking service components
+    - virtualLinkDescId: vl_tracking_user
+      virtualLinkDescProvider: NXW
+      virtuaLinkDescVersion: '1.0'
+      connectivityType:
+        layerProtocol: IPV4
+      virtualLinkDf:
+        - flavourId: df_vl_tracking_user
+          qos:
+            latency: 0
+            packetDelayVariation: 0
+            packetLossRatio: 0
+            priority: 0
+          serviceAvaibilityLevel: LEVEL_1
+      description: Network to connect to the Visualizer dashboard
   nsDf:
     - nsDfId: ns_Ares2T_Tracking_df
       flavourKey: ns_Ares2T_Tracking_df_fk
@@ -126,6 +140,9 @@
             - virtualLinkProfileId: vlp_vl_tracking_mgt
               cpdId:
                 - cp_vis_mgt
+            - virtualLinkProfileId: vlp_vl_tracking_user
+              cpdId:
+                - cp_vis_user
       virtualLinkProfile:
         - virtualLinkProfileId: vlp_vl_tracking_mobile
           virtualLinkDescId: vl_tracking_mobile
@@ -154,6 +171,15 @@
           minBitrateRequirements:
             root: '1'
             leaf: '1'
+        - virtualLinkProfileId: vlp_vl_tracking_user
+          virtualLinkDescId: vl_tracking_user
+          flavourId: df_vl_tracking_user
+          maxBitrateRequirements:
+            root: '1'
+            leaf: '1'
+          minBitrateRequirements:
+            root: '1'
+            leaf: '1'
       nsInstantiationLevel:
         - nsLevelId: ns_ares2t_tracker_il_big
           description: Big instantiation level for the ARES2T tracking service
@@ -175,6 +201,10 @@
               bitRateRequirements:
                 root: '1'
                 leaf: '1'
+            - virtualLinkProfileId: vlp_vl_tracking_user
+              bitRateRequirements:
+                root: '1'
+                leaf: '1'
         - nsLevelId: ns_ares2t_tracker_il_small
           description: Small instantiation level for the ARES2T tracking service
           vnfToLevelMapping:
@@ -192,6 +222,10 @@
                 root: '1'
                 leaf: '1'
             - virtualLinkProfileId: vlp_vl_tracking_mgt
+              bitRateRequirements:
+                root: '1'
+                leaf: '1'
+            - virtualLinkProfileId: vlp_vl_tracking_user
               bitRateRequirements:
                 root: '1'
                 leaf: '1'
