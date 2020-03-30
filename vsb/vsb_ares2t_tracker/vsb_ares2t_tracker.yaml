@@ -58,9 +58,13 @@ endPoints:
     external: true
     management: true
     ranConnection: false
+  - endPointId: sap_vis_user
+    external: true
+    management: false
+    ranConnection: false
 connectivityServices:
   - endPointIds:
-      - sap_tracking_ran
+      - sap_tracking_mobile
       - cp_tracker_ext_mobile
     external: true
   - endPointIds:

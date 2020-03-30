@@ -34,6 +34,18 @@
           numberOfIpAddress: 1
       sapAddressAssignment: false
       nsVirtualLinkDescId: vl_tracking_mgt
+    - cpdId: sap_vis_user
+      description: SAP for user access to visualizer
+      layerProtocol: IPV4
+      cpRole: ROOT
+      addressData:
+        - addressType: IP_ADDRESS
+          iPAddressAssignment: false
+          floatingIpActivated: false
+          iPAddressType: IPv4
+          numberOfIpAddress: 1
+      sapAddressAssignment: false
+      nsVirtualLinkDescId: vl_tracking_user
   virtualLinkDesc:
     - virtualLinkDescId: vl_tracking_mobile
       virtualLinkDescProvider: NXW
