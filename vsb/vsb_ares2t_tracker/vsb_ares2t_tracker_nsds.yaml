@@ -22,7 +22,7 @@
           numberOfIpAddress: 1
       sapAddressAssignment: false
       nsVirtualLinkDescId: vl_tracking_mobile
-    - cpdId: sap_tracking_mgt
+    - cpdId: sap_tracking_mgmt
       description: SAP for management
       layerProtocol: IPV4
       cpRole: ROOT
@@ -33,7 +33,19 @@
           iPAddressType: IPv4
           numberOfIpAddress: 1
       sapAddressAssignment: false
-      nsVirtualLinkDescId: vl_tracking_mgt
+      nsVirtualLinkDescId: vl_tracking_mgmt
+    - cpdId: sap_vis_user
+      description: SAP for user access to visualizer
+      layerProtocol: IPV4
+      cpRole: ROOT
+      addressData:
+        - addressType: IP_ADDRESS
+          iPAddressAssignment: false
+          floatingIpActivated: false
+          iPAddressType: IPv4
+          numberOfIpAddress: 1
+      sapAddressAssignment: false
+      nsVirtualLinkDescId: vl_tracking_user
   virtualLinkDesc:
     - virtualLinkDescId: vl_tracking_mobile
       virtualLinkDescProvider: NXW
@@ -49,13 +61,13 @@
             priority: 0
           serviceAvaibilityLevel: LEVEL_1
       description: Network to connect to the mobile user equipment
-    - virtualLinkDescId: vl_tracking_mgt
+    - virtualLinkDescId: vl_tracking_mgmt
       virtualLinkDescProvider: NXW
       virtuaLinkDescVersion: '1.0'
       connectivityType:
         layerProtocol: IPV4
       virtualLinkDf:
-        - flavourId: df_vl_tracking_mgt
+        - flavourId: df_vl_tracking_mgmt
           qos:
             latency: 0
             packetDelayVariation: 0
@@ -77,6 +89,20 @@
             priority: 0
           serviceAvaibilityLevel: LEVEL_1
       description: Internal network to connect the tracking service components
+    - virtualLinkDescId: vl_tracking_user
+      virtualLinkDescProvider: NXW
+      virtuaLinkDescVersion: '1.0'
+      connectivityType:
+        layerProtocol: IPV4
+      virtualLinkDf:
+        - flavourId: df_vl_tracking_user
+          qos:
+            latency: 0
+            packetDelayVariation: 0
+            packetLossRatio: 0
+            priority: 0
+          serviceAvaibilityLevel: LEVEL_1
+      description: Network to connect to the Visualizer dashboard
   nsDf:
     - nsDfId: ns_Ares2T_Tracking_df
       flavourKey: ns_Ares2T_Tracking_df_fk
@@ -94,9 +120,9 @@
             - virtualLinkProfileId: vlp_vl_tracking_data
               cpdId:
                 - cp_tracker_data
-            - virtualLinkProfileId: vlp_vl_tracking_mgt
+            - virtualLinkProfileId: vlp_vl_tracking_mgmt
               cpdId:
-                - cp_tracker_mgt
+                - cp_tracker_mgmt
         - vnfProfileId: vnfp_big_Ares2T_Tracker
           vnfdId: c84b227e-520e-43c0-a75e-e52781dd54dd
           flavourId: vnf_df_Ares2T_Tracker
@@ -110,9 +136,9 @@
             - virtualLinkProfileId: vlp_vl_tracking_data
               cpdId:
                 - cp_tracker_data
-            - virtualLinkProfileId: vlp_vl_tracking_mgt
+            - virtualLinkProfileId: vlp_vl_tracking_mgmt
               cpdId:
-                - cp_tracker_mgt
+                - cp_tracker_mgmt
         - vnfProfileId: vnfp_Ares2T_Vis
           vnfdId: 51c420e3-c83d-4ce9-a5bf-0dbe339b351d
           flavourId: vnf_df_Ares2T_Vis
@@ -123,9 +149,12 @@
             - virtualLinkProfileId: vlp_vl_tracking_data
               cpdId:
                 - cp_vis_data
-            - virtualLinkProfileId: vlp_vl_tracking_mgt
+            - virtualLinkProfileId: vlp_vl_tracking_mgmt
               cpdId:
-                - cp_vis_mgt
+                - cp_vis_mgmt
+            - virtualLinkProfileId: vlp_vl_tracking_user
+              cpdId:
+                - cp_vis_user
       virtualLinkProfile:
         - virtualLinkProfileId: vlp_vl_tracking_mobile
           virtualLinkDescId: vl_tracking_mobile
@@ -145,9 +174,18 @@
           minBitrateRequirements:
             root: '1'
             leaf: '1'
-        - virtualLinkProfileId: vlp_vl_tracking_mgt
-          virtualLinkDescId: vl_tracking_mgt
-          flavourId: df_vl_tracking_mgt
+        - virtualLinkProfileId: vlp_vl_tracking_mgmt
+          virtualLinkDescId: vl_tracking_mgmt
+          flavourId: df_vl_tracking_mgmt
+          maxBitrateRequirements:
+            root: '1'
+            leaf: '1'
+          minBitrateRequirements:
+            root: '1'
+            leaf: '1'
+        - virtualLinkProfileId: vlp_vl_tracking_user
+          virtualLinkDescId: vl_tracking_user
+          flavourId: df_vl_tracking_user
           maxBitrateRequirements:
             root: '1'
             leaf: '1'
@@ -171,7 +209,11 @@
               bitRateRequirements:
                 root: '1'
                 leaf: '1'
-            - virtualLinkProfileId: vlp_vl_tracking_mgt
+            - virtualLinkProfileId: vlp_vl_tracking_mgmt
+              bitRateRequirements:
+                root: '1'
+                leaf: '1'
+            - virtualLinkProfileId: vlp_vl_tracking_user
               bitRateRequirements:
                 root: '1'
                 leaf: '1'
@@ -191,7 +233,11 @@
               bitRateRequirements:
                 root: '1'
                 leaf: '1'
-            - virtualLinkProfileId: vlp_vl_tracking_mgt
+            - virtualLinkProfileId: vlp_vl_tracking_mgmt
+              bitRateRequirements:
+                root: '1'
+                leaf: '1'
+            - virtualLinkProfileId: vlp_vl_tracking_user
               bitRateRequirements:
                 root: '1'
                 leaf: '1'
