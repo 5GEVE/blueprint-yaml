@@ -3,7 +3,7 @@
 - nsdIdentifier: "ctx_bg_traffic_nsd"
   designer: "NSD generator"
   version: "1.0"
-  nsdName: "Context Blueprint Background Traffic_nsd"
+  nsdName: "Context Blueprint Background Traffic NSD"
   nsdInvariantId: "ctx_bg_traffic_nsd"
   vnfdId:
     - "bg_traffic_src"
