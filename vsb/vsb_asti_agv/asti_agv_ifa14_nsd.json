@@ -1,5 +1,4 @@
 {
-  "nsd": {
     "nsdIdentifier": "6aa36f0d-00f3-47a1-9c7f-2d38c7146127",
     "designer": "UC3M",
     "version": "1.0",
@@ -709,4 +708,3 @@
       "certificate": "ASTI_NSD_CERTIFICATE"
     }
   }
-}
