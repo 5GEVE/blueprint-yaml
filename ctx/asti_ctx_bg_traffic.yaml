@@ -1,0 +1,64 @@
+
+---
+blueprintId: 'asti_ctx_bg_traffic'
+version: '1.0'
+name: 'ASTI Context Blueprint for Background Traffic'
+description: 'Context Blueprint to add artificial background traffic to a VSB.'
+parameters:
+  - parameterId: 'bg_traffic_rate'
+    parameterName: 'Background Traffic rate'
+    parameterType: 'number'
+    parameterDescription: 'The amount of background traffic in Mpbs.'
+    applicabilityField: Traffic shaping
+configurableParameters:
+  - 'bg_traffic_rate'
+atomicComponents:
+  - componentId: TrafficSrc
+    serversNumber: 1
+    endPointsIds:
+      - src_mgmt
+      - data1_Cp
+  - componentId: TrafficSink
+    serversNumber: 1
+    endPointsIds:
+      - sink_mgmt
+      - data3_Cp
+endPoints:
+  - endPointId: src_mgmt
+    external: true
+    management: true
+    ranConnection: false
+  - endPointId: data1_Cp
+    external: true
+    management: false
+    ranConnection: false
+  - endPointId: sink_mgmt
+    external: true
+    management: true
+    ranConnection: false
+  - endPointId: data3_Cp
+    external: true
+    management: false
+    ranConnection: false
+ 
+connectivityServices:
+  - endPointIds:
+      - data1_Cp
+      - data3_Cp
+  - endPointIds:
+      - src_mgmt
+      - sink_mgmt
+     
+applicationMetrics:
+  - metricId: 'traffic_rate_dst'
+    name: 'Traffic rate measured at DST'
+    metricCollectionType: 'GAUGE'
+    unit: 'Mpbs'
+    interval: '2s'
+    topic: '/app/traffic_rate'
+  - metricId: 'lost_packets'
+    name: 'Lost packets between SRC and DST'
+    metricCollectionType: 'CUMULATIVE'
+    unit: 'count'
+    interval: '5s'
+    topic: '/app/lost_packets'

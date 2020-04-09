@@ -1,0 +1,65 @@
+
+---
+blueprintId: 'asti_ctx_delay'
+version: '1.0'
+name: Delay Generator
+description: Traffic Delay Generator Service for ASTI UseCase
+parameters:
+  - parameterId: incoming_traffic_load
+    parameterName: Incoming Traffic Load
+    parameterType: number
+    parameterDescription: Maximum bw of the incoming traffic in Mbps
+    applicabilityField: Traffic shaping
+configurableParameters:
+  - delay_avg
+  - delay_var
+  - consecutive_delay_dependency_percentage
+atomicComponents:
+  - componentId: delay_generator
+    serversNumber: 1
+    endPointsIds:
+      - asti_data
+      - delay_mgmt
+      - data1_Cp
+      - data2_Cp
+      - data3_Cp
+endPoints:
+  - endPointId: asti_data
+    external: true
+    management: false
+    ranConnection: true
+  - endPointId: delay_mgmt
+    external: true
+    management: true
+    ranConnection: false
+  - endPointId: data1_Cp
+    external: true
+    management: false
+    ranConnection: false
+  - endPointId: data2_Cp
+    external: true
+    management: false
+    ranConnection: false
+  - endPointId: data3_Cp
+    external: true
+    management: false
+    ranConnection: false
+
+compatibleSites:
+  - SPAIN_5TONIC
+connectivityServices:
+  - endPointIds:
+      - asti_data
+      - data1_Cp
+      - data2_Cp
+      - data3_Cp
+  - endPointIds:
+      - delay_mgmt
+    external: true
+applicationMetrics:
+  - metricId: 'delay_iface'
+    name: 'Traffic delay measured between In and Out interfaces'
+    metricCollectionType: 'GAUGE'
+    unit: 'ms'
+    interval: '1s'
+    topic: '/app/delay_iface'
