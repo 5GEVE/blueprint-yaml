@@ -449,7 +449,8 @@ nsDf:
       
   defaultNsInstantiationLevelId: asti_ns_il_small
   dependencies:
-  - primaryId: MasterPLC_profile
+  - primaryId: 
+    - MasterPLC_profile
   - secondaryId:
     - TrafficSrc_profile
     - TrafficSink_profile
