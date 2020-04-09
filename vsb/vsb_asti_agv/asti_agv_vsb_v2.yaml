@@ -34,7 +34,7 @@ serviceSequence:
   - hopEndPoints:
     - vsComponentId: 'Master_PLC'
       endPointId: 'mplc_data'
-compatibleContextBlueprint: ['asti_ctx_delay', 'asti_ctx_bg_traffic']
+compatibleContextBlueprint: ['263f8cf0-f649-4c3e-a911-445cf507ec97', 'e9e1cd65-b28f-492a-bb85-51cda0c2bc4e']
 applicationMetrics:
   - metricId: 'navigation_level'
     name: 'Measurement of the quality of the AGV navigation.'
