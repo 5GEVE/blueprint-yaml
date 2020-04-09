@@ -1,99 +1,99 @@
 {
-  "blueprintId": "vsb_asti_agv",
-  "version": "1.0",
-  "name": "ASTI AGV control and automation",
-  "description": "Blueprint for AGVs using 5G network for Automation and Control purposes",
-  "parameters": [
-    {
-      "parameterId": "number_of_AGVs",
-      "parameterName": "Number of AGVs",
-      "parameterType": "number",
-      "parameterDescription": "Number of AGVs (Mandatory)",
-      "applicabilityField": "autonomous_vehicle"
-    }
-  ],
-  "atomicComponents": [
-    {
-      "componentId": "Master_PLC",
-      "serversNumber": 1,
-      "imagesUrls": [
-        "master_plc_image"
-      ],
-      "endPointsIds": [
-        "mplc_mgmt",
-        "mplc_data"
-      ]
-    }
-  ],
-  "endPoints": [
-    {
-      "endPointId": "mplc_mgmt",
-      "external": true,
-      "management": true,
-      "ranConnection": false
-    },
-    {
-      "endPointId": "mplc_data",
-      "external": true,
-      "management": false,
-      "ranConnection": false
-    }
-  ],
-  "connectivityServices": [
-    {
-      "endPointIds": [
-        "mplc_mgmt",
-        "mplc_data"
-      ],
-      "external": true
-    }
-  ],
-  "serviceSequence": [
-    {
-      "hopEndPoints": [
-        {
-          "vsComponentId": "Master_PLC",
-          "endPointId": "mplc_data"
-        }
-      ]
-    }
-  ],
-  "compatibleContextBlueprint": [
-    "asti_ctx_delay",
-    "asti_ctx_bg_traffic"
-  ],
-  "applicationMetrics": [
-    {
-      "metricId": "navigation_level",
-      "name": "Measurement of the quality of the AGV navigation.",
-      "metricCollectionType": "GAUGE",
-      "unit": "",
-      "interval": "1s",
-      "topic": "/app/navigation_level"
-    },
-    {
-      "metricId": "power_consumption",
-      "name": "Measurement of the power consumption from the AGV.",
-      "metricCollectionType": "GAUGE",
-      "unit": "watt",
-      "interval": "1s",
-      "topic": "/app/power_consumption"
-    },
-    {
-      "metricId": "time_to_lose_guide",
-      "name": "Amount after which the AGV lost the guide.",
-      "metricCollectionType": "CUMULATIVE",
-      "unit": "s",
-      "interval": "1s",
-      "topic": "/app/time_to_lose_guide"
-    },
-    {
-      "metricId": "connected_robots",
-      "name": "Number of currently connected robots",
-      "metricCollectionType": "GAUGE",
-      "unit": "",
-      "interval": "5s",
-      "topic": "/app/connected-robots"
-    }
-  ]
-}
+    "blueprintId": "vsb_asti_agv",
+    "version": "1.0",
+    "name": "ASTI AGV control and automation",
+    "description": "Blueprint for AGVs using 5G network for Automation and Control purposes",
+    "parameters": [
+      {
+        "parameterId": "number_of_AGVs",
+        "parameterName": "Number of AGVs",
+        "parameterType": "number",
+        "parameterDescription": "Number of AGVs (Mandatory)",
+        "applicabilityField": "autonomous_vehicle"
+      }
+    ],
+    "atomicComponents": [
+      {
+        "componentId": "Master_PLC",
+        "serversNumber": 1,
+        "imagesUrls": [
+          "master_plc_image"
+        ],
+        "endPointsIds": [
+          "mplc_mgmt",
+          "mplc_data"
+        ]
+      }
+    ],
+    "endPoints": [
+      {
+        "endPointId": "mplc_mgmt",
+        "external": true,
+        "management": true,
+        "ranConnection": false
+      },
+      {
+        "endPointId": "mplc_data",
+        "external": true,
+        "management": false,
+        "ranConnection": false
+      }
+    ],
+    "connectivityServices": [
+      {
+        "endPointIds": [
+          "mplc_mgmt",
+          "mplc_data"
+        ],
+        "external": true
+      }
+    ],
+    "serviceSequence": [
+      {
+        "hopEndPoints": [
+          {
+            "vsComponentId": "Master_PLC",
+            "endPointId": "mplc_data"
+          }
+        ]
+      }
+    ],
+    "compatibleContextBlueprint": [
+      "263f8cf0-f649-4c3e-a911-445cf507ec97",
+      "e9e1cd65-b28f-492a-bb85-51cda0c2bc4e"
+    ],
+    "applicationMetrics": [
+      {
+        "metricId": "navigation_level",
+        "name": "Measurement of the quality of the AGV navigation.",
+        "metricCollectionType": "GAUGE",
+        "unit": "",
+        "interval": "1s",
+        "topic": "/app/navigation_level"
+      },
+      {
+        "metricId": "power_consumption",
+        "name": "Measurement of the power consumption from the AGV.",
+        "metricCollectionType": "GAUGE",
+        "unit": "watt",
+        "interval": "1s",
+        "topic": "/app/power_consumption"
+      },
+      {
+        "metricId": "time_to_lose_guide",
+        "name": "Amount after which the AGV lost the guide.",
+        "metricCollectionType": "CUMULATIVE",
+        "unit": "s",
+        "interval": "1s",
+        "topic": "/app/time_to_lose_guide"
+      },
+      {
+        "metricId": "connected_robots",
+        "name": "Number of currently connected robots",
+        "metricCollectionType": "GAUGE",
+        "unit": "",
+        "interval": "5s",
+        "topic": "/app/connected-robots"
+      }
+    ]
+  }
