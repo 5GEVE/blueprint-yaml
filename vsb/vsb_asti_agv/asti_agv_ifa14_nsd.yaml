@@ -5,10 +5,10 @@ version: '1.0'
 nsdName: 5G EVE ASTI AGV NS 
 nsdInvariantId: ASTI_NS_1.0
 vnfdId: 
-- TrafficSrc_vnfd
-- Delay_vnfd
-- MasterPLC_vnfd
-- TrafficSink_vnfd
+- 73a441e7-6ac5-4395-9060-74eba90d6dbd #TrafficSrc_vnfd
+- 214851b2-bffe-4653-a95c-83b2133a5e68 #Delay_vnfd
+- e3071b27-49fd-4ceb-a7d2-8b02a8707dc9 #MasterPLC_vnfd
+- 15793c45-a5b1-4db9-915d-faf558d6f3ed #TrafficSink_vnfd
 sapd:
 - cpdId: asti_data
   layerProtocol: IPV4
@@ -222,7 +222,7 @@ nsDf:
   flavourKey: ASTI_small_fl
   vnfProfile:
   - vnfProfileId: MasterPLC_profile
-    vnfdId: MasterPLC_vnfd
+    vnfdId: e3071b27-49fd-4ceb-a7d2-8b02a8707dc9 #MasterPLC_vnfd
     flavourId: MasterPLC_df
     instantiationLevel: MasterPLC_IL
     minNumberOfInstances: 1
@@ -235,7 +235,7 @@ nsDf:
       cpdId:
       - mplc_mgmt
   - vnfProfileId: TrafficSrc_profile
-    vnfdId: TrafficSrc_vnfd
+    vnfdId: 73a441e7-6ac5-4395-9060-74eba90d6dbd #TrafficSrc_vnfd
     flavourId: TrafficSrc_df
     instantiationLevel: TrafficSrc_IL
     minNumberOfInstances: 1
@@ -248,7 +248,7 @@ nsDf:
       cpdId:
       - src_mgmt
   - vnfProfileId: TrafficSink_profile
-    vnfdId: TrafficSink_vnfd
+    vnfdId: 15793c45-a5b1-4db9-915d-faf558d6f3ed #TrafficSink_vnfd
     flavourId: TrafficSink_df
     instantiationLevel: TrafficSink_IL
     minNumberOfInstances: 1
@@ -262,7 +262,7 @@ nsDf:
       - sink_mgmt
   
   - vnfProfileId: Delay_profile
-    vnfdId: Delay_vnfd
+    vnfdId: 214851b2-bffe-4653-a95c-83b2133a5e68 #Delay_vnfd
     flavourId: Delay_df
     instantiationLevel: Delay_IL
     minNumberOfInstances: 1
