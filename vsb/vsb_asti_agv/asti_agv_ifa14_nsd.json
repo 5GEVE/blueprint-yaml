@@ -5,10 +5,10 @@
     "nsdName": "5G EVE ASTI AGV NS",
     "nsdInvariantId": "ASTI_NS_1.0",
     "vnfdId": [
-      "TrafficSrc_vnfd",
-      "Delay_vnfd",
-      "MasterPLC_vnfd",
-      "TrafficSink_vnfd"
+      "73a441e7-6ac5-4395-9060-74eba90d6dbd",
+      "214851b2-bffe-4653-a95c-83b2133a5e68",
+      "e3071b27-49fd-4ceb-a7d2-8b02a8707dc9",
+      "15793c45-a5b1-4db9-915d-faf558d6f3ed"
     ],
     "sapd": [
       {
@@ -314,7 +314,7 @@
         "vnfProfile": [
           {
             "vnfProfileId": "MasterPLC_profile",
-            "vnfdId": "MasterPLC_vnfd",
+            "vnfdId": "e3071b27-49fd-4ceb-a7d2-8b02a8707dc9",
             "flavourId": "MasterPLC_df",
             "instantiationLevel": "MasterPLC_IL",
             "minNumberOfInstances": 1,
@@ -336,7 +336,7 @@
           },
           {
             "vnfProfileId": "TrafficSrc_profile",
-            "vnfdId": "TrafficSrc_vnfd",
+            "vnfdId": "73a441e7-6ac5-4395-9060-74eba90d6dbd",
             "flavourId": "TrafficSrc_df",
             "instantiationLevel": "TrafficSrc_IL",
             "minNumberOfInstances": 1,
@@ -358,7 +358,7 @@
           },
           {
             "vnfProfileId": "TrafficSink_profile",
-            "vnfdId": "TrafficSink_vnfd",
+            "vnfdId": "15793c45-a5b1-4db9-915d-faf558d6f3ed",
             "flavourId": "TrafficSink_df",
             "instantiationLevel": "TrafficSink_IL",
             "minNumberOfInstances": 1,
@@ -380,7 +380,7 @@
           },
           {
             "vnfProfileId": "Delay_profile",
-            "vnfdId": "Delay_vnfd",
+            "vnfdId": "214851b2-bffe-4653-a95c-83b2133a5e68",
             "flavourId": "Delay_df",
             "instantiationLevel": "Delay_IL",
             "minNumberOfInstances": 1,
@@ -692,8 +692,9 @@
           {
             "primaryId": [
               "MasterPLC_profile"
-            ],
-          
+            ]
+          },
+          {
             "secondaryId": [
               "TrafficSrc_profile",
               "TrafficSink_profile",
