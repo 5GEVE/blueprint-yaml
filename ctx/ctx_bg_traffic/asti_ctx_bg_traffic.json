@@ -1,7 +1,7 @@
 {
   "blueprintId": "e9e1cd65-b28f-492a-bb85-51cda0c2bc4e",
   "version": "1.0",
-  "name": "ASTI Context Blueprint for Background Traffic",
+  "name": "ASTI_CtxB_Background_Traffic",
   "description": "Context Blueprint to add artificial background traffic to a VSB.",
   "parameters": [
     {
