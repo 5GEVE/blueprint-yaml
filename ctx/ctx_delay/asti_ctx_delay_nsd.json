@@ -1,0 +1,402 @@
+{
+  "nsdIdentifier": "23ffe8e4-e83f-48c4-9b9a-89f9912de30f'",
+  "designer": "UC3M",
+  "version": "1.0",
+  "nsdName": "5G EVE ASTI AGV DELAY CXT NS",
+  "nsdInvariantId": "ASTI_NS_Delay_1.0",
+  "vnfdId": [
+    "214851b2-bffe-4653-a95c-83b2133a5e68"
+  ],
+  "sapd": [
+    {
+      "cpdId": "asti_data",
+      "layerProtocol": "IPV4",
+      "description": "SAP to connect the AGVs to the network service",
+      "addressData": [
+        {
+          "addressType": "IP_ADDRESS",
+          "iPAddressAssignment": false,
+          "floatingIpActivated": false,
+          "management": false,
+          "iPAddressType": "IPv4",
+          "numberOfIpAddress": 1
+        }
+      ],
+      "sapAddressAssignment": false,
+      "nsVirtualLinkDescId": "asti_data_VL"
+    },
+    {
+      "cpdId": "delay_mgmt",
+      "layerProtocol": "IPV4",
+      "description": "SAP to manage delay component VNF",
+      "addressData": [
+        {
+          "addressType": "IP_ADDRESS",
+          "iPAddressAssignment": false,
+          "floatingIpActivated": false,
+          "management": false,
+          "iPAddressType": "IPv4",
+          "numberOfIpAddress": 1
+        }
+      ],
+      "sapAddressAssignment": false,
+      "nsVirtualLinkDescId": "delay_mgmt_VL"
+    },
+    {
+      "cpdId": "data1_Cp",
+      "layerProtocol": "IPV4",
+      "description": "SAP to connect delay VNF to Traffic Src VNF",
+      "addressData": [
+        {
+          "addressType": "IP_ADDRESS",
+          "iPAddressAssignment": false,
+          "floatingIpActivated": false,
+          "management": false,
+          "iPAddressType": "IPv4",
+          "numberOfIpAddress": 1
+        }
+      ],
+      "sapAddressAssignment": false,
+      "nsVirtualLinkDescId": "data1_VL"
+    },
+    {
+      "cpdId": "data2_Cp",
+      "layerProtocol": "IPV4",
+      "description": "SAP to connect Delay VNF to MasterPLC",
+      "addressData": [
+        {
+          "addressType": "IP_ADDRESS",
+          "iPAddressAssignment": false,
+          "floatingIpActivated": false,
+          "management": false,
+          "iPAddressType": "IPv4",
+          "numberOfIpAddress": 1
+        }
+      ],
+      "sapAddressAssignment": false,
+      "nsVirtualLinkDescId": "data2_VL"
+    },
+    {
+      "cpdId": "data3_Cp",
+      "layerProtocol": "IPV4",
+      "description": "SAP to connect Delay VNF to TrafficSink",
+      "addressData": [
+        {
+          "addressType": "IP_ADDRESS",
+          "iPAddressAssignment": false,
+          "floatingIpActivated": false,
+          "management": false,
+          "iPAddressType": "IPv4",
+          "numberOfIpAddress": 1
+        }
+      ],
+      "sapAddressAssignment": false,
+      "nsVirtualLinkDescId": "data3_VL"
+    }
+  ],
+  "virtualLinkDesc": [
+    {
+      "virtualLinkDescId": "asti_data_VL",
+      "virtualLinkDescProvider": "UC3M",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4",
+        "flowPattern": null
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "asti_data_VL_df",
+          "qos": {
+            "latency": 0,
+            "packetDelayVariation": 0,
+            "packetLossRatio": 0,
+            "priority": 0
+          },
+          "serviceAvaibilityLevel": "LEVEL_1",
+          "bitrateRequirements": {
+            "root": 1,
+            "leaf": 1
+          }
+        }
+      ],
+      "description": "Data network to control and manage AGVs"
+    },
+    {
+      "virtualLinkDescId": "delay_mgmt_VL",
+      "virtualLinkDescProvider": "UC3M",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4",
+        "flowPattern": null
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "delay_mgmt_VL_df",
+          "qos": {
+            "latency": 0,
+            "packetDelayVariation": 0,
+            "packetLossRatio": 0,
+            "priority": 0
+          },
+          "serviceAvaibilityLevel": "LEVEL_1",
+          "bitrateRequirements": {
+            "root": 1,
+            "leaf": 1
+          }
+        }
+      ],
+      "description": "Management network for the Delay VNF component"
+    },
+    {
+      "virtualLinkDescId": "data1_VL",
+      "virtualLinkDescProvider": "UC3M",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4",
+        "flowPattern": null
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "data1_VL_df",
+          "qos": {
+            "latency": 0,
+            "packetDelayVariation": 0,
+            "packetLossRatio": 0,
+            "priority": 0
+          },
+          "serviceAvaibilityLevel": "LEVEL_1",
+          "bitrateRequirements": {
+            "root": 2,
+            "leaf": 1
+          }
+        }
+      ],
+      "description": "Data network to connect the Traffic source VNF to the Delay VNF"
+    },
+    {
+      "virtualLinkDescId": "data2_VL",
+      "virtualLinkDescProvider": "UC3M",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4",
+        "flowPattern": null
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "data2_VL_df",
+          "qos": {
+            "latency": 0,
+            "packetDelayVariation": 0,
+            "packetLossRatio": 0,
+            "priority": 0
+          },
+          "serviceAvaibilityLevel": "LEVEL_1",
+          "bitrateRequirements": {
+            "root": 2,
+            "leaf": 1
+          }
+        }
+      ],
+      "description": "Data network to connect the Delay VNF to the MasterPLC"
+    },
+    {
+      "virtualLinkDescId": "data3_VL",
+      "virtualLinkDescProvider": "UC3M",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4",
+        "flowPattern": null
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "data3_VL_df",
+          "qos": {
+            "latency": 0,
+            "packetDelayVariation": 0,
+            "packetLossRatio": 0,
+            "priority": 0
+          },
+          "serviceAvaibilityLevel": "LEVEL_1",
+          "bitrateRequirements": {
+            "root": 2,
+            "leaf": 1
+          }
+        }
+      ],
+      "description": "Data network to connect the Delay VNF to the Traffic Sink"
+    }
+  ],
+  "nsDf": [
+    {
+      "nsDfId": "13bb6d27-d65c-4f2e-be87-ca47458c47b4",
+      "flavourKey": "ASTI_delay_small_fl",
+      "vnfProfile": [
+        {
+          "vnfProfileId": "Delay_profile",
+          "vnfdId": "214851b2-bffe-4653-a95c-83b2133a5e68",
+          "flavourId": "Delay_df",
+          "instantiationLevel": "Delay_IL",
+          "minNumberOfInstances": 1,
+          "maxNumberOfInstances": 1,
+          "nsVirtualLinkConnectivity": [
+            {
+              "virtualLinkProfileId": "data1_profile",
+              "cpdId": [
+                "data1_Cp"
+              ]
+            },
+            {
+              "virtualLinkProfileId": "data2_profile",
+              "cpdId": [
+                "data2_Cp"
+              ]
+            },
+            {
+              "virtualLinkProfileId": "data3_profile",
+              "cpdId": [
+                "data3_Cp"
+              ]
+            },
+            {
+              "virtualLinkProfileId": "delay_mgmt_VL_profile",
+              "cpdId": [
+                "delay_mgmt"
+              ]
+            },
+            {
+              "virtualLinkProfileId": "asti_data_VL_profile",
+              "cpdId": [
+                "asti_data"
+              ]
+            }
+          ]
+        }
+      ],
+      "virtualLinkProfile": [
+        {
+          "virtualLinkProfileId": "asti_data_VL_profile",
+          "virtualLinkDescId": "asti_data_VL",
+          "flavourId": "asti_data_VL_df",
+          "maxBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          }
+        },
+        {
+          "virtualLinkProfileId": "data1_profile",
+          "virtualLinkDescId": "data1_VL",
+          "flavourId": "data1_VL_df",
+          "maxBitrateRequirements": {
+            "root": "2",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "2",
+            "leaf": "1"
+          }
+        },
+        {
+          "virtualLinkProfileId": "data2_profile",
+          "virtualLinkDescId": "data2_VL",
+          "flavourId": "data2_VL_df",
+          "maxBitrateRequirements": {
+            "root": "2",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "2",
+            "leaf": "1"
+          }
+        },
+        {
+          "virtualLinkProfileId": "data3_profile",
+          "virtualLinkDescId": "data3_VL",
+          "flavourId": "data3_VL_df",
+          "maxBitrateRequirements": {
+            "root": "2",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "2",
+            "leaf": "1"
+          }
+        },
+        {
+          "virtualLinkProfileId": "delay_mgmt_VL_profile",
+          "virtualLinkDescId": "delay_mgmt_VL",
+          "flavourId": "delay_mgmt_VL_df",
+          "maxBitrateRequirements": {
+            "root": "2",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "2",
+            "leaf": "1"
+          }
+        }
+      ],
+      "nsInstantiationLevel": [
+        {
+          "nsLevelId": "asti_ns_ctx_delay_il_small",
+          "description": "Default instantiation level for the ASTI AGV Delay Cxt Network service",
+          "vnfToLevelMapping": [
+            {
+              "vnfProfileId": "Delay_profile",
+              "numberOfInstances": 1
+            }
+          ],
+          "virtualLinkToLevelMapping": [
+            {
+              "virtualLinkProfileId": "data1_profile",
+              "bitRateRequirements": {
+                "root": "2",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "data2_profile",
+              "bitRateRequirements": {
+                "root": "2",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "data3_profile",
+              "bitRateRequirements": {
+                "root": "2",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "asti_data_VL_profile",
+              "bitRateRequirements": {
+                "root": "1",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "delay_mgmt_VL_profile",
+              "bitRateRequirements": {
+                "root": "2",
+                "leaf": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "defaultNsInstantiationLevelId": "asti_ns_ctx_delay_il_small",
+      "dependencies": [
+
+      ]
+    }
+  ],
+  "security": {
+    "signature": "ASTI_Ctx_Delay_NSD_SIGNATURE",
+    "algorithm": "ASTI_Ctx_Delay_NSD_ALGORITHM",
+    "certificate": "ASTI_Ctx_Delay_NSD_CERTIFICATE"
+  }
+}
