@@ -84,7 +84,7 @@
     "applicationMetrics": [
       {
         "metricId": "delay_iface",
-        "name": "Traffic delay measured between In and Out interfaces",
+        "name": "ASTI_Traffic_delay",
         "metricCollectionType": "GAUGE",
         "unit": "ms",
         "interval": "1s",
