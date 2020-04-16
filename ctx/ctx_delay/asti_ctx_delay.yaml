@@ -58,7 +58,7 @@ connectivityServices:
     external: true
 applicationMetrics:
   - metricId: 'delay_iface'
-    name: 'Traffic delay measured between In and Out interfaces'
+    name: 'ASTI_Traffic_delay' #Traffic delay experienced by a network interface connected to the ASTI AGVs
     metricCollectionType: 'GAUGE'
     unit: 'ms'
     interval: '1s'
