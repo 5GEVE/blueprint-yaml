@@ -48,16 +48,23 @@ endPoints:
     ranConnection: false
 compatibleSites:
   - ITALY_TURIN
+compositionStrategy: PASS_THROUGH
 connectivityServices:
-  - endPointIds:
+  - name: vl_dg_mgmt
+    management: true
+    endPointIds:
       - sap_dg_mgmt
       - cp_dg_mgmt
     external: true
-  - endPointIds:
+  - name: vl_dg_out
+    management: false
+    endPointIds:
       - sap_dg_out
       - cp_dg_traffic_out
     external: true
-  - endPointIds:
+  - name: vl_dg_in
+    management: false
+    endPointIds:
       - sap_dg_in
       - cp_dg_traffic_in
     external: true

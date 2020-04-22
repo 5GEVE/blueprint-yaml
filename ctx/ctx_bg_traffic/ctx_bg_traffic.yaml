@@ -45,13 +45,20 @@ endPoints:
     management: true
     ranConnection: false
 connectivityServices:
-  - endPointIds:
+  - name: vl_bg_traffic_data
+    management: false
+    endPointIds:
       - cp_bg_src_data
       - cp_bg_dst_data
-  - endPointIds:
+  - name: vl_bg_traffic_mgmt
+    management: true
+    endPointIds:
       - cp_bg_src_mgmt
       - cp_bg_dst_mgmt
       - sap_bg_mgmt
+compatibleSites:
+  - ITALY_TURIN
+compositionStrategy: CONNECT
 applicationMetrics:
   - metricId: 'traffic_rate_dst'
     name: 'Traffic rate measured at DST'
