@@ -32,8 +32,8 @@ metrics:
     unit: 'GB'
     interval: '1s'
     iMetricType: 'MEMORY_CONSUMPTION'
-vsBlueprintId: '{{vsb_id}}'
+vsBlueprintId: 'vsb_ares2t_tracker'
 ctxBlueprintIds:
-  - '{{cb_id}}'
+  - 'ctx_delay'
 tcBlueprintIds:
-  - '{{tcb_id}}'
+  - 'ares2t_testcase_1'

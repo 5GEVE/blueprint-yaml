@@ -20,7 +20,7 @@ atomicComponents:
     endPointsIds:
       - cp_dg_traffic_in
       - cp_dg_traffic_out
-      - cp_dg_mgt
+      - cp_dg_mgmt
 endPoints:
   - endPointId: cp_dg_traffic_in
     external: true
@@ -30,7 +30,7 @@ endPoints:
     external: true
     management: false
     ranConnection: false
-  - endPointId: cp_dg_mgt
+  - endPointId: cp_dg_mgmt
     external: true
     management: true
     ranConnection: false
@@ -42,22 +42,29 @@ endPoints:
     external: true
     management: false
     ranConnection: false
-  - endPointId: sap_dg_mgt
+  - endPointId: sap_dg_mgmt
     external: true
     management: true
     ranConnection: false
 compatibleSites:
   - ITALY_TURIN
+compositionStrategy: PASS_THROUGH
 connectivityServices:
-  - endPointIds:
-      - sap_dg_mgt
-      - cp_dg_mgt
+  - name: vl_dg_mgmt
+    management: true
+    endPointIds:
+      - sap_dg_mgmt
+      - cp_dg_mgmt
     external: true
-  - endPointIds:
+  - name: vl_dg_out
+    management: false
+    endPointIds:
       - sap_dg_out
       - cp_dg_traffic_out
     external: true
-  - endPointIds:
+  - name: vl_dg_in
+    management: false
+    endPointIds:
       - sap_dg_in
       - cp_dg_traffic_in
     external: true

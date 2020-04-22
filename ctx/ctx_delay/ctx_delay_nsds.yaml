@@ -8,7 +8,7 @@
   vnfdId:
     - 396d1b6b-331b-4dd7-b48e-376517d3654a
   sapd:
-    - cpdId: sap_dg_mgt
+    - cpdId: sap_dg_mgmt
       description: SAP for management
       layerProtocol: IPV4
       cpRole: ROOT
@@ -19,7 +19,7 @@
           iPAddressType: IPv4
           numberOfIpAddress: 1
       sapAddressAssignment: false
-      nsVirtualLinkDescId: vl_dg_mgt
+      nsVirtualLinkDescId: vl_dg_mgmt
     - cpdId: sap_dg_in
       description: SAP for incoming traffic
       layerProtocol: IPV4
@@ -45,13 +45,13 @@
       sapAddressAssignment: false
       nsVirtualLinkDescId: vl_dg_out
   virtualLinkDesc:
-    - virtualLinkDescId: vl_dg_mgt
+    - virtualLinkDescId: vl_dg_mgmt
       virtualLinkDescProvider: NXW
       virtuaLinkDescVersion: '1.0'
       connectivityType:
         layerProtocol: IPV4
       virtualLinkDf:
-        - flavourId: df_vl_dg_mgt
+        - flavourId: df_vl_dg_mgmt
           qos:
             latency: 0
             packetDelayVariation: 0
@@ -101,9 +101,9 @@
             - virtualLinkProfileId: vlp_vl_dg_out
               cpdId:
                 - cp_dg_traffic_out
-            - virtualLinkProfileId: vlp_vl_dg_mgt
+            - virtualLinkProfileId: vlp_vl_dg_mgmt
               cpdId:
-                - cp_dg_mgt
+                - cp_dg_mgmt
             - virtualLinkProfileId: vlp_vl_dg_in
               cpdId:
                 - cp_dg_traffic_in
@@ -117,9 +117,9 @@
           minBitrateRequirements:
             root: '1'
             leaf: '1'
-        - virtualLinkProfileId: vlp_vl_dg_mgt
-          virtualLinkDescId: vl_dg_mgt
-          flavourId: df_vl_dg_mgt
+        - virtualLinkProfileId: vlp_vl_dg_mgmt
+          virtualLinkDescId: vl_dg_mgmt
+          flavourId: df_vl_dg_mgmt
           maxBitrateRequirements:
             root: '1'
             leaf: '1'
@@ -150,7 +150,7 @@
               bitRateRequirements:
                 root: '1'
                 leaf: '1'
-            - virtualLinkProfileId: vlp_vl_dg_mgt
+            - virtualLinkProfileId: vlp_vl_dg_mgmt
               bitRateRequirements:
                 root: '1'
                 leaf: '1'
