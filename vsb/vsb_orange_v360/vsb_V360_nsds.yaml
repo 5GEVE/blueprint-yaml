@@ -3,7 +3,7 @@
 - nsdIdentifier: "vsb_video_360_nsd"
   designer: "NSD generator"
   version: "1.0"
-  nsdName: "Video 360_nsd"
+  nsdName: "Video 360 NSD"
   nsdInvariantId: "vsb_video_360_nsd"
   vnfdId:
     - "video_server"
@@ -12,7 +12,6 @@
     - cpdId: "sap_v360_ran"
       layerProtocol: "IPV4"
       cpRole: "ROOT"
-      description: "A generated Sapd"
       addressData:
         - addressType: "IP_ADDRESS"
           iPAddressAssignment: false
@@ -21,11 +20,10 @@
           iPAddressType: "IPv4"
           numberOfIpAddress: 1
       sapAddressAssignment: false
-      nsVirtualLinkDescId: "vld_0"
+      nsVirtualLinkDescId: "vl_v360_ran"
     - cpdId: "sap_v360_mgmt"
       layerProtocol: "IPV4"
       cpRole: "ROOT"
-      description: "A generated Sapd"
       addressData:
         - addressType: "IP_ADDRESS"
           iPAddressAssignment: false
@@ -34,38 +32,35 @@
           iPAddressType: "IPv4"
           numberOfIpAddress: 1
       sapAddressAssignment: false
-      nsVirtualLinkDescId: "vld_2"
+      nsVirtualLinkDescId: "vl_v360_mgmt"
   virtualLinkDesc:
-    - virtualLinkDescId: "vld_0"
+    - virtualLinkDescId: "vl_v360_ran"
       virtualLinkDescProvider: "NSD generator"
       virtuaLinkDescVersion: "1.0"
       connectivityType:
         layerProtocol: "IPV4"
         flowPattern: ""
       virtualLinkDf:
-        - flavourId: "vld_0_df"
+        - flavourId: "vl_v360_ran_df"
           serviceAvaibilityLevel: "LEVEL_1"
-      description: "vld_0"
-    - virtualLinkDescId: "vld_1"
+    - virtualLinkDescId: "vl_v360_int"
       virtualLinkDescProvider: "NSD generator"
       virtuaLinkDescVersion: "1.0"
       connectivityType:
         layerProtocol: "IPV4"
         flowPattern: ""
       virtualLinkDf:
-        - flavourId: "vld_1_df"
+        - flavourId: "vl_v360_int_df"
           serviceAvaibilityLevel: "LEVEL_1"
-      description: "vld_1"
-    - virtualLinkDescId: "vld_2"
+    - virtualLinkDescId: "vl_v360_mgmt"
       virtualLinkDescProvider: "NSD generator"
       virtuaLinkDescVersion: "1.0"
       connectivityType:
         layerProtocol: "IPV4"
         flowPattern: ""
       virtualLinkDf:
-        - flavourId: "vld_2_df"
+        - flavourId: "vl_v360_mgmt_df"
           serviceAvaibilityLevel: "LEVEL_1"
-      description: "vld_2"
   nsDf:
     - nsDfId: "vsb_video_360_df"
       flavourKey: "vsb_video_360_df_fk"
@@ -77,10 +72,10 @@
           minNumberOfInstances: 1
           maxNumberOfInstances: 1
           nsVirtualLinkConnectivity:
-            - virtualLinkProfileId: "vld_1_vlp"
+            - virtualLinkProfileId: "vl_v360_int_vlp"
               cpdId:
                 - "cp_vs_int"
-            - virtualLinkProfileId: "vld_2_vlp"
+            - virtualLinkProfileId: "vl_v360_mgmt_vlp"
               cpdId:
                 - "cp_vs_mgmt"
         - vnfProfileId: "wef_vnfp"
@@ -90,37 +85,37 @@
           minNumberOfInstances: 1
           maxNumberOfInstances: 1
           nsVirtualLinkConnectivity:
-            - virtualLinkProfileId: "vld_1_vlp"
+            - virtualLinkProfileId: "vl_v360_int_vlp"
               cpdId:
                 - "cp_wef_int"
-            - virtualLinkProfileId: "vld_2_vlp"
+            - virtualLinkProfileId: "vl_v360_mgmt_vlp"
               cpdId:
                 - "cp_wef_mgmt"
-            - virtualLinkProfileId: "vld_0_vlp"
+            - virtualLinkProfileId: "vl_v360_ran_vlp"
               cpdId:
                 - "cp_wef_ran"
       virtualLinkProfile:
-        - virtualLinkProfileId: "vld_0_vlp"
-          virtualLinkDescId: "vld_0"
-          flavourId: "vld_0_df"
+        - virtualLinkProfileId: "vl_v360_ran_vlp"
+          virtualLinkDescId: "vl_v360_ran"
+          flavourId: "vl_v360_ran_df"
           maxBitrateRequirements:
             root: "1"
             leaf: "1"
           minBitrateRequirements:
             root: "1"
             leaf: "1"
-        - virtualLinkProfileId: "vld_1_vlp"
-          virtualLinkDescId: "vld_1"
-          flavourId: "vld_1_df"
+        - virtualLinkProfileId: "vl_v360_int_vlp"
+          virtualLinkDescId: "vl_v360_int"
+          flavourId: "vl_v360_int_df"
           maxBitrateRequirements:
             root: "1"
             leaf: "1"
           minBitrateRequirements:
             root: "1"
             leaf: "1"
-        - virtualLinkProfileId: "vld_2_vlp"
-          virtualLinkDescId: "vld_2"
-          flavourId: "vld_2_df"
+        - virtualLinkProfileId: "vl_v360_mgmt_vlp"
+          virtualLinkDescId: "vl_v360_mgmt"
+          flavourId: "vl_v360_mgmt_df"
           maxBitrateRequirements:
             root: "1"
             leaf: "1"
@@ -136,15 +131,15 @@
             - vnfProfileId: "wef_vnfp"
               numberOfInstances: 1
           virtualLinkToLevelMapping:
-            - virtualLinkProfileId: "vld_0_vlp"
+            - virtualLinkProfileId: "vl_v360_ran_vlp"
               bitRateRequirements:
                 root: "1"
                 leaf: "1"
-            - virtualLinkProfileId: "vld_1_vlp"
+            - virtualLinkProfileId: "vl_v360_int_vlp"
               bitRateRequirements:
                 root: "1"
                 leaf: "1"
-            - virtualLinkProfileId: "vld_2_vlp"
+            - virtualLinkProfileId: "vl_v360_mgmt_vlp"
               bitRateRequirements:
                 root: "1"
                 leaf: "1"
