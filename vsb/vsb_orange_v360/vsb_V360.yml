@@ -57,21 +57,27 @@ endPoints:
     ranConnection: true
 connectivityServices:
   # ran
-  - endPointIds:
+  - name: vl_v360_ran
+    management: false
+    endPointIds:
       - sap_v360_ran
       - cp_wef_ran
     external: true
   # internal
-  - endPointIds:
+  - name: vl_v360_int
+    management: false
+    endPointIds:
       - cp_wef_int
       - cp_vs_int
     external: false
   # management
-  - endPointIds:
+  - name: vl_v360_mgmt
+    management: false
+    endPointIds:
       - cp_wef_mgmt
       - cp_vs_mgmt
       - sap_v360_mgmt
-compatibleContextBlueprint: ['vs_delay']
+compatibleContextBlueprint: ['ctx_delay']
 applicationMetrics:
   - metricId: 'delay'
     name: 'Measurement of the delay from the HMD to VS.'
