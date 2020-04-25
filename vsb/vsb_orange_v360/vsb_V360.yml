@@ -87,3 +87,5 @@ applicationMetrics:
     topic: '/app/navigation_level'
 compatibleSites:
   - FRANCE_RENNES
+  - FRANCE_LANNION
+  - FRANCE_CHATILLON
