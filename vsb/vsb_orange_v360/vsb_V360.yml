@@ -1,4 +1,5 @@
 # vsb_video_360.yaml
+# Describing Config 1: WEF-CP and SPGWU deployed in same component, 'wef'
 ---
 blueprintId: 'vsb_video_360'
 version: '1.0'
