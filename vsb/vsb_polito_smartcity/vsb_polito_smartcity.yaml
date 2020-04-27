@@ -82,7 +82,7 @@ connectivityServices:
       - sap_vis_user
     external: true
 compatibleContextBlueprint:
-  - 'ctx_smartcity_traffic_gen'
+  - 'ctx_smartcity_traffic'
 applicationMetrics:
   - metricId: tracked_devices
     name: Number of total tracked devices (distinct mac addresses)
