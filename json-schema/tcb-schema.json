@@ -1,0 +1,33 @@
+{
+  "type": "object",
+  "id": "urn:jsonschema:it:nextworks:nfvmano:catalogue:blueprint:elements:TestCaseBlueprint",
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "testcaseBlueprintId": {
+      "type": "string"
+    },
+    "script": {
+      "type": "string"
+    },
+    "userParameters": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "infrastructureParameters": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

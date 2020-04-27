@@ -1,0 +1,120 @@
+{
+  "type": "object",
+  "id": "urn:jsonschema:it:nextworks:nfvmano:catalogue:blueprint:elements:ExpBlueprint",
+  "properties": {
+    "expBlueprintId": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "sites": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "ITALY_TURIN",
+          "SPAIN_5TONIC",
+          "FRANCE_PARIS",
+          "FRANCE_NICE",
+          "FRANCE_RENNES",
+          "GREECE_ATHENS"
+        ]
+      }
+    },
+    "kpis": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "id": "urn:jsonschema:it:nextworks:nfvmano:catalogue:blueprint:elements:KeyPerformanceIndicator",
+        "properties": {
+          "kpiId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "formula": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "interval": {
+            "type": "string"
+          },
+          "metricIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "metrics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "id": "urn:jsonschema:it:nextworks:nfvmano:catalogue:blueprint:elements:InfrastructureMetric",
+        "properties": {
+          "iMetricType": {
+            "type": "string",
+            "enum": [
+              "LOST_PKT",
+              "RECEIVED_PKT",
+              "SENT_PKT",
+              "BANDWIDTH",
+              "LATENCY",
+              "JITTER",
+              "CPU_CONSUMPTION",
+              "MEMORY_CONSUMPTION",
+              "OTHER"
+            ]
+          },
+          "metricId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "metricCollectionType": {
+            "type": "string",
+            "enum": [
+              "CUMULATIVE",
+              "DELTA",
+              "GAUGE"
+            ]
+          },
+          "unit": {
+            "type": "string"
+          },
+          "interval": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "vsBlueprintId": {
+      "type": "string"
+    },
+    "ctxBlueprintIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tcBlueprintIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

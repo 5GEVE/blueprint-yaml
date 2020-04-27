@@ -1,0 +1,874 @@
+{
+  "type": "object",
+  "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:Nsd",
+  "properties": {
+    "nsdIdentifier": {
+      "type": "string"
+    },
+    "designer": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "nsdName": {
+      "type": "string"
+    },
+    "nsdInvariantId": {
+      "type": "string"
+    },
+    "nestedNsdId": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "vnfdId": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "pnfdId": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sapd": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:Sapd",
+        "properties": {
+          "cpdId": {
+            "type": "string"
+          },
+          "layerProtocol": {
+            "type": "string",
+            "enum": [
+              "ETHERNET",
+              "MPLS",
+              "ODU2",
+              "IPV4",
+              "IPV6",
+              "PSEUDO_WIRE",
+              "OTSIA",
+              "OCH",
+              "OTU",
+              "ODU",
+              "SDM",
+              "AROF",
+              "NOT_SPECIFIED"
+            ]
+          },
+          "cpRole": {
+            "type": "string",
+            "enum": [
+              "ROOT",
+              "LEAF"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "addressData": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:common:elements:AddressData",
+              "properties": {
+                "addressType": {
+                  "type": "string",
+                  "enum": [
+                    "MAC_ADDRESS",
+                    "IP_ADDRESS"
+                  ]
+                },
+                "iPAddressAssignment": {
+                  "type": "boolean"
+                },
+                "floatingIpActivated": {
+                  "type": "boolean"
+                },
+                "management": {
+                  "type": "boolean"
+                },
+                "iPAddressType": {
+                  "type": "string",
+                  "enum": [
+                    "IPv4",
+                    "IPv6"
+                  ]
+                },
+                "numberOfIpAddress": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "sapAddressAssignment": {
+            "type": "boolean"
+          },
+          "nsVirtualLinkDescId": {
+            "type": "string"
+          },
+          "associatedCpdId": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "virtualLinkDesc": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:NsVirtualLinkDesc",
+        "properties": {
+          "virtualLinkDescId": {
+            "type": "string"
+          },
+          "virtualLinkDescProvider": {
+            "type": "string"
+          },
+          "virtuaLinkDescVersion": {
+            "type": "string"
+          },
+          "connectivityType": {
+            "type": "object",
+            "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:common:elements:ConnectivityType",
+            "properties": {
+              "layerProtocol": {
+                "type": "string",
+                "enum": [
+                  "ETHERNET",
+                  "MPLS",
+                  "ODU2",
+                  "IPV4",
+                  "IPV6",
+                  "PSEUDO_WIRE",
+                  "OTSIA",
+                  "OCH",
+                  "OTU",
+                  "ODU",
+                  "SDM",
+                  "AROF",
+                  "NOT_SPECIFIED"
+                ]
+              },
+              "flowPattern": {
+                "type": "string"
+              }
+            }
+          },
+          "virtualLinkDf": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:common:elements:VirtualLinkDf",
+              "properties": {
+                "flavourId": {
+                  "type": "string"
+                },
+                "qos": {
+                  "type": "object",
+                  "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:common:elements:QoS",
+                  "properties": {
+                    "latency": {
+                      "type": "integer"
+                    },
+                    "packetDelayVariation": {
+                      "type": "integer"
+                    },
+                    "packetLossRatio": {
+                      "type": "integer"
+                    },
+                    "priority": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "serviceAvaibilityLevel": {
+                  "type": "string",
+                  "enum": [
+                    "LEVEL_1",
+                    "LEVEL_2",
+                    "LEVEL_3"
+                  ]
+                }
+              }
+            }
+          },
+          "testAccess": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": {
+            "type": "string"
+          },
+          "security": {
+            "type": "object",
+            "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:SecurityParameters",
+            "properties": {
+              "signature": {
+                "type": "string"
+              },
+              "algorithm": {
+                "type": "string"
+              },
+              "certificate": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "vnffgd": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:Vnffgd",
+        "properties": {
+          "vnffgdId": {
+            "type": "string"
+          },
+          "vnfdId": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "pnfdId": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "virtualLinkDescId": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "cpdPoolId": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "nfpd": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:Nfpd",
+              "properties": {
+                "nfpId": {
+                  "type": "string"
+                },
+                "nfpRule": {
+                  "type": "object",
+                  "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:common:elements:Rule"
+                },
+                "cpd": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "qos": {
+                  "type": "object",
+                  "$ref": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:common:elements:QoS"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "monitoredInfo": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:MonitoredData",
+        "properties": {
+          "vnfIndicatorInfo": {
+            "type": "object",
+            "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:VnfIndicatorData",
+            "properties": {
+              "vnfdId": {
+                "type": "string"
+              },
+              "vnfIndicator": {
+                "type": "string"
+              }
+            }
+          },
+          "monitoringParameter": {
+            "type": "object",
+            "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:common:elements:MonitoringParameter",
+            "properties": {
+              "monitoringParameterId": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "performanceMetric": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "autoScalingRule": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:NsAutoscalingRule",
+        "properties": {
+          "ruleId": {
+            "type": "string"
+          },
+          "ruleCondition": {
+            "type": "object",
+            "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:AutoscalingRuleCondition",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "scalingType": {
+                "type": "string",
+                "enum": [
+                  "MANUAL_SCALING",
+                  "AUTOMATED_SCALING"
+                ]
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "scaleInOperationType": {
+                "type": "string",
+                "enum": [
+                  "AND",
+                  "OR"
+                ]
+              },
+              "scaleOutOperationType": {
+                "type": "string",
+                "enum": [
+                  "AND",
+                  "OR"
+                ]
+              },
+              "thresholdTime": {
+                "type": "integer"
+              },
+              "cooldownTime": {
+                "type": "integer"
+              },
+              "initialInstantiationLevel": {
+                "type": "string"
+              },
+              "scalingCriteria": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:AutoscalingRuleCriteria",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "scaleInThreshold": {
+                      "type": "integer"
+                    },
+                    "scaleInRelationalOperation": {
+                      "type": "string",
+                      "enum": [
+                        "GE",
+                        "LE",
+                        "GT",
+                        "LT",
+                        "EQ"
+                      ]
+                    },
+                    "scaleOutThreshold": {
+                      "type": "integer"
+                    },
+                    "scaleOutRelationalOperation": {
+                      "type": "string",
+                      "enum": [
+                        "GE",
+                        "LE",
+                        "GT",
+                        "LT",
+                        "EQ"
+                      ]
+                    },
+                    "nsMonitoringParamRef": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "ruleActions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:AutoscalingAction",
+              "properties": {
+                "scaleType": {
+                  "type": "string",
+                  "enum": [
+                    "SCALE_NS",
+                    "SCALE_VNF"
+                  ]
+                },
+                "scaleNsToLevelData": {
+                  "type": "object",
+                  "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:ScaleNsToLevelData",
+                  "properties": {
+                    "nsInstantiationLevel": {
+                      "type": "string"
+                    },
+                    "nsScaleInfo": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:records:nsinfo:NsScaleInfo",
+                        "properties": {
+                          "nsScalingAspectId": {
+                            "type": "string"
+                          },
+                          "nsScaleLevelId": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "lifeCycleManagementScript": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:common:elements:LifeCycleManagementScript",
+        "properties": {
+          "event": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "START_VNF_INSTANTIATION",
+                "END_VNF_INSTANTIATION",
+                "START_VNF_SCALING",
+                "END_VNF_SCALING",
+                "START_VNF_HEALING",
+                "END_VNF_HEALING",
+                "START_VNF_TERMINATION",
+                "END_VNF_TERMINATION",
+                "START_VNF_FLAVOUR_CHANGE",
+                "END_VNF_FLAVOUR_CHANGE",
+                "START_VNF_OP_STATE_CHANGE",
+                "END_VNF_OP_STATE_CHANGE",
+                "START_CHANGE_VNF_EXTERNAL_CONNECTIVITY",
+                "END_CHANGE_VNF_EXTERNAL_CONNECTIVITY",
+                "RECEIVED_MSG_VNF_INSTANTIATE",
+                "RECEIVED_MSG_VNF_SCALE",
+                "RECEIVED_MSG_VNF_HEAL",
+                "RECEIVED_MSG_VNF_TERMINATE",
+                "RECEIVED_MSG_CHANGE_VNF_FLAVOUR",
+                "RECEIVED_MSG_CHANGE_VNF_EXTERNAL_CONNECTIVITY",
+                "RECEIVED_MSG_CHANGE_VNF_OP_STATE",
+                "RECEIVED_MSG_VNF_CHANGE_INDICATION",
+                "START_NS_INSTANTIATION",
+                "END_NS_INSTANTIATION",
+                "START_NS_SCALING",
+                "END_NS_SCALING",
+                "START_NS_HEALING",
+                "END_NS_HEALING",
+                "START_NS_TERMINATION",
+                "END_NS_TERMINATION",
+                "START_NS_UPDATE",
+                "END_NS_UPDATE",
+                "RECEIVED_MSG_NS_INSTANTIATE",
+                "RECEIVED_MSG_NS_SCALE",
+                "RECEIVED_MSG_NS_HEAL",
+                "RECEIVED_MSG_NS_TERMINATE",
+                "RECEIVED_MSG_NS_UPDATE"
+              ]
+            }
+          },
+          "script": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "nsDf": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:NsDf",
+        "properties": {
+          "nsDfId": {
+            "type": "string"
+          },
+          "flavourKey": {
+            "type": "string"
+          },
+          "vnfProfile": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:VnfProfile",
+              "properties": {
+                "script": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:VnfLCMScripts",
+                    "properties": {
+                      "target": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "vnfProfileId": {
+                  "type": "string"
+                },
+                "vnfdId": {
+                  "type": "string"
+                },
+                "flavourId": {
+                  "type": "string"
+                },
+                "instantiationLevel": {
+                  "type": "string"
+                },
+                "minNumberOfInstances": {
+                  "type": "integer"
+                },
+                "maxNumberOfInstances": {
+                  "type": "integer"
+                },
+                "localAffinityOrAntiAffinityRule": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:common:elements:AffinityRule",
+                    "properties": {
+                      "affinityOrAntiAffinity": {
+                        "type": "string",
+                        "enum": [
+                          "AFFINITY",
+                          "ANTI_AFFINITY"
+                        ]
+                      },
+                      "scope": {
+                        "type": "string",
+                        "enum": [
+                          "NFVI_NODE",
+                          "NFVI_POP",
+                          "ZONE",
+                          "ZONE_GROUP"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "affinityOrAntiAffinityGroupId": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "nsVirtualLinkConnectivity": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:NsVirtualLinkConnectivity",
+                    "properties": {
+                      "virtualLinkProfileId": {
+                        "type": "string"
+                      },
+                      "cpdId": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "pnfProfile": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:PnfProfile",
+              "properties": {
+                "pnfProfileId": {
+                  "type": "string"
+                },
+                "pnfdId": {
+                  "type": "string"
+                },
+                "pnfVirtualLinkConnectivity": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:NsVirtualLinkConnectivity"
+                  }
+                }
+              }
+            }
+          },
+          "virtualLinkProfile": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:common:elements:VirtualLinkProfile",
+              "properties": {
+                "virtualLinkProfileId": {
+                  "type": "string"
+                },
+                "virtualLinkDescId": {
+                  "type": "string"
+                },
+                "flavourId": {
+                  "type": "string"
+                },
+                "localAffinityOrAntiAffinityRule": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:common:elements:AffinityRule"
+                  }
+                },
+                "affinityOrAntiAffinityGroupId": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "maxBitrateRequirements": {
+                  "type": "object",
+                  "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:common:elements:LinkBitrateRequirements",
+                  "properties": {
+                    "root": {
+                      "type": "string"
+                    },
+                    "leaf": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "minBitrateRequirements": {
+                  "type": "object",
+                  "$ref": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:common:elements:LinkBitrateRequirements"
+                }
+              }
+            }
+          },
+          "scalingAspect": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:NsScalingAspect",
+              "properties": {
+                "nsScalingAspectId": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "nsScaleLevel": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:NsLevel",
+                    "properties": {
+                      "nsLevelId": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "vnfToLevelMapping": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:VnfToLevelMapping",
+                          "properties": {
+                            "vnfProfileId": {
+                              "type": "string"
+                            },
+                            "numberOfInstances": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      },
+                      "nsToLevelMapping": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:NsToLevelMapping",
+                          "properties": {
+                            "nsProfileId": {
+                              "type": "string"
+                            },
+                            "numberOfInstances": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      },
+                      "virtualLinkToLevelMapping": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:VirtualLinkToLevelMapping",
+                          "properties": {
+                            "virtualLinkProfileId": {
+                              "type": "string"
+                            },
+                            "bitRateRequirements": {
+                              "type": "object",
+                              "$ref": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:common:elements:LinkBitrateRequirements"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "affinityOrAntiAffinityGroup": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:common:elements:AffinityOrAntiAffinityGroup",
+              "properties": {
+                "groupId": {
+                  "type": "string"
+                },
+                "affinityOrAntiAffinity": {
+                  "type": "string",
+                  "enum": [
+                    "AFFINITY",
+                    "ANTI_AFFINITY"
+                  ]
+                },
+                "scope": {
+                  "type": "string",
+                  "enum": [
+                    "NFVI_NODE",
+                    "NFVI_POP",
+                    "ZONE",
+                    "ZONE_GROUP"
+                  ]
+                }
+              }
+            }
+          },
+          "nsInstantiationLevel": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:NsLevel"
+            }
+          },
+          "defaultNsInstantiationLevelId": {
+            "type": "string"
+          },
+          "nsProfile": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:NsProfile",
+              "properties": {
+                "nsProfileId": {
+                  "type": "string"
+                },
+                "nsdId": {
+                  "type": "string"
+                },
+                "nsDfId": {
+                  "type": "string"
+                },
+                "nsInstantiationLevelId": {
+                  "type": "string"
+                },
+                "minNumberOfInstances": {
+                  "type": "integer"
+                },
+                "maxNumberOfInstances": {
+                  "type": "integer"
+                },
+                "affinityOrAntiaffinityGroupId": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "nsVirtualLinkConnectivity": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:NsVirtualLinkConnectivity"
+                  }
+                }
+              }
+            }
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "id": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:Dependencies",
+              "properties": {
+                "primaryId": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "secondaryId": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "security": {
+      "type": "object",
+      "$ref": "urn:jsonschema:it:nextworks:nfvmano:libs:ifa:descriptors:nsd:SecurityParameters"
+    }
+  }
+}

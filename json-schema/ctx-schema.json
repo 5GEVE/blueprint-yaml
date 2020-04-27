@@ -1,0 +1,209 @@
+{
+  "type": "object",
+  "id": "urn:jsonschema:it:nextworks:nfvmano:catalogue:blueprint:elements:CtxBlueprint",
+  "properties": {
+    "blueprintId": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "parameters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "id": "urn:jsonschema:it:nextworks:nfvmano:catalogue:blueprint:elements:VsBlueprintParameter",
+        "properties": {
+          "parameterId": {
+            "type": "string"
+          },
+          "parameterName": {
+            "type": "string"
+          },
+          "parameterType": {
+            "type": "string"
+          },
+          "parameterDescription": {
+            "type": "string"
+          },
+          "applicabilityField": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "atomicComponents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "id": "urn:jsonschema:it:nextworks:nfvmano:catalogue:blueprint:elements:VsComponent",
+        "properties": {
+          "componentId": {
+            "type": "string"
+          },
+          "serversNumber": {
+            "type": "integer"
+          },
+          "imagesUrls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "endPointsIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "lifecycleOperations": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "serviceSequence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "id": "urn:jsonschema:it:nextworks:nfvmano:catalogue:blueprint:elements:VsbForwardingPathHop",
+        "properties": {
+          "hopEndPoints": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "id": "urn:jsonschema:it:nextworks:nfvmano:catalogue:blueprint:elements:VsbForwardingPathEndPoint",
+              "properties": {
+                "vsComponentId": {
+                  "type": "string"
+                },
+                "endPointId": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "endPoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "id": "urn:jsonschema:it:nextworks:nfvmano:catalogue:blueprint:elements:VsbEndpoint",
+        "properties": {
+          "endPointId": {
+            "type": "string"
+          },
+          "external": {
+            "type": "boolean"
+          },
+          "management": {
+            "type": "boolean"
+          },
+          "ranConnection": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "connectivityServices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "id": "urn:jsonschema:it:nextworks:nfvmano:catalogue:blueprint:elements:VsbLink",
+        "properties": {
+          "endPointIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "external": {
+            "type": "boolean"
+          },
+          "management": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+          "connectivityProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "configurableParameters": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "applicationMetrics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "id": "urn:jsonschema:it:nextworks:nfvmano:catalogue:blueprint:elements:ApplicationMetric",
+        "properties": {
+          "topic": {
+            "type": "string"
+          },
+          "metricId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "metricCollectionType": {
+            "type": "string",
+            "enum": [
+              "CUMULATIVE",
+              "DELTA",
+              "GAUGE"
+            ]
+          },
+          "unit": {
+            "type": "string"
+          },
+          "interval": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "compositionStrategy": {
+      "type": "string",
+      "enum": [
+        "PASS_THROUGH",
+        "CONNECT"
+      ]
+    },
+    "compatibleSites": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "ITALY_TURIN",
+          "SPAIN_5TONIC",
+          "FRANCE_PARIS",
+          "FRANCE_NICE",
+          "FRANCE_RENNES",
+          "GREECE_ATHENS"
+        ]
+      }
+    }
+  }
+}
