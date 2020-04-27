@@ -1,0 +1,39 @@
+# expb_polito_smartcity.yaml
+---
+expBlueprintId: 'expb_polito_smartcity'
+version: '1.0'
+name: PoliTo Smart City experiment with synthetic traffic
+description: Blueprint for 5G EVE Smart City experiment with Libellium emulated traffic.
+sites:
+  - ITALY_TURIN
+kpis:
+  - kpiId: 'kpi_record_visualization_time'
+    name: 'The time from reception to visualization of a record must be lower than or equal to the objective.'
+    formula: 'record_visualization_time'
+    unit: 'ms'
+    interval: '1s'
+    metricIds: ['record_visualization_time']
+  - kpiId: 'kpi_memory_usage'
+    name: 'Memory usage must be lower than or equal to the objective.'
+    formula: 'memory_consumption'
+    unit: 'GB'
+    interval: '1s'
+    metricIds: ['memory_consumption']
+metrics:
+  - metricId: 'cpu_consumption'
+    name: 'Measurement of CPU consumption.'
+    metricCollectionType: 'GAUGE'
+    unit: '%'
+    interval: '1s'
+    iMetricType: 'CPU_CONSUMPTION'
+  - metricId: 'memory_consumption'
+    name: 'Measurement of memory consumption.'
+    metricCollectionType: 'GAUGE'
+    unit: 'GB'
+    interval: '1s'
+    iMetricType: 'MEMORY_CONSUMPTION'
+vsBlueprintId: 'vsb_polito_smartcity'
+ctxBlueprintIds:
+  - 'ctx_smartcity_traffic'
+tcBlueprintIds:
+  - 'polito_smartcity_testcase_1'
