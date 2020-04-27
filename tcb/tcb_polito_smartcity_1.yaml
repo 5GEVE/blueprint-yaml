@@ -1,0 +1,9 @@
+# tcb_ares2t_tracker_1.yaml
+---
+testcaseBlueprintId: 'polito_smartcity_testcase_1'
+version: '1.0'
+name: TCB PoliTo SmartCity test case 1
+description: Test case to run the PoliTo SmartCity use case with synthetic traffic
+script: "## TODO ##"
+userParameters:
+infrastructureParameters:
