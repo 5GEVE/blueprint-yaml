@@ -1,6 +1,6 @@
-# expb_wings_impairments.yaml
+# expb_wings_utilities_1.yaml
 ---
-expBlueprintId: 'expb_wings_impairments'
+expBlueprintId: 'expb_wings_utilities_1'
 version: '1.0'
 name: 'Experiment with artificial network impairments for WINGS Utilities use case.'
 description: 'Experiment to test the impact of network impairments and number of requests on WINGS  Utilities use-case.'
@@ -33,5 +33,9 @@ metrics:
     interval: '1s'
     iMetricType: 'LOST_PKT'
 vsBlueprintId: 'vsb_wings_utilities'
-ctxBlueprintIds: ['ctx_impairments']
-tcBlueprintIds: ['wings_impairments_testcase_1']
+ctxBlueprintIds: 
+    - 'ctx_impairments'
+    - 'ctx_bg_req_traffic'
+tcBlueprintIds: 
+    - 'tcb_wings_impairments_1'
+    - 'tcb_wings_bg_req_traffic_1'
