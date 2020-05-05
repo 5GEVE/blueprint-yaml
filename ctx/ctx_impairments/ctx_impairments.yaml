@@ -30,55 +30,52 @@ parameters:
     parameterType: 'number'
     parameterDescription: 'The packet loss rate in percentage.'
     applicabilityField: 'context'
-  - parameterId: 'corruption'
-    parameterName: 'Packet Corruption'
-    parameterType: 'number'
-    parameterDescription: 'The packet corruption rate in percentage.'
-    applicabilityField: 'context'
-  - parameterId: 'duplication'
-    parameterName: 'Packet Duplication'
-    parameterType: 'number'
-    parameterDescription: 'The packet duplication rate in percentage.'
-    applicabilityField: 'context'
+configurableParameters:
+  - 'delay'
+  - 'jitter'
+  - 'jitter_distribution'
+  - 'correlation_value'
+  - 'loss'
 atomicComponents:
-  - componentId: 'Impairment_Node'
+  - componentId: 'impariments node'
     serversNumber: 1
-    # componentName: 'Impairment Node'
-    imagesUrls: ['/path/to/impairment_node.qcow']
-    endPointsIds: ['CpImpIn', 'CpImpOut']
-    lifecycleOperations:
-      instantiate: 'scripts/instantiate'
-      terminate: 'scripts/terminate'
-      update: 'scripts/update'
-      heal: 'scripts/heal'
-    # scalingRules: []
+    imagesUrls: ['/path/to/impairments.qcow']
+    endPointsIds: 
+      - cp_data_in
+      - cp_data_out
+      - cp_mgmt
 endPoints:
-  - endPointId: 'CpImpIn'
+  - endPointId: cp_data_in
     external: false
     management: false
     ranConnection: false
-  - endPointId: 'CpImpOut'
+    - endPointId: cp_data_out
     external: false
     management: false
     ranConnection: false
-applicationMetrics:
-  - metricId: 'delay_node'
-    name: 'Traffic delay applied on the traffic passing through the node'
-    metricCollectionType: 'GAUGE'
-    unit: 'ms'
-    interval: '1s'
-    topic: '/app/delay_node'
-  - metricId: 'jitter_node'
-    name: 'Traffic jitter applied on the traffic passing through the node'
-    metricCollectionType: 'GAUGE'
-    unit: 'ms'
-    interval: '1s'
-    topic: '/app/jitter_node'
-  - metricId: 'loss_node'
-    name: 'Traffic packet loss applied on the traffic passing through the node'
-    metricCollectionType: 'GAUGE'
-    unit: 'percent'
-    interval: '1s'
-    topic: '/app/loss_node'
+  - endPointId: cp_mgmt
+    external: false
+    management: true
+    ranConnection: false
+  - endPointId: sap_mgmt
+    external: true
+    management: true
+    ranConnection: false
+connectivityServices:
+  - name: vl_data_in
+    management: false
+    endPointIds:
+      - cp_data_in
+  - name: vl_data_out
+    management: false
+    endPointIds:
+      - cp_data_out
+  - name: vl_mgmt
+    management: true
+    endPointIds:
+      - cp_mgmt
+      - sap_mgmt
 compatibleSites:
   - GREECE_ATHENS
+compositionStrategy: CONNECT
+applicationMetrics:
