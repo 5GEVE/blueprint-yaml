@@ -69,17 +69,17 @@ connectivityServices:
     external: true
 compatibleContextBlueprint: []
 applicationMetrics:
-  - metricId: 'TBD'
-    name: 'TBD'
+  - metricId: 'number_of_sensors'
+    name: 'Number of sensors target is ~ 60K/km^2'
     metricCollectionType: 'GAUGE'
-    unit: 'TBD'
+    unit: 'nodes'
     interval: '5s'
-    topic: '/app/TBD'
-  - metricId: 'TBD'
-    name: 'TBD'
+    topic: '/app/number_of_sensors'
+  - metricId: 'total_throughput'
+    name: 'Total throughput achieved'
     metricCollectionType: GAUGE
-    unit: 'ms'
+    unit: 'Mbps'
     interval: '1s'
-    topic: '/app/TBD'
+    topic: '/app/total_throughput'
 compatibleSites:
   - GREECE_ATHENS
