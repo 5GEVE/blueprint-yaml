@@ -1,0 +1,97 @@
+# ctx_bg_req_traffic_nsd.yaml
+---
+- nsdIdentifier: "ctx_bg_req_traffic_nsd"
+  designer: "NSD generator"
+  version: "1.0"
+  nsdName: "Context Blueprint - Background requests traffic generator for the Utilities use case. NSD"
+  nsdInvariantId: "ctx_bg_req_traffic_nsd"
+  vnfdId:
+    - "req_traffic_generator"
+  sapd:
+    - cpdId: "sap_req_gen_mgmt"
+      layerProtocol: "IPV4"
+      cpRole: "ROOT"
+      addressData:
+        - addressType: "IP_ADDRESS"
+          iPAddressAssignment: false
+          floatingIpActivated: true
+          management: false
+          iPAddressType: "IPv4"
+          numberOfIpAddress: 1
+      sapAddressAssignment: false
+      nsVirtualLinkDescId: "vl_req_gen_mgmt"
+  virtualLinkDesc:
+    - virtualLinkDescId: "vl_req_gen_data"
+      virtualLinkDescProvider: "NSD generator"
+      virtuaLinkDescVersion: "1.0"
+      connectivityType:
+        layerProtocol: "IPV4"
+        flowPattern: ""
+      virtualLinkDf:
+        - flavourId: "vl_req_gen_data_df"
+          serviceAvaibilityLevel: "LEVEL_1"
+    - virtualLinkDescId: "vl_req_gen_mgmt"
+      virtualLinkDescProvider: "NSD generator"
+      virtuaLinkDescVersion: "1.0"
+      connectivityType:
+        layerProtocol: "IPV4"
+        flowPattern: ""
+      virtualLinkDf:
+        - flavourId: "vl_req_gen_mgmt_df"
+          serviceAvaibilityLevel: "LEVEL_1"
+  nsDf:
+    - nsDfId: "ctx_bg_req_traffic_df"
+      flavourKey: "ctx_bg_req_traffic_df_fk"
+      vnfProfile:
+        - vnfProfileId: "req_traffic_generator_vnfp"
+          vnfdId: "req_traffic_generator"
+          flavourId: "req_traffic_generator_vnf_df"
+          instantiationLevel: "req_traffic_generator_vnf_il"
+          minNumberOfInstances: 1
+          maxNumberOfInstances: 1
+          nsVirtualLinkConnectivity:
+            - virtualLinkProfileId: "vl_req_gen_data_vlp"
+              cpdId:
+                - "cp_req_gen_data"
+            - virtualLinkProfileId: "vl_req_gen_mgmt_vlp"
+              cpdId:
+                - "cp_req_gen_mgmt"
+      virtualLinkProfile:
+        - virtualLinkProfileId: "vl_bg_req_traffic_data_vlp"
+          virtualLinkDescId: "vl_bg_req_traffic_data"
+          flavourId: "vl_bg_req_traffic_data_df"
+          maxBitrateRequirements:
+            root: "1"
+            leaf: "1"
+          minBitrateRequirements:
+            root: "1"
+            leaf: "1"
+        - virtualLinkProfileId: "vl_bg_req_traffic_mgmt_vlp"
+          virtualLinkDescId: "vl_bg_req_traffic_mgmt"
+          flavourId: "vl_sc_traffic_mgmt_df"
+          maxBitrateRequirements:
+            root: "1"
+            leaf: "1"
+          minBitrateRequirements:
+            root: "1"
+            leaf: "1"
+      nsInstantiationLevel:
+        - nsLevelId: "ctx_bg_req_traffic_il_default"
+          description: "Default Instantiation Level"
+          vnfToLevelMapping:
+            - vnfProfileId: "req_traffic_generator_vnfp"
+              numberOfInstances: 1
+          virtualLinkToLevelMapping:
+            - virtualLinkProfileId: "vl_bg_req_traffic_data_vlp"
+              bitRateRequirements:
+                root: "1"
+                leaf: "1"
+            - virtualLinkProfileId: "vl_bg_req_traffic_mgmt_vlp"
+              bitRateRequirements:
+                root: "1"
+                leaf: "1"
+      defaultNsInstantiationLevelId: "ctx_smartcity_traffic_il_default"
+  security:
+    signature: "WINGS_NSD_SIGNATURE"
+    algorithm: "WINGS_NSD_ALGORITHM"
+    certificate: "WINGS_NSD_CERTIFICATE"
