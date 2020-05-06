@@ -84,7 +84,7 @@ connectivityServices:
     management: false
     endPointIds:
       - cp_dboard_user
-      - sap_dboard_user
+      - sap_agv_user
     external: true
 compatibleContextBlueprint:
   - ctx_delay
