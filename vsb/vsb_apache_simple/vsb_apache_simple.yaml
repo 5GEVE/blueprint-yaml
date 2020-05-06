@@ -1,0 +1,52 @@
+# vsb_apache_simple.yaml
+---
+blueprintId: 'vsb_apache_simple'
+version: '1.0'
+name: Simple VSB with Apache
+description: Simple VSB with an Apache instance and a request generator.
+parameters:
+atomicComponents:
+  - componentId: apache
+    serversNumber: 1
+    endPointsIds:
+      - cp_apache_int
+  - componentId: ueab
+    serversNumber: 1
+    endPointsIds:
+      - cp_ueab_int
+      - cp_ueab_ext
+endPoints:
+  - endPointId: cp_apache_int
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: cp_ueab_int
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: cp_ueab_ext
+    external: true
+    management: false
+    ranConnection: true
+  - endPointId: sap_ueab
+    external: true
+    management: false
+    ranConnection: true
+connectivityServices:
+  - name: vl_apache_ext
+    management: false
+    endPointIds:
+      - sap_ueab
+      - cp_ueab_ext
+    external: true
+  - name: vl_apache_int
+    management: false
+    endPointIds:
+      - cp_ueab_int
+      - cp_apache_int
+    external: false
+compatibleContextBlueprint:
+  - 'ctx_delay'
+applicationMetrics:
+compatibleSites:
+  - SPAIN_5TONIC
