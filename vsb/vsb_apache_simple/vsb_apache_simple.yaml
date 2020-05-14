@@ -5,6 +5,12 @@ version: '1.0'
 name: Simple VSB with Apache
 description: Simple VSB with an Apache instance and a request generator.
 parameters:
+  - parameterId: number_of_tracked_devices
+    parameterName: Number of tracked devices
+    parameterType: number
+    parameterDescription: Number of devices equipped with the 5G EVE Tracking Service
+      (Mandatory)
+    applicabilityField: Smart transport
 atomicComponents:
   - componentId: apache
     serversNumber: 1
@@ -48,5 +54,12 @@ connectivityServices:
 compatibleContextBlueprint:
   - 'ctx_delay'
 applicationMetrics:
+  - metricId: tracked_devices
+    name: Number of total tracked devices
+    metricCollectionType: CUMULATIVE
+    unit: devices
+    interval: 5s
+    metricGraphType: PIE
+    topic: /app/tracked_devices
 compatibleSites:
   - SPAIN_5TONIC
