@@ -1,0 +1,11 @@
+# tcb_V360_delay.yaml
+---
+testcaseBlueprintId: 'V360_testcase_delay'
+version: '1.0'
+name: 'V360 delay test case'
+description: ''
+script: '### here goes the script of the experiments ###'
+userParameters:
+  delay_VS: '$$var_delay' #delay video server
+infrastructureParameters:
+  #WP3 + ORA-PL will provide the parameters in the infrastructure

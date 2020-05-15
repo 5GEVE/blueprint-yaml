@@ -1,63 +1,96 @@
 # vsb_video_360.yaml
+# Describing Config 1: WEF-CP and SPGWU deployed in same component, 'wef'
 ---
 blueprintId: 'vsb_video_360'
 version: '1.0'
 name: 'Video 360'
 description: 'Blueprint for video 360'
+parameters:
+  - parameterId: fake-parameter
+    parameterName: Fake parameter
+    parameterType: number
+    parameterDescription: A fake parameter for VSBs that do not need parameters
+    applicabilityField: param
 atomicComponents:
-  - componentId: 'RAN'
+  - componentId: 'video_server'
     serversNumber: 1
-    # componentName: 'Radio Access Network'
-    imagesUrls: []
-    endPointsIds: ['RanVT', 'Ranwef']
-    lifecycleOperations: {}
-    # scalingRules: []
-  - componentId: 'Video server'
-    # componentName: ''
+    endPointsIds: #verify endpoints
+      - 'cp_vs_int'
+      - 'cp_vs_mgmt'
+    #imagesUrls: ['video-server']
+    #lifecycleOperations: #TBC with Anne
+    #  instantiate: 'scripts/instantiate'
+    #  terminate: 'scripts/terminate'
+    #  update: 'scripts/update'
+    #  heal: 'scripts/heal'
+  - componentId: 'wef' # WEF or the components of the WEF ( SPGw enodeB)
     serversNumber: 1
-    imagesUrls: ['video-server']
-    endPointsIds: ['VSint'] #verify endpoints
-    lifecycleOperations: #TBC with Anne
-      instantiate: 'scripts/instantiate'
-      terminate: 'scripts/terminate'
-      update: 'scripts/update'
-      heal: 'scripts/heal'
-
-  - componentId: 'WEF' # WEF or the components of the WEF ( SPGw enodeB)
-    serversNumber: 1
-    imagesUrls: []
-    endPointsIds: ['wefint']
-    lifecycleOperations: null
+    endPointsIds:
+      - 'cp_wef_int'
+      - 'cp_wef_mgmt'
+      - 'cp_wef_ran'
+    #imagesUrls: []
+    #lifecycleOperations: null
     # scaling_rules: [ scale out if...]
 endPoints:
-  - endPointId: 'RanVT'
+  - endPointId: 'sap_v360_ran'
     external: true
     management: false
     ranConnection: true
-  - endPointId: 'Ranwef'
+  - endPointId: 'sap_v360_mgmt'
+    external: true
+    management: true
+    ranConnection: false
+  - endPointId: 'cp_vs_int'
     external: false
     management: false
     ranConnection: false
-  - endPointId: 'VSint'
+  - endPointId: 'cp_vs_mgmt'
+    external: true
+    management: true
+    ranConnection: false
+  - endPointId: 'cp_wef_int'
     external: false
     management: false
     ranConnection: false
-  - endPointId: 'wefint'
-    external: false
-    management: false
+  - endPointId: 'cp_wef_mgmt'
+    external: true
+    management: true
     ranConnection: false
+  - endPointId: 'cp_wef_ran'
+    external: true
+    management: false
+    ranConnection: true
 connectivityServices:
-  - endPointIds: ['Ranwef', 'wefint', 'VSint']
+  # ran
+  - name: vl_v360_ran
+    management: false
+    endPointIds:
+      - sap_v360_ran
+      - cp_wef_ran
+    external: true
+  # internal
+  - name: vl_v360_int
+    management: false
+    endPointIds:
+      - cp_wef_int
+      - cp_vs_int
     external: false
-serviceSequence:
-
-compatibleContextBlueprint: ['vs_delay']
+  # management
+  - name: vl_v360_mgmt
+    management: false
+    endPointIds:
+      - cp_wef_mgmt
+      - cp_vs_mgmt
+      - sap_v360_mgmt
+compatibleContextBlueprint: ['40']
 applicationMetrics:
   - metricId: 'delay'
     name: 'Measurement of the delay from the HMD to VS.'
     metricCollectionType: 'GAUGE'
-    unit: ''
+    unit: 'ms'
     interval: '10ms'
-    topic: '/app/navigation_level'
-
-
+    topic: '/app/delay'
+    metricGraphType: LINE
+compatibleSites:
+  - FRANCE_RENNES
