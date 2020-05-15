@@ -88,8 +88,9 @@ applicationMetrics:
   - metricId: 'delay'
     name: 'Measurement of the delay from the HMD to VS.'
     metricCollectionType: 'GAUGE'
-    unit: ''
+    unit: 'ms'
     interval: '10ms'
-    topic: '/app/navigation_level'
+    topic: '/app/delay'
+    metricGraphType: LINE
 compatibleSites:
   - FRANCE_RENNES
