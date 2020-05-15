@@ -1,0 +1,66 @@
+# ctx_delay_V360_nsd.yaml
+---
+version: '1.0'
+nsdIdentifier: ctx_delay_V360_nsd
+designer: ORA
+nsdName: Fake ctx delay for V360 use-case
+nsdInvariantId: ctx_delay_V360_nsd_inv
+vnfdId:
+  - vnfd_fake
+sapd:
+virtualLinkDesc:
+  - virtualLinkDescId: vl_fake
+    virtualLinkDescProvider: NXW
+    virtuaLinkDescVersion: '1.0'
+    connectivityType:
+      layerProtocol: IPV4
+    virtualLinkDf:
+      - flavourId: df_vl_fake
+        qos:
+          latency: 0
+          packetDelayVariation: 0
+          packetLossRatio: 0
+          priority: 0
+        serviceAvaibilityLevel: LEVEL_1
+    description: Management network
+nsDf:
+  - nsDfId: df_fake
+    flavourKey: df_fake_fk
+    vnfProfile:
+      - vnfProfileId: vnfp_fake
+        vnfdId: vnfd_fake
+        flavourId: vnf_df_fake
+        instantiationLevel: vnf_il_fake
+        minNumberOfInstances: 1
+        maxNumberOfInstances: 1
+        nsVirtualLinkConnectivity:
+          - virtualLinkProfileId: vlp_fake
+            cpdId:
+              - cp_fake
+    virtualLinkProfile:
+      - virtualLinkProfileId: vlp_fake
+        virtualLinkDescId: vl_fake
+        flavourId: df_vl_fake
+        maxBitrateRequirements:
+          root: '1'
+          leaf: '1'
+        minBitrateRequirements:
+          root: '1'
+          leaf: '1'
+    nsInstantiationLevel:
+      - nsLevelId: il_fake
+        description: Default instantiation level
+        vnfToLevelMapping:
+          - vnfProfileId: vnfp_fake
+            numberOfInstances: 1
+        virtualLinkToLevelMapping:
+          - virtualLinkProfileId: vlp_fake
+            bitRateRequirements:
+              root: '1'
+              leaf: '1'
+    defaultNsInstantiationLevelId: il_fake
+    dependencies: []
+security:
+  signature: NSD_SIGNATURE
+  algorithm: NSD_ALGORITHM
+  certificate: NSD_CERTIFICATE

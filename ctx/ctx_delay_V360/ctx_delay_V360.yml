@@ -5,44 +5,29 @@ version: '1.0'
 name: 'Context Blueprint Artificial Delay'
 description: 'Context Blueprint to add artificial delay.'
 parameters:
-  - parameterId: 'delay_UE'
-    parameterName: 'Delay average'
-    parameterType: 'number'
-    parameterDescription: 'The amount of delay (average) in ms.'
-    applicabilityField: 'context'
-  - parameterId: 'delay_var'
-    parameterName: 'Delay variance'
-    parameterType: 'number'
-    parameterDescription: 'The variance (jitter) of delay.'
-    applicabilityField: 'context'
+  - parameterId: fake-parameter
+    parameterName: Fake parameter
+    parameterType: number
+    parameterDescription: A fake parameter for VSBs that do not need parameters
+    applicabilityField: param
 atomicComponents:
-  - componentId: 'DEL'
+  - componentId: ac_fake
     serversNumber: 1
-    # componentName: 'Artificial Delay'
-    imagesUrls: [' ']
-    endPointsIds: ['CpDelIn', 'CpDelOut']
-    lifecycleOperations:
-      instantiate: 'scripts/instantiate'
-      terminate: 'scripts/terminate'
-      update: 'scripts/update'
-      heal: 'scripts/heal'
-    # scalingRules: []
+    endPointsIds:
+      - cp_fake
 endPoints:
-  - endPointId: 'CpDelIn'
+  - endPointId: cp_fake
     external: false
     management: false
     ranConnection: false
-  - endPointId: 'CpDelOut'
-    external: false
+connectivityServices:
+  - name: vl_fake
     management: false
-    ranConnection: false
+    endPointIds:
+      - cp_fake
+    external: true
+compositionStrategy: PASS_THROUGH
 applicationMetrics:
-  - metricId: 'delay_iface'
-    name: 'Traffic delay measured between In and Out interfaces'
-    metricCollectionType: 'GAUGE'
-    unit: 'ms'
-    interval: '1s'
-    topic: '/app/delay_iface'
 compatibleSites:
   # - FRANCE_LANNION
   # - FRANCE_CHATILLON
