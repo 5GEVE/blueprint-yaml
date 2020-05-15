@@ -83,7 +83,7 @@ connectivityServices:
       - cp_wef_mgmt
       - cp_vs_mgmt
       - sap_v360_mgmt
-compatibleContextBlueprint: ['40']
+compatibleContextBlueprint: ['100']
 applicationMetrics:
   - metricId: 'delay'
     name: 'Measurement of the delay from the HMD to VS.'
