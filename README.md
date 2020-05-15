@@ -10,41 +10,9 @@ provided.
 A command-line blueprint validator can be found here:
 [blueprint-validator](https://github.com/5GEVE/blueprint-validator)
 
-### Convert YAML to JSON
+### Generate JSON for onboarding
 
-#### Generate JSON for onboarding
-
-To use blueprints in REST request body it may be useful to convert them to JSON.
-An utility python program is provided to generate a JSON request body from blueprint files.
-
-Example:
-
-```
-$ ./gen_onboard.py --help
-usage: ./gen_onboard.py [-h] {vsb,ctx,expb,tcb} path
-
-    Prints a JSON onboard request to standard output.
-    Just redirect output to write to file:
-    $ ./gen_onboard.py vsb ./folder > onboard_vsb.json
-    
-
-positional arguments:
-  {vsb,ctx,expb,tcb}  blueprint type
-  path                Folder path for vsb, ctx, expb or filepath for tcb
-
-optional arguments:
-  -h, --help          show this help message and exit
-
-$ ./gen_onboard.py vsb ./vsb/vsb_ares2t_tracker
-{
-  "vsBlueprint": {
-    "blueprintId": "vsb_ares2t_tracker",
-    "version": "1.0",
-    "name": "ARES2T Tracker service",
-[...]
-```
-
-#### Generate raw JSON from YAML
+To onboard the blueprints in the portal, they must be converted from YAML to JSON.
 
 To convert from YAML to JSON you can use yq
 ([yq on GitHub](https://github.com/kislyuk/yq),
