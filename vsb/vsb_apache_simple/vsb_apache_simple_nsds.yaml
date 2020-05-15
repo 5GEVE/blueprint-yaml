@@ -1,110 +1,110 @@
 # vsb_apache_simple_nsds.yaml
 ---
-- nsdIdentifier: "vsb_apache_simple_nsd"
-  designer: "NSD generator"
-  version: "1.0"
-  nsdName: "Simple VSB with Apache NSD"
-  nsdInvariantId: "vsb_apache_simple_nsd"
-  vnfdId:
-    - "ef5faf76-895b-11ea-bc55-0242ac130003"
-    - "be55660e-8961-11ea-bc55-0242ac130003"
-  sapd:
-    - cpdId: "eth1"
+nsdIdentifier: "vsb_apache_simple_nsd"
+designer: "NSD generator"
+version: "1.0"
+nsdName: "Simple VSB with Apache NSD"
+nsdInvariantId: "vsb_apache_simple_nsd"
+vnfdId:
+  - "ef5faf76-895b-11ea-bc55-0242ac130003"
+  - "be55660e-8961-11ea-bc55-0242ac130003"
+sapd:
+  - cpdId: "eth1"
+    layerProtocol: "IPV4"
+    cpRole: "ROOT"
+    addressData:
+      - addressType: "IP_ADDRESS"
+        iPAddressAssignment: false
+        floatingIpActivated: true
+        management: false
+        iPAddressType: "IPv4"
+        numberOfIpAddress: 1
+    sapAddressAssignment: false
+    nsVirtualLinkDescId: "vl_apache_ext"
+virtualLinkDesc:
+  - virtualLinkDescId: "vl_apache_ext"
+    virtualLinkDescProvider: "NSD generator"
+    virtuaLinkDescVersion: "1.0"
+    connectivityType:
       layerProtocol: "IPV4"
-      cpRole: "ROOT"
-      addressData:
-        - addressType: "IP_ADDRESS"
-          iPAddressAssignment: false
-          floatingIpActivated: true
-          management: false
-          iPAddressType: "IPv4"
-          numberOfIpAddress: 1
-      sapAddressAssignment: false
-      nsVirtualLinkDescId: "vl_apache_ext"
-  virtualLinkDesc:
-    - virtualLinkDescId: "vl_apache_ext"
-      virtualLinkDescProvider: "NSD generator"
-      virtuaLinkDescVersion: "1.0"
-      connectivityType:
-        layerProtocol: "IPV4"
-        flowPattern: ""
-      virtualLinkDf:
-        - flavourId: "vl_apache_ext_df"
-          serviceAvaibilityLevel: "LEVEL_1"
-    - virtualLinkDescId: "vl_apache_int"
-      virtualLinkDescProvider: "NSD generator"
-      virtuaLinkDescVersion: "1.0"
-      connectivityType:
-        layerProtocol: "IPV4"
-        flowPattern: ""
-      virtualLinkDf:
-        - flavourId: "vl_apache_int_df"
-          serviceAvaibilityLevel: "LEVEL_1"
-  nsDf:
-    - nsDfId: "vsb_apache_simple_df"
-      flavourKey: "vsb_apache_simple_df_fk"
-      vnfProfile:
-        - vnfProfileId: "apache_vnfp"
-          vnfdId: "ef5faf76-895b-11ea-bc55-0242ac130003"
-          flavourId: "apache_vnf_df"
-          instantiationLevel: "apache_vnf_il"
-          minNumberOfInstances: 1
-          maxNumberOfInstances: 1
-          nsVirtualLinkConnectivity:
-            - virtualLinkProfileId: "vl_apache_int_vlp"
-              cpdId:
-                - "eth0"
-        - vnfProfileId: "ueab_vnfp"
-          vnfdId: "be55660e-8961-11ea-bc55-0242ac130003"
-          flavourId: "ueab_vnf_df"
-          instantiationLevel: "ueab_vnf_il"
-          minNumberOfInstances: 1
-          maxNumberOfInstances: 1
-          nsVirtualLinkConnectivity:
-            - virtualLinkProfileId: "vl_apache_int_vlp"
-              cpdId:
-                - "eth0"
-            - virtualLinkProfileId: "vl_apache_ext_vlp"
-              cpdId:
-                - "eth1"
-      virtualLinkProfile:
-        - virtualLinkProfileId: "vl_apache_ext_vlp"
-          virtualLinkDescId: "vl_apache_ext"
-          flavourId: "vl_apache_ext_df"
-          maxBitrateRequirements:
-            root: "1"
-            leaf: "1"
-          minBitrateRequirements:
-            root: "1"
-            leaf: "1"
-        - virtualLinkProfileId: "vl_apache_int_vlp"
-          virtualLinkDescId: "vl_apache_int"
-          flavourId: "vl_apache_int_df"
-          maxBitrateRequirements:
-            root: "1"
-            leaf: "1"
-          minBitrateRequirements:
-            root: "1"
-            leaf: "1"
-      nsInstantiationLevel:
-        - nsLevelId: "vsb_apache_simple_il_default"
-          description: "Default Instantiation Level"
-          vnfToLevelMapping:
-            - vnfProfileId: "apache_vnfp"
-              numberOfInstances: 1
-            - vnfProfileId: "ueab_vnfp"
-              numberOfInstances: 1
-          virtualLinkToLevelMapping:
-            - virtualLinkProfileId: "vl_apache_ext_vlp"
-              bitRateRequirements:
-                root: "1"
-                leaf: "1"
-            - virtualLinkProfileId: "vl_apache_int_vlp"
-              bitRateRequirements:
-                root: "1"
-                leaf: "1"
-      defaultNsInstantiationLevelId: "vsb_apache_simple_il_default"
-  security:
-    signature: "FC_NSD_SIGNATURE"
-    algorithm: "FC_NSD_ALGORITHM"
-    certificate: "FC_NSD_CERTIFICATE"
+      flowPattern: ""
+    virtualLinkDf:
+      - flavourId: "vl_apache_ext_df"
+        serviceAvaibilityLevel: "LEVEL_1"
+  - virtualLinkDescId: "vl_apache_int"
+    virtualLinkDescProvider: "NSD generator"
+    virtuaLinkDescVersion: "1.0"
+    connectivityType:
+      layerProtocol: "IPV4"
+      flowPattern: ""
+    virtualLinkDf:
+      - flavourId: "vl_apache_int_df"
+        serviceAvaibilityLevel: "LEVEL_1"
+nsDf:
+  - nsDfId: "vsb_apache_simple_df"
+    flavourKey: "vsb_apache_simple_df_fk"
+    vnfProfile:
+      - vnfProfileId: "apache_vnfp"
+        vnfdId: "ef5faf76-895b-11ea-bc55-0242ac130003"
+        flavourId: "apache_vnf_df"
+        instantiationLevel: "apache_vnf_il"
+        minNumberOfInstances: 1
+        maxNumberOfInstances: 1
+        nsVirtualLinkConnectivity:
+          - virtualLinkProfileId: "vl_apache_int_vlp"
+            cpdId:
+              - "eth0"
+      - vnfProfileId: "ueab_vnfp"
+        vnfdId: "be55660e-8961-11ea-bc55-0242ac130003"
+        flavourId: "ueab_vnf_df"
+        instantiationLevel: "ueab_vnf_il"
+        minNumberOfInstances: 1
+        maxNumberOfInstances: 1
+        nsVirtualLinkConnectivity:
+          - virtualLinkProfileId: "vl_apache_int_vlp"
+            cpdId:
+              - "eth0"
+          - virtualLinkProfileId: "vl_apache_ext_vlp"
+            cpdId:
+              - "eth1"
+    virtualLinkProfile:
+      - virtualLinkProfileId: "vl_apache_ext_vlp"
+        virtualLinkDescId: "vl_apache_ext"
+        flavourId: "vl_apache_ext_df"
+        maxBitrateRequirements:
+          root: "1"
+          leaf: "1"
+        minBitrateRequirements:
+          root: "1"
+          leaf: "1"
+      - virtualLinkProfileId: "vl_apache_int_vlp"
+        virtualLinkDescId: "vl_apache_int"
+        flavourId: "vl_apache_int_df"
+        maxBitrateRequirements:
+          root: "1"
+          leaf: "1"
+        minBitrateRequirements:
+          root: "1"
+          leaf: "1"
+    nsInstantiationLevel:
+      - nsLevelId: "vsb_apache_simple_il_default"
+        description: "Default Instantiation Level"
+        vnfToLevelMapping:
+          - vnfProfileId: "apache_vnfp"
+            numberOfInstances: 1
+          - vnfProfileId: "ueab_vnfp"
+            numberOfInstances: 1
+        virtualLinkToLevelMapping:
+          - virtualLinkProfileId: "vl_apache_ext_vlp"
+            bitRateRequirements:
+              root: "1"
+              leaf: "1"
+          - virtualLinkProfileId: "vl_apache_int_vlp"
+            bitRateRequirements:
+              root: "1"
+              leaf: "1"
+    defaultNsInstantiationLevelId: "vsb_apache_simple_il_default"
+security:
+  signature: "FC_NSD_SIGNATURE"
+  algorithm: "FC_NSD_ALGORITHM"
+  certificate: "FC_NSD_CERTIFICATE"
