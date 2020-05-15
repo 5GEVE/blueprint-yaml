@@ -5,7 +5,12 @@ blueprintId: 'vsb_video_360'
 version: '1.0'
 name: 'Video 360'
 description: 'Blueprint for video 360'
-parameters: []
+parameters:
+  - parameterId: fake-parameter
+    parameterName: Fake parameter
+    parameterType: number
+    parameterDescription: A fake parameter for VSBs that do not need parameters
+    applicabilityField: param
 atomicComponents:
   - componentId: 'video_server'
     serversNumber: 1
