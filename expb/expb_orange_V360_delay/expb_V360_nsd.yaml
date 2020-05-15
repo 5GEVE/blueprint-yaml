@@ -1,0 +1,150 @@
+# expb_V360_nsd.yaml
+---
+nsdIdentifier: "expb_video_360_nsd"
+designer: "NSD generator"
+version: "1.0"
+nsdName: "Video 360 NSD for Experiment"
+nsdInvariantId: "expb_video_360_nsd"
+vnfdId:
+  - "video_server"
+  - "wef"
+sapd:
+  - cpdId: "sap_v360_ran"
+    layerProtocol: "IPV4"
+    cpRole: "ROOT"
+    addressData:
+      - addressType: "IP_ADDRESS"
+        iPAddressAssignment: false
+        floatingIpActivated: true
+        management: false
+        iPAddressType: "IPv4"
+        numberOfIpAddress: 1
+    sapAddressAssignment: false
+    nsVirtualLinkDescId: "vl_v360_ran"
+  - cpdId: "sap_v360_mgmt"
+    layerProtocol: "IPV4"
+    cpRole: "ROOT"
+    addressData:
+      - addressType: "IP_ADDRESS"
+        iPAddressAssignment: false
+        floatingIpActivated: true
+        management: false
+        iPAddressType: "IPv4"
+        numberOfIpAddress: 1
+    sapAddressAssignment: false
+    nsVirtualLinkDescId: "vl_v360_mgmt"
+virtualLinkDesc:
+  - virtualLinkDescId: "vl_v360_ran"
+    virtualLinkDescProvider: "NSD generator"
+    virtuaLinkDescVersion: "1.0"
+    connectivityType:
+      layerProtocol: "IPV4"
+      flowPattern: ""
+    virtualLinkDf:
+      - flavourId: "vl_v360_ran_df"
+        serviceAvaibilityLevel: "LEVEL_1"
+  - virtualLinkDescId: "vl_v360_int"
+    virtualLinkDescProvider: "NSD generator"
+    virtuaLinkDescVersion: "1.0"
+    connectivityType:
+      layerProtocol: "IPV4"
+      flowPattern: ""
+    virtualLinkDf:
+      - flavourId: "vl_v360_int_df"
+        serviceAvaibilityLevel: "LEVEL_1"
+  - virtualLinkDescId: "vl_v360_mgmt"
+    virtualLinkDescProvider: "NSD generator"
+    virtuaLinkDescVersion: "1.0"
+    connectivityType:
+      layerProtocol: "IPV4"
+      flowPattern: ""
+    virtualLinkDf:
+      - flavourId: "vl_v360_mgmt_df"
+        serviceAvaibilityLevel: "LEVEL_1"
+nsDf:
+  - nsDfId: "vsb_video_360_df"
+    flavourKey: "vsb_video_360_df_fk"
+    vnfProfile:
+      - vnfProfileId: "video_server_vnfp"
+        vnfdId: "video_server"
+        flavourId: "video_server_vnf_df"
+        instantiationLevel: "video_server_vnf_il"
+        minNumberOfInstances: 1
+        maxNumberOfInstances: 1
+        nsVirtualLinkConnectivity:
+          - virtualLinkProfileId: "vl_v360_int_vlp"
+            cpdId:
+              - "cp_vs_int"
+          - virtualLinkProfileId: "vl_v360_mgmt_vlp"
+            cpdId:
+              - "cp_vs_mgmt"
+      - vnfProfileId: "wef_vnfp"
+        vnfdId: "wef"
+        flavourId: "wef_vnf_df"
+        instantiationLevel: "wef_vnf_il"
+        minNumberOfInstances: 1
+        maxNumberOfInstances: 1
+        nsVirtualLinkConnectivity:
+          - virtualLinkProfileId: "vl_v360_int_vlp"
+            cpdId:
+              - "cp_wef_int"
+          - virtualLinkProfileId: "vl_v360_mgmt_vlp"
+            cpdId:
+              - "cp_wef_mgmt"
+          - virtualLinkProfileId: "vl_v360_ran_vlp"
+            cpdId:
+              - "cp_wef_ran"
+    virtualLinkProfile:
+      - virtualLinkProfileId: "vl_v360_ran_vlp"
+        virtualLinkDescId: "vl_v360_ran"
+        flavourId: "vl_v360_ran_df"
+        maxBitrateRequirements:
+          root: "1"
+          leaf: "1"
+        minBitrateRequirements:
+          root: "1"
+          leaf: "1"
+      - virtualLinkProfileId: "vl_v360_int_vlp"
+        virtualLinkDescId: "vl_v360_int"
+        flavourId: "vl_v360_int_df"
+        maxBitrateRequirements:
+          root: "1"
+          leaf: "1"
+        minBitrateRequirements:
+          root: "1"
+          leaf: "1"
+      - virtualLinkProfileId: "vl_v360_mgmt_vlp"
+        virtualLinkDescId: "vl_v360_mgmt"
+        flavourId: "vl_v360_mgmt_df"
+        maxBitrateRequirements:
+          root: "1"
+          leaf: "1"
+        minBitrateRequirements:
+          root: "1"
+          leaf: "1"
+    nsInstantiationLevel:
+      - nsLevelId: "vsb_video_360_il_default"
+        description: "Default Instantiation Level"
+        vnfToLevelMapping:
+          - vnfProfileId: "video_server_vnfp"
+            numberOfInstances: 1
+          - vnfProfileId: "wef_vnfp"
+            numberOfInstances: 1
+        virtualLinkToLevelMapping:
+          - virtualLinkProfileId: "vl_v360_ran_vlp"
+            bitRateRequirements:
+              root: "1"
+              leaf: "1"
+          - virtualLinkProfileId: "vl_v360_int_vlp"
+            bitRateRequirements:
+              root: "1"
+              leaf: "1"
+          - virtualLinkProfileId: "vl_v360_mgmt_vlp"
+            bitRateRequirements:
+              root: "1"
+              leaf: "1"
+    defaultNsInstantiationLevelId: "vsb_video_360_il_default"
+security:
+  signature: "FC_NSD_SIGNATURE"
+  algorithm: "FC_NSD_ALGORITHM"
+  certificate: "FC_NSD_CERTIFICATE"
