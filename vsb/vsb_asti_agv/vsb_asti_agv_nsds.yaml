@@ -1,0 +1,187 @@
+# vsb_asti_agv_nsds.yaml
+---
+- nsdIdentifier: "vsb_asti_agv_nsd"
+  designer: "NSD generator"
+  version: "1.0"
+  nsdName: "ASTI AGV control and automation NSD"
+  nsdInvariantId: "vsb_asti_agv_nsd"
+  vnfdId:
+    - "master_plc"
+    - "dashboard"
+  sapd:
+    - cpdId: "sap_agv_mobile"
+      layerProtocol: "IPV4"
+      cpRole: "ROOT"
+      addressData:
+        - addressType: "IP_ADDRESS"
+          iPAddressAssignment: false
+          floatingIpActivated: true
+          management: false
+          iPAddressType: "IPv4"
+          numberOfIpAddress: 1
+      sapAddressAssignment: false
+      nsVirtualLinkDescId: "vl_agv_mobile"
+    - cpdId: "sap_agv_mgmt"
+      layerProtocol: "IPV4"
+      cpRole: "ROOT"
+      addressData:
+        - addressType: "IP_ADDRESS"
+          iPAddressAssignment: false
+          floatingIpActivated: true
+          management: false
+          iPAddressType: "IPv4"
+          numberOfIpAddress: 1
+      sapAddressAssignment: false
+      nsVirtualLinkDescId: "vl_agv_mgmt"
+    - cpdId: "sap_agv_user"
+      layerProtocol: "IPV4"
+      cpRole: "ROOT"
+      addressData:
+        - addressType: "IP_ADDRESS"
+          iPAddressAssignment: false
+          floatingIpActivated: true
+          management: false
+          iPAddressType: "IPv4"
+          numberOfIpAddress: 1
+      sapAddressAssignment: false
+      nsVirtualLinkDescId: "vl_agv_user"
+  virtualLinkDesc:
+    - virtualLinkDescId: "vl_agv_mobile"
+      virtualLinkDescProvider: "NSD generator"
+      virtuaLinkDescVersion: "1.0"
+      connectivityType:
+        layerProtocol: "IPV4"
+        flowPattern: ""
+      virtualLinkDf:
+        - flavourId: "vl_agv_mobile_df"
+          serviceAvaibilityLevel: "LEVEL_1"
+    - virtualLinkDescId: "vl_agv_data"
+      virtualLinkDescProvider: "NSD generator"
+      virtuaLinkDescVersion: "1.0"
+      connectivityType:
+        layerProtocol: "IPV4"
+        flowPattern: ""
+      virtualLinkDf:
+        - flavourId: "vl_agv_data_df"
+          serviceAvaibilityLevel: "LEVEL_1"
+    - virtualLinkDescId: "vl_agv_mgmt"
+      virtualLinkDescProvider: "NSD generator"
+      virtuaLinkDescVersion: "1.0"
+      connectivityType:
+        layerProtocol: "IPV4"
+        flowPattern: ""
+      virtualLinkDf:
+        - flavourId: "vl_agv_mgmt_df"
+          serviceAvaibilityLevel: "LEVEL_1"
+    - virtualLinkDescId: "vl_agv_user"
+      virtualLinkDescProvider: "NSD generator"
+      virtuaLinkDescVersion: "1.0"
+      connectivityType:
+        layerProtocol: "IPV4"
+        flowPattern: ""
+      virtualLinkDf:
+        - flavourId: "vl_agv_user_df"
+          serviceAvaibilityLevel: "LEVEL_1"
+  nsDf:
+    - nsDfId: "vsb_asti_agv_df"
+      flavourKey: "vsb_asti_agv_df_fk"
+      vnfProfile:
+        - vnfProfileId: "master_plc_vnfp"
+          vnfdId: "master_plc"
+          flavourId: "master_plc_vnf_df"
+          instantiationLevel: "master_plc_vnf_il"
+          minNumberOfInstances: 1
+          maxNumberOfInstances: 1
+          nsVirtualLinkConnectivity:
+            - virtualLinkProfileId: "vl_agv_mobile_vlp"
+              cpdId:
+                - "cp_mplc_mobile"
+            - virtualLinkProfileId: "vl_agv_data_vlp"
+              cpdId:
+                - "cp_mplc_data"
+            - virtualLinkProfileId: "vl_agv_mgmt_vlp"
+              cpdId:
+                - "cp_mplc_mgmt"
+        - vnfProfileId: "dashboard_vnfp"
+          vnfdId: "dashboard"
+          flavourId: "dashboard_vnf_df"
+          instantiationLevel: "dashboard_vnf_il"
+          minNumberOfInstances: 1
+          maxNumberOfInstances: 1
+          nsVirtualLinkConnectivity:
+            - virtualLinkProfileId: "vl_agv_data_vlp"
+              cpdId:
+                - "cp_dboard_data"
+            - virtualLinkProfileId: "vl_agv_mgmt_vlp"
+              cpdId:
+                - "cp_dboard_mgmt"
+            - virtualLinkProfileId: "vl_agv_user_vlp"
+              cpdId:
+                - "cp_dboard_user"
+      virtualLinkProfile:
+        - virtualLinkProfileId: "vl_agv_mobile_vlp"
+          virtualLinkDescId: "vl_agv_mobile"
+          flavourId: "vl_agv_mobile_df"
+          maxBitrateRequirements:
+            root: "1"
+            leaf: "1"
+          minBitrateRequirements:
+            root: "1"
+            leaf: "1"
+        - virtualLinkProfileId: "vl_agv_data_vlp"
+          virtualLinkDescId: "vl_agv_data"
+          flavourId: "vl_agv_data_df"
+          maxBitrateRequirements:
+            root: "1"
+            leaf: "1"
+          minBitrateRequirements:
+            root: "1"
+            leaf: "1"
+        - virtualLinkProfileId: "vl_agv_mgmt_vlp"
+          virtualLinkDescId: "vl_agv_mgmt"
+          flavourId: "vl_agv_mgmt_df"
+          maxBitrateRequirements:
+            root: "1"
+            leaf: "1"
+          minBitrateRequirements:
+            root: "1"
+            leaf: "1"
+        - virtualLinkProfileId: "vl_agv_user_vlp"
+          virtualLinkDescId: "vl_agv_user"
+          flavourId: "vl_agv_user_df"
+          maxBitrateRequirements:
+            root: "1"
+            leaf: "1"
+          minBitrateRequirements:
+            root: "1"
+            leaf: "1"
+      nsInstantiationLevel:
+        - nsLevelId: "vsb_asti_agv_il_default"
+          description: "Default Instantiation Level"
+          vnfToLevelMapping:
+            - vnfProfileId: "master_plc_vnfp"
+              numberOfInstances: 1
+            - vnfProfileId: "dashboard_vnfp"
+              numberOfInstances: 1
+          virtualLinkToLevelMapping:
+            - virtualLinkProfileId: "vl_agv_mobile_vlp"
+              bitRateRequirements:
+                root: "1"
+                leaf: "1"
+            - virtualLinkProfileId: "vl_agv_data_vlp"
+              bitRateRequirements:
+                root: "1"
+                leaf: "1"
+            - virtualLinkProfileId: "vl_agv_mgmt_vlp"
+              bitRateRequirements:
+                root: "1"
+                leaf: "1"
+            - virtualLinkProfileId: "vl_agv_user_vlp"
+              bitRateRequirements:
+                root: "1"
+                leaf: "1"
+      defaultNsInstantiationLevelId: "vsb_asti_agv_il_default"
+  security:
+    signature: "FC_NSD_SIGNATURE"
+    algorithm: "FC_NSD_ALGORITHM"
+    certificate: "FC_NSD_CERTIFICATE"

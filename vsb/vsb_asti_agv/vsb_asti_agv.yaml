@@ -1,119 +1,115 @@
 # vsb_asti_agv.yaml
 ---
-blueprintId: 'vsb_asti_agv'
-version: '1.0'
-name: 'ASTI AGV control and automation'
-description: 'Blueprint for AGVs using 5G network for Automation and Control purposes'
+blueprintId: vsb_asti_agv
+version: 1.0
+name: ASTI AGV control and automation
+description: Blueprint for AGVs using 5G network for Automation and Control purposes
 parameters:
-  - parameterId: 'number_of_AGVs'
-    parameterName: 'Number of AGVs'
-    parameterType: 'number'
-    parameterDescription: 'Number of AGVs (Mandatory)'
-    applicabilityField: 'autonomous_vehicle'
+  - parameterId: number_of_AGVs
+    parameterName: Number of AGVs
+    parameterType: number
+    parameterDescription: Number of AGVs (Mandatory)
+    applicabilityField: autonomous_vehicle
 atomicComponents:
-  - componentId: 'RAN'
+  - componentId: master_plc
     serversNumber: 1
-    # componentName: 'Radio Access Network'
-    imagesUrls: []
-    endPointsIds: ['SapRANVs', 'CpRANEpc']
-    lifecycleOperations: {}
-    # scalingRules: []
-  - componentId: 'Master_PLC'
-    # componentName: 'Robot Controller Server'
+    endPointsIds:
+      - cp_mplc_mobile
+      - cp_mplc_data
+      - cp_mplc_mgmt
+  - componentId: dashboard
     serversNumber: 1
-    imagesUrls: ['master_plc_image']
-    endPointsIds: ['CpMPLC']
-    lifecycleOperations:
-      instantiate: 'scripts/instantiate'
-      terminate: 'scripts/terminate'
-      update: 'scripts/update'
-      heal: 'scripts/heal'
-    # scaling_rules: ['scale out if load > 60% for 2 mins']
-  - componentId: 'vEPC'
-    # componentName: 'Virtualized EPC'
-    serversNumber: 1
-    imagesUrls: []
-    endPointsIds: ['cpEPCRan', 'SapCoreExt']
-    lifecycleOperations: null
-    # scaling_rules: []
-  - componentId: 'Mgmt'
-    # componentName: 'Robot Management Server'
-    serversNumber: 1
-    imagesUrls: ['mgmt_image']
-    endPointsIds: ['SapMgmt', 'SapAdmin']
-    lifecycleOperations:
-      instantiate: 'scripts/instantiate'
-      terminate: 'scripts/terminate'
-      update: 'scripts/update'
-      heal: 'scripts/heal'
-    # scaling_rules: ['scale up if load > 90% for 2 mins']
+    endPointsIds:
+      - cp_dboard_data
+      - cp_dboard_mgmt
+      - cp_dboard_user
 endPoints:
-  - endPointId: 'SapRANVs'
+  - endPointId: cp_mplc_mobile
     external: true
     management: false
     ranConnection: true
-  - endPointId: 'CpRANEpc'
+  - endPointId: cp_mplc_data
     external: false
     management: false
     ranConnection: false
-  - endPointId: 'CpMPLC'
+  - endPointId: cp_mplc_mgmt
+    external: true
+    management: true
+    ranConnection: false
+  - endPointId: cp_dboard_data
     external: false
     management: false
     ranConnection: false
-  - endPointId: 'CpEPCRan'
-    external: false
-    management: false
+  - endPointId: cp_dboard_mgmt
+    external: true
+    management: true
     ranConnection: false
-  - endPointId: 'SapCoreExt'
+  - endPointId: cp_dboard_user
     external: true
     management: false
     ranConnection: false
-  - endPointId: 'SapMgmt'
+  - endPointId: sap_agv_mobile
     external: true
     management: false
+    ranConnection: true
+  - endPointId: sap_agv_mgmt
+    external: true
+    management: true
     ranConnection: false
-  - endPointId: 'SapAdmin'
+  - endPointId: sap_agv_user
     external: true
     management: false
     ranConnection: false
 connectivityServices:
-  - endPointIds: ['CpRanEpc', 'CpMPLC', 'CpEpcRan']
+  - name: vl_agv_mobile
+    management: false
+    endPointIds:
+      - sap_agv_mobile
+      - cp_mplc_mobile
+    external: true
+  - name: vl_agv_data
+    management: false
+    endPointIds:
+      - cp_mplc_data
+      - cp_dboard_data
     external: false
-  - endPointIds: ['SapCoreExt', 'SapMgmt']
-    external: false
-serviceSequence:
-  # sensor data flow
-  - hopEndPoints:
-    - vsComponentId: 'RAN'
-      endPointId: 'SapRANVs'
-    - vsComponentId: 'RAN'
-      endPointId: 'CpRANEpc'
-    - vsComponentId: 'Master_PLC'
-      endPointId: 'CpMPLC'
-compatibleContextBlueprint: ['ctx_delay', 'ctx_bg_traffic']
+  - name: vl_agv_mgmt
+    management: true
+    endPointIds:
+      - sap_agv_mgmt
+      - cp_mplc_mgmt
+      - cp_dboard_mgmt
+    external: true
+  - name: vl_agv_user
+    management: false
+    endPointIds:
+      - cp_dboard_user
+      - sap_agv_user
+    external: true
+compatibleContextBlueprint:
+  - ctx_delay
+  - ctx_bg_traffic
 applicationMetrics:
-  - metricId: 'navigation_level'
-    name: 'Measurement of the quality of the AGV navigation.'
-    metricCollectionType: 'GAUGE'
-    unit: ''
-    interval: '1s'
-    topic: '/app/navigation_level'
-  - metricId: 'power_consumption'
-    name: 'Measurement of the power consumption from the AGV.'
-    metricCollectionType: 'GAUGE'
-    unit: 'watt'
-    interval: '1s'
-    topic: '/app/power_consumption'
-  - metricId: 'time_to_lose_guide'
-    name: 'Amount after which the AGV lost the guide.'
-    metricCollectionType: 'CUMULATIVE'
-    unit: 's'
-    interval: '1s'
-    topic: '/app/time_to_lose_guide'
-  - metricId: 'connected_robots'
-    name: 'Number of currently connected robots'
-    metricCollectionType: 'GAUGE'
-    unit: ''
-    interval: '5s'
-    topic: '/app/connected-robots'
+  - metricId: navigation_level
+    name: Measurement of the quality of the AGV navigation.
+    metricCollectionType: GAUGE
+    unit: level
+    interval: 1s
+  - metricId: power_consumption
+    name: Measurement of the power consumption from the AGV.
+    metricCollectionType: GAUGE
+    unit: watt
+    interval: 1s
+  - metricId: time_to_lose_guide
+    name: Amount after which the AGV lost the guide.
+    metricCollectionType: CUMULATIVE
+    unit: s
+    interval: 1s
+  - metricId: connected_robots
+    name: Number of currently connected robots
+    metricCollectionType: GAUGE
+    unit: robot(s)
+    interval: 5s
+compatibleSites:
+  - SPAIN_5TONIC
 
