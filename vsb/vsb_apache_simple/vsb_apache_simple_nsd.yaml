@@ -1,4 +1,4 @@
-# vsb_apache_simple_nsds.yaml
+# vsb_apache_simple_nsd.yaml
 ---
 nsdIdentifier: "vsb_apache_simple_nsd"
 designer: "NSD generator"
