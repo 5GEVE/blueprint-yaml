@@ -1,4 +1,4 @@
-# expb_apache_simple_nsds.yaml
+# expb_apache_simple_nsd.yaml
 ---
 nsdIdentifier: exp_apache_simple_nsd_2
 designer: NSD generator
