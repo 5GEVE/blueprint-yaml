@@ -1,0 +1,264 @@
+{
+    "nsdIdentifier": "03cac773-d413-4d96-9abd-97f0c1801908",
+    "designer": "UC3M",
+    "version": "4.0",
+    "nsdName": "5G EVE APACHE DELAY CXT NS",
+    "nsdInvariantId": "APACHE_NS_Delay_2.0",
+    "vnfdId": [
+      "214851b2-bffe-4653-a95c-83b2133a5e68"
+    ],
+    "sapd": [
+      {
+        "cpdId": "delay_ueab",
+        "layerProtocol": "IPV4",
+        "description": "SAP to connect delay component VNF to UE",
+        "addressData": [
+          {
+            "addressType": "IP_ADDRESS",
+            "iPAddressAssignment": false,
+            "floatingIpActivated": false,
+            "management": false,
+            "iPAddressType": "IPv4",
+            "numberOfIpAddress": 1
+          }
+        ],
+        "sapAddressAssignment": false,
+        "nsVirtualLinkDescId": "vl_ueab_delay"
+      },
+      {
+        "cpdId": "delay_mgmt",
+        "layerProtocol": "IPV4",
+        "description": "SAP to manage delay VNF",
+        "addressData": [
+          {
+            "addressType": "IP_ADDRESS",
+            "iPAddressAssignment": false,
+            "floatingIpActivated": false,
+            "management": true,
+            "iPAddressType": "IPv4",
+            "numberOfIpAddress": 1
+          }
+        ],
+        "sapAddressAssignment": false,
+        "nsVirtualLinkDescId": "provider"
+      },
+      {
+        "cpdId": "delay_apache",
+        "layerProtocol": "IPV4",
+        "description": "SAP to connect Delay VNF to Apache webserver",
+        "addressData": [
+          {
+            "addressType": "IP_ADDRESS",
+            "iPAddressAssignment": false,
+            "floatingIpActivated": false,
+            "management": false,
+            "iPAddressType": "IPv4",
+            "numberOfIpAddress": 1
+          }
+        ],
+        "sapAddressAssignment": false,
+        "nsVirtualLinkDescId": "vl_delay_apache"
+      }
+    ],
+    "virtualLinkDesc": [
+      {
+        "virtualLinkDescId": "vl_ueab_delay",
+        "virtualLinkDescProvider": "UC3M",
+        "virtuaLinkDescVersion": "1.0",
+        "connectivityType": {
+          "layerProtocol": "IPV4",
+          "flowPattern": null
+        },
+        "virtualLinkDf": [
+          {
+            "flavourId": "vl_ueab_delay_df",
+            "qos": {
+              "latency": 0,
+              "packetDelayVariation": 0,
+              "packetLossRatio": 0,
+              "priority": 0
+            },
+            "serviceAvaibilityLevel": "LEVEL_1",
+            "bitrateRequirements": {
+              "root": 1,
+              "leaf": 1
+            }
+          }
+        ],
+        "description": "Data network to connect delay VNF to UEs"
+      },
+      {
+        "virtualLinkDescId": "provider",
+        "virtualLinkDescProvider": "UC3M",
+        "virtuaLinkDescVersion": "1.0",
+        "connectivityType": {
+          "layerProtocol": "IPV4",
+          "flowPattern": null
+        },
+        "virtualLinkDf": [
+          {
+            "flavourId": "provider_df",
+            "qos": {
+              "latency": 0,
+              "packetDelayVariation": 0,
+              "packetLossRatio": 0,
+              "priority": 0
+            },
+            "serviceAvaibilityLevel": "LEVEL_1",
+            "bitrateRequirements": {
+              "root": 1,
+              "leaf": 1
+            }
+          }
+        ],
+        "description": "Management network for the Delay VNF component"
+      },
+      {
+        "virtualLinkDescId": "vl_delay_apache",
+        "virtualLinkDescProvider": "UC3M",
+        "virtuaLinkDescVersion": "1.0",
+        "connectivityType": {
+          "layerProtocol": "IPV4",
+          "flowPattern": null
+        },
+        "virtualLinkDf": [
+          {
+            "flavourId": "vl_delay_apache_df",
+            "qos": {
+              "latency": 0,
+              "packetDelayVariation": 0,
+              "packetLossRatio": 0,
+              "priority": 0
+            },
+            "serviceAvaibilityLevel": "LEVEL_1",
+            "bitrateRequirements": {
+              "root": 2,
+              "leaf": 1
+            }
+          }
+        ],
+        "description": "Data network to connect the Delay VNF to the Apache Webserver"
+      }
+    ],
+    "nsDf": [
+      {
+        "nsDfId": "e38a2610-a3cf-4e90-a31d-dc16e9144cae",
+        "flavourKey": "apache_delay_small_fl",
+        "vnfProfile": [
+          {
+            "vnfProfileId": "Delay_profile",
+            "vnfdId": "214851b2-bffe-4653-a95c-83b2133a5e68",
+            "flavourId": "Delay_df",
+            "instantiationLevel": "Delay_IL",
+            "minNumberOfInstances": 1,
+            "maxNumberOfInstances": 1,
+            "nsVirtualLinkConnectivity": [
+              {
+                "virtualLinkProfileId": "vl_ueab_delay_profile",
+                "cpdId": [
+                  "delay_ueab"
+                ]
+              },
+              {
+                "virtualLinkProfileId": "vl_delay_apache_profile",
+                "cpdId": [
+                  "delay_apache"
+                ]
+              },
+              {
+                "virtualLinkProfileId": "provider_profile",
+                "cpdId": [
+                  "delay_mgmt"
+                ]
+              }
+            ]
+          }
+        ],
+        "virtualLinkProfile": [
+          {
+            "virtualLinkProfileId": "vl_ueab_delay_profile",
+            "virtualLinkDescId": "vl_ueab_delay",
+            "flavourId": "avl_ueab_delay_df",
+            "maxBitrateRequirements": {
+              "root": "1",
+              "leaf": "1"
+            },
+            "minBitrateRequirements": {
+              "root": "1",
+              "leaf": "1"
+            }
+          },
+          {
+            "virtualLinkProfileId": "vl_delay_apache_profile",
+            "virtualLinkDescId": "vl_delay_apache",
+            "flavourId": "vl_delay_apache_df",
+            "maxBitrateRequirements": {
+              "root": "2",
+              "leaf": "1"
+            },
+            "minBitrateRequirements": {
+              "root": "2",
+              "leaf": "1"
+            }
+          },
+          {
+            "virtualLinkProfileId": "provider_profile",
+            "virtualLinkDescId": "provider",
+            "flavourId": "provider_df",
+            "maxBitrateRequirements": {
+              "root": "2",
+              "leaf": "1"
+            },
+            "minBitrateRequirements": {
+              "root": "2",
+              "leaf": "1"
+            }
+          }
+        ],
+        "nsInstantiationLevel": [
+          {
+            "nsLevelId": "apache_ns_ctx_delay_il_small",
+            "description": "Default instantiation level for the apache usecase Delay Cxt Network service",
+            "vnfToLevelMapping": [
+              {
+                "vnfProfileId": "Delay_profile",
+                "numberOfInstances": 1
+              }
+            ],
+            "virtualLinkToLevelMapping": [
+              {
+                "virtualLinkProfileId": "vl_ueab_delay_profile",
+                "bitRateRequirements": {
+                  "root": "2",
+                  "leaf": "1"
+                }
+              },
+              {
+                "virtualLinkProfileId": "vl_delay_apache_profile",
+                "bitRateRequirements": {
+                  "root": "2",
+                  "leaf": "1"
+                }
+              },
+              {
+                "virtualLinkProfileId": "provider_profile",
+                "bitRateRequirements": {
+                  "root": "2",
+                  "leaf": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "defaultNsInstantiationLevelId": "apache_ns_ctx_delay_il_small",
+        "dependencies": [
+  
+        ]
+      }
+    ],
+    "security": {
+      "signature": "apache_Ctx_Delay_NSD_SIGNATURE",
+      "algorithm": "apache_Ctx_Delay_NSD_ALGORITHM",
+      "certificate": "apache_Ctx_Delay_NSD_CERTIFICATE"
+    }
+  }
