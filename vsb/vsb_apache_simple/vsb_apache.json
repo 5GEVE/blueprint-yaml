@@ -1,15 +1,15 @@
 {
   "blueprintId": "vsb_apache_simple",
-  "version": "1.0",
-  "name": "Simple VSB with Apache",
-  "description": "Simple VSB with an Apache instance and a request generator.",
+  "version": "5.0",
+  "name": "Simple VSB with Apache_v5",
+  "description": "Simple VSB -- Apache instance and a delay generator_v5",
   "parameters": [
     {
-      "parameterId": "number_of_tracked_devices",
-      "parameterName": "Number of tracked devices",
+      "parameterId": "number_of_user_equipments",
+      "parameterName": "Number of user equipments",
       "parameterType": "number",
-      "parameterDescription": "Number of devices equipped with the 5G EVE Tracking Service (Mandatory)",
-      "applicabilityField": "Smart transport"
+      "parameterDescription": "Number of User Equipments requesting content from the Webserver",
+      "applicabilityField": "User Equipments"
     }
   ],
   "atomicComponents": [
@@ -76,17 +76,17 @@
     }
   ],
   "compatibleContextBlueprint": [
-    "40"
+    "76fb5b3b-0093-41ce-bc53-3ce24bf2aced"
   ],
   "applicationMetrics": [
     {
-      "metricId": "tracked_devices",
-      "name": "Number of total tracked devices",
+      "metricId": "user_equipments",
+      "name": "Number of user equipments",
       "metricCollectionType": "CUMULATIVE",
-      "unit": "devices",
+      "unit": "UEs",
       "interval": "5s",
       "metricGraphType": "PIE",
-      "topic": "/app/tracked_devices"
+      "topic": "/app/user_equipments"
     }
   ],
   "compatibleSites": [
