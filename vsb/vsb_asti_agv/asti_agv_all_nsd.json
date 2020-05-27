@@ -1,0 +1,712 @@
+{
+  "nsdIdentifier": "f16d901b-ad4c-4dc5-9f8c-804257e5948b",
+  "designer": "UC3M",
+  "version": "1.0",
+  "nsdName": "5G EVE ASTI AGV NS",
+  "nsdInvariantId": "ASTI_NS_1.0",
+  "vnfdId": [
+    "73a441e7-6ac5-4395-9060-74eba90d6dbd",
+    "214851b2-bffe-4653-a95c-83b2133a5e68",
+    "e3071b27-49fd-4ceb-a7d2-8b02a8707dc9",
+    "15793c45-a5b1-4db9-915d-faf558d6f3ed"
+  ],
+  "sapd": [
+    {
+      "cpdId": "sap_mplc",
+      "layerProtocol": "IPV4",
+      "description": "SAP to manage traffic source VNF",
+      "addressData": [
+        {
+          "addressType": "IP_ADDRESS",
+          "iPAddressAssignment": false,
+          "floatingIpActivated": false,
+          "management": false,
+          "iPAddressType": "IPv4",
+          "numberOfIpAddress": 1
+        }
+      ],
+      "sapAddressAssignment": false,
+      "nsVirtualLinkDescId": "mplc_mgmt_VL"
+    },
+    {
+      "cpdId": "sap_agv_data",
+      "layerProtocol": "IPV4",
+      "description": "SAP to connect the AGVs to the network service",
+      "addressData": [
+        {
+          "addressType": "IP_ADDRESS",
+          "iPAddressAssignment": false,
+          "floatingIpActivated": false,
+          "management": false,
+          "iPAddressType": "IPv4",
+          "numberOfIpAddress": 1
+        }
+      ],
+      "sapAddressAssignment": false,
+      "nsVirtualLinkDescId": "agv_data_VL"
+    },
+    {
+      "cpdId": "sap_delay_mgmt",
+      "layerProtocol": "IPV4",
+      "description": "SAP to manage delay component VNF",
+      "addressData": [
+        {
+          "addressType": "IP_ADDRESS",
+          "iPAddressAssignment": false,
+          "floatingIpActivated": false,
+          "management": false,
+          "iPAddressType": "IPv4",
+          "numberOfIpAddress": 1
+        }
+      ],
+      "sapAddressAssignment": false,
+      "nsVirtualLinkDescId": "delay_mgmt_VL"
+    },
+    {
+      "cpdId": "sap_src_mgmt",
+      "layerProtocol": "IPV4",
+      "description": "SAP to manage traffic source VNF",
+      "addressData": [
+        {
+          "addressType": "IP_ADDRESS",
+          "iPAddressAssignment": false,
+          "floatingIpActivated": false,
+          "management": false,
+          "iPAddressType": "IPv4",
+          "numberOfIpAddress": 1
+        }
+      ],
+      "sapAddressAssignment": false,
+      "nsVirtualLinkDescId": "src_mgmt_VL"
+    },
+    {
+      "cpdId": "sap_sink_mgmt",
+      "layerProtocol": "IPV4",
+      "description": "SAP to manage traffic sink VNF",
+      "addressData": [
+        {
+          "addressType": "IP_ADDRESS",
+          "iPAddressAssignment": false,
+          "floatingIpActivated": false,
+          "management": false,
+          "iPAddressType": "IPv4",
+          "numberOfIpAddress": 1
+        }
+      ],
+      "sapAddressAssignment": false,
+      "nsVirtualLinkDescId": "sink_mgmt_VL"
+    }
+  ],
+  "virtualLinkDesc": [
+    {
+      "virtualLinkDescId": "agv_data_VL",
+      "virtualLinkDescProvider": "UC3M",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4",
+        "flowPattern": null
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "agv_data_VL_df",
+          "qos": {
+            "latency": 0,
+            "packetDelayVariation": 0,
+            "packetLossRatio": 0,
+            "priority": 0
+          },
+          "serviceAvaibilityLevel": "LEVEL_1",
+          "bitrateRequirements": {
+            "root": 1,
+            "leaf": 1
+          }
+        }
+      ],
+      "description": "Data network to control and manage AGVs"
+    },
+    {
+      "virtualLinkDescId": "delay_mgmt_VL",
+      "virtualLinkDescProvider": "UC3M",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4",
+        "flowPattern": null
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "delay_mgmt_VL_df",
+          "qos": {
+            "latency": 0,
+            "packetDelayVariation": 0,
+            "packetLossRatio": 0,
+            "priority": 0
+          },
+          "serviceAvaibilityLevel": "LEVEL_1",
+          "bitrateRequirements": {
+            "root": 1,
+            "leaf": 1
+          }
+        }
+      ],
+      "description": "Management network for the Delay VNF component"
+    },
+    {
+      "virtualLinkDescId": "src_mgmt_VL",
+      "virtualLinkDescProvider": "UC3M",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4",
+        "flowPattern": null
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "src_mgmt_VL_df",
+          "qos": {
+            "latency": 0,
+            "packetDelayVariation": 0,
+            "packetLossRatio": 0,
+            "priority": 0
+          },
+          "serviceAvaibilityLevel": "LEVEL_1",
+          "bitrateRequirements": {
+            "root": 1,
+            "leaf": 1
+          }
+        }
+      ],
+      "description": "Management network for the traffic source VNF component"
+    },
+    {
+      "virtualLinkDescId": "mplc_mgmt_VL",
+      "virtualLinkDescProvider": "UC3M",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4",
+        "flowPattern": null
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "mplc_mgmt_VL_df",
+          "qos": {
+            "latency": 0,
+            "packetDelayVariation": 0,
+            "packetLossRatio": 0,
+            "priority": 0
+          },
+          "serviceAvaibilityLevel": "LEVEL_1",
+          "bitrateRequirements": {
+            "root": 1,
+            "leaf": 1
+          }
+        }
+      ],
+      "description": "Management network for the Master PLC VNF component"
+    },
+    {
+      "virtualLinkDescId": "sink_mgmt_VL",
+      "virtualLinkDescProvider": "UC3M",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4",
+        "flowPattern": null
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "sink_mgmt_VL_df",
+          "qos": {
+            "latency": 0,
+            "packetDelayVariation": 0,
+            "packetLossRatio": 0,
+            "priority": 0
+          },
+          "serviceAvaibilityLevel": "LEVEL_1",
+          "bitrateRequirements": {
+            "root": 1,
+            "leaf": 1
+          }
+        }
+      ],
+      "description": "Management network for the traffic sink VNF component"
+    },
+    {
+      "virtualLinkDescId": "data1_VL",
+      "virtualLinkDescProvider": "UC3M",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4",
+        "flowPattern": null
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "data1_VL_df",
+          "qos": {
+            "latency": 0,
+            "packetDelayVariation": 0,
+            "packetLossRatio": 0,
+            "priority": 0
+          },
+          "serviceAvaibilityLevel": "LEVEL_1",
+          "bitrateRequirements": {
+            "root": 2,
+            "leaf": 1
+          }
+        }
+      ],
+      "description": "Data network to connect the Traffic source VNF to the Delay VNF"
+    },
+    {
+      "virtualLinkDescId": "data2_VL",
+      "virtualLinkDescProvider": "UC3M",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4",
+        "flowPattern": null
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "data2_VL_df",
+          "qos": {
+            "latency": 0,
+            "packetDelayVariation": 0,
+            "packetLossRatio": 0,
+            "priority": 0
+          },
+          "serviceAvaibilityLevel": "LEVEL_1",
+          "bitrateRequirements": {
+            "root": 2,
+            "leaf": 1
+          }
+        }
+      ],
+      "description": "Data network to connect the Delay VNF to the MasterPLC"
+    },
+    {
+      "virtualLinkDescId": "data3_VL",
+      "virtualLinkDescProvider": "UC3M",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4",
+        "flowPattern": null
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "data3_VL_df",
+          "qos": {
+            "latency": 0,
+            "packetDelayVariation": 0,
+            "packetLossRatio": 0,
+            "priority": 0
+          },
+          "serviceAvaibilityLevel": "LEVEL_1",
+          "bitrateRequirements": {
+            "root": 2,
+            "leaf": 1
+          }
+        }
+      ],
+      "description": "Data network to connect the Delay VNF to the Traffic Sink"
+    }
+  ],
+  "nsDf": [
+    {
+      "nsDfId": "a95f97e5-f6b2-43e0-840c-ab48612573f8",
+      "flavourKey": "ASTI_small_fl",
+      "vnfProfile": [
+        {
+          "vnfProfileId": "MasterPLC_profile",
+          "vnfdId": "e3071b27-49fd-4ceb-a7d2-8b02a8707dc9",
+          "flavourId": "MasterPLC_df",
+          "instantiationLevel": "MasterPLC_IL",
+          "minNumberOfInstances": 1,
+          "maxNumberOfInstances": 2,
+          "nsVirtualLinkConnectivity": [
+            {
+              "virtualLinkProfileId": "data2_VL_profile",
+              "cpdId": [
+                "data2_Cp"
+              ]
+            },
+            {
+              "virtualLinkProfileId": "mplc_mgmt_VL_profile",
+              "cpdId": [
+                "mplc_mgmt"
+              ]
+            }
+          ]
+        },
+        {
+          "vnfProfileId": "TrafficSrc_profile",
+          "vnfdId": "73a441e7-6ac5-4395-9060-74eba90d6dbd",
+          "flavourId": "TrafficSrc_df",
+          "instantiationLevel": "TrafficSrc_IL",
+          "minNumberOfInstances": 1,
+          "maxNumberOfInstances": 1,
+          "nsVirtualLinkConnectivity": [
+            {
+              "virtualLinkProfileId": "data1_VL_profile",
+              "cpdId": [
+                "data1_Cp"
+              ]
+            },
+            {
+              "virtualLinkProfileId": "src_mgmt_VL_profile",
+              "cpdId": [
+                "src_mgmt"
+              ]
+            }
+          ]
+        },
+        {
+          "vnfProfileId": "TrafficSink_profile",
+          "vnfdId": "15793c45-a5b1-4db9-915d-faf558d6f3ed",
+          "flavourId": "TrafficSink_df",
+          "instantiationLevel": "TrafficSink_IL",
+          "minNumberOfInstances": 1,
+          "maxNumberOfInstances": 1,
+          "nsVirtualLinkConnectivity": [
+            {
+              "virtualLinkProfileId": "data3_VL_profile",
+              "cpdId": [
+                "data3_Cp"
+              ]
+            },
+            {
+              "virtualLinkProfileId": "sink_mgmt_VL_profile",
+              "cpdId": [
+                "sink_mgmt"
+              ]
+            }
+          ]
+        },
+        {
+          "vnfProfileId": "Delay_profile",
+          "vnfdId": "214851b2-bffe-4653-a95c-83b2133a5e68",
+          "flavourId": "Delay_df",
+          "instantiationLevel": "Delay_IL",
+          "minNumberOfInstances": 1,
+          "maxNumberOfInstances": 1,
+          "nsVirtualLinkConnectivity": [
+            {
+              "virtualLinkProfileId": "data1_VL_profile",
+              "cpdId": [
+                "data1_Cp"
+              ]
+            },
+            {
+              "virtualLinkProfileId": "data2_VL_profile",
+              "cpdId": [
+                "data2_Cp"
+              ]
+            },
+            {
+              "virtualLinkProfileId": "data3_VL_profile",
+              "cpdId": [
+                "data3_Cp"
+              ]
+            },
+            {
+              "virtualLinkProfileId": "delay_mgmt_VL_profile",
+              "cpdId": [
+                "delay_mgmt"
+              ]
+            },
+            {
+              "virtualLinkProfileId": "agv_data_VL_profile",
+              "cpdId": [
+                "asti_data"
+              ]
+            }
+          ]
+        }
+      ],
+      "virtualLinkProfile": [
+        {
+          "virtualLinkProfileId": "agv_data_VL_profile",
+          "virtualLinkDescId": "agv_data_VL",
+          "flavourId": "agv_data_VL_df",
+          "maxBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          }
+        },
+        {
+          "virtualLinkProfileId": "data1_VL_profile",
+          "virtualLinkDescId": "data1_VL",
+          "flavourId": "data1_VL_df",
+          "maxBitrateRequirements": {
+            "root": "2",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "2",
+            "leaf": "1"
+          }
+        },
+        {
+          "virtualLinkProfileId": "data2_VL_profile",
+          "virtualLinkDescId": "data2_VL",
+          "flavourId": "data2_VL_df",
+          "maxBitrateRequirements": {
+            "root": "2",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "2",
+            "leaf": "1"
+          }
+        },
+        {
+          "virtualLinkProfileId": "data3_VL_profile",
+          "virtualLinkDescId": "data3_VL",
+          "flavourId": "data3_VL_df",
+          "maxBitrateRequirements": {
+            "root": "2",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "2",
+            "leaf": "1"
+          }
+        },
+        {
+          "virtualLinkProfileId": "delay_mgmt_VL_profile",
+          "virtualLinkDescId": "delay_mgmt_VL",
+          "flavourId": "delay_mgmt_VL_df",
+          "maxBitrateRequirements": {
+            "root": "2",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "2",
+            "leaf": "1"
+          }
+        },
+        {
+          "virtualLinkProfileId": "src_mgmt_VL_profile",
+          "virtualLinkDescId": "src_mgmt_VL",
+          "flavourId": "src_mgmt_VL_df",
+          "maxBitrateRequirements": {
+            "root": "2",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "2",
+            "leaf": "1"
+          }
+        },
+        {
+          "virtualLinkProfileId": "mplc_mgmt_VL_profile",
+          "virtualLinkDescId": "mplc_mgmt_VL",
+          "flavourId": "mplc_mgmt_VL_df",
+          "maxBitrateRequirements": {
+            "root": "2",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "2",
+            "leaf": "1"
+          }
+        },
+        {
+          "virtualLinkProfileId": "sink_mgmt_VL_profile",
+          "virtualLinkDescId": "sink_mgmt_VL",
+          "flavourId": "sink_mgmt_VL_df",
+          "maxBitrateRequirements": {
+            "root": "2",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "2",
+            "leaf": "1"
+          }
+        }
+      ],
+      "nsInstantiationLevel": [
+        {
+          "nsLevelId": "asti_ns_il_small",
+          "description": "Default instantiation level for the ASTI AGV Network service",
+          "vnfToLevelMapping": [
+            {
+              "vnfProfileId": "MasterPLC_profile",
+              "numberOfInstances": 1
+            },
+            {
+              "vnfProfileId": "TrafficSrc_profile",
+              "numberOfInstances": 1
+            },
+            {
+              "vnfProfileId": "TrafficSink_profile",
+              "numberOfInstances": 1
+            },
+            {
+              "vnfProfileId": "Delay_profile",
+              "numberOfInstances": 1
+            }
+          ],
+          "virtualLinkToLevelMapping": [
+            {
+              "virtualLinkProfileId": "data1_VL_profile",
+              "bitRateRequirements": {
+                "root": "2",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "data2_VL_profile",
+              "bitRateRequirements": {
+                "root": "2",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "data3_VL_profile",
+              "bitRateRequirements": {
+                "root": "2",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "agv_data_VL_profile",
+              "bitRateRequirements": {
+                "root": "1",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "delay_mgmt_VL_profile",
+              "bitRateRequirements": {
+                "root": "2",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "src_mgmt_VL_profile",
+              "bitRateRequirements": {
+                "root": "2",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "mplc_mgmt_VL_profile",
+              "bitRateRequirements": {
+                "root": "2",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "sink_mgmt_VL_profile",
+              "bitRateRequirements": {
+                "root": "2",
+                "leaf": "1"
+              }
+            }
+          ]
+        },
+        {
+          "nsLevelId": "asti_ns_il_medium",
+          "description": "ASTI NS Instantiation level to support 2 AGVs",
+          "vnfToLevelMapping": [
+            {
+              "vnfProfileId": "MasterPLC_profile",
+              "numberOfInstances": 2
+            },
+            {
+              "vnfProfileId": "TrafficSrc_profile",
+              "numberOfInstances": 1
+            },
+            {
+              "vnfProfileId": "TrafficSink_profile",
+              "numberOfInstances": 1
+            },
+            {
+              "vnfProfileId": "Delay_profile",
+              "numberOfInstances": 1
+            }
+          ],
+          "virtualLinkToLevelMapping": [
+            {
+              "virtualLinkProfileId": "data1_VL_profile",
+              "bitRateRequirements": {
+                "root": "2",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "data2_VL_profile",
+              "bitRateRequirements": {
+                "root": "2",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "data3_VL_profile",
+              "bitRateRequirements": {
+                "root": "2",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "agv_data_VL_profile",
+              "bitRateRequirements": {
+                "root": "1",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "delay_mgmt_VL_profile",
+              "bitRateRequirements": {
+                "root": "2",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "src_mgmt_VL_profile",
+              "bitRateRequirements": {
+                "root": "2",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "mplc_mgmt_VL_profile",
+              "bitRateRequirements": {
+                "root": "2",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "sink_mgmt_VL_profile",
+              "bitRateRequirements": {
+                "root": "2",
+                "leaf": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "defaultNsInstantiationLevelId": "asti_ns_il_small",
+      "dependencies": [
+        {
+          "primaryId": [
+            "MasterPLC_profile"
+          ]
+        },
+        {
+          "secondaryId": [
+            "TrafficSrc_profile",
+            "TrafficSink_profile",
+            "Delay_profile"
+          ]
+        }
+      ]
+    }
+  ],
+  "security": {
+    "signature": "ASTI_NSD_SIGNATURE",
+    "algorithm": "ASTI_NSD_ALGORITHM",
+    "certificate": "ASTI_NSD_CERTIFICATE"
+  }
+}
