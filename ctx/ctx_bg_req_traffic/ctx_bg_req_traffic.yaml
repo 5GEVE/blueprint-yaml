@@ -25,65 +25,42 @@ parameters:
     parameterType: 'script'
     parameterDescription: 'The time period for the continuous requests generation in seconds.'
     applicabilityField: 'context'
+configurableParameters:
+  - 'bg_clients'
+  - 'bg_spawn_rate'
+  - 'bg_timeout'
+  - 'bg_client_behavior'
 atomicComponents:
-  - componentId: 'Request_Generator'
+  - componentId: 'request_generator'
     serversNumber: 1
-    # componentName: 'Background Traffic Source'
     imagesUrls: ['/path/to/bg_req_gen.qcow']
-    endPointsIds: ['CpReqGen']
-    lifecycleOperations:
-      instantiate: 'scripts/instantiate'
-      terminate: 'scripts/terminate'
-      update: 'scripts/update'
-      heal: 'scripts/heal'
-    # scalingRules: []
+    endPointsIds: 
+      - cp_req_gen_data
+      - cp_req_gen_mgmt
 endPoints:
-  - endPointId: 'CpReqGen'
+  - endPointId: cp_req_gen_data
     external: false
     management: false
     ranConnection: false
-applicationMetrics:
-  - metricId: 'number_of_requests'
-    name: 'Number of requests generated'
-    metricCollectionType: 'CUMULATIVE'
-    unit: 'requests'
-    interval: '1s'
-    topic: '/app/number_of_requests'
-  - metricId: 'number_of_fails'
-    name: 'Number of requests failed'
-    metricCollectionType: 'CUMULATIVE'
-    unit: 'fails'
-    interval: '1s'
-    topic: '/app/fails'
-  - metricId: 'average_response_time'
-    name: 'Average response time of the generated requests'
-    metricCollectionType: 'GAUGE'
-    unit: 'ms'
-    interval: '1s'
-    topic: '/app/average_response_time'
-  - metricId: 'minimum_response_time'
-    name: 'Minimum response time of the generated requests'
-    metricCollectionType: 'GAUGE'
-    unit: 'ms'
-    interval: '1s'
-    topic: '/app/minimum_response_time'
-  - metricId: 'maximum_response_time'
-    name: 'Maximum response time of the generated requests'
-    metricCollectionType: 'GAUGE'
-    unit: 'ms'
-    interval: '1s'
-    topic: '/app/maximum_response_time'
-  - metricId: 'median_response_time'
-    name: 'Median response time of the generated requests'
-    metricCollectionType: 'GAUGE'
-    unit: 'ms'
-    interval: '1s'
-    topic: '/app/median_response_time'
-  - metricId: 'rate'
-    name: 'Requests generated per second'
-    metricCollectionType: 'GAUGE'
-    unit: 'reqs/sec'
-    interval: '1s'
-    topic: '/app/rate'
+  - endPointId: cp_req_gen_mgmt
+    external: false
+    management: true
+    ranConnection: false
+  - endPointId: sap_req_gen_mgmt
+    external: true
+    management: true
+    ranConnection: false
+connectivityServices:
+  - name: vl_req_gen_data
+    management: false
+    endPointIds:
+      - cp_req_gen_data
+  - name: vl_req_gen_mgmt
+    management: true
+    endPointIds:
+      - cp_req_gen_mgmt
+      - sap_req_gen_mgmt
 compatibleSites:
   - GREECE_ATHENS
+compositionStrategy: CONNECT
+applicationMetrics:

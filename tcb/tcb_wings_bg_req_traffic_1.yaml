@@ -1,0 +1,14 @@
+# tcb_wings_bg_req_traffic_1.yaml
+---
+testcaseBlueprintId: 'wings_bg_req_traffic_1'
+version: '1.0'
+name: 'TcB Wings Background Requests Traffic'
+description: ''
+script: '### Code ###'
+userParameters:
+  bg_clients: '$$bg_clients'
+  bg_spawn_rate: '$$bg_spawn_rate'
+  bg_timeout: '$$bg_timeout'
+  bg_client_behavior: '$$bg_client_behavior'
+infrastructureParameters:
+  ns.nsd_id.vnf.vnfd_id.cp.cpId1.idAddr: '$$varX'

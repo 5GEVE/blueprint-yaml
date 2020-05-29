@@ -1,23 +1,23 @@
-# vsb_wings_utilities.yaml
+# vsb_wings_smartcity.yaml
 ---
-blueprintId: 'vsb_wings_utilities'
+blueprintId: 'vsb_wings_smartcity'
 version: '1.0'
 name: 'Utilities service'
-description: 'Blueprint for 5G EVE utilities service using 5G network to monitor and configure the power grid.'
+description: 'Blueprint for 5G EVE smartcity service using 5G network to monitor and control the smart nodes.'
 parameters:
   - parameterId: 'number_of_nodes'
-    parameterName: 'Number of monitored Nodes'
+    parameterName: 'Number of smart Nodes'
     parameterType: 'number'
-    parameterDescription: 'Number of Monitored Nodes (Mandatory)'
-    applicabilityField: 'monitored_node'
+    parameterDescription: 'Number of Smart Nodes (Mandatory)'
+    applicabilityField: 'smart_node'
 atomicComponents:
-  - componentId: 'UtilitiesPlatform'
+  - componentId: 'SmartCityPlatform'
     serversNumber: 1
-    imagesUrls: ['utilities_platform']
+    imagesUrls: ['smartcity_platform']
     endPointsIds: 
       - cp_platform_data
       - cp_platform_mgmt
-      - cp_monitored_nodes
+      - cp_smart_nodes
       - cp_platform_user
 endPoints:
   - endPointId: 'cp_platform_data'
@@ -28,7 +28,7 @@ endPoints:
     external: true
     management: true
     ranConnection: false
-  - endPointId: 'cp_monitored_nodes'
+  - endPointId: 'cp_smart_nodes'
     external: true
     management: false
     ranConnection: true
@@ -44,46 +44,42 @@ endPoints:
     external: true
     management: true
     ranConnection: false
-  - endPointId: sap_monitored_nodes
+  - endPointId: sap_smart_nodes
     external: true
     management: false
     ranConnection: true
 connectivityServices:
-  - name: vl_utilities_ext_data
+  - name: vl_platform_ext_data
     management: false
     endPointIds:
-      - sap_monitored_nodes
+      - sap_smart_nodes
       - cp_platform_data
     external: true
-  - name: vl_utilities_mgmt
+  - name: vl_smartcity_mgmt
     management: true
     endPointIds:
       - sap_platform_mgmt
       - cp_platform_mgmt
     external: true
-  - name: vl_utilities_user
+  - name: vl_smartcity_user
     management: false
     endPointIds:
       - cp_platform_user
       - sap_platform_user
     external: true
-compatibleContextBlueprint: ['ctx_impairments', 'ctx_bg_req_traffic']
+compatibleContextBlueprint: []
 applicationMetrics:
-  - metricId: 'monitored_nodes'
-    name: 'Number of total monitored nodes'
+  - metricId: 'number_of_sensors'
+    name: 'Number of sensors target is ~ 60K/km^2'
     metricCollectionType: 'GAUGE'
     unit: 'nodes'
     interval: '5s'
-    topic: '/app/monitored_nodes'
-  - metricId: 'power_restoration_time'
-    name: 'Measurement of the time to restore power to a node'
+    topic: '/app/number_of_sensors'
+  - metricId: 'total_throughput'
+    name: 'Total throughput achieved'
     metricCollectionType: GAUGE
-    unit: 'ms'
+    unit: 'Mbps'
     interval: '1s'
-    topic: '/app/power_restoration_time'
-  - metricId: 'power_restoration_decision_time'
-    name: 'Measurement of the time to decide the route that will restore power to a node'
-    metricCollectionType: GAUGE
-    unit: 'ms'
-    interval: '1s'
-    topic: '/app/power_restoration_decision_time'
+    topic: '/app/total_throughput'
+compatibleSites:
+  - GREECE_ATHENS

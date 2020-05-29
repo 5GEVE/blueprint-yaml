@@ -1,0 +1,122 @@
+# ctx_impairments_nsd.yaml
+---
+- nsdIdentifier: "ctx_impairments_nsd"
+  designer: "NSD generator"
+  version: "1.0"
+  nsdName: "Context Blueprint - Impairment node for the Utilities use case. NSD"
+  nsdInvariantId: "ctx_impairments_nsd"
+  vnfdId:
+    - "impairment_node"
+  sapd:
+    - cpdId: "sap_mgmt"
+      layerProtocol: "IPV4"
+      cpRole: "ROOT"
+      addressData:
+        - addressType: "IP_ADDRESS"
+          iPAddressAssignment: false
+          floatingIpActivated: true
+          management: false
+          iPAddressType: "IPv4"
+          numberOfIpAddress: 1
+      sapAddressAssignment: false
+      nsVirtualLinkDescId: "vl_mgmt"
+  virtualLinkDesc:
+    - virtualLinkDescId: "vl_data_in"
+      virtualLinkDescProvider: "NSD generator"
+      virtuaLinkDescVersion: "1.0"
+      connectivityType:
+        layerProtocol: "IPV4"
+        flowPattern: ""
+      virtualLinkDf:
+        - flavourId: "vl_data_in_df"
+          serviceAvaibilityLevel: "LEVEL_1"
+    - virtualLinkDescId: "vl_data_out"
+      virtualLinkDescProvider: "NSD generator"
+      virtuaLinkDescVersion: "1.0"
+      connectivityType:
+        layerProtocol: "IPV4"
+        flowPattern: ""
+      virtualLinkDf:
+        - flavourId: "vl_data_out_df"
+          serviceAvaibilityLevel: "LEVEL_1"
+    - virtualLinkDescId: "vl_mgmt"
+      virtualLinkDescProvider: "NSD generator"
+      virtuaLinkDescVersion: "1.0"
+      connectivityType:
+        layerProtocol: "IPV4"
+        flowPattern: ""
+      virtualLinkDf:
+        - flavourId: "vl_mgmt_df"
+          serviceAvaibilityLevel: "LEVEL_1"
+  nsDf:
+    - nsDfId: "ctx_impairments_df"
+      flavourKey: "ctx_impairments_df_fk"
+      vnfProfile:
+        - vnfProfileId: "impairment_node_vnfp"
+          vnfdId: "impairment_node"
+          flavourId: "impairment_node_vnf_df"
+          instantiationLevel: "impairment_node_vnf_il"
+          minNumberOfInstances: 1
+          maxNumberOfInstances: 1
+          nsVirtualLinkConnectivity:
+            - virtualLinkProfileId: "vl_data_in_vlp"
+              cpdId:
+                - "cp_data_in"
+            - virtualLinkProfileId: "vl_data_out_vlp"
+              cpdId:
+                - "cp_data_out"
+            - virtualLinkProfileId: "vl_mgmt_vlp"
+              cpdId:
+                - "cp_mgmt"
+      virtualLinkProfile:
+        - virtualLinkProfileId: "vl_data_in_vlp"
+          virtualLinkDescId: "vl_data_in"
+          flavourId: "vl_data_in_df"
+          maxBitrateRequirements:
+            root: "1"
+            leaf: "1"
+          minBitrateRequirements:
+            root: "1"
+            leaf: "1"
+        - virtualLinkProfileId: "vl_data_out_vlp"
+          virtualLinkDescId: "vl_data_out"
+          flavourId: "vl_data_out_df"
+          maxBitrateRequirements:
+            root: "1"
+            leaf: "1"
+          minBitrateRequirements:
+            root: "1"
+            leaf: "1"
+        - virtualLinkProfileId: "vl_mgmt_vlp"
+          virtualLinkDescId: "vl_mgmt"
+          flavourId: "vl_mgmt_df"
+          maxBitrateRequirements:
+            root: "1"
+            leaf: "1"
+          minBitrateRequirements:
+            root: "1"
+            leaf: "1"
+      nsInstantiationLevel:
+        - nsLevelId: "ctx_impairments_il_default"
+          description: "Default Instantiation Level"
+          vnfToLevelMapping:
+            - vnfProfileId: "impairment_node_vnfp"
+              numberOfInstances: 1
+          virtualLinkToLevelMapping:
+            - virtualLinkProfileId: "vl_data_in_vlp"
+              bitRateRequirements:
+                root: "1"
+                leaf: "1"
+            - virtualLinkProfileId: "vl_data_out_vlp"
+              bitRateRequirements:
+                root: "1"
+                leaf: "1"
+            - virtualLinkProfileId: "vl_mgmt_vlp"
+              bitRateRequirements:
+                root: "1"
+                leaf: "1"
+      defaultNsInstantiationLevelId: "ctx_impairments_il_default"
+  security:
+    signature: "WINGS_NSD_SIGNATURE"
+    algorithm: "WINGS_NSD_ALGORITHM"
+    certificate: "WINGS_NSD_CERTIFICATE"
