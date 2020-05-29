@@ -2,4 +2,6 @@ testcaseBlueprintId: segittur_testcase_1
 version: '1.0'
 name: TCB SEGITTUR test case 1
 description: Test case to run the SEGITTUR use case
-executionScript: "## TODO: Sleep for XX seconds ##"
+executionScript: "sleep $$execution$$times"
+userParameters:
+  executionTime: $$execution$$time
