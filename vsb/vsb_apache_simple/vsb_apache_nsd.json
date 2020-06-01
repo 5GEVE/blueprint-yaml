@@ -1,10 +1,10 @@
 [
   {
-    "nsdIdentifier": "vsb_apache_simple_nsd",
+    "nsdIdentifier": "a21a23e8-3453-4953-ab45-0584f918c4d3 ",
     "designer": "NSD generator",
     "version": "1.0",
     "nsdName": "Simple VSB with Apache NSD",
-    "nsdInvariantId": "vsb_apache_simple_nsd",
+    "nsdInvariantId": "a21a23e8-3453-4953-ab45-0584f918c4d3 ",
     "vnfdId": [
       "ef5faf76-895b-11ea-bc55-0242ac130003",
       "be55660e-8961-11ea-bc55-0242ac130003"
