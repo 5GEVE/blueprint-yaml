@@ -13,5 +13,5 @@ testCaseBlueprint:
     sleep_time: $$sleepTime
   infrastructureParameters:
     vnf.ef5faf76-895b-11ea-bc55-0242ac130003.extcp.eth0.ipaddress
-    vnf.be55660e-8961-11ea-bc55-0242ac130003.extcp.eth1.ipaddress
+    vnf.be55660e-8961-11ea-bc55-0242ac130003.extcp.eth0.ipaddress
   version: '2.0'
