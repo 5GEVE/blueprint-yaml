@@ -38,6 +38,8 @@ endPoints:
 
 compatibleSites:
   - SPAIN_5TONIC
+compositionStrategy:
+  - PASS_THROUGH
 connectivityServices:
   - name: vl_ueab_delay
     management: false
