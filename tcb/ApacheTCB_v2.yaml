@@ -1,0 +1,21 @@
+testCaseBlueprint:
+  description: Example for integration with the RC
+  name: Example TCB
+  configurationScript: 
+          [ ! -e hosts ] || rm hosts && touch hosts && echo "server ansible_host=vnf.be55660e-8961-11ea-bc55-0242ac130003.extcp.eth0.ipaddress ansible_user=$$userB ansible_ssh_pass=$$passwordB ansible_become_pass=$$passwordB" | tee -a hosts && export ANSIBLE_HOST_KEY_CHECKING=False && ansible-playbook -i hosts execute_script.yml -e 'script="sudo /bin/bash /home/ubuntu/day2-configuration-only.sh  $$metric.topic.requests_time_taken && sleep $$sleepTime"';
+  executionScript: 
+          [ ! -e hosts ] || rm hosts && touch hosts && echo "server ansible_host=vnf.be55660e-8961-11ea-bc55-0242ac130003.extcp.eth0.ipaddress ansible_user=$$userB ansible_ssh_pass=$$passwordB ansible_become_pass=$$passwordB" | tee -a hosts && export ANSIBLE_HOST_KEY_CHECKING=False && ansible-playbook -i hosts execute_script.yml -e 'script="sudo /bin/bash /home/ubuntu/ab-execution.sh $$concurrent $$noOfRequests  vnf.ef5faf76-895b-11ea-bc55-0242ac130003.extcp.eth1.ipaddress && sleep $$sleepTime"'; 
+
+  userParameters:
+    userA: $$userA
+    passwordA: $$passwordA
+    userB: $$userB
+    passwordB: $$passwordB
+    sleep_time: $$sleepTime
+    concurrent: $$concurrent
+    noOfRequests: $$noOfRequests
+  infrastructureParameters:
+    $$metric.topic.requests_time_taken
+    vnf.ef5faf76-895b-11ea-bc55-0242ac130003.extcp.eth1.ipaddress
+    vnf.be55660e-8961-11ea-bc55-0242ac130003.extcp.eth0.ipaddress
+  version: '2.0'
