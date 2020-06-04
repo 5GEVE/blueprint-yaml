@@ -1,0 +1,242 @@
+{
+  "nsdIdentifier": "dede9a9a-e5a5-4596-8226-e686e6c11bed",
+  "designer": "NSD generator",
+  "version": "1.0",
+  "nsdName": "Dummy Experiment for apache simple use-case",
+  "nsdInvariantId": "dede9a9a-e5a5-4596-8226-e686e6c11bed",
+  "vnfdId": [
+    "ef5faf76-895b-11ea-bc55-0242ac130003",
+    "be55660e-8961-11ea-bc55-0242ac130003",
+    "b9929a80-4314-47fc-90f8-edb303fa92b4"
+  ],
+  "sapd": [
+    {
+      "cpdId": "eth1",
+      "layerProtocol": "IPV4",
+      "cpRole": "ROOT",
+      "addressData": [
+        {
+          "addressType": "IP_ADDRESS",
+          "iPAddressAssignment": false,
+          "floatingIpActivated": true,
+          "management": true,
+          "iPAddressType": "IPv4",
+          "numberOfIpAddress": 1
+        }
+      ],
+      "sapAddressAssignment": false,
+      "nsVirtualLinkDescId": "mgmt_VL"
+    }
+  ],
+  "virtualLinkDesc": [
+    {
+      "virtualLinkDescId": "mgmt_VL",
+      "virtualLinkDescProvider": "NSD generator",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4",
+        "flowPattern": ""
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "mgmt_VL_df",
+          "serviceAvaibilityLevel": "LEVEL_1"
+        }
+      ]
+    },
+    {
+      "virtualLinkDescId": "vl_apache_int",
+      "virtualLinkDescProvider": "NSD generator",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4",
+        "flowPattern": ""
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "vl_apache_int_df",
+          "serviceAvaibilityLevel": "LEVEL_1"
+        }
+      ]
+    },
+    {
+      "virtualLinkDescId": "vl_ueab_delay",
+      "virtualLinkDescProvider": "NSD generator",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4",
+        "flowPattern": ""
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "vl_ueab_delay_df",
+          "serviceAvaibilityLevel": "LEVEL_1"
+        }
+      ]
+    }
+  ],
+  "nsDf": [
+    {
+      "nsDfId": "vsb_apache_simple_df",
+      "flavourKey": "vsb_apache_simple_df_fk",
+      "vnfProfile": [
+        {
+          "vnfProfileId": "apache_vnfp",
+          "vnfdId": "ef5faf76-895b-11ea-bc55-0242ac130003",
+          "flavourId": "apache_vnf_df",
+          "instantiationLevel": "apache_vnf_il",
+          "minNumberOfInstances": 1,
+          "maxNumberOfInstances": 1,
+          "nsVirtualLinkConnectivity": [
+            {
+              "virtualLinkProfileId": "vl_apache_int_vlp",
+              "cpdId": [
+                "eth0"
+              ]
+            }
+          ]
+        },
+        {
+          "vnfProfileId": "ueab_vnfp",
+          "vnfdId": "be55660e-8961-11ea-bc55-0242ac130003",
+          "flavourId": "ueab_vnf_df",
+          "instantiationLevel": "ueab_vnf_il",
+          "minNumberOfInstances": 1,
+          "maxNumberOfInstances": 1,
+          "nsVirtualLinkConnectivity": [
+            {
+              "virtualLinkProfileId": "vl_ueab_delay_vlp",
+              "cpdId": [
+                "eth0"
+              ]
+            },
+            {
+              "virtualLinkProfileId": "mgmt_VL_vlp",
+              "cpdId": [
+                "eth1"
+              ]
+            }
+          ]
+        },
+        {
+          "vnfProfileId": "delay_vnfp",
+          "vnfdId": "b9929a80-4314-47fc-90f8-edb303fa92b4",
+          "flavourId": "delay_vnf_df",
+          "instantiationLevel": "delay_vnf_il",
+          "minNumberOfInstances": 1,
+          "maxNumberOfInstances": 1,
+          "nsVirtualLinkConnectivity": [
+            {
+              "virtualLinkProfileId": "vl_ueab_delay_vlp",
+              "cpdId": [
+                "delay_data1"
+              ]
+            },
+            {
+              "virtualLinkProfileId": "mgmt_VL_vlp",
+              "cpdId": [
+                "delay_mgmt"
+              ]
+            },
+            {
+              "virtualLinkProfileId": "vl_apache_int_vlp",
+              "cpdId": [
+                "delay_data2"
+              ]
+            }
+          ]
+        }
+      ],
+      "virtualLinkProfile": [
+        {
+          "virtualLinkProfileId": "mgmt_VL_vlp",
+          "virtualLinkDescId": "mgmt_VL",
+          "flavourId": "mgmt_VL_df",
+          "maxBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          }
+        },
+        {
+          "virtualLinkProfileId": "vl_apache_int_vlp",
+          "virtualLinkDescId": "vl_apache_int",
+          "flavourId": "vl_apache_int_df",
+          "maxBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          }
+        },
+        {
+          "virtualLinkProfileId": "vl_ueab_delay_vlp",
+          "virtualLinkDescId": "vl_ueab_delay",
+          "flavourId": "vl_ueab_delay_df",
+          "maxBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          }
+        }
+      ],
+      "nsInstantiationLevel": [
+        {
+          "nsLevelId": "vsb_apache_simple_il_default",
+          "description": "Default Instantiation Level",
+          "vnfToLevelMapping": [
+            {
+              "vnfProfileId": "apache_vnfp",
+              "numberOfInstances": 1
+            },
+            {
+              "vnfProfileId": "ueab_vnfp",
+              "numberOfInstances": 1
+            },
+            {
+              "vnfProfileId": "delay_vnfp",
+              "numberOfInstances": 1
+            }
+          ],
+          "virtualLinkToLevelMapping": [
+            {
+              "virtualLinkProfileId": "mgmt_VL_vlp",
+              "bitRateRequirements": {
+                "root": "1",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "vl_apache_int_vlp",
+              "bitRateRequirements": {
+                "root": "1",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "vl_ueab_delay_vlp",
+              "bitRateRequirements": {
+                "root": "1",
+                "leaf": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "defaultNsInstantiationLevelId": "vsb_apache_simple_il_default"
+    }
+  ],
+  "security": {
+    "signature": "FC_NSD_SIGNATURE",
+    "algorithm": "FC_NSD_ALGORITHM",
+    "certificate": "FC_NSD_CERTIFICATE"
+  }
+}
