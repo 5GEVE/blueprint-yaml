@@ -1,7 +1,0 @@
-testcaseBlueprintId: tcb_segittur_downlink_tc3_1
-version: '1.0'
-name: TCB SEGITTUR downlink tc3 1
-description: TCB to run the SEGITTUR downlink tc3 1
-executionScript: sleep $$sleepTime;
-userParameters:
-  executionTime: $$sleepTime
