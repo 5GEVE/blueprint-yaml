@@ -1,0 +1,7 @@
+testcaseBlueprintId: tcb_segittur_viewportchange_tc1_1
+version: '1.0'
+name: TCB SEGITTUR viewport changes tc1 1
+description: TCB to run the SEGITTUR viewport changes tc1 1
+executionScript: sleep $$sleepTime;
+userParameters:
+  executionTime: $$sleepTime
