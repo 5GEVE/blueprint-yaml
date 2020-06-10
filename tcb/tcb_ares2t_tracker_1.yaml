@@ -6,6 +6,8 @@ testCaseBlueprint:
   userParameters:
     sleeping_time: $$sleep$$time
     delay: $$DELAY
+    username: $$user
+    password: $$password
   infrastructureParameters:
     vnf.51c420e3-c83d-4ce9-a5bf-0dbe339b351d.extcp.cp_vis_data.ipaddress
     vnf.51c420e3-c83d-4ce9-a5bf-0dbe339b351d.extcp.cp_vis_mgmt.ipaddress
