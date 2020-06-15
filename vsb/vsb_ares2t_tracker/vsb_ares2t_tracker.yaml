@@ -77,6 +77,7 @@ connectivityServices:
   - cp_vis_mgmt
   - cp_tracker_mgmt
   external: true
+  management: true
   name: vl_tracking_mgmt
 - endPointIds:
   - cp_vis_user
