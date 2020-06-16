@@ -1,4 +1,4 @@
-# ctx_smartcity_traffic_nsds.yaml
+# ctx_smartcity_traffic_nsd.yaml
 ---
 nsdIdentifier: "ctx_smartcity_traffic_nsd"
 designer: "NSD generator"
