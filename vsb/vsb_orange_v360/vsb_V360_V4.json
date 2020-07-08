@@ -1,0 +1,116 @@
+{
+  "blueprintId": "vsb_video_360_v4",
+  "version": "1.4",
+  "name": "E2E Video 360 - v4",
+  "description": "Blueprint for E2E video 360 use case v4 ",
+  "atomicComponents": [
+    {
+      "componentId": "video_server",
+      "serversNumber": 1,
+      "endPointsIds": [
+        "cp_vs_int",
+        "cp_vs_mgmt"
+      ]
+    },
+    {
+      "componentId": "wef",
+      "serversNumber": 1,
+      "endPointsIds": [
+        "cp_wef_int",
+        "cp_wef_mgmt",
+        "cp_wef_ran"
+      ]
+    }
+  ],
+  "endPoints": [
+    {
+      "endPointId": "sap_v360_ran",
+      "external": true,
+      "management": false,
+      "ranConnection": true
+    },
+    {
+      "endPointId": "sap_v360_mgmt",
+      "external": true,
+      "management": true,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "cp_vs_int",
+      "external": false,
+      "management": false,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "cp_vs_mgmt",
+      "external": true,
+      "management": true,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "cp_wef_int",
+      "external": false,
+      "management": false,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "cp_wef_mgmt",
+      "external": true,
+      "management": true,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "cp_wef_ran",
+      "external": true,
+      "management": false,
+      "ranConnection": true
+    }
+  ],
+  "connectivityServices": [
+    {
+      "name": "vl_v360_ran",
+      "management": false,
+      "endPointIds": [
+        "sap_v360_ran",
+        "cp_wef_ran"
+      ],
+      "external": true
+    },
+    {
+      "name": "vl_v360_int",
+      "management": false,
+      "endPointIds": [
+        "cp_wef_int",
+        "cp_vs_int"
+      ],
+      "external": true
+    },
+    {
+      "name": "vl_v360_mgmt",
+      "management": false,
+      "endPointIds": [
+        "cp_wef_mgmt",
+        "cp_vs_mgmt",
+        "sap_v360_mgmt"
+      ],
+      "external": true
+    }
+  ],
+  "compatibleContextBlueprint": [
+    "100"
+  ],
+  "applicationMetrics": [
+    {
+      "metricId": "throughput",
+      "name": "Measurement of egress throughput on video server.",
+      "metricCollectionType": "GAUGE",
+      "unit": "Kbps",
+      "interval": "10ms",
+      "topic": "/app/throughput",
+      "metricGraphType": "LINE"
+    }
+  ],
+  "compatibleSites": [	
+    "FRANCE_RENNES"
+	  ]
+}
