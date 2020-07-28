@@ -1,0 +1,204 @@
+{
+  "blueprintId": "vsb_ares2t_tracker",
+  "version": "1.5",
+  "name": "ARES2T Tracker service",
+  "description": "Blueprint for 5G EVE Tracker service using 5G network to collect mobility data user devices.",
+  "parameters": [
+    {
+      "parameterId": "number_of_tracked_devices",
+      "parameterName": "Number of tracked devices",
+      "parameterType": "number",
+      "parameterDescription": "Number of devices equipped with the 5G EVE Tracking Service (Mandatory)",
+      "applicabilityField": "Smart transport"
+    }
+  ],
+  "atomicComponents": [
+    {
+      "componentId": "tracker_backend",
+      "serversNumber": 1,
+      "endPointsIds": [
+        "cp_tracker_ext_mobile",
+        "cp_tracker_data",
+        "cp_tracker_mgmt"
+      ]
+    },
+    {
+      "componentId": "visualizer",
+      "serversNumber": 1,
+      "endPointsIds": [
+        "cp_vis_data",
+        "cp_vis_mgmt",
+        "cp_vis_user"
+      ]
+    }, {
+      "componentId": "recognition_backend",
+      "serversNumber": 1,
+      "endPointsIds": [
+        "cp_recognition_ext_mobile",
+        "cp_recognition_mgmt",
+		"cp_recognition_data"
+      ]
+    }
+  ],
+  "endPoints": [
+    {
+      "endPointId": "cp_recognition_ext_mobile",
+      "external": true,
+      "management": false,
+      "ranConnection": true
+    }, {
+      "endPointId": "cp_recognition_data",
+      "external": false,
+      "management": false,
+      "ranConnection": false
+    },{
+      "endPointId": "cp_recognition_mgmt",
+      "external": true,
+      "management": true,
+      "ranConnection": false
+    },{
+      "endPointId": "cp_tracker_ext_mobile",
+      "external": true,
+      "management": false,
+      "ranConnection": true
+    },
+    {
+      "endPointId": "cp_tracker_data",
+      "external": false,
+      "management": false,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "cp_tracker_mgmt",
+      "external": true,
+      "management": true,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "cp_vis_data",
+      "external": false,
+      "management": false,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "cp_vis_mgmt",
+      "external": true,
+      "management": true,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "cp_vis_user",
+      "external": true,
+      "management": false,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "sap_tracking_mobile",
+      "external": true,
+      "management": false,
+      "ranConnection": true
+    },
+    {
+      "endPointId": "sap_tracking_mgmt",
+      "external": true,
+      "management": true,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "sap_vis_user",
+      "external": true,
+      "management": false,
+      "ranConnection": false
+    }
+  ],
+  "connectivityServices": [
+    {
+      "endPointIds": [
+        "sap_tracking_mobile",
+        "cp_tracker_ext_mobile",
+		"cp_recognition_ext_mobile"
+      ],
+      "external": true,
+      "name": "vl_tracking_mobile"
+    },
+    {
+      "endPointIds": [
+        "cp_vis_data",
+        "cp_tracker_data",
+		"cp_recognition_data"
+      ],
+      "external": false,
+      "name": "vl_tracking_data"
+    },
+    {
+      "endPointIds": [
+        "sap_tracking_mgmt",
+        "cp_vis_mgmt",
+        "cp_tracker_mgmt",
+		"cp_recognition_mgmt"
+      ],
+      "external": true,
+      "management": true,
+      "name": "vl_tracking_mgmt"
+    },
+    {
+      "endPointIds": [
+        "cp_vis_user",
+        "sap_vis_user"
+      ],
+      "external": true,
+      "name": "vl_tracking_user"
+    }
+  ],
+  "compatibleContextBlueprint": [
+    "ctx_delay"
+  ],
+  "applicationMetrics": [
+    {
+      "metricId": "tracking_memory_usage",
+      "name": "Memory usage in %",
+      "metricCollectionType": "GAUGE",
+      "unit": "%",
+      "interval": "1s",
+      "metricGraphType": "LINE"
+    }, {
+      "metricId": "tracking_response_time",
+      "name": "Max response time in milliseconds",
+      "metricCollectionType": "GAUGE",
+      "unit": "ms",
+      "interval": "1s",
+      "metricGraphType": "LINE"
+    }, {
+      "metricId": "recognition_network_time",
+      "name": "Network time",
+      "metricCollectionType": "GAUGE",
+      "unit": "ms",
+      "interval": "1s",
+      "metricGraphType": "LINE"
+    }, {
+      "metricId": "recognition_accuracy",
+      "name": "recognition accuracy",
+      "metricCollectionType": "GAUGE",
+      "unit": "%",
+      "interval": "1s",
+      "metricGraphType": "LINE"
+    }, {
+      "metricId": "recognition_response_time",
+      "name": "Recognition response time",
+      "metricCollectionType": "GAUGE",
+      "unit": "ms",
+      "interval": "1s",
+      "metricGraphType": "LINE"
+    }, {
+      "metricId": "recognition_memory_usage",
+      "name": "Recognition memory usage",
+      "metricCollectionType": "GAUGE",
+      "unit": "%",
+      "interval": "1s",
+      "metricGraphType": "LINE"
+    }
+  ],
+  "compatibleSites": [
+    "ITALY_TURIN"
+  ]
+}

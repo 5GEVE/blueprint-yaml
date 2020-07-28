@@ -1,0 +1,55 @@
+---
+expBlueprintId: expb_ares2t_experiment
+version: '1.5'
+name: Ares2T experiment
+description: Ares2T service with delay experiment
+sites:
+- ITALY_TURIN
+kpis:
+- kpiId: kpi_tracking_memory_usage
+  name: Tracking memory usage in %
+  formula: tracking_memory_usage
+  unit: %
+  interval: 1
+  metricIds:
+  - tracking_memory_usage
+- kpiId: kpi_tracking_response_time
+  name: Max response time for tracking service in milliseconds 
+  formula: tracking_response_time
+  unit: ms
+  interval: 1s
+  metricIds:
+  - tracking_response_time
+- kpiId: kpi_recognition_network_time
+  name: Network time related to recognition service.
+  formula: recognition_network_time
+  unit: ms
+  interval: 1s
+  metricIds:
+  - recognition_network_time
+- kpiId: kpi_recognition_accuracy
+  name: Recognition service accuracy.
+  formula: recognition_accuracy
+  unit: %
+  interval: 1s
+  metricIds:
+  - recognition_accuracy
+- kpiId: kpi_recognition_response_time
+  name: Response time for recognition service.
+  formula: recognition_response_time
+  unit: ms
+  interval: 1s
+  metricIds:
+  - recognition_response_time
+- kpiId: kpi_recognition_memory_usage
+  name: Memory usage for recognition service.
+  formula: recognition_memory_usage
+  unit: %
+  interval: 1s
+  metricIds:
+  - recognition_memory_usage    
+vsBlueprintId: vsb_ares2t_tracker
+ctxBlueprintIds:
+- ctx_delay
+tcBlueprintIds:
+- ares2t_testcase_1
