@@ -1,0 +1,112 @@
+{
+  "blueprintId": "vsb_ares2t_5gsolutions",
+  "version": "1.5",
+  "name": "ARES2T Remote Controller",
+  "description": "Blueprint for 5G Solutions using 5G network to collect time interval before disconnection to the server.",
+  "atomicComponents": [
+    {
+      "componentId": "remote_controller",
+      "serversNumber": 1,
+      "endPointsIds": [
+        "cp_remote_controller_ext_mobile",
+        "cp_remote_controller_data",
+        "cp_remote_controller_mgmt",
+        "cp_remote_controller_user"
+      ]
+    }
+  ],
+  "endPoints": [
+    {
+      "endPointId": "cp_remote_controller_ext_mobile",
+      "external": true,
+      "management": false,
+      "ranConnection": true
+    },
+    {
+      "endPointId": "cp_remote_controller_data",
+      "external": false,
+      "management": false,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "cp_remote_controller_mgmt",
+      "external": true,
+      "management": true,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "cp_remote_controller_user",
+      "external": true,
+      "management": false,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "sap_remote_controller_ext_mobile",
+      "external": true,
+      "management": false,
+      "ranConnection": true
+    },
+    {
+      "endPointId": "sap_remote_controller_user",
+      "external": true,
+      "management": false,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "sap_remote_controller_mgmt",
+      "external": true,
+      "management": true,
+      "ranConnection": false
+    }
+  ],
+  "connectivityServices": [
+    {
+      "endPointIds": [
+        "sap_remote_controller_ext_mobile",
+        "cp_remote_controller_ext_mobile"
+      ],
+      "external": true,
+      "name": "vl_remote_controller_ext_mobile"
+    },
+    {
+      "endPointIds": [
+        "cp_remote_controller_data"
+      ],
+      "external": false,
+      "name": "vl_remote_controller_data"
+    },
+    {
+      "endPointIds": [
+        "sap_remote_controller_mgmt",
+        "cp_remote_controller_mgmt"
+      ],
+      "external": true,
+      "management": true,
+      "name": "vl_remote_controller_mgmt"
+    },
+    {
+      "endPointIds": [
+        "cp_remote_controller_user",
+        "sap_remote_controller_user"
+      ],
+      "external": true,
+      "name": "vl_remote_controller_user"
+    }
+  ],
+  "compatibleContextBlueprint": [
+    "ctx_delay"
+  ],
+  "applicationMetrics": [
+    {
+      "metricId": "remote_controller_response_time",
+      "name": "Max response time in milliseconds",
+      "metricCollectionType": "GAUGE",
+      "unit": "ms",
+      "interval": "1s",
+      "metricGraphType": "LINE"
+    }
+  ],
+  "compatibleSites": [
+    "ITALY_TURIN"
+  ]
+}

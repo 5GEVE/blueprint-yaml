@@ -1,0 +1,294 @@
+{
+  "nsdIdentifier": "ns_ares2t",
+  "designer": "NXW",
+  "version": "1.5",
+  "nsdName": "ARES2T Service @ 5GEVE",
+  "nsdInvariantId": "ns_ares2t_v1.5",
+  "vnfdId": [
+    "6951a94d-40e8-4aa9-ad88-3d8018be12b8"
+  ],
+  "sapd": [
+    {
+      "cpdId": "sap_remote_controller_ext_mobile",
+      "description": "SAP towards mobile equipment",
+      "layerProtocol": "IPV4",
+      "cpRole": "ROOT",
+      "addressData": [
+        {
+          "addressType": "IP_ADDRESS",
+          "iPAddressAssignment": false,
+          "floatingIpActivated": true,
+          "iPAddressType": "IPv4",
+          "numberOfIpAddress": 1
+        }
+      ],
+      "sapAddressAssignment": false,
+      "nsVirtualLinkDescId": "vl_remote_controller_ext_mobile"
+    },
+    {
+      "cpdId": "sap_remote_controller_mgmt",
+      "description": "SAP for management",
+      "layerProtocol": "IPV4",
+      "cpRole": "ROOT",
+      "addressData": [
+        {
+          "addressType": "IP_ADDRESS",
+          "iPAddressAssignment": false,
+          "floatingIpActivated": false,
+          "iPAddressType": "IPv4",
+          "numberOfIpAddress": 1
+        }
+      ],
+      "sapAddressAssignment": false,
+      "nsVirtualLinkDescId": "vl_remote_controller_mgmt"
+    },
+    {
+      "cpdId": "sap_remote_controller_user",
+      "description": "SAP for user access to visualizer",
+      "layerProtocol": "IPV4",
+      "cpRole": "ROOT",
+      "addressData": [
+        {
+          "addressType": "IP_ADDRESS",
+          "iPAddressAssignment": false,
+          "floatingIpActivated": false,
+          "iPAddressType": "IPv4",
+          "numberOfIpAddress": 1
+        }
+      ],
+      "sapAddressAssignment": false,
+      "nsVirtualLinkDescId": "vl_remote_controller_user"
+    }
+  ],
+  "virtualLinkDesc": [
+    {
+      "virtualLinkDescId": "vl_remote_controller_ext_mobile",
+      "virtualLinkDescProvider": "A2T",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4"
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "df_vl_remote_controller_ext_mobile",
+          "qos": {
+            "latency": 0,
+            "packetDelayVariation": 0,
+            "packetLossRatio": 0,
+            "priority": 0
+          },
+          "serviceAvaibilityLevel": "LEVEL_1"
+        }
+      ],
+      "description": "Network to connect to the mobile user equipment"
+    },
+    {
+      "virtualLinkDescId": "vl_remote_controller_mgmt",
+      "virtualLinkDescProvider": "NXW",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4"
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "df_vl_remote_controller_mgmt",
+          "qos": {
+            "latency": 0,
+            "packetDelayVariation": 0,
+            "packetLossRatio": 0,
+            "priority": 0
+          },
+          "serviceAvaibilityLevel": "LEVEL_1"
+        }
+      ],
+      "description": "Management network"
+    },
+    {
+      "virtualLinkDescId": "vl_remote_controller_data",
+      "virtualLinkDescProvider": "NXW",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4"
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "df_vl_remote_controller_data",
+          "qos": {
+            "latency": 0,
+            "packetDelayVariation": 0,
+            "packetLossRatio": 0,
+            "priority": 0
+          },
+          "serviceAvaibilityLevel": "LEVEL_1"
+        }
+      ],
+      "description": "Internal network to connect the tracking service components"
+    },
+    {
+      "virtualLinkDescId": "vl_remote_controller_user",
+      "virtualLinkDescProvider": "NXW",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4"
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "df_vl_remote_controller_user",
+          "qos": {
+            "latency": 0,
+            "packetDelayVariation": 0,
+            "packetLossRatio": 0,
+            "priority": 0
+          },
+          "serviceAvaibilityLevel": "LEVEL_1"
+        }
+      ],
+      "description": "Network to connect to the Visualizer dashboard"
+    }
+  ],
+  "nsDf": [
+    {
+      "nsDfId": "ns_Ares2T_remote_controller_df",
+      "flavourKey": "ns_Ares2T_remote_controller_df_fk",
+      "vnfProfile": [
+        {
+          "vnfProfileId": "vnfp_small_Ares2T_remote_controller",
+          "vnfdId": "6951a94d-40e8-4aa9-ad88-3d8018be12b8",
+          "flavourId": "vnf_df_Ares2T_remote_controller",
+          "instantiationLevel": "vnf_il_Ares2T_remote_controller",
+          "minNumberOfInstances": 1,
+          "maxNumberOfInstances": 1,
+          "nsVirtualLinkConnectivity": [
+            {
+              "virtualLinkProfileId": "vlp_vl_remote_controller_ext_mobile",
+              "cpdId": [
+                "cp_remote_controller_ext_in"
+              ]
+            },
+            {
+              "virtualLinkProfileId": "vlp_vl_remote_controller_data",
+              "cpdId": [
+                "cp_remote_controller_data"
+              ]
+            },
+            {
+              "virtualLinkProfileId": "vlp_vl_remote_controller_mgmt",
+              "cpdId": [
+                "cp_remote_controller_mgmt"
+              ]
+            },
+            {
+              "virtualLinkProfileId": "vlp_vl_remote_controller_user",
+              "cpdId": [
+                "cp_remote_controller_user"
+              ]
+            }
+          ]
+        }
+      ],
+      "virtualLinkProfile": [
+        {
+          "virtualLinkProfileId": "vlp_vl_remote_controller_mobile",
+          "virtualLinkDescId": "vl_remote_controller_ext_mobile",
+          "flavourId": "df_vl_remote_controller_mobile",
+          "maxBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          }
+        },
+        {
+          "virtualLinkProfileId": "vlp_vl_remote_controller_data",
+          "virtualLinkDescId": "vl_remote_controller_data",
+          "flavourId": "df_vl_remote_controller_data",
+          "maxBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          }
+        },
+        {
+          "virtualLinkProfileId": "vlp_vl_remote_controller_mgmt",
+          "virtualLinkDescId": "vl_remote_controller_mgmt",
+          "flavourId": "df_vl_remote_controller_mgmt",
+          "maxBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          }
+        },
+        {
+          "virtualLinkProfileId": "vlp_vl_remote_controller_user",
+          "virtualLinkDescId": "vl_remote_controller_user",
+          "flavourId": "df_vl_remote_controller_user",
+          "maxBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          }
+        }
+      ],
+      "nsInstantiationLevel": [
+        {
+          "nsLevelId": "ns_ares2t_remote_controller_il_small",
+          "description": "Small instantiation level for the ARES2T remote_controller service",
+          "vnfToLevelMapping": [
+            {
+              "vnfProfileId": "vnfp_small_Ares2T_remote_controller",
+              "numberOfInstances": 1
+            }
+          ],
+          "virtualLinkToLevelMapping": [
+            {
+              "virtualLinkProfileId": "vlp_vl_remote_controller_ext_mobile",
+              "bitRateRequirements": {
+                "root": "1",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "vlp_vl_remote_controller_data",
+              "bitRateRequirements": {
+                "root": "1",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "vlp_vl_remote_controller_mgmt",
+              "bitRateRequirements": {
+                "root": "1",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "vlp_vl_remote_controller_user",
+              "bitRateRequirements": {
+                "root": "1",
+                "leaf": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "defaultNsInstantiationLevelId": "ns_ares2t_remote_controller_il_small",
+      "dependencies": []
+    }
+  ],
+  "security": {
+    "signature": "FC_NSD_SIGNATURE",
+    "algorithm": "FC_NSD_ALGORITHM",
+    "certificate": "FC_NSD_CERTIFICATE"
+  }
+}
