@@ -13,12 +13,14 @@ kpis:
     unit: 'ms'
     interval: '1s'
     metricIds: ['tracking_response_time']
+    kpiGraphType: LINE
   - kpiId: 'kpi_memory_usage'
     name: 'Memory usage must be lower than or equal to the objective.'
     formula: 'tracking_memory_usage'
     unit: 'MB'
     interval: '1s'
     metricIds: ['tracking_memory_usage']
+    kpiGraphType: LINE
 metrics:
   - metricId: 'cpu_consumption'
     name: 'Measurement of CPU consumption.'
@@ -26,12 +28,14 @@ metrics:
     unit: '%'
     interval: '1s'
     iMetricType: 'CPU_CONSUMPTION'
+    metricGraphType: LINE
   - metricId: 'memory_consumption'
     name: 'Measurement of memory consumption.'
     metricCollectionType: 'GAUGE'
     unit: 'GB'
     interval: '1s'
     iMetricType: 'MEMORY_CONSUMPTION'
+    metricGraphType: LINE
 vsBlueprintId: 'vsb_ares2t_tracker'
 ctxBlueprintIds:
   - 'ctx_delay'
