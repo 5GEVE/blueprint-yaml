@@ -84,26 +84,29 @@ connectivityServices:
 compatibleContextBlueprint:
   - 'ctx_smartcity_traffic'
 applicationMetrics:
-  - metricId: tracked_devices
-    name: Number of total tracked devices (distinct mac addresses)
-    metricCollectionType: CUMULATIVE
-    unit: devices
-    interval: 5s
-    topic: /app/tracked_devices
+  - metricId: 'cpu_consumption'
+    name: 'Measurement of CPU consumption.'
+    metricCollectionType: 'GAUGE'
+    unit: 'fraction'
+    interval: '1s'
     metricGraphType: LINE
-  - metricId: processed_records
-    name: Number of total processed records
-    metricCollectionType: CUMULATIVE
-    unit: records
-    interval: 5s
-    topic: /app/processed_records
+  - metricId: 'memory_consumption'
+    name: 'Measurement of memory consumption.'
+    metricCollectionType: 'GAUGE'
+    unit: 'GB'
+    interval: '1s'
     metricGraphType: LINE
-  - metricId: record_visualization_time
-    name: Time needed to process and visualize a record
-    metricCollectionType: GAUGE
-    unit: ms
-    interval: 1s
-    topic: /app/tracking_response_time
+  - metricId: 'storage_consumption'
+    name: 'Measurement of storage consumption.'
+    metricCollectionType: 'GAUGE'
+    unit: 'GB'
+    interval: '1s'
+    metricGraphType: LINE
+  - metricId: 'active_sensor'
+    name: 'Measurement of active_sensor.'
+    metricCollectionType: 'GAUGE'
+    unit: 'devices'
+    interval: '10m'
     metricGraphType: LINE
 compatibleSites:
   - ITALY_TURIN
