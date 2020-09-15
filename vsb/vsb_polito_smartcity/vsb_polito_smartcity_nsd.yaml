@@ -1,4 +1,4 @@
-# vsb_polito_smartcity_nsds.yaml
+# vsb_polito_smartcity_nsd.yaml
 ---
 nsdIdentifier: "vsb_polito_smartcity_nsd"
 designer: "NSD generator"
