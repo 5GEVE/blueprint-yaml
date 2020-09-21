@@ -3,12 +3,17 @@
 version: '1.0'
 name: TCB PoliTo SmartCity test case
 description: Test case to run the PoliTo SmartCity use case with synthetic traffic
-configurationScript: 'EXECUTE COMMAND ...'
-executionScript: 'SLEEP $$sleep$$time'
+configurationScript: 'EXECUTE_COMMAND /opt/datashipper/add_input_config \$\$topic_name;'
+executionScript: >
+  EXECUTE_COMMAND nohup /opt/datashipper/collect-cpu /opt/datashipper/output/$$metric.topic.cpu_consumption.csv >/dev/null 2>&1 < /dev/null &;
+  EXECUTE_COMMAND nohup /opt/datashipper/collect-memory /opt/datashipper/output/$$metric.topic.memory_consumption.csv >/dev/null 2>&1 < /dev/null &;
+  EXECUTE_COMMAND nohup /opt/datashipper/collect-storage /opt/datashipper/output/$$metric.topic.storage_consumption.csv >/dev/null 2>&1 < /dev/null &;
+  EXECUTE_COMMAND nohup /opt/datashipper/collect-sensors /opt/datashipper/output/$$metric.topic.active_sensor.csv >/dev/null 2>&1 < /dev/null &;
 userParameters:
   username: $$user
   password: $$password
 infrastructureParameters:
-  $$metric.topic.tracking_memory_usage: ''
-  $$metric.topic.tracking_response_time: ''
-  $$metric.topic.recognition_network_time: ''
+  $$metric.topic.cpu_consumption: ''
+  $$metric.topic.memory_consumption: ''
+  $$metric.topic.storage_consumption: ''
+  $$metric.topic.active_sensor: ''
