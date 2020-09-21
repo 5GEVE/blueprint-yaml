@@ -1,9 +1,14 @@
 # tcb_ares2t_tracker_1.yaml
 ---
-testcaseBlueprintId: 'polito_smartcity_testcase_1'
 version: '1.0'
-name: TCB PoliTo SmartCity test case 1
+name: TCB PoliTo SmartCity test case
 description: Test case to run the PoliTo SmartCity use case with synthetic traffic
-script: "## TODO ##"
+configurationScript: 'EXECUTE COMMAND ...'
+executionScript: 'SLEEP $$sleep$$time'
 userParameters:
+  username: $$user
+  password: $$password
 infrastructureParameters:
+  $$metric.topic.tracking_memory_usage: ''
+  $$metric.topic.tracking_response_time: ''
+  $$metric.topic.recognition_network_time: ''
