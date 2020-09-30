@@ -76,6 +76,7 @@
         "cp_dg_mgmt"
       ],
       "external": true,
+      "management": true,
       "name": "vl_dg_mgmt"
     },
     {
