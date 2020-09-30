@@ -52,6 +52,7 @@ connectivityServices:
   - sap_dg_mgmt
   - cp_dg_mgmt
   external: true
+  management: true
   name: vl_dg_mgmt
 - endPointIds:
   - sap_dg_out
