@@ -87,7 +87,7 @@ applicationMetrics:
   - metricId: 'cpu_consumption'
     name: 'Measurement of CPU consumption'
     metricCollectionType: 'GAUGE'
-    unit: 'fraction'
+    unit: '%'
     interval: '1s'
     metricGraphType: LINE
   - metricId: 'memory_consumption'
