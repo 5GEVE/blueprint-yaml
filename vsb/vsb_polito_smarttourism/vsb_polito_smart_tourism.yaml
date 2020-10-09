@@ -62,14 +62,26 @@ connectivityServices:
       - cp_database_mgmt
     external: true
 applicationMetrics:
-  - metricId: cpu_consumption
-    name: Measurement of the CPU consumption.
+  - metricId: cpu_consumption_db
+    name: Measurement of the CPU consumption for database.
     metricCollectionType: GAUGE
     metricGraphType: LINE
     unit: '%'
     interval: 1s
-  - metricId: memory_usage
-    name: Measurement of the memory consumption.
+  - metricId: cpu_consumption_serv
+    name: Measurement of the CPU consumption for video server.
+    metricCollectionType: GAUGE
+    metricGraphType: LINE
+    unit: '%'
+    interval: 1s
+  - metricId: memory_usage_db
+    name: Measurement of the memory consumption for database.
+    metricCollectionType: GAUGE
+    metricGraphType: LINE
+    unit: 'GB'
+    interval: 1s
+  - metricId: memory_usage_serv
+    name: Measurement of the memory consumption for video server.
     metricCollectionType: GAUGE
     metricGraphType: LINE
     unit: 'GB'
