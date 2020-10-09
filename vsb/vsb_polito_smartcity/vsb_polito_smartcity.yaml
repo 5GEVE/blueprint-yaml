@@ -84,26 +84,32 @@ connectivityServices:
 compatibleContextBlueprint:
   - 'ctx_smartcity_traffic'
 applicationMetrics:
-  - metricId: 'cpu_consumption'
-    name: 'Measurement of CPU consumption'
+  - metricId: 'cpu_consumption_vis'
+    name: 'Measurement of CPU consumption for visualization tool'
     metricCollectionType: 'GAUGE'
     unit: '%'
     interval: '1s'
     metricGraphType: LINE
-  - metricId: 'memory_consumption'
-    name: 'Measurement of memory consumption'
+  - metricId: 'cpu_consumption_mob'
+    name: 'Measurement of CPU consumption for mobility tracker'
+    metricCollectionType: 'GAUGE'
+    unit: '%'
+    interval: '1s'
+    metricGraphType: LINE
+  - metricId: 'memory_consumption_mob'
+    name: 'Measurement of memory consumption for mobility tracker'
     metricCollectionType: 'GAUGE'
     unit: 'GB'
     interval: '1s'
     metricGraphType: LINE
-  - metricId: 'storage_consumption'
-    name: 'Measurement of storage consumption'
+  - metricId: 'storage_consumption_mob'
+    name: 'Measurement of storage consumption for mobility tracker'
     metricCollectionType: 'GAUGE'
     unit: 'GB'
     interval: '1s'
     metricGraphType: LINE
-  - metricId: 'active_sensor'
-    name: 'Number of active sensors'
+  - metricId: 'active_sensor_mob'
+    name: 'Number of active sensors for mobility tracker'
     metricCollectionType: 'GAUGE'
     unit: 'devices'
     # 1s for the demo, restore to 10m after that

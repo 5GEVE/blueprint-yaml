@@ -1,28 +1,23 @@
-# tcb_ares2t_tracker_1.yaml
+# tcb_polito_smartcity_1.yaml
 ---
 version: '1.0'
 name: TCB PoliTo SmartCity test case
-description: Test case to run the PoliTo SmartCity use case with synthetic traffic
+description: Test case to run the PoliTo SmartCity use case
 # In configurationScript we setup the filebeat and run the metric collection
 configurationScript: >
-  EXECUTE_COMMAND vnf.visualization_tool.extcp.cp_tracker_ext_mobile.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config_cpu $$metric.topic.cpu_consumption;
-  EXECUTE_COMMAND vnf.mobility_tracker.extcp.cp_tracker_ext_mobile.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config_cpu $$metric.topic.cpu_consumption;
-  EXECUTE_COMMAND vnf.mobility_tracker.extcp.cp_tracker_ext_mobile.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config_ram $$metric.topic.memory_consumption;
-  EXECUTE_COMMAND vnf.mobility_tracker.extcp.cp_tracker_ext_mobile.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config_storage $$metric.topic.storage_consumption;
-  EXECUTE_COMMAND vnf.mobility_tracker.extcp.cp_tracker_ext_mobile.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config_scanner $$metric.topic.active_sensor;
-# In executionScript we run the traffic generator for the experiment
-# TODO check with Elian
-executionScript: SLEEP $$sleep$$time
+  EXECUTE_COMMAND 10.50.80.14 $$user:$$password sudo /opt/datashipper/add_input_config_cpu $$metric.topic.cpu_consumption_vis;
+  EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config_cpu $$metric.topic.cpu_consumption_mob;
+  EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config_ram $$metric.topic.memory_consumption_mob;
+  EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config_storage $$metric.topic.storage_consumption_mob;
+  EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config_scanner $$metric.topic.active_sensor_mob;
+executionScript: SLEEP $$sleep$$time; EXECUTE_COMMAND rm /opt/datashipper/configs/*.yml;
 userParameters:
   sleeping_time: $$sleep$$time
   username: $$user
   password: $$password
 infrastructureParameters:
-  # TODO Check VNF addresses with Elian
-  vnf.mobility_tracker.extcp.cp_tracker_ext_mobile.ipaddress: ''
-  vnf.visualization_tool.extcp.cp_tracker_ext_mobile.ipaddress: ''
-  # TODO ask Elian if one topic for two VMs is OK
-  $$metric.topic.cpu_consumption: ''
-  $$metric.topic.memory_consumption: ''
-  $$metric.topic.storage_consumption: ''
-  $$metric.topic.active_sensor: ''
+  $$metric.topic.cpu_consumption_vis: ''
+  $$metric.topic.cpu_consumption_mob: ''
+  $$metric.topic.memory_consumption_mob: ''
+  $$metric.topic.storage_consumption_mob: ''
+  $$metric.topic.active_sensor_mob: ''
