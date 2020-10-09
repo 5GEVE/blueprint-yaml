@@ -5,12 +5,12 @@ testCaseBlueprint:
   name: TCB PoliTo Smart Tourism test case
   description: Test case to run the PoliTo Smart Tourism use case
   # In configurationScript we setup the filebeat and run the metric collection
-  configurationScript: >
+  configurationScript:
     EXECUTE_COMMAND 10.50.80.7 $$user:$$password sudo /opt/datashipper/add_input_config_cpu $$metric.topic.cpu_consumption_db;
     EXECUTE_COMMAND 10.50.80.23 $$user:$$password sudo /opt/datashipper/add_input_config_cpu $$metric.topic.cpu_consumption_serv;
     EXECUTE_COMMAND 10.50.80.7 $$user:$$password sudo /opt/datashipper/add_input_config_ram $$metric.topic.memory_consumption_db;
     EXECUTE_COMMAND 10.50.80.23 $$user:$$password sudo /opt/datashipper/add_input_config_ram $$metric.topic.memory_consumption_serv;
-  executionScript: >
+  executionScript:
     SLEEP $$sleep$$time;
     EXECUTE_COMMAND 10.50.80.7 $$user:$$password sudo rm /opt/datashipper/configs/*.yml;
     EXECUTE_COMMAND 10.50.80.23 $$user:$$password sudo rm /opt/datashipper/configs/*.yml;
