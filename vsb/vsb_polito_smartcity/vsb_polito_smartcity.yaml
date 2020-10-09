@@ -85,28 +85,29 @@ compatibleContextBlueprint:
   - 'ctx_smartcity_traffic'
 applicationMetrics:
   - metricId: 'cpu_consumption'
-    name: 'Measurement of CPU consumption.'
+    name: 'Measurement of CPU consumption'
     metricCollectionType: 'GAUGE'
     unit: 'fraction'
     interval: '1s'
     metricGraphType: LINE
   - metricId: 'memory_consumption'
-    name: 'Measurement of memory consumption.'
+    name: 'Measurement of memory consumption'
     metricCollectionType: 'GAUGE'
     unit: 'GB'
     interval: '1s'
     metricGraphType: LINE
   - metricId: 'storage_consumption'
-    name: 'Measurement of storage consumption.'
+    name: 'Measurement of storage consumption'
     metricCollectionType: 'GAUGE'
     unit: 'GB'
     interval: '1s'
     metricGraphType: LINE
   - metricId: 'active_sensor'
-    name: 'Measurement of active_sensor.'
+    name: 'Number of active sensors'
     metricCollectionType: 'GAUGE'
     unit: 'devices'
-    interval: '10m'
+    # 1s for the demo, restore to 10m after that
+    interval: '1s'
     metricGraphType: LINE
 compatibleSites:
   - ITALY_TURIN
