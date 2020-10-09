@@ -1,0 +1,78 @@
+# vsb_polito_smart_tourism.yaml
+---
+blueprintId: vsb_polito_smart_tourism
+version: "1.0"
+name: PoliTo Smart Tourism
+description: Vertical Service Blueprint for 5G EVE Smart Tourism.
+parameters:
+atomicComponents:
+  - componentId: VR_server
+    serversNumber: 1
+    endPointsIds:
+      - cp_server_ext_mobile
+      - cp_server_data
+      - cp_server_mgmt
+  - componentId: VR_DB
+    serversNumber: 1
+    endPointsIds:
+      - cp_database_data
+      - cp_database_mgmt
+endPoints:
+  - endPointId: cp_server_ext_mobile
+    external: true
+    management: false
+    ranConnection: true
+  - endPointId: cp_server_data
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: cp_server_mgmt
+    external: true
+    management: true
+    ranConnection: false
+  - endPointId: cp_database_data
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: cp_database_mgmt
+    external: true
+    management: true
+    ranConnection: false
+  - endPointId: sap_server
+    external: true
+    management: false
+    ranConnection: true
+connectivityServices:
+  - name: vl_smarttourism_ext
+    management: false
+    endPointIds:
+      - cp_server_ext_mobile
+      - sap_server
+    external: true
+  - name: vl_smarttourism_data
+    management: false
+    endPointIds:
+      - cp_server_data
+      - cp_database_data
+    external: false
+  - name: vl_smarttourism_mgmt
+    management: true
+    endPointIds:
+      - cp_server_mgmt
+      - cp_database_mgmt
+    external: true
+applicationMetrics:
+  - metricId: cpu_consumption
+    name: Measurement of the CPU consumption.
+    metricCollectionType: GAUGE
+    metricGraphType: LINE
+    unit: '%'
+    interval: 1s
+  - metricId: memory_usage
+    name: Measurement of the memory consumption.
+    metricCollectionType: GAUGE
+    metricGraphType: LINE
+    unit: 'GB'
+    interval: 1s
+compatibleSites:
+  - ITALY_TURIN
