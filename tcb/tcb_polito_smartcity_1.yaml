@@ -11,7 +11,10 @@ testCaseBlueprint:
     EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config_ram $$metric.topic.memory_consumption_mob;
     EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config_storage $$metric.topic.storage_consumption_mob;
     EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config_scanner $$metric.topic.active_sensor_mob;
-  executionScript: SLEEP $$sleep$$time; EXECUTE_COMMAND sudo rm /opt/datashipper/configs/*.yml;
+  executionScript: >
+    SLEEP $$sleep$$time;
+    EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo rm /opt/datashipper/configs/*.yml;
+    EXECUTE_COMMAND 10.50.80.14 $$user:$$password sudo rm /opt/datashipper/configs/*.yml;
   userParameters:
     sleeping_time: $$sleep$$time
     username: $$user
