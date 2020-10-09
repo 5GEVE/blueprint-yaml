@@ -5,22 +5,20 @@ name: TCB PoliTo SmartCity test case
 description: Test case to run the PoliTo SmartCity use case with synthetic traffic
 # In configurationScript we setup the filebeat and run the metric collection
 configurationScript: >
-  EXECUTE_COMMAND vnf.mobility_tracker.extcp.cp_tracker_ext_mobile.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config $$metric.topic.cpu_consumption;
-  EXECUTE_COMMAND vnf.mobility_tracker.extcp.cp_tracker_ext_mobile.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config $$metric.topic.memory_consumption;
-  EXECUTE_COMMAND vnf.mobility_tracker.extcp.cp_tracker_ext_mobile.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config $$metric.topic.storage_consumption;
-  EXECUTE_COMMAND vnf.mobility_tracker.extcp.cp_tracker_ext_mobile.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config $$metric.topic.active_sensor;
-  EXECUTE_COMMAND vnf.mobility_tracker.extcp.cp_tracker_ext_mobile.ipaddress $$user:$$password sudo vnf.mobility_tracker.extcp.cp_tracker_ext_mobile.ipaddress $$user:$$password sudo nohup /opt/datashipper/collect-cpu /opt/datashipper/output/$$metric.topic.cpu_consumption.csv >/dev/null 2>&1 < /dev/null &;
-  EXECUTE_COMMAND vnf.mobility_tracker.extcp.cp_tracker_ext_mobile.ipaddress $$user:$$password sudo nohup /opt/datashipper/collect-memory /opt/datashipper/output/$$metric.topic.memory_consumption.csv >/dev/null 2>&1 < /dev/null &;
-  EXECUTE_COMMAND vnf.mobility_tracker.extcp.cp_tracker_ext_mobile.ipaddress $$user:$$password sudo nohup /opt/datashipper/collect-storage /opt/datashipper/output/$$metric.topic.storage_consumption.csv >/dev/null 2>&1 < /dev/null &;
-  EXECUTE_COMMAND vnf.mobility_tracker.extcp.cp_tracker_ext_mobile.ipaddress $$user:$$password sudo nohup /opt/datashipper/collect-sensors /opt/datashipper/output/$$metric.topic.active_sensor.csv >/dev/null 2>&1 < /dev/null &;
+  EXECUTE_COMMAND vnf.visualization_tool.extcp.cp_tracker_ext_mobile.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config_cpu $$metric.topic.cpu_consumption;
+  EXECUTE_COMMAND vnf.mobility_tracker.extcp.cp_tracker_ext_mobile.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config_cpu $$metric.topic.cpu_consumption;
+  EXECUTE_COMMAND vnf.mobility_tracker.extcp.cp_tracker_ext_mobile.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config_ram $$metric.topic.memory_consumption;
+  EXECUTE_COMMAND vnf.mobility_tracker.extcp.cp_tracker_ext_mobile.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config_storage $$metric.topic.storage_consumption;
+  EXECUTE_COMMAND vnf.mobility_tracker.extcp.cp_tracker_ext_mobile.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config_scanner $$metric.topic.active_sensor;
 # In executionScript we run the traffic generator for the experiment
 executionScript: >
-  EXECUTE_COMMAND run_generator.sh
+  EXECUTE_COMMAND sleep 120
 userParameters:
   username: $$user
   password: $$password
 infrastructureParameters:
   vnf.mobility_tracker.extcp.cp_tracker_ext_mobile.ipaddress: ''
+  vnf.visualization_tool.extcp.cp_tracker_ext_mobile.ipaddress: ''
   $$metric.topic.cpu_consumption: ''
   $$metric.topic.memory_consumption: ''
   $$metric.topic.storage_consumption: ''
