@@ -1,8 +1,8 @@
-# vsb_polito_smart_tourism.yaml
+# vsb_cnit_smart_tourism.yaml
 ---
-blueprintId: vsb_polito_smart_tourism
+blueprintId: vsb_cnit_smart_tourism
 version: "1.0"
-name: PoliTo Smart Tourism
+name: CNIT Smart Tourism
 description: Vertical Service Blueprint for 5G EVE Smart Tourism.
 parameters:
 atomicComponents:

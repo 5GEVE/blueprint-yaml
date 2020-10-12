@@ -1,9 +1,9 @@
-# tcb_polito_smarttourism_1.yaml
+# tcb_cnit_smarttourism_1.yaml
 ---
 testCaseBlueprint:
   version: '1.0'
-  name: TCB PoliTo Smart Tourism test case
-  description: Test case to run the PoliTo Smart Tourism use case
+  name: TCB CNIT Smart Tourism test case
+  description: Test case to run the CNIT Smart Tourism use case
   # In configurationScript we setup the filebeat and run the metric collection
   configurationScript:
     EXECUTE_COMMAND 10.50.80.7 $$user:$$password sudo /opt/datashipper/add_input_config_cpu $$metric.topic.cpu_consumption_db;
