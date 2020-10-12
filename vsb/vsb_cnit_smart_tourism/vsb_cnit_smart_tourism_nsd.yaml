@@ -1,8 +1,8 @@
-nsdIdentifier: vsb_polito_smart_tourism_nsd
+nsdIdentifier: vsb_cnit_smart_tourism_nsd
 designer: NSD generator
 version: '1.0'
-nsdName: PoliTo Smart Tourism NSD
-nsdInvariantId: vsb_polito_smart_tourism_nsd
+nsdName: CNIT Smart Tourism NSD
+nsdInvariantId: vsb_cnit_smart_tourism_nsd
 vnfdId:
   - VR_server
   - VR_DB
@@ -18,38 +18,38 @@ sapd:
         iPAddressType: IPv4
         numberOfIpAddress: 1
     sapAddressAssignment: false
-    nsVirtualLinkDescId: vl_smarttourism_ext
+    nsVirtualLinkDescId: vl_smart_tourism_ext
 virtualLinkDesc:
-  - virtualLinkDescId: vl_smarttourism_ext
+  - virtualLinkDescId: vl_smart_tourism_ext
     virtualLinkDescProvider: NSD generator
     virtuaLinkDescVersion: '1.0'
     connectivityType:
       layerProtocol: IPV4
       flowPattern: ''
     virtualLinkDf:
-      - flavourId: vl_smarttourism_ext_df
+      - flavourId: vl_smart_tourism_ext_df
         serviceAvaibilityLevel: LEVEL_1
-  - virtualLinkDescId: vl_smarttourism_data
+  - virtualLinkDescId: vl_smart_tourism_data
     virtualLinkDescProvider: NSD generator
     virtuaLinkDescVersion: '1.0'
     connectivityType:
       layerProtocol: IPV4
       flowPattern: ''
     virtualLinkDf:
-      - flavourId: vl_smarttourism_data_df
+      - flavourId: vl_smart_tourism_data_df
         serviceAvaibilityLevel: LEVEL_1
-  - virtualLinkDescId: vl_smarttourism_mgmt
+  - virtualLinkDescId: vl_smart_tourism_mgmt
     virtualLinkDescProvider: NSD generator
     virtuaLinkDescVersion: '1.0'
     connectivityType:
       layerProtocol: IPV4
       flowPattern: ''
     virtualLinkDf:
-      - flavourId: vl_smarttourism_mgmt_df
+      - flavourId: vl_smart_tourism_mgmt_df
         serviceAvaibilityLevel: LEVEL_1
 nsDf:
-  - nsDfId: vsb_polito_smart_tourism_df
-    flavourKey: vsb_polito_smart_tourism_df_fk
+  - nsDfId: vsb_cnit_smart_tourism_df
+    flavourKey: vsb_cnit_smart_tourism_df_fk
     vnfProfile:
       - vnfProfileId: VR_server_vnfp
         vnfdId: VR_server
@@ -58,13 +58,13 @@ nsDf:
         minNumberOfInstances: 1
         maxNumberOfInstances: 1
         nsVirtualLinkConnectivity:
-          - virtualLinkProfileId: vl_smarttourism_ext_vlp
+          - virtualLinkProfileId: vl_smart_tourism_ext_vlp
             cpdId:
               - cp_server_ext_mobile
-          - virtualLinkProfileId: vl_smarttourism_data_vlp
+          - virtualLinkProfileId: vl_smart_tourism_data_vlp
             cpdId:
               - cp_server_data
-          - virtualLinkProfileId: vl_smarttourism_mgmt_vlp
+          - virtualLinkProfileId: vl_smart_tourism_mgmt_vlp
             cpdId:
               - cp_server_mgmt
       - vnfProfileId: VR_DB_vnfp
@@ -74,34 +74,34 @@ nsDf:
         minNumberOfInstances: 1
         maxNumberOfInstances: 1
         nsVirtualLinkConnectivity:
-          - virtualLinkProfileId: vl_smarttourism_data_vlp
+          - virtualLinkProfileId: vl_smart_tourism_data_vlp
             cpdId:
               - cp_database_data
-          - virtualLinkProfileId: vl_smarttourism_mgmt_vlp
+          - virtualLinkProfileId: vl_smart_tourism_mgmt_vlp
             cpdId:
               - cp_database_mgmt
     virtualLinkProfile:
-      - virtualLinkProfileId: vl_smarttourism_ext_vlp
-        virtualLinkDescId: vl_smarttourism_ext
-        flavourId: vl_smarttourism_ext_df
+      - virtualLinkProfileId: vl_smart_tourism_ext_vlp
+        virtualLinkDescId: vl_smart_tourism_ext
+        flavourId: vl_smart_tourism_ext_df
         maxBitrateRequirements:
           root: '1'
           leaf: '1'
         minBitrateRequirements:
           root: '1'
           leaf: '1'
-      - virtualLinkProfileId: vl_smarttourism_data_vlp
-        virtualLinkDescId: vl_smarttourism_data
-        flavourId: vl_smarttourism_data_df
+      - virtualLinkProfileId: vl_smart_tourism_data_vlp
+        virtualLinkDescId: vl_smart_tourism_data
+        flavourId: vl_smart_tourism_data_df
         maxBitrateRequirements:
           root: '1'
           leaf: '1'
         minBitrateRequirements:
           root: '1'
           leaf: '1'
-      - virtualLinkProfileId: vl_smarttourism_mgmt_vlp
-        virtualLinkDescId: vl_smarttourism_mgmt
-        flavourId: vl_smarttourism_mgmt_df
+      - virtualLinkProfileId: vl_smart_tourism_mgmt_vlp
+        virtualLinkDescId: vl_smart_tourism_mgmt
+        flavourId: vl_smart_tourism_mgmt_df
         maxBitrateRequirements:
           root: '1'
           leaf: '1'
@@ -109,7 +109,7 @@ nsDf:
           root: '1'
           leaf: '1'
     nsInstantiationLevel:
-      - nsLevelId: vsb_polito_smart_tourism_il_default
+      - nsLevelId: vsb_cnit_smart_tourism_il_default
         description: Default Instantiation Level
         vnfToLevelMapping:
           - vnfProfileId: VR_server_vnfp
@@ -117,19 +117,19 @@ nsDf:
           - vnfProfileId: VR_DB_vnfp
             numberOfInstances: 1
         virtualLinkToLevelMapping:
-          - virtualLinkProfileId: vl_smarttourism_ext_vlp
+          - virtualLinkProfileId: vl_smart_tourism_ext_vlp
             bitRateRequirements:
               root: '1'
               leaf: '1'
-          - virtualLinkProfileId: vl_smarttourism_data_vlp
+          - virtualLinkProfileId: vl_smart_tourism_data_vlp
             bitRateRequirements:
               root: '1'
               leaf: '1'
-          - virtualLinkProfileId: vl_smarttourism_mgmt_vlp
+          - virtualLinkProfileId: vl_smart_tourism_mgmt_vlp
             bitRateRequirements:
               root: '1'
               leaf: '1'
-    defaultNsInstantiationLevelId: vsb_polito_smart_tourism_il_default
+    defaultNsInstantiationLevelId: vsb_cnit_smart_tourism_il_default
 security:
   signature: FC_NSD_SIGNATURE
   algorithm: FC_NSD_ALGORITHM

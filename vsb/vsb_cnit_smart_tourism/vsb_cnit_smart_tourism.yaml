@@ -43,19 +43,19 @@ endPoints:
     management: false
     ranConnection: true
 connectivityServices:
-  - name: vl_smarttourism_ext
+  - name: vl_smart_tourism_ext
     management: false
     endPointIds:
       - cp_server_ext_mobile
       - sap_server
     external: true
-  - name: vl_smarttourism_data
+  - name: vl_smart_tourism_data
     management: false
     endPointIds:
       - cp_server_data
       - cp_database_data
     external: false
-  - name: vl_smarttourism_mgmt
+  - name: vl_smart_tourism_mgmt
     management: true
     endPointIds:
       - cp_server_mgmt
