@@ -7,8 +7,8 @@ testCaseBlueprint:
   # In configurationScript we setup the filebeat and run the metric collection
   configurationScript:
     EXECUTE_COMMAND 10.50.80.7 $$user:$$password sudo /opt/datashipper/add_input_config_cpu $$metric.topic.cpu_consumption_db;
-    EXECUTE_COMMAND 10.50.80.23 $$user:$$password sudo /opt/datashipper/add_input_config_cpu $$metric.topic.cpu_consumption_serv;
     EXECUTE_COMMAND 10.50.80.7 $$user:$$password sudo /opt/datashipper/add_input_config_ram $$metric.topic.memory_consumption_db;
+    EXECUTE_COMMAND 10.50.80.23 $$user:$$password sudo /opt/datashipper/add_input_config_cpu $$metric.topic.cpu_consumption_serv;
     EXECUTE_COMMAND 10.50.80.23 $$user:$$password sudo /opt/datashipper/add_input_config_ram $$metric.topic.memory_consumption_serv;
   executionScript:
     SLEEP $$sleep$$time;
@@ -20,6 +20,6 @@ testCaseBlueprint:
     password: $$password
   infrastructureParameters:
     $$metric.topic.cpu_consumption_db: ''
-    $$metric.topic.cpu_consumption_serv: ''
     $$metric.topic.memory_consumption_db: ''
+    $$metric.topic.cpu_consumption_serv: ''
     $$metric.topic.memory_consumption_serv: ''

@@ -68,19 +68,19 @@ applicationMetrics:
     metricGraphType: LINE
     unit: '%'
     interval: 1s
+  - metricId: memory_consumption_db
+    name: Measurement of the memory consumption for database.
+    metricCollectionType: GAUGE
+    metricGraphType: LINE
+    unit: 'GB'
+    interval: 1s
   - metricId: cpu_consumption_serv
     name: Measurement of the CPU consumption for video server.
     metricCollectionType: GAUGE
     metricGraphType: LINE
     unit: '%'
     interval: 1s
-  - metricId: memory_usage_db
-    name: Measurement of the memory consumption for database.
-    metricCollectionType: GAUGE
-    metricGraphType: LINE
-    unit: 'GB'
-    interval: 1s
-  - metricId: memory_usage_serv
+  - metricId: memory_consumption_serv
     name: Measurement of the memory consumption for video server.
     metricCollectionType: GAUGE
     metricGraphType: LINE
