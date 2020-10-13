@@ -1,3 +1,5 @@
+# vsb_cnit_smart_tourism_nsd.yaml
+---
 nsdIdentifier: vsb_cnit_smart_tourism_nsd
 designer: NSD generator
 version: '1.0'
