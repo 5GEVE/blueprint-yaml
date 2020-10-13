@@ -1,9 +1,9 @@
-# tcb_polito_smartcity_1.yaml
+# tcb_cnit_smartcity_1.yaml
 ---
 testCaseBlueprint:
   version: '1.0'
-  name: TCB PoliTo SmartCity test case
-  description: Test case to run the PoliTo SmartCity use case
+  name: TCB CNIT SmartCity test case
+  description: Test case to run the CNIT SmartCity use case
   # In configurationScript we setup the filebeat and run the metric collection
   configurationScript:
     EXECUTE_COMMAND 10.50.80.14 $$user:$$password sudo /opt/datashipper/add_input_config_cpu $$metric.topic.cpu_consumption_vis;
