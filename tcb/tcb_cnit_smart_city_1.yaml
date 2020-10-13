@@ -16,7 +16,7 @@ testCaseBlueprint:
     EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo rm /opt/datashipper/configs/*.yml;
     EXECUTE_COMMAND 10.50.80.14 $$user:$$password sudo rm /opt/datashipper/configs/*.yml;
   userParameters:
-    sleeping_time: $$sleep$$time
+    duration: $$sleep$$time
     username: $$user
     password: $$password
   infrastructureParameters:
