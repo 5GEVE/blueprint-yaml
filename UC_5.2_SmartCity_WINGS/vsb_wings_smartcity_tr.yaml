@@ -1,0 +1,17 @@
+translationRules:
+  - input:
+      - parameterId: 'number_of_nodes'
+        minValue: 0
+        maxValue: 1000
+    nsdId: 'nsd_wings_small'
+    nsdVersion: '1.0'
+    nsFlavourId: 'fl_wings_small'
+    nsInstantiationLevelId: 'il_wings_small'
+  - input:
+      - parameterId: 'number_of_nodes'
+        minValue: 1001
+        maxValue: 100000
+    nsdId: 'nsd_wings_big'
+    nsdVersion: '1.0'
+    nsFlavourId: 'fl_wings_big'
+    nsInstantiationLevelId: 'il_wings_big'

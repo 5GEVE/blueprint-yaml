@@ -1,0 +1,146 @@
+# vsb_wings_smartcity_nsds.yaml
+---
+- nsdIdentifier: "vsb_wings_smartcity_nsd"
+  designer: "NSD generator"
+  version: "1.0"
+  nsdName: "WINGS smartcity NSD"
+  nsdInvariantId: "vsb_wings_smartcity_nsd"
+  vnfdId:
+    - "smartcity_platform"
+  sapd:
+    - cpdId: "sap_monitored_nodes"
+      layerProtocol: "IPV4"
+      cpRole: "ROOT"
+      addressData:
+        - addressType: "IP_ADDRESS"
+          iPAddressAssignment: false
+          floatingIpActivated: true
+          management: false
+          iPAddressType: "IPv4"
+          numberOfIpAddress: 1
+      sapAddressAssignment: false
+      nsVirtualLinkDescId: "vl_platform_ext_data"
+    - cpdId: "sap_platform_mgmt"
+      layerProtocol: "IPV4"
+      cpRole: "ROOT"
+      addressData:
+        - addressType: "IP_ADDRESS"
+          iPAddressAssignment: false
+          floatingIpActivated: true
+          management: false
+          iPAddressType: "IPv4"
+          numberOfIpAddress: 1
+      sapAddressAssignment: false
+      nsVirtualLinkDescId: "vl_smartcity_mgmt"
+    - cpdId: "sap_platform_user"
+      layerProtocol: "IPV4"
+      cpRole: "ROOT"
+      addressData:
+        - addressType: "IP_ADDRESS"
+          iPAddressAssignment: false
+          floatingIpActivated: true
+          management: false
+          iPAddressType: "IPv4"
+          numberOfIpAddress: 1
+      sapAddressAssignment: false
+      nsVirtualLinkDescId: "vl_smartcity_user"
+  virtualLinkDesc:
+    - virtualLinkDescId: "vl_platform_ext_data"
+      virtualLinkDescProvider: "NSD generator"
+      virtuaLinkDescVersion: "1.0"
+      connectivityType:
+        layerProtocol: "IPV4"
+        flowPattern: ""
+      virtualLinkDf:
+        - flavourId: "vl_platform_ext_data_df"
+          serviceAvaibilityLevel: "LEVEL_1"
+    - virtualLinkDescId: "vl_smartcity_mgmt"
+      virtualLinkDescProvider: "NSD generator"
+      virtuaLinkDescVersion: "1.0"
+      connectivityType:
+        layerProtocol: "IPV4"
+        flowPattern: ""
+      virtualLinkDf:
+        - flavourId: "vl_smartcity_mgmt_df"
+          serviceAvaibilityLevel: "LEVEL_1"
+    - virtualLinkDescId: "vl_smartcity_user"
+      virtualLinkDescProvider: "NSD generator"
+      virtuaLinkDescVersion: "1.0"
+      connectivityType:
+        layerProtocol: "IPV4"
+        flowPattern: ""
+      virtualLinkDf:
+        - flavourId: "vl_smartcity_user_df"
+          serviceAvaibilityLevel: "LEVEL_1"
+  nsDf:
+    - nsDfId: "vsb_wings_smartcity_df"
+      flavourKey: "vsb_wings_smartcity_df_fk"
+      vnfProfile:
+        - vnfProfileId: "smartcity_platform_vnfp"
+          vnfdId: "smartcity_platform"
+          flavourId: "smartcity_platform_vnf_df"
+          instantiationLevel: "smartcity_platform_vnf_il"
+          minNumberOfInstances: 1
+          maxNumberOfInstances: 1
+          nsVirtualLinkConnectivity:
+            - virtualLinkProfileId: "vl_utilites_ext_data_vlp"
+              cpdId:
+                - "cp_platform_data"
+            - virtualLinkProfileId: "vl_smartcity_mgmt_vlp"
+              cpdId:
+                - "cp_platform_mgmt"
+            - virtualLinkProfileId: "vl_smartcity_user_vlp"
+              cpdId:
+                - "cp_platform_user"
+      virtualLinkProfile:
+        - virtualLinkProfileId: "vl_smartcity_ext_data_vlp"
+          virtualLinkDescId: "vl_smartcity_ext_data"
+          flavourId: "vl_smartcity_ext_data_df"
+          maxBitrateRequirements:
+            root: "1"
+            leaf: "1"
+          minBitrateRequirements:
+            root: "1"
+            leaf: "1"
+        - virtualLinkProfileId: "vl_smartcity_mgmt_vlp"
+          virtualLinkDescId: "vl_smartcity_mgmt"
+          flavourId: "vl_smartcity_mgmt_df"
+          maxBitrateRequirements:
+            root: "1"
+            leaf: "1"
+          minBitrateRequirements:
+            root: "1"
+            leaf: "1"
+        - virtualLinkProfileId: "vl_smartcity_user_vlp"
+          virtualLinkDescId: "vl_smartcity_user"
+          flavourId: "vl_smartcity_user_df"
+          maxBitrateRequirements:
+            root: "1"
+            leaf: "1"
+          minBitrateRequirements:
+            root: "1"
+            leaf: "1"
+      nsInstantiationLevel:
+        - nsLevelId: "vsb_wings_smartcity_il_default"
+          description: "Default Instantiation Level"
+          vnfToLevelMapping:
+            - vnfProfileId: "smartcity_platform_vnfp"
+              numberOfInstances: 1
+          virtualLinkToLevelMapping:
+            - virtualLinkProfileId: "vl_smartcity_ext_data_vlp"
+              bitRateRequirements:
+                root: "1"
+                leaf: "1"
+            - virtualLinkProfileId: "vl_smartcity_mgmt_vlp"
+              bitRateRequirements:
+                root: "1"
+                leaf: "1"
+            - virtualLinkProfileId: "vl_smartcity_user_vlp"
+              bitRateRequirements:
+                root: "1"
+                leaf: "1"
+      defaultNsInstantiationLevelId: "vsb_wings_smartcity_il_default"
+  security:
+    signature: "WINGS_NSD_SIGNATURE"
+    algorithm: "WINGS_NSD_ALGORITHM"
+    certificate: "WINGS_NSD_CERTIFICATE"

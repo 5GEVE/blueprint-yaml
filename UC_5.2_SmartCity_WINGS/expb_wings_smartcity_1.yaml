@@ -1,0 +1,38 @@
+# expb_wings_smartcity_1.yaml
+---
+expBlueprintId: 'expb_wings_smartcity_1'
+version: '1.0'
+name: 'Experiment for WINGS Smartcity use case.'
+description: 'Experiment to test the performance of the WINGS  Smartcity use-case.'
+sites:
+  - GREECE_ATHENS
+kpis:
+  - kpiId: 'number_of_sensors'
+    name: 'Number of sensors target is ~ 60K/km^2'
+    formula: 'throughput / average_throughput_per_sensor'
+    unit: 'devices'
+    interval: '5s'
+    metricIds: ['number_of_sensors']
+  - kpiId: 'total_throughput'
+    name: 'Total throughput achieved'
+    formula: 'bandwidth'
+    unit: 'Mbps'
+    interval: '1s'
+    metricIds: ['total_throughput']
+metrics:
+  - metricId: 'latency'
+    name: 'Measurement of latency.'
+    metricCollectionType: 'GAUGE'
+    unit: 'ms'
+    interval: '1s'
+    iMetricType: 'LATENCY'
+  - metricId: 'bandwidth'
+    name: 'Measurement of bandwidth.'
+    metricCollectionType: 'GAUGE'
+    unit: 'Mbps'
+    interval: '1s'
+    iMetricType: 'BANDWIDTH'
+vsBlueprintId: 'vsb_wings_smartcity'
+ctxBlueprintIds: []
+tcBlueprintIds: 
+    - 'tcb_wings_platform_reconfiguration_1'
