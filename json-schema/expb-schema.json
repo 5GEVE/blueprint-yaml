@@ -49,6 +49,15 @@
           "interval": {
             "type": "string"
           },
+          "kpiGraphType": {
+            "type": "string",
+            "enum": [
+              "LINE",
+              "PIE",
+              "COUNTER",
+              "GAUGE"
+            ]
+          },
           "metricIds": {
             "type": "array",
             "items": {
@@ -67,15 +76,13 @@
           "iMetricType": {
             "type": "string",
             "enum": [
-              "LOST_PKT",
-              "RECEIVED_PKT",
-              "SENT_PKT",
-              "BANDWIDTH",
-              "LATENCY",
-              "JITTER",
-              "CPU_CONSUMPTION",
-              "MEMORY_CONSUMPTION",
-              "OTHER"
+              "USER_DATA_RATE_DOWNLINK",
+              "USER_DATA_RATE_UPLINK",
+              "CAPACITY",
+              "LATENCY_USERPLANE",
+              "LATENCY_CONTROLPLANE",
+              "DEVICE_DENSITY",
+              "MOBILITY"
             ]
           },
           "metricId": {
@@ -97,9 +104,25 @@
           },
           "interval": {
             "type": "string"
+          },
+          "metricGraphType": {
+            "type": "string",
+            "enum": [
+              "LINE",
+              "PIE",
+              "COUNTER",
+              "GAUGE"
+            ]
           }
         }
       }
+    },
+    "deploymentType": {
+      "type": "string",
+      "enum": [
+        "ON_DEMAND",
+        "STATIC"
+      ]
     },
     "vsBlueprintId": {
       "type": "string"

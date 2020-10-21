@@ -62,11 +62,22 @@
               "type": "string"
             }
           },
+          "nfvId": {
+            "type": "string"
+          },
           "lifecycleOperations": {
             "type": "object",
             "additionalProperties": {
               "type": "string"
             }
+          },
+          "placement": {
+            "type": "string",
+            "enum": [
+              "EDGE",
+              "UE",
+              "CLOUD"
+            ]
           }
         }
       }
@@ -172,6 +183,15 @@
             "enum": [
               "CUMULATIVE",
               "DELTA",
+              "GAUGE"
+            ]
+          },
+          "metricGraphType": {
+            "type": "string",
+            "enum": [
+              "LINE",
+              "PIE",
+              "COUNTER",
               "GAUGE"
             ]
           },

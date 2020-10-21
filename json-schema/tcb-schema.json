@@ -14,7 +14,13 @@
     "testcaseBlueprintId": {
       "type": "string"
     },
-    "script": {
+    "executionScript": {
+      "type": "string"
+    },
+    "configurationScript": {
+      "type": "string"
+    },
+    "resetConfigScript": {
       "type": "string"
     },
     "userParameters": {
