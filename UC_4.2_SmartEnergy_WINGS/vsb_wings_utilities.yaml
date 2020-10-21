@@ -1,0 +1,89 @@
+# vsb_wings_utilities.yaml
+---
+blueprintId: 'vsb_wings_utilities'
+version: '1.0'
+name: 'Utilities service'
+description: 'Blueprint for 5G EVE utilities service using 5G network to monitor and configure the power grid.'
+parameters:
+  - parameterId: 'number_of_nodes'
+    parameterName: 'Number of monitored Nodes'
+    parameterType: 'number'
+    parameterDescription: 'Number of Monitored Nodes (Mandatory)'
+    applicabilityField: 'monitored_node'
+atomicComponents:
+  - componentId: 'UtilitiesPlatform'
+    serversNumber: 1
+    imagesUrls: ['utilities_platform']
+    endPointsIds: 
+      - cp_platform_data
+      - cp_platform_mgmt
+      - cp_monitored_nodes
+      - cp_platform_user
+endPoints:
+  - endPointId: 'cp_platform_data'
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: 'cp_platform_mgmt'
+    external: true
+    management: true
+    ranConnection: false
+  - endPointId: 'cp_monitored_nodes'
+    external: true
+    management: false
+    ranConnection: true
+  - endPointId: 'cp_platform_user'
+    external: true
+    management: false
+    ranConnection: false
+  - endPointId: sap_platform_user
+    external: true
+    management: false
+    ranConnection: false
+  - endPointId: sap_platform_mgmt
+    external: true
+    management: true
+    ranConnection: false
+  - endPointId: sap_monitored_nodes
+    external: true
+    management: false
+    ranConnection: true
+connectivityServices:
+  - name: vl_utilities_ext_data
+    management: false
+    endPointIds:
+      - sap_monitored_nodes
+      - cp_platform_data
+    external: true
+  - name: vl_utilities_mgmt
+    management: true
+    endPointIds:
+      - sap_platform_mgmt
+      - cp_platform_mgmt
+    external: true
+  - name: vl_utilities_user
+    management: false
+    endPointIds:
+      - cp_platform_user
+      - sap_platform_user
+    external: true
+compatibleContextBlueprint: ['ctx_impairments', 'ctx_bg_req_traffic']
+applicationMetrics:
+  - metricId: 'monitored_nodes'
+    name: 'Number of total monitored nodes'
+    metricCollectionType: 'GAUGE'
+    unit: 'nodes'
+    interval: '5s'
+    topic: '/app/monitored_nodes'
+  - metricId: 'power_restoration_time'
+    name: 'Measurement of the time to restore power to a node'
+    metricCollectionType: GAUGE
+    unit: 'ms'
+    interval: '1s'
+    topic: '/app/power_restoration_time'
+  - metricId: 'power_restoration_decision_time'
+    name: 'Measurement of the time to decide the route that will restore power to a node'
+    metricCollectionType: GAUGE
+    unit: 'ms'
+    interval: '1s'
+    topic: '/app/power_restoration_decision_time'

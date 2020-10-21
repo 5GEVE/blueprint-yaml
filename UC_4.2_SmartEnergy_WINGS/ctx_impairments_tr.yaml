@@ -1,0 +1,23 @@
+translationRules:
+  - input:
+      - parameterId: 'delay'
+        minValue: 0
+        maxValue: 50
+      - parameterId: 'loss'
+        minValue: 0
+        maxValue: 10
+    nsdId: 'nsd_delay_small'
+    nsdVersion: '1.0'
+    nsFlavourId: 'fl_delay_small'
+    nsInstantiationLevelId: 'il_delay_small'
+  - input:
+      - parameterId: 'delay'
+        minValue: 51
+        maxValue: 200
+      - parameterId: 'loss'
+        minValue: 11
+        maxValue: 25
+    nsdId: 'nsd_delay_medium'
+    nsdVersion: '1.0'
+    nsFlavourId: 'fl_dealy_medium'
+    nsInstantiationLevelId: 'il_dealy_medium'

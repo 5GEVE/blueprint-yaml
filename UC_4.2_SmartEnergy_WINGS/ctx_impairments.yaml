@@ -1,0 +1,81 @@
+# ctx_impairments.yaml
+---
+blueprintId: 'ctx_impairments'
+version: '1.0'
+name: 'Context Blueprint Artificial Network Impairments'
+description: 'Context Blueprint to add artificial network impairments to a VSB.'
+parameters:
+  - parameterId: 'delay'
+    parameterName: 'Delay'
+    parameterType: 'number'
+    parameterDescription: 'The amount of delay in ms.'
+    applicabilityField: 'context'
+  - parameterId: 'jitter'
+    parameterName: 'Jitter'
+    parameterType: 'number'
+    parameterDescription: 'The jitter of the packets in ms.'
+    applicabilityField: 'context'
+  - parameterId: 'jitter_distribution'
+    parameterName: 'Jitter Distribution'
+    parameterType: 'string'
+    parameterDescription: 'The jitter distribution type.'
+    applicabilityField: 'context'
+  - parameterId: 'correlation_value'
+    parameterName: 'Correlation value'
+    parameterType: 'number'
+    parameterDescription: 'The correlation value  for the uniform distribution of jitter in percentage'
+    applicabilityField: 'context'
+  - parameterId: 'loss'
+    parameterName: 'Packet Loss'
+    parameterType: 'number'
+    parameterDescription: 'The packet loss rate in percentage.'
+    applicabilityField: 'context'
+configurableParameters:
+  - 'delay'
+  - 'jitter'
+  - 'jitter_distribution'
+  - 'correlation_value'
+  - 'loss'
+atomicComponents:
+  - componentId: 'impariments node'
+    serversNumber: 1
+    imagesUrls: ['/path/to/impairments.qcow']
+    endPointsIds: 
+      - cp_data_in
+      - cp_data_out
+      - cp_mgmt
+endPoints:
+  - endPointId: cp_data_in
+    external: false
+    management: false
+    ranConnection: false
+    - endPointId: cp_data_out
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: cp_mgmt
+    external: false
+    management: true
+    ranConnection: false
+  - endPointId: sap_mgmt
+    external: true
+    management: true
+    ranConnection: false
+connectivityServices:
+  - name: vl_data_in
+    management: false
+    endPointIds:
+      - cp_data_in
+  - name: vl_data_out
+    management: false
+    endPointIds:
+      - cp_data_out
+  - name: vl_mgmt
+    management: true
+    endPointIds:
+      - cp_mgmt
+      - sap_mgmt
+compatibleSites:
+  - GREECE_ATHENS
+compositionStrategy: CONNECT
+applicationMetrics:
