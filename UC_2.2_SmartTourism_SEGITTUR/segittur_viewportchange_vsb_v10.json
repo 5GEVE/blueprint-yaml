@@ -1,0 +1,57 @@
+{
+  "blueprintId": "vsb_segittur_viewportchange_tc1_1",
+  "version": "1.0",
+  "name": "Effect of latency in viewport changes 1",
+  "description": "Effect of latency in viewport changes 1",
+  "atomicComponents": [
+    {
+      "componentId": "ue",
+      "serversNumber": 1,
+      "endPointsIds": [
+        "cp_ue"
+      ]
+    },
+    {
+      "componentId": "serveraws",
+      "serversNumber": 1,
+      "endPointsIds": [
+        "cp_serveraws"
+      ]
+    }
+  ],
+  "endPoints": [
+    {
+      "endPointId": "cp_ue",
+      "external": true,
+      "management": false,
+      "ranConnection": true
+    },
+    {
+      "endPointId": "cp_serveraws",
+      "external": true,
+      "management": false,
+      "ranConnection": false
+    }
+  ],
+  "connectivityServices": [
+    {
+      "name": "vl_ue",
+      "management": false,
+      "endPointIds": [
+        "cp_ue"
+      ],
+      "external": true
+    },
+    {
+      "name": "vl_serveraws",
+      "management": false,
+      "endPointIds": [
+        "cp_serveraws"
+      ],
+      "external": true
+    }
+  ],
+  "compatibleSites": [
+    "SPAIN_5TONIC"
+  ]
+}

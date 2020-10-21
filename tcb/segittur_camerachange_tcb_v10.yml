@@ -1,7 +1,0 @@
-testcaseBlueprintId: tcb_segittur_camerachange_tc2_1
-version: '1.0'
-name: TCB SEGITTUR camera changes tc2 1
-description: TCB to run the SEGITTUR camera changes tc2 1
-executionScript: sleep $$sleepTime;
-userParameters:
-  executionTime: $$sleepTime

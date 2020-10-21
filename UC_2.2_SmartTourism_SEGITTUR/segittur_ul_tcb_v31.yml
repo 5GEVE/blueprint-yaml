@@ -1,0 +1,7 @@
+testcaseBlueprintId: segittur_testcase_31
+version: '3.1'
+name: TCB SEGITTUR test case 31
+description: Test case to run the SEGITTUR use case 31
+executionScript: sleep $$sleepTime;
+userParameters:
+  executionTime: $$sleepTime

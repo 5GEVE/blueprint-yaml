@@ -1,0 +1,57 @@
+{
+  "blueprintId": "vsb_segittur_downlink_tc3_1",
+  "version": "1.0",
+  "name": "Downstream of VR video 1",
+  "description": "Downstream of VR video 1",
+  "atomicComponents": [
+    {
+      "componentId": "localpc",
+      "serversNumber": 1,
+      "endPointsIds": [
+        "cp_localpc"
+      ]
+    },
+    {
+      "componentId": "serveraws",
+      "serversNumber": 1,
+      "endPointsIds": [
+        "cp_serveraws"
+      ]
+    }
+  ],
+  "endPoints": [
+    {
+      "endPointId": "cp_localpc",
+      "external": true,
+      "management": false,
+      "ranConnection": true
+    },
+    {
+      "endPointId": "cp_serveraws",
+      "external": true,
+      "management": false,
+      "ranConnection": false
+    }
+  ],
+  "connectivityServices": [
+    {
+      "name": "vl_localpc",
+      "management": false,
+      "endPointIds": [
+        "cp_localpc"
+      ],
+      "external": true
+    },
+    {
+      "name": "vl_serveraws",
+      "management": false,
+      "endPointIds": [
+        "cp_serveraws"
+      ],
+      "external": true
+    }
+  ],
+  "compatibleSites": [
+    "SPAIN_5TONIC"
+  ]
+}
