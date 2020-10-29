@@ -6,15 +6,23 @@ testCaseBlueprint:
   description: Test case to run the CNIT SmartCity use case
   # In configurationScript we setup the filebeat and run the metric collection
   configurationScript:
-    EXECUTE_COMMAND 10.50.80.14 $$user:$$password sudo /opt/datashipper/add_input_config_cpu $$metric.topic.cpu_consumption_vis;
-    EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config_cpu $$metric.topic.cpu_consumption_mob;
-    EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config_ram $$metric.topic.memory_consumption_mob;
-    EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config_storage $$metric.topic.storage_consumption_mob;
-    EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config_scanner $$metric.topic.active_sensor_mob;
+    EXECUTE_COMMAND 10.50.80.14 $$user:$$password sudo /opt/datashipper/add_input_config $$metric.topic.cpu_consumption_vis;
+    EXECUTE_COMMAND 10.50.80.14 $$user:$$password nohup sudo /opt/datashipper/collect_cpu_usage -o /opt/datashipper/output/$$metric.topic.cpu_consumption_vis >/dev/null 2>&1 < /dev/null &;
+    EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config $$metric.topic.cpu_consumption_mob;
+    EXECUTE_COMMAND 10.50.80.40 $$user:$$password nohup sudo /opt/datashipper/collect_cpu_usage -o /opt/datashipper/output/$$metric.topic.cpu_consumption_mob >/dev/null 2>&1 < /dev/null &;
+    EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config $$metric.topic.memory_consumption_mob;
+    EXECUTE_COMMAND 10.50.80.40 $$user:$$password nohup sudo /opt/datashipper/collect_mem_usage -o /opt/datashipper/output/$$metric.topic.memory_consumption_mob >/dev/null 2>&1 < /dev/null &;
+    EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config $$metric.topic.storage_consumption_mob;
+    EXECUTE_COMMAND 10.50.80.40 $$user:$$password nohup sudo /opt/datashipper/collect_disk_usage -o /opt/datashipper/output/$$metric.topic.storage_consumption_mob >/dev/null 2>&1 < /dev/null &;
+    EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config $$metric.topic.active_sensor_mob;
+    EXECUTE_COMMAND 10.50.80.40 $$user:$$password nohup sudo /home/ubuntu/5Geve/scriptLOGvm3SC.sh /opt/datashipper/output/$$metric.topic.active_sensor_mob >/dev/null 2>&1 < /dev/null &;
   executionScript:
     SLEEP $$sleep$$time;
-    EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo rm /opt/datashipper/configs/*.yml;
-    EXECUTE_COMMAND 10.50.80.14 $$user:$$password sudo rm /opt/datashipper/configs/*.yml;
+    EXECUTE_COMMAND 10.50.80.14 $$user:$$password sudo /opt/datashipper/add_input_config -r $$metric.topic.cpu_consumption_vis;
+    EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config -r $$metric.topic.cpu_consumption_mob;
+    EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config -r $$metric.topic.memory_consumption_mob;
+    EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config -r $$metric.topic.storage_consumption_mob;
+    EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config -r $$metric.topic.active_sensor_mob;
   userParameters:
     duration: $$sleep$$time
     username: $$user
