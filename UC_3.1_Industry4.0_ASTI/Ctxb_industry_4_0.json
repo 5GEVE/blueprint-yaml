@@ -1,0 +1,101 @@
+{
+  "blueprintId": "0437dc66-a90f-4a5e-8401-61ad1d352b8c",
+  "version": "1.0",
+  "name": "Experiment Context component to  add delay and packetloss to the AGVs",
+  "description": "Delay and packetloss context",
+  "parameters": [
+    {
+      "parameterId": "maximum_delay",
+      "parameterName": "Maximum possible delay beyond which the AGV completely looses navigation",
+      "parameterType": "number",
+      "parameterDescription": "Maximum delay applied to the outgoing traffic from the MasterPLC in ms",
+      "applicabilityField": "Delay"
+    },
+    {
+      "parameterId": "maximum_packet_loss",
+      "parameterName": "Maximum possible packet loss beyond which the AGV completely looses navigation",
+      "parameterType": "percentage",
+      "parameterDescription": "Maximum packet loss applied to the outgoing traffic from the MasterPLC in percentage",
+      "applicabilityField": "Packet_loss"
+    }
+  ],
+  "configurableParameters": [
+    "var_delay",
+    "var_packet_loss"
+  ],
+  "atomicComponents": [
+    {
+      "componentId": "delay_component",
+      "serversNumber": 1,
+      "endPointsIds": [
+        "eth0",
+        "eth1",
+        "eth2"
+      ]
+    }
+  ],
+  "endPoints": [
+    {
+      "endPointId": "eth0",
+      "external": true,
+      "management": true,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "eth1",
+      "external": true,
+      "management": false,
+      "ranConnection": true
+    },
+    {
+      "endPointId": "eth2",
+      "external": true,
+      "management": false,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "sap_delay_mgmt",
+      "external": true,
+      "management": true,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "sap_delay_agv",
+      "external": true,
+      "management": false,
+      "ranConnection": false
+    }
+  ],
+  "compatibleSites": [
+    "SPAIN_5TONIC"
+  ],
+  "connectivityServices": [
+    {
+      "name": "vl_mgmt",
+      "management": true,
+      "endPointIds": [
+        "eth0",
+        "sap_delay_mgmt"
+      ],
+      "external": true
+    },
+    {
+      "name": "vl_delay_agv",
+      "management": false,
+      "endPointIds": [
+        "eth1",
+        "sap_delay_agv"
+      ],
+      "external": true
+    },
+    {
+      "name": "vl_delay_masterplc",
+      "management": false,
+      "endPointIds": [
+        "eth2"
+      ],
+      "external": true
+    }
+  ],
+  "compositionStrategy": "PASS_THROUGH"
+}

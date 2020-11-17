@@ -1,0 +1,211 @@
+{
+  "nsdIdentifier": "ctxb_delay_nsd",
+  "designer": "UC3M",
+  "version": "1.0",
+  "nsdName": "Experiment Context component to  add delay and packetloss to the AGVs NSD",
+  "nsdInvariantId": "ctxb_delay_nsd",
+  "vnfdId": [
+    "326619c2-a70f-4373-b2ec-696c69eecc33"
+  ],
+  "sapd": [
+    {
+      "cpdId": "sap_delay_mgmt",
+      "layerProtocol": "IPV4",
+      "cpRole": "ROOT",
+      "addressData": [
+        {
+          "addressType": "IP_ADDRESS",
+          "iPAddressAssignment": false,
+          "floatingIpActivated": false,
+          "management": true,
+          "iPAddressType": "IPv4",
+          "numberOfIpAddress": 1
+        }
+      ],
+      "sapAddressAssignment": false,
+      "nsVirtualLinkDescId": "vl_mgmt"
+    },
+    {
+      "cpdId": "sap_delay_agv",
+      "layerProtocol": "IPV4",
+      "cpRole": "ROOT",
+      "addressData": [
+        {
+          "addressType": "IP_ADDRESS",
+          "iPAddressAssignment": false,
+          "floatingIpActivated": false,
+          "management": false,
+          "iPAddressType": "IPv4",
+          "numberOfIpAddress": 1
+        }
+      ],
+      "sapAddressAssignment": false,
+      "nsVirtualLinkDescId": "vl_delay_agv"
+    }
+  ],
+  "virtualLinkDesc": [
+    {
+      "virtualLinkDescId": "vl_mgmt",
+      "virtualLinkDescProvider": "NSD generator",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4",
+        "flowPattern": ""
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "vl_mgmt_df",
+          "serviceAvaibilityLevel": "LEVEL_1"
+        }
+      ]
+    },
+    {
+      "virtualLinkDescId": "vl_delay_agv",
+      "virtualLinkDescProvider": "NSD generator",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4",
+        "flowPattern": ""
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "vl_delay_agv_df",
+          "serviceAvaibilityLevel": "LEVEL_1"
+        }
+      ]
+    },
+    {
+      "virtualLinkDescId": "vl_delay_masterplc",
+      "virtualLinkDescProvider": "NSD generator",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4",
+        "flowPattern": ""
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "vl_delay_masterplc_df",
+          "serviceAvaibilityLevel": "LEVEL_1"
+        }
+      ]
+    }
+  ],
+  "nsDf": [
+    {
+      "nsDfId": "ctxb_delay_df",
+      "flavourKey": "ctb_delay_df_fk",
+      "vnfProfile": [
+        {
+          "vnfProfileId": "326619c2-a70f-4373-b2ec-696c69eecc33_vnfp",
+          "vnfdId": "326619c2-a70f-4373-b2ec-696c69eecc33",
+          "flavourId": "326619c2-a70f-4373-b2ec-696c69eecc33_vnf_df",
+          "instantiationLevel": "326619c2-a70f-4373-b2ec-696c69eecc33_vnf_il",
+          "minNumberOfInstances": 1,
+          "maxNumberOfInstances": 1,
+          "nsVirtualLinkConnectivity": [
+            {
+              "virtualLinkProfileId": "vl_mgmt_vlp",
+              "cpdId": [
+                "eth0"
+              ]
+            },
+            {
+              "virtualLinkProfileId": "vl_delay_agv_vlp",
+              "cpdId": [
+                "eth1"
+              ]
+            },
+            {
+              "virtualLinkProfileId": "vl_delay_masterplc_vlp",
+              "cpdId": [
+                "eth2"
+              ]
+            }
+          ]
+        }
+      ],
+      "virtualLinkProfile": [
+        {
+          "virtualLinkProfileId": "vl_mgmt_vlp",
+          "virtualLinkDescId": "vl_mgmt",
+          "flavourId": "vl_mgmt_df",
+          "maxBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          }
+        },
+        {
+          "virtualLinkProfileId": "vl_delay_agv_vlp",
+          "virtualLinkDescId": "vl_delay_agv",
+          "flavourId": "vl_delay_agv_df",
+          "maxBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          }
+        },
+        {
+          "virtualLinkProfileId": "vl_delay_masterplc_vlp",
+          "virtualLinkDescId": "vl_delay_masterplc",
+          "flavourId": "vl_delay_masterplc_df",
+          "maxBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          }
+        }
+      ],
+      "nsInstantiationLevel": [
+        {
+          "nsLevelId": "ctxb_delay_il_default",
+          "description": "Default Instantiation Level",
+          "vnfToLevelMapping": [
+            {
+              "vnfProfileId": "326619c2-a70f-4373-b2ec-696c69eecc33_vnfp",
+              "numberOfInstances": 1
+            }
+          ],
+          "virtualLinkToLevelMapping": [
+            {
+              "virtualLinkProfileId": "vl_mgmt_vlp",
+              "bitRateRequirements": {
+                "root": "1",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "vl_delay_agv_vlp",
+              "bitRateRequirements": {
+                "root": "1",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "vl_delay_masterplc_vlp",
+              "bitRateRequirements": {
+                "root": "1",
+                "leaf": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "defaultNsInstantiationLevelId": "ctxb_delay_il_default"
+    }
+  ],
+  "security": {
+    "signature": "FC_NSD_SIGNATURE",
+    "algorithm": "FC_NSD_ALGORITHM",
+    "certificate": "FC_NSD_CERTIFICATE"
+  }
+}

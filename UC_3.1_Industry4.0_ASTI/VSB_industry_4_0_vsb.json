@@ -1,0 +1,77 @@
+{
+  "blueprintId": "70ccd920-908b-426c-9466-432b1bbc3d99",
+  "version": "1.0",
+  "name": "VSB with the MasterPLC AGV_windows 10",
+  "description": "VSB with MasterPLC_windows 10",
+  "parameters": [
+    {
+      "parameterId": "number_of_agvs",
+      "parameterName": "Number of AGVs",
+      "parameterType": "number",
+      "parameterDescription": "Number of AGVs sending sensor data to the MasterPLC",
+      "applicabilityField": "User Equipments"
+    }
+  ],
+  "atomicComponents": [
+    {
+      "componentId": "MasterPLC",
+      "serversNumber": 1,
+      "endPointsIds": [
+        "eth0",
+        "eth1"
+      ]
+    }
+  ],
+  "endPoints": [
+    {
+      "endPointId": "eth0",
+      "external": true,
+      "management": true,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "eth1",
+      "external": false,
+      "management": false,
+      "ranConnection": true
+    },
+    {
+      "endPointId": "sap_masterplc_mgmt",
+      "external": true,
+      "management": true,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "sap_masterplc_data",
+      "external": true,
+      "management": true,
+      "ranConnection": true
+    }
+  ],
+  "connectivityServices": [
+    {
+      "name": "vl_ctx_masterplc",
+      "management": false,
+      "endPointIds": [
+        "sap_masterplc_data",
+        "eth1"
+      ],
+      "external": true
+    },
+    {
+      "name": "vl_mgmt",
+      "management": true,
+      "endPointIds": [
+        "sap_masterplc_mgmt",
+        "eth0"
+      ],
+      "external": true
+    }
+  ],
+  "compatibleContextBlueprint": [
+    "0437dc66-a90f-4a5e-8401-61ad1d352b8c"
+  ],
+  "compatibleSites": [
+    "SPAIN_5TONIC"
+  ]
+}

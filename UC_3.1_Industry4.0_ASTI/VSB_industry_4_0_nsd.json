@@ -1,0 +1,153 @@
+{
+  "nsdIdentifier": "3d0a0958-994b-4e30-b6dd-24fe2bf921bc",
+  "designer": "UC3M",
+  "version": "1.0",
+  "nsdName": "Industry_4_0_ES NSD",
+  "nsdInvariantId": "3d0a0958-994b-4e30-b6dd-24fe2bf921bc",
+  "vnfdId": [
+    "ea389582-bbd6-4ce5-9332-60c1dba4438e"
+  ],
+  "sapd": [
+    {
+      "cpdId": "sap_masterplc_mgmt",
+      "layerProtocol": "IPV4",
+      "cpRole": "ROOT",
+      "addressData": [
+        {
+          "addressType": "IP_ADDRESS",
+          "iPAddressAssignment": false,
+          "floatingIpActivated": false,
+          "management": true,
+          "iPAddressType": "IPv4",
+          "numberOfIpAddress": 1
+        }
+      ],
+      "sapAddressAssignment": false,
+      "nsVirtualLinkDescId": "vl_mgmt"
+    }
+  ],
+  "virtualLinkDesc": [
+    {
+      "virtualLinkDescId": "vl_delay_masterplc",
+      "virtualLinkDescProvider": "NSD generator",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4",
+        "flowPattern": ""
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "vl_delay_masterplc_df",
+          "serviceAvaibilityLevel": "LEVEL_1"
+        }
+      ]
+    },
+    {
+      "virtualLinkDescId": "vl_mgmt",
+      "virtualLinkDescProvider": "NSD generator",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4",
+        "flowPattern": ""
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "vl_mgmt_df",
+          "serviceAvaibilityLevel": "LEVEL_1"
+        }
+      ]
+    }
+  ],
+  "nsDf": [
+    {
+      "nsDfId": "vsb_industry_4_0_ES_df",
+      "flavourKey": "vsb_industry_4_0_ES_df_fk",
+      "vnfProfile": [
+        {
+          "vnfProfileId": "masterplc_vnfp",
+          "vnfdId": "ea389582-bbd6-4ce5-9332-60c1dba4438e",
+          "flavourId": "masterplc_vnf_df",
+          "instantiationLevel": "masterplc_vnf_il",
+          "minNumberOfInstances": 1,
+          "maxNumberOfInstances": 1,
+          "nsVirtualLinkConnectivity": [
+            {
+              "virtualLinkProfileId": "vl_mgmt_vlp",
+              "cpdId": [
+                "eth0"
+              ]
+            },
+            {
+              "virtualLinkProfileId": "vl_delay_masterplc_vlp",
+              "cpdId": [
+                "eth1"
+              ]
+            }
+          ]
+        }
+      ],
+      "virtualLinkProfile": [
+        {
+          "virtualLinkProfileId": "vl_delay_masterplc_vlp",
+          "virtualLinkDescId": "vl_delay_masterplc",
+          "flavourId": "vl_delay_masterplc_df",
+          "maxBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          }
+        },
+        {
+          "virtualLinkProfileId": "vl_mgmt_vlp",
+          "virtualLinkDescId": "vl_mgmt",
+          "flavourId": "vl_mgmt_df",
+          "maxBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          }
+        }
+      ],
+      "nsInstantiationLevel": [
+        {
+          "nsLevelId": "vsb_industry_4_0_ES_il_default",
+          "description": "Default Instantiation Level",
+          "vnfToLevelMapping": [
+            {
+              "vnfProfileId": "masterplc_vnfp",
+              "numberOfInstances": 1
+            }
+          ],
+          "virtualLinkToLevelMapping": [
+            {
+              "virtualLinkProfileId": "vl_delay_masterplc_vlp",
+              "bitRateRequirements": {
+                "root": "1",
+                "leaf": "1"
+              }
+            },
+            {
+              "virtualLinkProfileId": "vl_mgmt_vlp",
+              "bitRateRequirements": {
+                "root": "1",
+                "leaf": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "defaultNsInstantiationLevelId": "vsb_industry_4_0_ES_il_default"
+    }
+  ],
+  "security": {
+    "signature": "FC_NSD_SIGNATURE",
+    "algorithm": "FC_NSD_ALGORITHM",
+    "certificate": "FC_NSD_CERTIFICATE"
+  }
+}
