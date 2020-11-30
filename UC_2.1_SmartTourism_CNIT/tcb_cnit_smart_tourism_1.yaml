@@ -1,7 +1,7 @@
 # tcb_cnit_smart_tourism_1.yaml
 ---
 testCaseBlueprint:
-  version: '2.0'
+  version: '2.1'
   name: TCB CNIT Smart Tourism test case
   description: Test case to run the CNIT Smart Tourism use case
   # In configurationScript we setup the filebeat and run the metric collection
@@ -15,7 +15,7 @@ testCaseBlueprint:
     EXECUTE_COMMAND 10.50.80.23 $$user:$$password sudo /opt/datashipper/add_input_config $$metric.topic.memory_consumption_serv;
     EXECUTE_COMMAND 10.50.80.23 $$user:$$password nohup sudo /opt/datashipper/collect_mem_usage -o /opt/datashipper/output/$$metric.topic.memory_consumption_serv >/dev/null 2>&1 < /dev/null &;
     EXECUTE_COMMAND 10.50.80.23 $$user:$$password sudo /opt/datashipper/add_input_config $$metric.topic.delay_network_ratio;
-    EXECUTE_COMMAND 10.50.80.23 $$user:$$password nohup sudo /opt/datashipper/delay_network_ratio $$metric.topic.delay_network_ratio >/dev/null 2>&1 < /dev/null &;
+    EXECUTE_COMMAND 10.50.80.23 $$user:$$password nohup sudo /opt/datashipper/delay_network_ratio_v2 -o /opt/datashipper/output/$$metric.topic.delay_network_ratio >/dev/null 2>&1 < /dev/null &;
   executionScript:
     SLEEP $$sleep$$time;
     EXECUTE_COMMAND 10.50.80.7 $$user:$$password sudo /opt/datashipper/add_input_config -r $$metric.topic.cpu_consumption_db;
@@ -33,3 +33,4 @@ testCaseBlueprint:
     $$metric.topic.cpu_consumption_serv: ''
     $$metric.topic.memory_consumption_serv: ''
     $$metric.topic.delay_network_ratio: ''
+

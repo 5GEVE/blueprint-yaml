@@ -1,7 +1,7 @@
 # vsb_cnit_smart_tourism.yaml
 ---
 blueprintId: vsb_cnit_smart_tourism
-version: "2.0"
+version: "2.1"
 name: CNIT Smart Tourism
 description: Vertical Service Blueprint for 5G EVE Smart Tourism.
 parameters:
@@ -87,7 +87,7 @@ applicationMetrics:
     unit: 'MB'
     interval: 1s
   - metricId: delay_network_ratio
-    name: Measurement of the ratio of the network delay over the response delay.
+    name: Measurement of the fraction of the network delay over the response delay.
     metricCollectionType: GAUGE
     metricGraphType: LINE
     unit: '%'
