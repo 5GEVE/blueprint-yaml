@@ -1,6 +1,6 @@
 {
-  "blueprintId": "0437dc66-a90f-4a5e-8401-61ad1d352b8c",
-  "version": "1.0",
+  "blueprintId": "04914b7f-15db-44d2-a16f-79771df70791",
+  "version": "2.0",
   "name": "Experiment Context component to  add delay and packetloss to the AGVs",
   "description": "Delay and packetloss context",
   "parameters": [
@@ -25,7 +25,7 @@
   ],
   "atomicComponents": [
     {
-      "componentId": "delay_component",
+      "componentId": "ctx_component",
       "serversNumber": 1,
       "endPointsIds": [
         "eth0",
@@ -54,13 +54,13 @@
       "ranConnection": false
     },
     {
-      "endPointId": "sap_delay_mgmt",
+      "endPointId": "sap_ctx_mgmt",
       "external": true,
       "management": true,
       "ranConnection": false
     },
     {
-      "endPointId": "sap_delay_agv",
+      "endPointId": "sap_ctx_agv",
       "external": true,
       "management": false,
       "ranConnection": false
@@ -75,21 +75,21 @@
       "management": true,
       "endPointIds": [
         "eth0",
-        "sap_delay_mgmt"
+        "sap_ctx_mgmt"
       ],
       "external": true
     },
     {
-      "name": "vl_delay_agv",
+      "name": "vl_ctx_agv",
       "management": false,
       "endPointIds": [
         "eth1",
-        "sap_delay_agv"
+        "sap_ctx_agv"
       ],
       "external": true
     },
     {
-      "name": "vl_delay_masterplc",
+      "name": "vl_ctx_masterplc",
       "management": false,
       "endPointIds": [
         "eth2"
