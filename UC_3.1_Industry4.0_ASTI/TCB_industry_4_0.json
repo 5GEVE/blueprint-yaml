@@ -2,14 +2,15 @@
   "testCaseBlueprint": {
     "description": "5G EVE Industry4.0 Spanish site TCB",
     "name": "Industry4_0_Spain_TCB",
-    "configurationScript": "EXECUTE_COMMAND vnf.326619c2-a70f-4373-b2ec-696c69eecc33.extcp.eth0.ipaddress $$userB:$$passwordB sudo dhclient ens5 && sudo apt-get update && sudo apt-get install bridge-utils && sudo ip addr flush dev ens4 && sudo ip addr flush dev ens5 && sudo brctl addbr br0 && sudo brctl addif br0 ens4 ens5 && sudo ip link set dev br0 up;",
-    "resetConfigScript": "EXECUTE_COMMAND vnf.326619c2-a70f-4373-b2ec-696c69eecc33.extcp.eth0.ipaddress $$userB:$$passwordB sudo /bin/bash /home/test/probe/stopProbe.sh vnf.326619c2-a70f-4373-b2ec-696c69eecc33.extcp.eth1.ipaddress && sudo tc qdisc del dev ens4 root;",
-    "executionScript": "EXECUTE_COMMAND vnf.326619c2-a70f-4373-b2ec-696c69eecc33.extcp.eth0.ipaddress $$userB:$$passwordB sudo tc qdisc add dev ens4 root netem delay 10ms 5ms 25% && sudo /bin/bash /home/test/probe/executeProbe.sh vnf.326619c2-a70f-4373-b2ec-696c69eecc33.extcp.eth1.ipaddress;",
+    "configurationScript": "EXECUTE_COMMAND vnf.326619c2-a70f-4373-b2ec-696c69eecc33.extcp.eth0.ipaddress $$userB:$$passwordB  sudo ip link set dev ens4 up && sudo ip link set dev ens5 up && sudo apt-get update && sudo apt-get install bridge-utils && sudo ip addr flush dev ens4 && sudo ip addr flush dev ens5 && sudo brctl addbr br0 && sudo brctl addif br0 ens4 ens5 && sudo ip link set dev br0 up;",
+    "resetConfigScript": "EXECUTE_COMMAND vnf.326619c2-a70f-4373-b2ec-696c69eecc33.extcp.eth0.ipaddress $$userB:$$passwordB  sudo tc qdisc del dev ens5 root;",
+    "executionScript": "EXECUTE_COMMAND vnf.326619c2-a70f-4373-b2ec-696c69eecc33.extcp.eth0.ipaddress $$userB:$$passwordB sudo tc qdisc add dev ens5 root netem delay 50ms  && tshark -i br0 -f \"udp\" -a 120 -o data.show_as_text:TRUE -T fields -e frame.number -e _ws.col.Time -e ip.src -e frame.len -e ip.proto -e data  -E separator=, -E occurrence=f -q | python3 script_conversion_I4_0.py $$metric.topic.guide_error;",
     "userParameters": {
       "userB": "$$userB",
       "passwordB": "$$passwordB"
     },
     "infrastructureParameters": {
+      "$$metric.topic.guide_error": "",
       "vnf.326619c2-a70f-4373-b2ec-696c69eecc33.extcp.eth0.ipaddress": "",
       "vnf.326619c2-a70f-4373-b2ec-696c69eecc33.extcp.eth1.ipaddress": "",
       "vnf.326619c2-a70f-4373-b2ec-696c69eecc33.extcp.eth2.ipaddress": "",
