@@ -1,8 +1,8 @@
 {
-  "blueprintId": "70ccd920-908b-426c-9466-432b1bbc3d99",
+  "blueprintId": "a9c5c8e8-95d1-4121-a4ae-de4f4f464e4f",
   "version": "1.0",
-  "name": "VSB with the MasterPLC AGV_windows 10",
-  "description": "VSB with MasterPLC_windows 10",
+  "name": "VSB with the MasterPLC AGV",
+  "description": "VSB with the MasterPLC",
   "parameters": [
     {
       "parameterId": "number_of_agvs",
@@ -69,7 +69,18 @@
     }
   ],
   "compatibleContextBlueprint": [
-    "0437dc66-a90f-4a5e-8401-61ad1d352b8c"
+    "04914b7f-15db-44d2-a16f-79771df70791"
+  ],
+  "applicationMetrics": [
+    {
+      "metricId": "guide_error",
+      "name": "guide error in AGV navigation",
+      "metricCollectionType": "CUMULATIVE",
+      "unit": "cm",
+      "interval": 1,
+      "metricGraphType": "LINE",
+      "topic": "/app/guide_error"
+    }
   ],
   "compatibleSites": [
     "SPAIN_5TONIC"
