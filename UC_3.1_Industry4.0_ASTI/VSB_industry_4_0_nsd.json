@@ -1,9 +1,9 @@
 {
-  "nsdIdentifier": "3d0a0958-994b-4e30-b6dd-24fe2bf921bc",
+  "nsdIdentifier": "28bf432b-ccb1-462d-a64f-beae5b641c83",
   "designer": "UC3M",
   "version": "1.0",
-  "nsdName": "Industry_4_0_ES NSD",
-  "nsdInvariantId": "3d0a0958-994b-4e30-b6dd-24fe2bf921bc",
+  "nsdName": "Industry_4_0_ES NSD_v01",
+  "nsdInvariantId": "28bf432b-ccb1-462d-a64f-beae5b641c83",
   "vnfdId": [
     "ea389582-bbd6-4ce5-9332-60c1dba4438e"
   ],
@@ -28,7 +28,7 @@
   ],
   "virtualLinkDesc": [
     {
-      "virtualLinkDescId": "vl_delay_masterplc",
+      "virtualLinkDescId": "vl_ctx_masterplc",
       "virtualLinkDescProvider": "NSD generator",
       "virtuaLinkDescVersion": "1.0",
       "connectivityType": {
@@ -37,7 +37,7 @@
       },
       "virtualLinkDf": [
         {
-          "flavourId": "vl_delay_masterplc_df",
+          "flavourId": "vl_ctx_masterplc_df",
           "serviceAvaibilityLevel": "LEVEL_1"
         }
       ]
@@ -78,7 +78,7 @@
               ]
             },
             {
-              "virtualLinkProfileId": "vl_delay_masterplc_vlp",
+              "virtualLinkProfileId": "vl_ctx_masterplc_vlp",
               "cpdId": [
                 "eth1"
               ]
@@ -88,9 +88,9 @@
       ],
       "virtualLinkProfile": [
         {
-          "virtualLinkProfileId": "vl_delay_masterplc_vlp",
-          "virtualLinkDescId": "vl_delay_masterplc",
-          "flavourId": "vl_delay_masterplc_df",
+          "virtualLinkProfileId": "vl_ctx_masterplc_vlp",
+          "virtualLinkDescId": "vl_ctx_masterplc",
+          "flavourId": "vl_ctx_masterplc_df",
           "maxBitrateRequirements": {
             "root": "1",
             "leaf": "1"
@@ -126,7 +126,7 @@
           ],
           "virtualLinkToLevelMapping": [
             {
-              "virtualLinkProfileId": "vl_delay_masterplc_vlp",
+              "virtualLinkProfileId": "vl_ctx_masterplc_vlp",
               "bitRateRequirements": {
                 "root": "1",
                 "leaf": "1"
