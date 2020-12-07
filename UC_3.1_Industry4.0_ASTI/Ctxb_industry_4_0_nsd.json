@@ -1,15 +1,15 @@
 {
-  "nsdIdentifier": "ctxb_delay_nsd",
+  "nsdIdentifier": "8507deed-ae70-49a4-9901-289938ab4613",
   "designer": "UC3M",
   "version": "1.0",
   "nsdName": "Experiment Context component to  add delay and packetloss to the AGVs NSD",
-  "nsdInvariantId": "ctxb_delay_nsd",
+  "nsdInvariantId": "8507deed-ae70-49a4-9901-289938ab4613",
   "vnfdId": [
     "326619c2-a70f-4373-b2ec-696c69eecc33"
   ],
   "sapd": [
     {
-      "cpdId": "sap_delay_mgmt",
+      "cpdId": "sap_ctx_mgmt",
       "layerProtocol": "IPV4",
       "cpRole": "ROOT",
       "addressData": [
@@ -26,7 +26,7 @@
       "nsVirtualLinkDescId": "vl_mgmt"
     },
     {
-      "cpdId": "sap_delay_agv",
+      "cpdId": "sap_ctx_agv",
       "layerProtocol": "IPV4",
       "cpRole": "ROOT",
       "addressData": [
@@ -40,7 +40,7 @@
         }
       ],
       "sapAddressAssignment": false,
-      "nsVirtualLinkDescId": "vl_delay_agv"
+      "nsVirtualLinkDescId": "vl_ctx_agv"
     }
   ],
   "virtualLinkDesc": [
@@ -60,7 +60,7 @@
       ]
     },
     {
-      "virtualLinkDescId": "vl_delay_agv",
+      "virtualLinkDescId": "vl_ctx_agv",
       "virtualLinkDescProvider": "NSD generator",
       "virtuaLinkDescVersion": "1.0",
       "connectivityType": {
@@ -69,13 +69,13 @@
       },
       "virtualLinkDf": [
         {
-          "flavourId": "vl_delay_agv_df",
+          "flavourId": "vl_ctx_agv_df",
           "serviceAvaibilityLevel": "LEVEL_1"
         }
       ]
     },
     {
-      "virtualLinkDescId": "vl_delay_masterplc",
+      "virtualLinkDescId": "vl_ctx_masterplc",
       "virtualLinkDescProvider": "NSD generator",
       "virtuaLinkDescVersion": "1.0",
       "connectivityType": {
@@ -84,7 +84,7 @@
       },
       "virtualLinkDf": [
         {
-          "flavourId": "vl_delay_masterplc_df",
+          "flavourId": "vl_ctx_masterplc_df",
           "serviceAvaibilityLevel": "LEVEL_1"
         }
       ]
@@ -110,13 +110,13 @@
               ]
             },
             {
-              "virtualLinkProfileId": "vl_delay_agv_vlp",
+              "virtualLinkProfileId": "vl_ctx_agv_vlp",
               "cpdId": [
                 "eth1"
               ]
             },
             {
-              "virtualLinkProfileId": "vl_delay_masterplc_vlp",
+              "virtualLinkProfileId": "vl_ctx_masterplc_vlp",
               "cpdId": [
                 "eth2"
               ]
@@ -139,9 +139,9 @@
           }
         },
         {
-          "virtualLinkProfileId": "vl_delay_agv_vlp",
-          "virtualLinkDescId": "vl_delay_agv",
-          "flavourId": "vl_delay_agv_df",
+          "virtualLinkProfileId": "vl_ctx_agv_vlp",
+          "virtualLinkDescId": "vl_ctx_agv",
+          "flavourId": "vl_ctx_agv_df",
           "maxBitrateRequirements": {
             "root": "1",
             "leaf": "1"
@@ -152,9 +152,9 @@
           }
         },
         {
-          "virtualLinkProfileId": "vl_delay_masterplc_vlp",
-          "virtualLinkDescId": "vl_delay_masterplc",
-          "flavourId": "vl_delay_masterplc_df",
+          "virtualLinkProfileId": "vl_ctx_masterplc_vlp",
+          "virtualLinkDescId": "vl_ctx_masterplc",
+          "flavourId": "vl_ctx_masterplc_df",
           "maxBitrateRequirements": {
             "root": "1",
             "leaf": "1"
@@ -167,7 +167,7 @@
       ],
       "nsInstantiationLevel": [
         {
-          "nsLevelId": "ctxb_delay_il_default",
+          "nsLevelId": "ctxb_I4.0_il_default",
           "description": "Default Instantiation Level",
           "vnfToLevelMapping": [
             {
@@ -184,14 +184,14 @@
               }
             },
             {
-              "virtualLinkProfileId": "vl_delay_agv_vlp",
+              "virtualLinkProfileId": "vl_ctx_agv_vlp",
               "bitRateRequirements": {
                 "root": "1",
                 "leaf": "1"
               }
             },
             {
-              "virtualLinkProfileId": "vl_delay_masterplc_vlp",
+              "virtualLinkProfileId": "vl_ctx_masterplc_vlp",
               "bitRateRequirements": {
                 "root": "1",
                 "leaf": "1"
@@ -200,7 +200,7 @@
           ]
         }
       ],
-      "defaultNsInstantiationLevelId": "ctxb_delay_il_default"
+      "defaultNsInstantiationLevelId": "ctxb_I4.0_il_default"
     }
   ],
   "security": {
