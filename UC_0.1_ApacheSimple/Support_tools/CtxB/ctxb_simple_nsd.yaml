@@ -1,0 +1,121 @@
+---
+nsdIdentifier: 6db0a5cc-69a5-4b40-82ed-1184b2886d57_nsd
+designer: NSD generator
+version: '1.0'
+nsdName: Simple usecase ctx composed of only a Delay Component NSD
+nsdInvariantId: 6db0a5cc-69a5-4b40-82ed-1184b2886d57_nsd
+vnfdId:
+- 326619c2-a70f-4373-b2ec-696c69eecc33
+sapd:
+- cpdId: sap_mgmt
+  layerProtocol: IPV4
+  cpRole: ROOT
+  addressData:
+  - addressType: IP_ADDRESS
+    iPAddressAssignment: false
+    floatingIpActivated: false
+    management: true
+    iPAddressType: IPv4
+    numberOfIpAddress: 1
+  sapAddressAssignment: false
+  nsVirtualLinkDescId: vl_mgmt
+virtualLinkDesc:
+- virtualLinkDescId: vl_mgmt
+  virtualLinkDescProvider: NSD generator
+  virtuaLinkDescVersion: '1.0'
+  connectivityType:
+    layerProtocol: IPV4
+    flowPattern: ''
+  virtualLinkDf:
+  - flavourId: vl_mgmt_df
+    serviceAvaibilityLevel: LEVEL_1
+- virtualLinkDescId: vl_data2
+  virtualLinkDescProvider: NSD generator
+  virtuaLinkDescVersion: '1.0'
+  connectivityType:
+    layerProtocol: IPV4
+    flowPattern: ''
+  virtualLinkDf:
+  - flavourId: vl_data2_df
+    serviceAvaibilityLevel: LEVEL_1
+- virtualLinkDescId: vl_data
+  virtualLinkDescProvider: NSD generator
+  virtuaLinkDescVersion: '1.0'
+  connectivityType:
+    layerProtocol: IPV4
+    flowPattern: ''
+  virtualLinkDf:
+  - flavourId: vl_data_df
+    serviceAvaibilityLevel: LEVEL_1
+nsDf:
+- nsDfId: 6db0a5cc-69a5-4b40-82ed-1184b2886d57_df
+  flavourKey: 6db0a5cc-69a5-4b40-82ed-1184b2886d57_df_fk
+  vnfProfile:
+  - vnfProfileId: 326619c2-a70f-4373-b2ec-696c69eecc33_vnfp
+    vnfdId: 326619c2-a70f-4373-b2ec-696c69eecc33
+    flavourId: 326619c2-a70f-4373-b2ec-696c69eecc33_vnf_df
+    instantiationLevel: 326619c2-a70f-4373-b2ec-696c69eecc33_vnf_il
+    minNumberOfInstances: 1
+    maxNumberOfInstances: 1
+    nsVirtualLinkConnectivity:
+    - virtualLinkProfileId: vl_mgmt_vlp
+      cpdId:
+      - eth0
+    - virtualLinkProfileId: vl_data2_vlp
+      cpdId:
+      - eth1
+    - virtualLinkProfileId: vl_data_vlp
+      cpdId:
+      - eth2
+  virtualLinkProfile:
+  - virtualLinkProfileId: vl_mgmt_vlp
+    virtualLinkDescId: vl_mgmt
+    flavourId: vl_mgmt_df
+    maxBitrateRequirements:
+      root: '1'
+      leaf: '1'
+    minBitrateRequirements:
+      root: '1'
+      leaf: '1'
+  - virtualLinkProfileId: vl_data2_vlp
+    virtualLinkDescId: vl_data2
+    flavourId: vl_data2_df
+    maxBitrateRequirements:
+      root: '1'
+      leaf: '1'
+    minBitrateRequirements:
+      root: '1'
+      leaf: '1'
+  - virtualLinkProfileId: vl_data_vlp
+    virtualLinkDescId: vl_data
+    flavourId: vl_data_df
+    maxBitrateRequirements:
+      root: '1'
+      leaf: '1'
+    minBitrateRequirements:
+      root: '1'
+      leaf: '1'
+  nsInstantiationLevel:
+  - nsLevelId: 6db0a5cc-69a5-4b40-82ed-1184b2886d57_il_default
+    description: Default Instantiation Level
+    vnfToLevelMapping:
+    - vnfProfileId: 326619c2-a70f-4373-b2ec-696c69eecc33_vnfp
+      numberOfInstances: 1
+    virtualLinkToLevelMapping:
+    - virtualLinkProfileId: vl_mgmt_vlp
+      bitRateRequirements:
+        root: '1'
+        leaf: '1'
+    - virtualLinkProfileId: vl_data2_vlp
+      bitRateRequirements:
+        root: '1'
+        leaf: '1'
+    - virtualLinkProfileId: vl_data_vlp
+      bitRateRequirements:
+        root: '1'
+        leaf: '1'
+  defaultNsInstantiationLevelId: 6db0a5cc-69a5-4b40-82ed-1184b2886d57_il_default
+security:
+  signature: FC_NSD_SIGNATURE
+  algorithm: FC_NSD_ALGORITHM
+  certificate: FC_NSD_CERTIFICATE

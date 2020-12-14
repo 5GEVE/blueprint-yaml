@@ -1,0 +1,98 @@
+{
+  "blueprintId": "6db0a5cc-69a5-4b40-82ed-1184b2886d57",
+  "version": "1.0",
+  "name": "Simple usecase ctx composed of only a Delay Component",
+  "description": "Delay Generator for a Simple UseCase",
+  "parameters": [
+    {
+      "parameterId": "maximum_delay",
+      "parameterName": "Maximum delay",
+      "parameterType": "number",
+      "parameterDescription": "Maximum delay to be applied to the Use Case",
+      "applicabilityField": "Delay"
+    }
+  ],
+  "configurableParameters": [
+    "variable_delay",
+    "maximum_delay"
+  ],
+  "atomicComponents": [
+    {
+      "componentId": "326619c2-a70f-4373-b2ec-696c69eecc33",
+      "serversNumber": 1,
+      "endPointsIds": [
+        "eth0",
+        "eth1",
+        "eth2"
+      ]
+    }
+  ],
+  "endPoints": [
+    {
+      "endPointId": "eth0",
+      "external": true,
+      "management": true,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "eth1",
+      "external": true,
+      "management": false,
+      "ranConnection": true
+    },
+    {
+      "endPointId": "eth2",
+      "external": true,
+      "management": false,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "sap_mgmt",
+      "external": true,
+      "management": true,
+      "ranConnection": false
+    }
+  ],
+  "compatibleSites": [
+    "SPAIN_5TONIC"
+  ],
+  "compositionStrategy": "PASS_THROUGH",
+  "connectivityServices": [
+    {
+      "name": "vl_mgmt",
+      "management": true,
+      "endPointIds": [
+        "eth0",
+        "sap_mgmt"
+      ],
+      "external": true
+    },
+    {
+      "name": "vl_data2",
+      "management": false,
+      "endPointIds": [
+        "eth1"
+      ],
+      "external": true
+    },
+    {
+      "name": "vl_data",
+      "management": false,
+      "endPointIds": [
+        "eth2"
+      ],
+      "external": true
+    }
+  ],
+  "applicationMetrics": [
+    {
+      "metricId": "interface_delay",
+      "name": "UseCase_delay",
+      "metricCollectionType": "GAUGE",
+      "unit": "s",
+      "interval": "1ms",
+      "metricGraphType": "LINE",
+      "topic": "/app/interface_delay"
+    }
+  ]
+}
