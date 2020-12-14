@@ -1,0 +1,88 @@
+{
+  "blueprintId": "8a579dfa-7e37-41c0-91ca-eb61b9213d4d",
+  "version": "1.0",
+  "name": "Simple VSB",
+  "description": "Simple VSB with a server application",
+  "parameters": [
+    {
+      "parameterId": "number_of_clients",
+      "parameterName": "Number of clients",
+      "parameterType": "number",
+      "parameterDescription": null,
+      "applicabilityField": "No_of_clients"
+    }
+  ],
+  "atomicComponents": [
+    {
+      "componentId": "ef5faf76-895b-11ea-bc55-0242ac130003",
+      "serversNumber": 1,
+      "endPointsIds": [
+        "eth0",
+        "eth1"
+      ]
+    }
+  ],
+  "endPoints": [
+    {
+      "endPointId": "eth0",
+      "external": true,
+      "management": true,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "eth1",
+      "external": true,
+      "management": false,
+      "ranConnection": true
+    },
+    {
+      "endPointId": "sap_mgmt",
+      "external": true,
+      "management": true,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "sap_data",
+      "external": true,
+      "management": false,
+      "ranConnection": true
+    }
+  ],
+  "connectivityServices": [
+    {
+      "name": "vl_data",
+      "management": false,
+      "endPointIds": [
+        "eth1",
+        "sap_data"
+      ],
+      "external": false
+    },
+    {
+      "name": "vl_mgmt",
+      "management": true,
+      "endPointIds": [
+        "sap_mgmt",
+        "eth0"
+      ],
+      "external": true
+    }
+  ],
+  "compatibleContextBlueprint": [
+    "6db0a5cc-69a5-4b40-82ed-1184b2886d57"
+  ],
+  "applicationMetrics": [
+    {
+      "metricId": "time_taken",
+      "name": "time taken",
+      "metricCollectionType": "CUMULATIVE",
+      "unit": "ms",
+      "interval": 1,
+      "metricGraphType": "LINE",
+      "topic": "/app/time_taken"
+    }
+  ],
+  "compatibleSites": [
+    "SPAIN_5TONIC"
+  ]
+}
