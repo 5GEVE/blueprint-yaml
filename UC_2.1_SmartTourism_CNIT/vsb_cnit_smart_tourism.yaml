@@ -68,7 +68,7 @@ applicationMetrics:
     metricGraphType: LINE
     unit: '%'
     interval: 1s
-  - metricId: memory_consumption_db
+  - metricId: mem_consumption_db
     name: Measurement of the memory consumption for database.
     metricCollectionType: GAUGE
     metricGraphType: LINE
@@ -80,13 +80,13 @@ applicationMetrics:
     metricGraphType: LINE
     unit: '%'
     interval: 1s
-  - metricId: memory_consumption_serv
+  - metricId: mem_consumption_serv
     name: Measurement of the memory consumption for video server.
     metricCollectionType: GAUGE
     metricGraphType: LINE
     unit: 'MB'
     interval: 1s
-  - metricId: delay_network_ratio
+  - metricId: net_delay_ratio
     name: Measurement of the fraction of the network delay over the response delay.
     metricCollectionType: GAUGE
     metricGraphType: LINE
