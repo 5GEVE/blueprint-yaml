@@ -96,13 +96,13 @@ applicationMetrics:
     unit: '%'
     interval: '1s'
     metricGraphType: LINE
-  - metricId: 'memory_consumption_mob'
+  - metricId: 'mem_consumption_mob'
     name: 'Measurement of memory consumption for mobility tracker'
     metricCollectionType: 'GAUGE'
     unit: 'GB'
     interval: '1s'
     metricGraphType: LINE
-  - metricId: 'storage_consumption_mob'
+  - metricId: 'disk_consumption_mob'
     name: 'Measurement of storage consumption for mobility tracker'
     metricCollectionType: 'GAUGE'
     unit: 'GB'
