@@ -112,8 +112,7 @@ applicationMetrics:
     name: 'Number of active sensors for mobility tracker'
     metricCollectionType: 'GAUGE'
     unit: 'devices'
-    # 1s for the demo, restore to 10m after that
-    interval: '1s'
+    interval: '10s'
     metricGraphType: LINE
 compatibleSites:
   - ITALY_TURIN
