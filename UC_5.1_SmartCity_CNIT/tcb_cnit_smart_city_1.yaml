@@ -6,6 +6,18 @@ testCaseBlueprint:
   description: Test case to run the CNIT SmartCity use case
   # In configurationScript we setup the filebeat and run the metric collection
   configurationScript:
+    # this is a draft, commands must be fixed with dynamic addresses (see a2t tcb)
+    # on mob run script to initialize database with some data
+    EXECUTE_COMMAND 10.50.80.40 $$user:$$password /home/ubuntu/5Geve/FillDB.py;
+    # on mob run script to get data from TIM M2M.
+    EXECUTE_COMMAND 10.50.80.40 $$user:$$password nohup /home/ubuntu/5Geve/ClientMQTT_TIM.py >/dev/null 2>&1 < /dev/null &;
+    # on mob, set the emulator address (data network)
+    EXECUTE_COMMAND 10.50.80.40 $$user:$$password echo '192.168.0.9 ctx-cnit' | sudo tee -a /etc/hosts;
+    # on mob run script to get data from the emulator.
+    EXECUTE_COMMAND 10.50.80.40 $$user:$$password nohup /home/ubuntu/5Geve/ClientMQTT_EMULATOR.py >/dev/null 2>&1 < /dev/null &;
+    # on vis set the smartcity-mob address
+    EXECUTE_COMMAND 10.50.80.14 $$user:$$password echo '192.168.0.8 smartcity-mob' | sudo tee -a /etc/hosts;
+    # start metrics
     EXECUTE_COMMAND 10.50.80.14 $$user:$$password sudo /opt/datashipper/add_input_config $$metric.topic.cpu_consumption_vis;
     EXECUTE_COMMAND 10.50.80.14 $$user:$$password nohup sudo /opt/datashipper/collect_cpu_usage -o /opt/datashipper/output/$$metric.topic.cpu_consumption_vis >/dev/null 2>&1 < /dev/null &;
     EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config $$metric.topic.cpu_consumption_mob;
@@ -16,13 +28,20 @@ testCaseBlueprint:
     EXECUTE_COMMAND 10.50.80.40 $$user:$$password nohup sudo /opt/datashipper/collect_disk_usage -o /opt/datashipper/output/$$metric.topic.disk_consumption_mob >/dev/null 2>&1 < /dev/null &;
     EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config $$metric.topic.active_sensor_mob;
     EXECUTE_COMMAND 10.50.80.40 $$user:$$password nohup sudo /home/ubuntu/5Geve/scriptLOGvm3SC.sh /opt/datashipper/output/$$metric.topic.active_sensor_mob >/dev/null 2>&1 < /dev/null &;
+    # on ctx-cnit run the scanner emulator
+    EXECUTE_COMMAND 10.50.80.55 $$user:$$password nohup /home/ubuntu/smartcity-emulator.py >/dev/null 2>&1 < /dev/null &;
   executionScript:
     SLEEP $$sleep$$time;
+    # Stop metrics
     EXECUTE_COMMAND 10.50.80.14 $$user:$$password sudo /opt/datashipper/add_input_config -r $$metric.topic.cpu_consumption_vis;
     EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config -r $$metric.topic.cpu_consumption_mob;
     EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config -r $$metric.topic.mem_consumption_mob;
     EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config -r $$metric.topic.disk_consumption_mob;
     EXECUTE_COMMAND 10.50.80.40 $$user:$$password sudo /opt/datashipper/add_input_config -r $$metric.topic.active_sensor_mob;
+    # on mob kill script to get data from TIM M2M.
+    EXECUTE_COMMAND 10.50.80.40 $$user:$$password pkill -f /home/ubuntu/5Geve/ClientMQTT_TIM.py;
+    # on ctx-cnit kill the scanner emulator
+    EXECUTE_COMMAND 10.50.80.55 $$user:$$password pkill -f /home/ubuntu/smartcity-emulator.py;
   userParameters:
     duration: $$sleep$$time
     username: $$user
