@@ -1,0 +1,27 @@
+{
+  "testCaseBlueprint": {
+    "description": "5G EVE Multi-site Gaming use case TCB_GR",
+    "name": "5G EVE Multi-site Gaming use case TCB_GR",
+    "configurationScript": "EXECUTE_COMMAND vnf.4825ad7b-45ad-4d52-8343-f6f3f667826c.extcp.vprobe-cp0.ipaddress  $$userB:$$passwordB sudo systemctl start probe_ffmpeg & sudo docker start probe;",
+    "resetConfigScript": "EXECUTE COMMAND vnf.bf09934d-b928-4efc-9e9e-38670d83304d.extcp.mgmt0.ipaddress $$userA:$$passwordA sudo pkill -f node; EXECUTE COMMAND vnf.4825ad7b-45ad-4d52-8343-f6f3f667826c.extcp.vprobe-cp0.ipaddress $$userB:$$passwordB sudo systemctl restart probe_ffmpeg & sudo docker restart probe;",
+    "executionScript": "EXECUTE_COMMAND vnf.bf09934d-b928-4efc-9e9e-38670d83304d.extcp.mgmt0.ipaddress $$userA:$$passwordA cd vcompression & FFMPEG_OUTPUTS=vnf.4825ad7b-45ad-4d52-8343-f6f3f667826c.extcp.vprobe-cp1.ipaddress:1234 UUID=$(sh dmidecode.sh | grep UUID | awk '{print $2}') /usr/bin/node index.js; EXECUTE_COMMAND vnf.4825ad7b-45ad-4d52-8343-f6f3f667826c.extcp.vprobe-cp0.ipaddress $$userB:$$passwordB sudo docker exec -w /var/www/html/proyectos/videoqualityprobe/Release -e SERVER=10.3.5.100 -e TOPIC1=$$metric.topic.QualityMetric_gr -e TOPIC2=$$metric.topic.ProbeBitRate_gr -e TOPIC3=$$metric.topic.SI_gr -e TOPIC4=$$metric.topic.TI_gr -e TOPIC5=$$metric.topic.Blur_gr -e TOPIC6=$$metric.topic.FrameRate_gr -d probe node index.js;",
+    "userParameters": {
+      "userA": "$$userA",
+      "passwordA": "$$passwordA",
+      "userB": "$$userB",
+      "passwordB": "$$passwordB"
+    },
+    "infrastructureParameters": {
+      "$$metric.topic.QualityMetric_gr": "",
+      "$$metric.topic.ProbeBitRate_gr": "",
+      "$$metric.topic.SI_gr": "",
+      "$$metric.topic.TI_gr": "",
+      "$$metric.topic.Blur_gr": "",
+      "$$metric.topic.FrameRate_gr": "",
+      "vnf.4825ad7b-45ad-4d52-8343-f6f3f667826c.extcp.vprobe-cp0.ipaddress": "",
+      "vnf.4825ad7b-45ad-4d52-8343-f6f3f667826c.extcp.vprobe-cp1.ipaddress": "",
+      "vnf.bf09934d-b928-4efc-9e9e-38670d83304d.extcp.mgmt0.ipaddress": ""
+    },
+    "version": "1.0"
+  }
+}
