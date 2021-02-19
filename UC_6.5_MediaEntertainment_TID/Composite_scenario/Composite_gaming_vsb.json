@@ -42,7 +42,7 @@
   "connectivityServices": [
     {
       "name": "Gaming_UC_data1",
-      "endPointsIds": [
+      "endPointIds": [
         "eth0"
       ],
       "external": true,
