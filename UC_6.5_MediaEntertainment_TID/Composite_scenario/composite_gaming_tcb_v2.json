@@ -1,6 +1,6 @@
 {
   "testCaseBlueprint": {
-    "description": "5G EVE Multi-site Gaming use case TCB_ES",
+    "description": "5G EVE Multi-site Gaming use case composite_TCB",
     "name": "5G EVE Multi-site Gaming use case TCB_ES",
     "configurationScript": "EXECUTE_COMMAND vnf.5b8b2cbb-ea91-41e8-9b3a-daa00ae1a082.extcp.vprobe-cp0.ipaddress  $$userB:$$passwordB sudo systemctl start probe_ffmpeg & sudo docker start probe; EXECUTE_COMMAND vnf.4825ad7b-45ad-4d52-8343-f6f3f667826c.extcp.vprobe-cp0.ipaddress  $$userB:$$passwordB sudo systemctl start probe_ffmpeg & sudo docker start probe;",
     "resetConfigScript": "EXECUTE COMMAND vnf.a048c404-7277-4def-b9a8-7fb10bfbc5a2.extcp.mgmt0.ipaddress $$userA:$$passwordA sudo pkill -f node; EXECUTE COMMAND vnf.5b8b2cbb-ea91-41e8-9b3a-daa00ae1a082.extcp.vprobe-cp0.ipaddress $$userB:$$passwordB sudo systemctl restart probe_ffmpeg & sudo docker restart probe; EXECUTE COMMAND vnf.bf09934d-b928-4efc-9e9e-38670d83304d.extcp.mgmt0.ipaddress $$userA:$$passwordA sudo pkill -f node; EXECUTE COMMAND vnf.4825ad7b-45ad-4d52-8343-f6f3f667826c.extcp.vprobe-cp0.ipaddress $$userB:$$passwordB sudo systemctl restart probe_ffmpeg & sudo docker restart probe;",
