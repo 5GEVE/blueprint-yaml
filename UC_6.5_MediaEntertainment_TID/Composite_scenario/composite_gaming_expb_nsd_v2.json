@@ -1,57 +1,57 @@
 {
-    "nsdIdentifier": "composite_gaming_uc_NSD_v2",
-    "designer": "UPM & UC3M",
-    "version": "1.0",
-    "nsdName": "composite_gaming_uc_NSD_v2",
-    "nsdInvariantId": "composite_gaming_uc_NSD_v2",
-    "nestedNsdId": [
-      "4aeb0f23-a7a7-4cf8-906e-359702bbff13",
-      "e028d275-9ce3-416a-98f4-89377f824f9c"
-    ],
-    "nsDf": [
-      {
-        "nsDfId": "composite_gaming_uc_NSD_df",
-        "flavourKey": "composite_gaming_uc_NSD_df",
-        "nsInstantiationLevel": [
-          {
-            "nsLevelId": "composite_gaming_uc_NSD_il_small",
-            "description": "composite_gaming_uc_NSD small instantiation level",
-            "nsToLevelMapping": [
-              {
-                "nsProfileId": "vsbNestedNSD_ES_profile_small",
-                "numberOfInstances": 1
-              },
-              {
-                "nsProfileId": "vsbNestedNSD_GR_profile_small",
-                "numberOfInstances": 1
-              }
-            ]
-          }
-        ],
-        "defaultNsInstantiationLevelId": "composite_gaming_uc_NSD_il_small",
-        "nsProfile": [
-          {
-            "nsProfileId": "vsbNestedNSD_ES_profile_small",
-            "nsdId": "4aeb0f23-a7a7-4cf8-906e-359702bbff13",
-            "nsDfId": "gaming_ms_uc_es_df",
-            "nsInstantiationLevelId": "gaming_ms_uc_es_il_default",
-            "minNumberOfInstances": 1,
-            "maxNumberOfInstances": 1
-          },
-          {
-            "nsProfileId": "vsbNestedNSD_GR_profile_small",
-            "nsdId": "e028d275-9ce3-416a-98f4-89377f824f9c",
-            "nsDfId": "gaming_ms_uc_gr_df",
-            "nsInstantiationLevelId": "gaming_ms_uc_gr_il_default",
-            "minNumberOfInstances": 1,
-            "maxNumberOfInstances": 1
-          }
-        ]
-      }
-    ],
-    "security": {
-      "signature": "SIGNATURE",
-      "algorithm": "ALGORITHM",
-      "certificate": "CERTIFICATE"
+  "nsdIdentifier": "composite_gaming_uc_NSD_v2",
+  "designer": "UPM & UC3M",
+  "version": "2.0",
+  "nsdName": "composite_gaming_uc_NSD_v2",
+  "nsdInvariantId": "composite_gaming_uc_NSD_v2",
+  "nestedNsdId": [
+    "407394ad-d1f6-4ce0-b7b9-894b12cdf2a2",
+    "e028d275-9ce3-416a-98f4-89377f824f9c"
+  ],
+  "nsDf": [
+    {
+      "nsDfId": "composite_gaming_uc_NSD_df",
+      "flavourKey": "composite_gaming_uc_NSD_df",
+      "nsInstantiationLevel": [
+        {
+          "nsLevelId": "composite_gaming_uc_NSD_il_small",
+          "description": "composite_gaming_uc_NSD small instantiation level",
+          "nsToLevelMapping": [
+            {
+              "nsProfileId": "vsbNestedNSD_ES_profile_small",
+              "numberOfInstances": 1
+            },
+            {
+              "nsProfileId": "vsbNestedNSD_GR_profile_small",
+              "numberOfInstances": 1
+            }
+          ]
+        }
+      ],
+      "defaultNsInstantiationLevelId": "composite_gaming_uc_NSD_il_small",
+      "nsProfile": [
+        {
+          "nsProfileId": "vsbNestedNSD_ES_profile_small",
+          "nsdId": "407394ad-d1f6-4ce0-b7b9-894b12cdf2a2",
+          "nsDfId": "gaming_ms_uc_es_df",
+          "nsInstantiationLevelId": "gaming_ms_uc_es_il_default",
+          "minNumberOfInstances": 1,
+          "maxNumberOfInstances": 1
+        },
+        {
+          "nsProfileId": "vsbNestedNSD_GR_profile_small",
+          "nsdId": "e028d275-9ce3-416a-98f4-89377f824f9c",
+          "nsDfId": "gaming_ms_uc_gr_df",
+          "nsInstantiationLevelId": "gaming_ms_uc_gr_il_default",
+          "minNumberOfInstances": 1,
+          "maxNumberOfInstances": 1
+        }
+      ]
     }
+  ],
+  "security": {
+    "signature": "SIGNATURE",
+    "algorithm": "ALGORITHM",
+    "certificate": "CERTIFICATE"
   }
+}
