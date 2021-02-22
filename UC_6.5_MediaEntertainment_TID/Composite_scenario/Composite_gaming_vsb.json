@@ -14,7 +14,7 @@
   ],
   "atomicComponents": [
     {
-      "componentId": "game_Engine",
+      "componentId": "client_gaming_vnf",
       "serversNumber": 1,
       "compatibleSite": "SPAIN_5TONIC",
       "type": "SERVICE",
