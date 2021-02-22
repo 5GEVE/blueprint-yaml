@@ -1,7 +1,7 @@
 {
   "blueprintId": "vsb_gaming_ms_nested_Gr",
   "version": "1.0",
-  "name": "Multi-site Gaming UC nested Gr",
+  "name": "Blueprint for 5G EVE Multi-site Gaming Use Case_Greece",
   "description": "Blueprint for 5G EVE Multi-site Gaming UC",
   "parameters": [
     {
