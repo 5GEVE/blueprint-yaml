@@ -2,7 +2,7 @@
   "blueprintId": "vsb_gaming",
   "version": "1.0",
   "name": "Gaming Service",
-  "description": "Blueprint for 5G EVE Gaming service",
+  "description": "Blueprint for 5G EVE Multi-site Gaming Use Case_Spain",
   "parameters": [
     {
       "parameterId": "number_of_players",
