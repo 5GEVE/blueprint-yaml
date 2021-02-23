@@ -1,7 +1,7 @@
 {
   "nsdIdentifier": "e028d275-9ce3-416a-98f4-89377f824f9c",
   "designer": "UPM & UC3M",
-  "version": "1.0",
+  "version": "2.0",
   "nsdName": "Multi_site_gaming_uc_nested_GR",
   "nsdInvariantId": "e028d275-9ce3-416a-98f4-89377f824f9c",
   "vnfdId": [
@@ -115,7 +115,7 @@
       "vnfProfile": [
         {
           "vnfProfileId": "vCE_vnfp",
-          "vnfdId": "a048c404-7277-4def-b9a8-7fb10bfbc5a2",
+          "vnfdId": "bf09934d-b928-4efc-9e9e-38670d83304d",
           "flavourId": "vCE_vnf_df",
           "instantiationLevel": "vCE_vnf_il",
           "minNumberOfInstances": 1,
@@ -143,7 +143,7 @@
         },
         {
           "vnfProfileId": "vProbe_vnfp",
-          "vnfdId": "5b8b2cbb-ea91-41e8-9b3a-daa00ae1a082",
+          "vnfdId": "4825ad7b-45ad-4d52-8343-f6f3f667826c",
           "flavourId": "vProbe_vnf_df",
           "instantiationLevel": "vProbe_vnf_il",
           "minNumberOfInstances": 1,
