@@ -1,0 +1,56 @@
+{
+  "interSite": true,
+  "version": "1.0",
+  "name": "Composite VSB for the Gaming multi-site UC",
+  "description": "Composite VSB for the Gaming multi-site UC",
+  "parameters": [
+    {
+      "parameterId": "number_of_players",
+      "parameterName": "Number of players",
+      "parameterType": "number",
+      "parameterDescription": "Number of players and spectators playing the game",
+      "applicabilityField": "Number_of_players"
+    }
+  ],
+  "atomicComponents": [
+    {
+      "componentId": "client_gaming_vnf",
+      "serversNumber": 1,
+      "compatibleSite": "SPAIN_5TONIC",
+      "type": "SERVICE",
+      "associatedVsbId": "526"
+    },
+    {
+      "componentId": "vCE",
+      "serversNumber": 1,
+      "compatibleSite": "ITALY_TURIN",
+      "type": "SERVICE",
+      "associatedVsbId": "534"
+    }
+  ],
+  "applicationMetrics": [
+
+  ],
+  "endPoints": [
+    {
+      "endPointId": "eth0",
+      "external": true,
+      "management": false,
+      "ranConnection": false
+    }
+  ],
+  "connectivityServices": [
+    {
+      "name": "Gaming_UC_data1",
+      "endPointIds": [
+        "eth0"
+      ],
+      "external": true,
+      "management": false
+    }
+  ],
+  "compatibleSites": [
+    "SPAIN_5TONIC",
+    "ITALY_TURIN"
+  ]
+}
