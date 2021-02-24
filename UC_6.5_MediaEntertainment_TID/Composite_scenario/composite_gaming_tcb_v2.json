@@ -1,0 +1,39 @@
+{
+  "testCaseBlueprint": {
+    "description": "5G EVE Multi-site Gaming use case composite_TCB",
+    "name": "5G EVE Multi-site Gaming use case TCB_ES",
+    "configurationScript": "EXECUTE_COMMAND vnf.5b8b2cbb-ea91-41e8-9b3a-daa00ae1a082.extcp.vprobe-cp0.ipaddress  $$userB:$$passwordB sudo systemctl start probe_ffmpeg & sudo docker start probe; EXECUTE_COMMAND vnf.4825ad7b-45ad-4d52-8343-f6f3f667826c.extcp.vprobe-cp0.ipaddress  $$userB:$$passwordB sudo systemctl start probe_ffmpeg & sudo docker start probe;",
+    "resetConfigScript": "EXECUTE_COMMAND vnf.a048c404-7277-4def-b9a8-7fb10bfbc5a2.extcp.mgmt0.ipaddress $$userA:$$passwordA sudo pkill -f node; EXECUTE_COMMAND vnf.5b8b2cbb-ea91-41e8-9b3a-daa00ae1a082.extcp.vprobe-cp0.ipaddress $$userB:$$passwordB sudo systemctl restart probe_ffmpeg & sudo docker restart probe; EXECUTE_COMMAND vnf.bf09934d-b928-4efc-9e9e-38670d83304d.extcp.mgmt0.ipaddress $$userA:$$passwordA sudo pkill -f node; EXECUTE_COMMAND vnf.4825ad7b-45ad-4d52-8343-f6f3f667826c.extcp.vprobe-cp0.ipaddress $$userB:$$passwordB sudo systemctl restart probe_ffmpeg & sudo docker restart probe;",
+    "executionScript": "EXECUTE_COMMAND vnf.a048c404-7277-4def-b9a8-7fb10bfbc5a2.extcp.mgmt0.ipaddress $$userA:$$passwordA export FFMPEG_OUTPUTS=vnf.5b8b2cbb-ea91-41e8-9b3a-daa00ae1a082.extcp.vprobe-cp1.ipaddress:1234 UUID=$(sudo /usr/sbin/dmidecode | grep UUID | awk '{print $2}') & ./run.sh && sleep $$sleepTime; EXECUTE_COMMAND vnf.5b8b2cbb-ea91-41e8-9b3a-daa00ae1a082.extcp.vprobe-cp0.ipaddress $$userB:$$passwordB sudo docker exec -w /var/www/html/proyectos/videoqualityprobe/Release -e SERVER=10.3.5.100 -e TOPIC1=$$metric.topic.QualityMetric_es -e TOPIC2=$$metric.topic.ProbeBitRate_es -e TOPIC3=$$metric.topic.SI_es -e TOPIC4=$$metric.topic.TI_es -e TOPIC5=$$metric.topic.Blur_es -e TOPIC6=$$metric.topic.FrameRate_es -d probe node index.js; EXECUTE_COMMAND vnf.bf09934d-b928-4efc-9e9e-38670d83304d.extcp.mgmt0.ipaddress $$userA:$$passwordA export FFMPEG_OUTPUTS=vnf.4825ad7b-45ad-4d52-8343-f6f3f667826c.extcp.vprobe-cp1.ipaddress:1234 UUID=$(sh dmidecode.sh | grep UUID | awk '{print $2}') & ./run.sh && sleep $$sleepTime; EXECUTE_COMMAND vnf.4825ad7b-45ad-4d52-8343-f6f3f667826c.extcp.vprobe-cp0.ipaddress $$userB:$$passwordB sudo docker exec -w /var/www/html/proyectos/videoqualityprobe/Release -e SERVER=10.3.5.100 -e TOPIC1=$$metric.topic.QualityMetric_gr -e TOPIC2=$$metric.topic.ProbeBitRate_gr -e TOPIC3=$$metric.topic.SI_gr -e TOPIC4=$$metric.topic.TI_gr -e TOPIC5=$$metric.topic.Blur_gr -e TOPIC6=$$metric.topic.FrameRate_gr -d probe node index.js;",
+    "userParameters": {
+      "userA": "$$userA",
+      "passwordA": "$$passwordA",
+      "userB": "$$userB",
+      "passwordB": "$$passwordB",
+      "sleepTime": "$$sleepTime"
+    },
+    "infrastructureParameters": {
+      "$$metric.topic.QualityMetric_es": "",
+      "$$metric.topic.ProbeBitRate_es": "",
+      "$$metric.topic.SI_es": "",
+      "$$metric.topic.TI_es": "",
+      "$$metric.topic.Blur_es": "",
+      "$$metric.topic.FrameRate_es": "",
+      "$$metric.topic.QualityMetric_gr": "",
+      "$$metric.topic.ProbeBitRate_gr": "",
+      "$$metric.topic.SI_gr": "",
+      "$$metric.topic.TI_gr": "",
+      "$$metric.topic.Blur_gr": "",
+      "$$metric.topic.FrameRate_gr": "",
+      "vnf.5b8b2cbb-ea91-41e8-9b3a-daa00ae1a082.extcp.vprobe-cp0.ipaddress": "",
+      "vnf.5b8b2cbb-ea91-41e8-9b3a-daa00ae1a082.extcp.vprobe-cp1.ipaddress": "",
+      "vnf.a048c404-7277-4def-b9a8-7fb10bfbc5a2.extcp.mgmt0.ipaddress": "",
+      "vnf.4825ad7b-45ad-4d52-8343-f6f3f667826c.extcp.vprobe-cp0.ipaddress": "",
+      "vnf.4825ad7b-45ad-4d52-8343-f6f3f667826c.extcp.vprobe-cp1.ipaddress": "",
+      "vnf.bf09934d-b928-4efc-9e9e-38670d83304d.extcp.mgmt0.ipaddress": ""
+    },
+    "version": "1.0"
+  }
+}
+
+EXECUTE_COMMAND vnf.a048c404-7277-4def-b9a8-7fb10bfbc5a2.extcp.mgmt0.ipaddress $$userA:$$passwordA export FFMPEG_OUTPUTS=vnf.5b8b2cbb-ea91-41e8-9b3a-daa00ae1a082.extcp.vprobe-cp1.ipaddress:1234 UUID=$(sudo /usr/sbin/dmidecode | grep UUID | awk '{print $2}') & ./run.sh;
