@@ -36,4 +36,3 @@
   }
 }
 
-EXECUTE_COMMAND vnf.a048c404-7277-4def-b9a8-7fb10bfbc5a2.extcp.mgmt0.ipaddress $$userA:$$passwordA export FFMPEG_OUTPUTS=vnf.5b8b2cbb-ea91-41e8-9b3a-daa00ae1a082.extcp.vprobe-cp1.ipaddress:1234 UUID=$(sudo /usr/sbin/dmidecode | grep UUID | awk '{print $2}') & ./run.sh;
