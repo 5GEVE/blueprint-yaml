@@ -27,9 +27,7 @@ testCaseBlueprint:
     EXECUTE_COMMAND vnf.e517e96c-08ee-4c5d-8977-6c6bd19b6515.extcp.cp_tracker_mgmt.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config $$metric.topic.disk_consumption_mob;
     EXECUTE_COMMAND vnf.e517e96c-08ee-4c5d-8977-6c6bd19b6515.extcp.cp_tracker_mgmt.ipaddress $$user:$$password nohup sudo /opt/datashipper/collect_disk_usage -o /opt/datashipper/output/$$metric.topic.disk_consumption_mob >/dev/null 2>&1 < /dev/null &;
     EXECUTE_COMMAND vnf.e517e96c-08ee-4c5d-8977-6c6bd19b6515.extcp.cp_tracker_mgmt.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config $$metric.topic.active_sensor_mob;
-    EXECUTE_COMMAND vnf.e517e96c-08ee-4c5d-8977-6c6bd19b6515.extcp.cp_tracker_mgmt.ipaddress $$user:$$password nohup sudo /home/ubuntu/5Geve/scriptLOGvm3SC.sh /opt/datashipper/output/$$metric.topic.active_sensor_mob >/dev/null 2>&1 < /dev/null &;
-    # on ctx-cnit run the scanner emulator
-    #EXECUTE_COMMAND 10.50.80.55 $$user:$$password nohup /home/ubuntu/smartcity-emulator.py >/dev/null 2>&1 < /dev/null &;
+    EXECUTE_COMMAND vnf.e517e96c-08ee-4c5d-8977-6c6bd19b6515.extcp.cp_tracker_mgmt.ipaddress $$user:$$password nohup sudo /home/ubuntu/5Geve/scriptLOGvm3SC.sh /opt/datashipper/output/$$metric.topic.active_sensor_mob >/dev/null 2>&1 < /dev/null &;    
   executionScript:
     SLEEP $$sleep$$time;
     # Stop metrics
@@ -39,9 +37,7 @@ testCaseBlueprint:
     EXECUTE_COMMAND vnf.e517e96c-08ee-4c5d-8977-6c6bd19b6515.extcp.cp_tracker_mgmt.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config -r $$metric.topic.disk_consumption_mob;
     EXECUTE_COMMAND vnf.e517e96c-08ee-4c5d-8977-6c6bd19b6515.extcp.cp_tracker_mgmt.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config -r $$metric.topic.active_sensor_mob;
     # on mob kill script to get data from TIM M2M.
-    EXECUTE_COMMAND vnf.e517e96c-08ee-4c5d-8977-6c6bd19b6515.extcp.cp_tracker_mgmt.ipaddress $$user:$$password pkill -f /home/ubuntu/5Geve/ClientMQTT_TIM.py;
-    # on ctx-cnit kill the scanner emulator
-    #EXECUTE_COMMAND 10.50.80.55 $$user:$$password pkill -f /home/ubuntu/smartcity-emulator.py;
+    EXECUTE_COMMAND vnf.e517e96c-08ee-4c5d-8977-6c6bd19b6515.extcp.cp_tracker_mgmt.ipaddress $$user:$$password pkill -f /home/ubuntu/5Geve/ClientMQTT_TIM.py;    
   userParameters:
     duration: $$sleep$$time
     username: $$user
