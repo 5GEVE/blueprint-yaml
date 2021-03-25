@@ -1,0 +1,96 @@
+# vsb_cnit_smart_tourism.yaml
+---
+blueprintId: vsb_cnit_smart_tourism
+version: "2.1"
+name: CNIT Smart Tourism
+description: Vertical Service Blueprint for 5G EVE Smart Tourism.
+parameters:
+atomicComponents:
+  - componentId: 9afc058b-7c5c-4512-bb05-2c11a9af51a0
+    serversNumber: 1
+    endPointsIds:
+      - cp_server_ext_mobile
+      - cp_server_data
+      - cp_server_mgmt
+  - componentId: b7edfd6c-a01c-4991-9c30-c85377d6bd71
+    serversNumber: 1
+    endPointsIds:
+      - cp_database_data
+      - cp_database_mgmt
+endPoints:
+  - endPointId: cp_server_ext_mobile
+    external: true
+    management: false
+    ranConnection: true
+  - endPointId: cp_server_data
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: cp_server_mgmt
+    external: true
+    management: true
+    ranConnection: false
+  - endPointId: cp_database_data
+    external: false
+    management: false
+    ranConnection: false
+  - endPointId: cp_database_mgmt
+    external: true
+    management: true
+    ranConnection: false
+  - endPointId: sap_server
+    external: true
+    management: false
+    ranConnection: true
+connectivityServices:
+  - name: vl_smart_tourism_ext
+    management: false
+    endPointIds:
+      - cp_server_ext_mobile
+      - sap_server
+    external: true
+  - name: vl_smart_tourism_data
+    management: false
+    endPointIds:
+      - cp_server_data
+      - cp_database_data
+    external: false
+  - name: vl_smart_tourism_mgmt
+    management: true
+    endPointIds:
+      - cp_server_mgmt
+      - cp_database_mgmt
+    external: true
+applicationMetrics:
+  - metricId: cpu_consumption_db
+    name: Measurement of the CPU consumption for database.
+    metricCollectionType: GAUGE
+    metricGraphType: LINE
+    unit: '%'
+    interval: 1s
+  - metricId: mem_consumption_db
+    name: Measurement of the memory consumption for database.
+    metricCollectionType: GAUGE
+    metricGraphType: LINE
+    unit: 'MB'
+    interval: 1s
+  - metricId: cpu_consumption_serv
+    name: Measurement of the CPU consumption for video server.
+    metricCollectionType: GAUGE
+    metricGraphType: LINE
+    unit: '%'
+    interval: 1s
+  - metricId: mem_consumption_serv
+    name: Measurement of the memory consumption for video server.
+    metricCollectionType: GAUGE
+    metricGraphType: LINE
+    unit: 'MB'
+    interval: 1s
+  - metricId: net_delay_ratio
+    name: Measurement of the fraction of the network delay over the response delay.
+    metricCollectionType: GAUGE
+    metricGraphType: LINE
+    unit: '%'
+    interval: 5s
+compatibleSites:
+  - ITALY_TURIN

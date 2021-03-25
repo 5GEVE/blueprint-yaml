@@ -1,0 +1,46 @@
+{
+   "testCaseBlueprint": {
+      "version": "2.2",
+      "name": "TCB CNIT Smart Tourism test case",
+      "description": "Test case to run the CNIT Smart Tourism use case",
+      "configurationScript": [
+         "EXECUTE_COMMAND vnf.b7edfd6c-a01c-4991-9c30-c85377d6bd71.extcp.cp_database_mgmt.ipaddress $$user:$$password echo '10.50.80.59 vr-db-v2' | sudo tee -a /etc/hosts;",
+         "EXECUTE_COMMAND vnf.b7edfd6c-a01c-4991-9c30-c85377d6bd71.extcp.cp_database_mgmt.ipaddress $$user:$$password docker-compose -f ~/.theserver/fullserver/docker-compose.yml up -d;",
+         "EXECUTE_COMMAND vnf.b7edfd6c-a01c-4991-9c30-c85377d6bd71.extcp.cp_database_mgmt.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config $$metric.topic.cpu_consumption_db;",
+         "EXECUTE_COMMAND vnf.b7edfd6c-a01c-4991-9c30-c85377d6bd71.extcp.cp_database_mgmt.ipaddress $$user:$$password nohup sudo /opt/datashipper/collect_cpu_usage -o /opt/datashipper/output/$$metric.topic.cpu_consumption_db >/dev/null 2>&1 < /dev/null &;",
+         "EXECUTE_COMMAND vnf.b7edfd6c-a01c-4991-9c30-c85377d6bd71.extcp.cp_database_mgmt.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config $$metric.topic.mem_consumption_db;",
+         "EXECUTE_COMMAND vnf.b7edfd6c-a01c-4991-9c30-c85377d6bd71.extcp.cp_database_mgmt.ipaddress $$user:$$password nohup sudo /opt/datashipper/collect_mem_usage -o /opt/datashipper/output/$$metric.topic.mem_consumption_db >/dev/null 2>&1 < /dev/null &;",
+         "EXECUTE_COMMAND vnf.9afc058b-7c5c-4512-bb05-2c11a9af51a0.extcp.cp_server_mgmt.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config $$metric.topic.cpu_consumption_serv;",
+         "EXECUTE_COMMAND vnf.9afc058b-7c5c-4512-bb05-2c11a9af51a0.extcp.cp_server_mgmt.ipaddress $$user:$$password nohup sudo /opt/datashipper/collect_cpu_usage -o /opt/datashipper/output/$$metric.topic.cpu_consumption_serv >/dev/null 2>&1 < /dev/null &;",
+         "EXECUTE_COMMAND vnf.9afc058b-7c5c-4512-bb05-2c11a9af51a0.extcp.cp_server_mgmt.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config $$metric.topic.mem_consumption_serv;",
+         "EXECUTE_COMMAND vnf.9afc058b-7c5c-4512-bb05-2c11a9af51a0.extcp.cp_server_mgmt.ipaddress $$user:$$password nohup sudo /opt/datashipper/collect_mem_usage -o /opt/datashipper/output/$$metric.topic.mem_consumption_serv >/dev/null 2>&1 < /dev/null &;",
+         "EXECUTE_COMMAND vnf.9afc058b-7c5c-4512-bb05-2c11a9af51a0.extcp.cp_server_mgmt.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config $$metric.topic.net_delay_ratio;",
+         "EXECUTE_COMMAND vnf.9afc058b-7c5c-4512-bb05-2c11a9af51a0.extcp.cp_server_mgmt.ipaddress $$user:$$password nohup sudo /opt/datashipper/net_delay_ratio_v2 -o /opt/datashipper/output/$$metric.topic.net_delay_ratio >/dev/null 2>&1 < /dev/null &;"
+      ],
+      "executionScript": [
+         "SLEEP $$sleep$$time;",
+         "EXECUTE_COMMAND vnf.b7edfd6c-a01c-4991-9c30-c85377d6bd71.extcp.cp_database_mgmt.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config -r $$metric.topic.cpu_consumption_db;",
+         "EXECUTE_COMMAND vnf.b7edfd6c-a01c-4991-9c30-c85377d6bd71.extcp.cp_database_mgmt.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config -r $$metric.topic.mem_consumption_db;",
+         "EXECUTE_COMMAND vnf.9afc058b-7c5c-4512-bb05-2c11a9af51a0.extcp.cp_server_mgmt.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config -r $$metric.topic.cpu_consumption_serv;",
+         "EXECUTE_COMMAND vnf.9afc058b-7c5c-4512-bb05-2c11a9af51a0.extcp.cp_server_mgmt.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config -r $$metric.topic.mem_consumption_serv;",
+         "EXECUTE_COMMAND vnf.9afc058b-7c5c-4512-bb05-2c11a9af51a0.extcp.cp_server_mgmt.ipaddress $$user:$$password sudo /opt/datashipper/add_input_config -r $$metric.topic.net_delay_ratio;"
+      ],
+      "userParameters": {
+         "duration": "$$sleep$$time",
+         "username": "$$user",
+         "password": "$$password"
+      },
+      "infrastructureParameters": {
+         "vnf.9afc058b-7c5c-4512-bb05-2c11a9af51a0.extcp.cp_server_mgmt.ipaddress": "",
+         "vnf.9afc058b-7c5c-4512-bb05-2c11a9af51a0.extcp.cp_server_data.ipaddress": "",
+         "vnf.9afc058b-7c5c-4512-bb05-2c11a9af51a0.extcp.cp_server_ext_mobile.ipaddress": "",
+         "vnf.b7edfd6c-a01c-4991-9c30-c85377d6bd71.extcp.cp_database_mgmt.ipaddress": "",
+         "vnf.b7edfd6c-a01c-4991-9c30-c85377d6bd71.extcp.cp_database_data.ipaddress": "",
+         "$$metric.topic.cpu_consumption_db": "",
+         "$$metric.topic.mem_consumption_db": "",
+         "$$metric.topic.cpu_consumption_serv": "",
+         "$$metric.topic.mem_consumption_serv": "",
+         "$$metric.topic.net_delay_ratio": ""
+      }
+   }
+}
