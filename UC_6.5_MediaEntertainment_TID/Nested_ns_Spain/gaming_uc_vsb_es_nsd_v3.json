@@ -259,7 +259,7 @@
               "numberOfInstances": 1
             },
             {
-              "vnfProfileId": "vprobe_vnfp",
+              "vnfProfileId": "vProbe_vnfp",
               "numberOfInstances": 1
             }
           ],
