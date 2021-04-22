@@ -251,7 +251,7 @@
           "description": "Default Instantiation Level",
           "vnfToLevelMapping": [
             {
-              "vnfProfileId": "game_engine_pnfp",
+              "vnfProfileId": "gameEngine_pnfp",
               "numberOfInstances": 1
             },
             {
