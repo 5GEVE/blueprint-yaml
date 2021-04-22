@@ -18,14 +18,14 @@
       "serversNumber": 1,
       "compatibleSite": "SPAIN_5TONIC",
       "type": "SERVICE",
-      "associatedVsbId": "332"
+      "associatedVsbId": "3349"
     },
     {
       "componentId": "vCE",
       "serversNumber": 1,
       "compatibleSite": "GREECE_ATHENS",
       "type": "SERVICE",
-      "associatedVsbId": "341"
+      "associatedVsbId": "3358"
     }
   ],
   "applicationMetrics": [
