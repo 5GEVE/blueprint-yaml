@@ -26,8 +26,8 @@
     },
     {
       "componentId": "client_gaming_vnf",
-      "sersNumber": 1,
-      "endPointsIDs": [
+      "serversNumber": 1,
+      "endPointsIds": [
         "vprobe-cp0",
         "vprobe-cp1",
         "sap_vprobe_cp0"
@@ -87,7 +87,7 @@
   "connectivityServices": [
     {
       "name": "vl_mgmt",
-      "endPointsIds": [
+      "endPointIds": [
         "cp_vce_mgmt",
         "vprobe-cp0",
         "sap_vce_mgmt",
@@ -98,7 +98,7 @@
     },
     {
       "name": "Gaming_UC_data1",
-      "endPointsIds": [
+      "endPointIds": [
         "cp_vce_eth0",
         "sap_vce_eth0"
       ],
@@ -107,7 +107,7 @@
     },
     {
       "name": "Gaming_UC_data2",
-      "endPointsIds": [
+      "endPointIds": [
         "cp_vce_eth1",
         "vprobe-cp1"
       ],
