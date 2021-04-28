@@ -1,12 +1,12 @@
 {
-  "nsdIdentifier": "composite_gaming_uc_NSD_vsb_22_04_2021",
+  "nsdIdentifier": "composite_gaming_uc_NSD_vsb_28_04_2021",
   "designer": "UPM, WINGS & UC3M",
   "version": "1.0",
   "nsdName": "composite_gaming_uc_NSD",
-  "nsdInvariantId": "composite_gaming_uc_NSD_vsb_22_04_2021",
+  "nsdInvariantId": "composite_gaming_uc_NSD_vsb_28_04_2021",
   "nestedNsdId": [
-    "9a4f8d3d-e8ab-488c-beb5-49d81e9687c4_ES_22_04_2021",
-    "e712eda9-1b96-4db9-b94c-252c4cce899e_GR_22_04_2021"
+    "9a4f8d3d-e8ab-488c-beb5-49d81e9687c4_ES_28_04_2021",
+    "e712eda9-1b96-4db9-b94c-252c4cce899e_GR_28_04_2021"
   ],
   "nsDf": [
     {
@@ -32,7 +32,7 @@
       "nsProfile": [
         {
           "nsProfileId": "vsbNestedNSD_ES_profile_small",
-          "nsdId": "9a4f8d3d-e8ab-488c-beb5-49d81e9687c4_ES_22_04_2021",
+          "nsdId": "9a4f8d3d-e8ab-488c-beb5-49d81e9687c4_ES_28_04_2021",
           "nsDfId": "gaming_ms_uc_es_df",
           "nsInstantiationLevelId": "gaming_ms_uc_es_il_default",
           "minNumberOfInstances": 1,
@@ -40,7 +40,7 @@
         },
         {
           "nsProfileId": "vsbNestedNSD_GR_profile_small",
-          "nsdId": "e712eda9-1b96-4db9-b94c-252c4cce899e_GR_22_04_2021",
+          "nsdId": "e712eda9-1b96-4db9-b94c-252c4cce899e_GR_28_04_2021",
           "nsDfId": "gaming_ms_uc_gr_df",
           "nsInstantiationLevelId": "gaming_ms_uc_gr_il_default",
           "minNumberOfInstances": 1,
