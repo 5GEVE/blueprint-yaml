@@ -1,0 +1,182 @@
+{
+  "blueprintId": "vsb_gaming_ms_nested_ES_28_04_2021",
+  "version": "1.0",
+  "name": "Multi-site Gaming Use Case",
+  "description": "Blueprint for 5G EVE Gaming multi-site usecase_28_04_2021",
+  "parameters": [
+    {
+      "parameterId": "number_of_players",
+      "parameterName": "Number of players",
+      "parameterType": "number",
+      "parameterDescription": "Number of players and spectators playing the game",
+      "applicabilityField": "Number_of_players"
+    }
+  ],
+  "atomicComponents": [
+    
+    {
+      "componentId": "vCE",
+      "serversNumber": 1,
+      "endPointsIds": [
+        "cp_vce_eth0",
+        "cp_vce_eth1",
+        "cp_vce_mgmt",
+        "sap_vce_mgmt",
+        "sap_vce_eth0"
+      ]
+    },
+    {
+      "componentId": "client_gaming_vnf",
+      "serversNumber": 1,
+      "endPointsIds": [
+        "vprobe-cp0",
+        "vprobe-cp1",
+        "sap_vprobe"
+      ]
+    }
+  ],
+  "endPoints": [
+  
+    {
+      "endPointId": "cp_vce_eth0",
+      "external": false,
+      "management": false,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "cp_vce_eth1",
+      "external": false,
+      "management": false,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "cp_vce_mgmt",
+      "external": true,
+      "management": true,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "sap_vce_mgmt",
+      "external": true,
+      "management": true,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "sap_vce_eth0",
+      "external": true,
+      "management": false,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "vprobe-cp0",
+      "external": false,
+      "management": true,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "sap_vprobe",
+      "external": false,
+      "management": true,
+      "ranConnection": false
+    },
+    {
+      "endPointId": "vprobe-cp1",
+      "external": true,
+      "management": false,
+      "ranConnection": false
+    }
+  ],
+  "connectivityServices": [
+    {
+      "name": "vl_mgmt",
+      "endPointIds": [
+    
+        "cp_vce_mgmt",
+        "vprobe-cp0"
+      ],
+      "external": true,
+      "management": true
+    },
+    {
+      "name": "Gaming_UC_data1",
+      "endPointIds": [
+       
+        "cp_vce_eth0",
+        "sap_vce_eth0"
+      ],
+      "external": false,
+      "management": false
+    },
+    {
+      "name": "Gaming_UC_data2",
+      "endPointIds": [
+        "cp_vce_eth1",
+        "vprobe-cp1"
+      ],
+      "external": false,
+      "management": false
+    }
+  ],
+  "compatibleContextBlueprint": [
+    null
+  ],
+  "applicationMetrics": [
+    {
+      "metricId": "QualityMetric_es",
+      "name": "QoE of the ouput video",
+      "metricCollectionType": "GAUGE",
+      "unit": "double",
+      "interval": "5s",
+      "metricGraphType": "LINE",
+      "topic": "/app/QualityMetric_es"
+    },
+    {
+      "metricId": "ProbeBitRate_es",
+      "name": "Output bitrate",
+      "metricCollectionType": "GAUGE",
+      "unit": "Mbps",
+      "interval": "5s",
+      "metricGraphType": "LINE",
+      "topic": "/app/ProbeBitRate_es"
+    },
+    {
+      "metricId": "SI_es",
+      "name": "Video Spatial Complexity",
+      "metricCollectionType": "GAUGE",
+      "unit": "double",
+      "interval": "5s",
+      "metricGraphType": "LINE",
+      "topic": "/app/SI_es"
+    },
+    {
+      "metricId": "TI_es",
+      "name": "Video Temporal Complexity",
+      "metricCollectionType": "GAUGE",
+      "unit": "double",
+      "interval": "5s",
+      "metricGraphType": "LINE",
+      "topic": "/app/TI_es"
+    },
+    {
+      "metricId": "Blur_es",
+      "name": "Image blurring",
+      "metricCollectionType": "GAUGE",
+      "unit": "double",
+      "interval": "5s",
+      "metricGraphType": "LINE",
+      "topic": "/app/Blur_es"
+    },
+    {
+      "metricId": "FrameRate_es",
+      "name": "Video frames per second",
+      "metricCollectionType": "GAUGE",
+      "unit": "fps",
+      "interval": "5s",
+      "metricGraphType": "LINE",
+      "topic": "/app/FrameRate_es"
+    }
+  ],
+  "compatibleSites": [
+    "SPAIN_5TONIC"
+  ]
+}
