@@ -1,9 +1,9 @@
 {
-  "nsdIdentifier": "e712eda9-1b96-4db9-b94c-252c4cce899e_GR_22_04_2021",
+  "nsdIdentifier": "e712eda9-1b96-4db9-b94c-252c4cce899e_GR_28_04_2021",
   "designer": "UPM, WINGS & UC3M",
   "version": "1.0",
   "nsdName": "Multi_site_gaming_uc_nested_GR",
-  "nsdInvariantId": "e712eda9-1b96-4db9-b94c-252c4cce899e_GR_22_04_2021",
+  "nsdInvariantId": "e712eda9-1b96-4db9-b94c-252c4cce899e_GR_28_04_2021",
   "vnfdId": [
     "53515cb1-8229-4b38-a533-4fd9d43e1c6a",
     "05a64cf4-6290-47be-8783-6c4d4f074f74"
@@ -122,19 +122,19 @@
           "maxNumberOfInstances": 1,
           "nsVirtualLinkConnectivity": [
             {
-              "virtualLinkProfileId": "vl_mgmt",
+              "virtualLinkProfileId": "vl_mgmt_vlp",
               "cpdId": [
                 "cp_vce_mgmt"
               ]
             },
             {
-              "virtualLinkProfileId": "Gaming_UC_data1",
+              "virtualLinkProfileId": "Gaming_UC_data1_vlp",
               "cpdId": [
                 "cp_vce_eth0"
               ]
             },
             {
-              "virtualLinkProfileId": "Gaming_UC_data2",
+              "virtualLinkProfileId": "Gaming_UC_data2_vlp",
               "cpdId": [
                 "cp_vce_eth1"
               ]
@@ -150,13 +150,13 @@
           "maxNumberOfInstances": 1,
           "nsVirtualLinkConnectivity": [
             {
-              "virtualLinkProfileId": "vl_mgmt",
+              "virtualLinkProfileId": "vl_mgmt_vlp",
               "cpdId": [
                 "vprobe-cp0"
               ]
             },
             {
-              "virtualLinkProfileId": "Gaming_UC_data2",
+              "virtualLinkProfileId": "Gaming_UC_data2_vlp",
               "cpdId": [
                 "vprobe-cp1"
               ]
