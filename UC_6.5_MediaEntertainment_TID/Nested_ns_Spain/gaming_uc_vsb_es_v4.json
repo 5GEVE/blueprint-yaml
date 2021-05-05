@@ -122,58 +122,50 @@
   ],
   "applicationMetrics": [
     {
-      "metricId": "QualityMetric_es",
-      "name": "QoE of the ouput video",
+      "metricId": "Blockiness_es",
+      "name": "Blockiness_es",
       "metricCollectionType": "GAUGE",
       "unit": "double",
       "interval": "5s",
       "metricGraphType": "LINE",
-      "topic": "/app/QualityMetric_es"
+      "topic": "/app/Blockiness_es"
     },
     {
-      "metricId": "ProbeBitRate_es",
-      "name": "Output bitrate",
+      "metricId": "SpatialActivity_es",
+      "name": "SpatialActivity_es",
       "metricCollectionType": "GAUGE",
       "unit": "Mbps",
       "interval": "5s",
       "metricGraphType": "LINE",
-      "topic": "/app/ProbeBitRate_es"
+      "topic": "/app/SpatialActivity_es"
     },
     {
-      "metricId": "SI_es",
-      "name": "Video Spatial Complexity",
+      "metricId": "BlockLoss_es",
+      "name": "BlockLoss_es",
       "metricCollectionType": "GAUGE",
       "unit": "double",
       "interval": "5s",
       "metricGraphType": "LINE",
-      "topic": "/app/SI_es"
-    },
-    {
-      "metricId": "TI_es",
-      "name": "Video Temporal Complexity",
-      "metricCollectionType": "GAUGE",
-      "unit": "double",
-      "interval": "5s",
-      "metricGraphType": "LINE",
-      "topic": "/app/TI_es"
+      "topic": "/app/BlockLoss_es"
     },
     {
       "metricId": "Blur_es",
-      "name": "Image blurring",
+      "name": "Blur_es",
       "metricCollectionType": "GAUGE",
       "unit": "double",
       "interval": "5s",
       "metricGraphType": "LINE",
       "topic": "/app/Blur_es"
     },
+   
     {
-      "metricId": "FrameRate_es",
-      "name": "Video frames per second",
+      "metricId": "TemporalActivity_es",
+      "name": "TemporalActivity_es",
       "metricCollectionType": "GAUGE",
       "unit": "fps",
       "interval": "5s",
       "metricGraphType": "LINE",
-      "topic": "/app/FrameRate_es"
+      "topic": "/app/TemporalActivity_es"
     }
   ],
   "compatibleSites": [
