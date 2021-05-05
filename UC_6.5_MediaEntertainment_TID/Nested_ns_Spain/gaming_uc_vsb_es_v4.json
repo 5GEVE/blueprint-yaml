@@ -1,7 +1,7 @@
 {
   "blueprintId": "vsb_gaming_ms_nested_ES_28_04_2021",
   "version": "1.0",
-  "name": "Multi-site Gaming Use Case",
+  "name": "Multi-site Gaming Use Case Nested ES",
   "description": "Blueprint for 5G EVE Gaming multi-site usecase_28_04_2021",
   "parameters": [
     {
