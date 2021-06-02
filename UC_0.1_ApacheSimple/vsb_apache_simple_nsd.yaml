@@ -1,7 +1,7 @@
 # vsb_apache_simple_nsd.yaml
 ---
 nsdIdentifier: "vsb_apache_simple_nsd"
-designer: "NSD generator"
+designer: "UC3M"
 version: "1.0"
 nsdName: "Simple VSB with Apache NSD"
 nsdInvariantId: "vsb_apache_simple_nsd"
