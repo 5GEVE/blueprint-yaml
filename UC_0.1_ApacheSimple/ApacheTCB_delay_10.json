@@ -1,0 +1,24 @@
+{
+	"testCaseBlueprint": {
+	  "description": "5G EVE Simple UC Multi_site TCB_prod_test_v3",
+	  "name": "5G EVE Simple UC Multi_site TCB_prod_test_v3",
+      "configurationScript": "EXECUTE_COMMAND vnf.be55660e-8961-11ea-bc55-0242ac130003.extcp.eth0.ipaddress $$userB:$$passwordB sudo /bin/bash /home/test/day2-configuration-only.sh $$metric.topic.apache_client_vnf_requests_time_taken;",
+      "resetConfigScript": "EXECUTE_COMMAND vnf.ef5faf76-895b-11ea-bc55-0242ac130003.extcp.eth0.ipaddress $$userB:$$passwordB sudo tc qdisc del dev ens4 root",
+      "executionScript": "EXECUTE_COMMAND vnf.ef5faf76-895b-11ea-bc55-0242ac130003.extcp.eth0.ipaddress $$userB:$$passwordB sudo tc qdisc add dev ens4 root netem delay 20ms 5ms 25%; EXECUTE_COMMAND vnf.be55660e-8961-11ea-bc55-0242ac130003.extcp.eth0.ipaddress $$userB:$$passwordB sudo /bin/bash /home/test/ab-execution.sh $$concurrent $$noOfRequests vnf.ef5faf76-895b-11ea-bc55-0242ac130003.extcp.eth1.ipaddress $$deviceId && sleep $$sleepTime;",
+	  "userParameters": {
+		"userB": "$$userB",
+		"passwordB": "$$passwordB",
+		"concurrent": "$$concurrent",
+		"sleepTime": "$$sleepTime",
+		"deviceId": "$$deviceId",
+		"noOfRequests": "$$noOfRequests"
+	  },
+	  "infrastructureParameters": {
+		"$$metric.topic.apache_client_vnf_requests_time_taken": "",
+		"vnf.ef5faf76-895b-11ea-bc55-0242ac130003.extcp.eth1.ipaddress": "",
+		"vnf.ef5faf76-895b-11ea-bc55-0242ac130003.extcp.eth0.ipaddress": "",
+		"vnf.be55660e-8961-11ea-bc55-0242ac130003.extcp.eth0.ipaddress": ""
+	  },
+	  "version": "2.0"
+	}
+  }
