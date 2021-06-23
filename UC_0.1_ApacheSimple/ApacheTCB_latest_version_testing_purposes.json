@@ -1,0 +1,20 @@
+{
+  "testCaseBlueprint": {
+    "description": "5G EVE Simple UC TCB_diag_test_18_06_2021",
+    "name": "5G EVE Simple UC TCB_diag_test_18_06_2021",
+    "configurationScript": "EXECUTE_COMMAND vnf.be55660e-8961-11ea-bc55-0242ac130003.extcp.eth0.ipaddress $$userB:$$passwordB sudo /bin/bash /home/test/day2-configuration-only.sh $$metric.topic.apache_client_vnf_requests_time_taken; SLEEP $$sleepTime;",
+    "resetConfigScript": "EXECUTE_COMMAND vnf.be55660e-8961-11ea-bc55-0242ac130003.extcp.eth0.ipaddress $$userB:$$passwordB sudo apt-get update;",
+    "executionScript": "EXECUTE_COMMAND vnf.be55660e-8961-11ea-bc55-0242ac130003.extcp.eth0.ipaddress $$userB:$$passwordB sudo /bin/bash /home/test/rand_gen_exec.sh  $$deviceId; SLEEP $$sleepTime;",
+    "userParameters": {
+      "userB": "$$userB",
+      "passwordB": "$$passwordB",
+      "sleepTime": "$$sleepTime",
+      "deviceId": "$$deviceId"
+    },
+    "infrastructureParameters": {
+      "$$metric.topic.apache_client_vnf_requests_time_taken": "",
+      "vnf.be55660e-8961-11ea-bc55-0242ac130003.extcp.eth0.ipaddress": ""
+    },
+    "version": "1.0"
+  }
+}
