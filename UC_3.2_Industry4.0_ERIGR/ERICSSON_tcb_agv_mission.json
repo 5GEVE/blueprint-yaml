@@ -1,0 +1,17 @@
+{
+	"testcaseBlueprint": {
+		"description": "TCB AGV mission: move freight from reception to warehouse",
+		"name": "Ericsson_AGV_mission",
+		"configurationScript": "",
+		"executionScript": "EXECUTE_COMMAND vnf.95b054a1-5055-4916-968a-095da9d4be14.extcp.vnf-mgmt.ipaddress $$user:$$password sudo python /home/user/main.py;",
+		"userParameters": {
+			"user": "$$user",
+			"password": "$$password"
+		},
+		"infrastructureParameters": {
+			"vnf.95b054a1-5055-4916-968a-095da9d4be14.extcp.vnf-mgmt.ipaddress" : "",
+			"$$metric.topic.avRTT" : ""
+		},
+		"version": "1.0"
+	}
+}

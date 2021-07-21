@@ -1,0 +1,63 @@
+{
+  "blueprintId": "d52b8094-0437-4b68-b19f-867a58714d5b",
+  "version": "1.0",
+  "name": "Ericsson mission v10",
+  "description": "Ericsson AGV mission v10",
+  "parameters": [],
+  "atomicComponents": [
+    {
+      "componentId": "controller",
+      "serversNumber": 1,
+      "endPointsIds": [
+        "vnf-mgmt",
+        "vnf-data"
+      ]
+    }
+  ],
+  "endPoints": [
+    {
+         "endPointId":"vnf-mgmt",
+         "external":true,
+         "management":true,
+         "ranConnection":false
+      },
+      {
+         "endPointId":"vnf-data",
+         "external":true,
+         "management":false,
+         "ranConnection":false
+      }
+  ],
+  "connectivityServices": [
+    {
+         "name":"mgmtnet",
+         "management":true,
+         "endPointIds":[
+            "vnf-mgmt"
+         ],
+         "external":true
+      },
+      {
+         "name":"datanet",
+         "management":false,
+         "endPointIds":[
+            "vnf-data"
+         ],
+         "external":true
+      }
+  ],
+  "compatibleContextBlueprint": [],
+  "applicationMetrics": [
+    {
+      "metricId": "avRTT",
+      "name": "5G Round trip time passing through the communication tunnel",
+      "metricCollectionType": "GAUGE",
+      "unit": "nodes",
+      "interval": 5,
+      "metricGraphType": "LINE"
+    }
+  ],
+  "compatibleSites": [
+    "GREECE_ATHENS"
+  ]
+}

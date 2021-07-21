@@ -1,0 +1,171 @@
+{
+    "nsdIdentifier": "98ac1a3c-0b52-46e7-8647-eb1e152f5ca8",
+    "designer": "NSD generator",
+    "version": "1.0",
+    "nsdName": "ERICSSON_vsb_nsd",
+    "nsdInvariantId": "ERICSSON_vnf",
+    "vnfdId": [
+      "95b054a1-5055-4916-968a-095da9d4be14"
+    ],
+    "sapd": [
+      {
+      "cpdId": "vnf-mgmt",
+      "layerProtocol": "IPV4",
+      "cpRole": "ROOT",
+      "addressData": [
+        {
+          "addressType": "IP_ADDRESS",
+          "iPAddressAssignment": false,
+          "floatingIpActivated": true,
+          "management": true,
+          "iPAddressType": "IPv4",
+          "numberOfIpAddress": 1
+        }
+      ],
+      "sapAddressAssignment": false,
+      "nsVirtualLinkDescId": "mgmtnet"
+    },
+    {
+        "cpdId": "vnf-data",
+        "layerProtocol": "IPV4",
+        "cpRole": "ROOT",
+        "addressData": [
+          {
+            "addressType": "IP_ADDRESS",
+            "iPAddressAssignment": false,
+            "floatingIpActivated": true,
+            "management": false,
+            "iPAddressType": "IPv4",
+            "numberOfIpAddress": 1
+          }
+        ],
+        "sapAddressAssignment": false,
+        "nsVirtualLinkDescId": "datanet"
+      }
+    ],
+    "virtualLinkDesc": [
+      {
+      "virtualLinkDescId": "mgmtnet",
+      "virtualLinkDescProvider": "NSD generator",
+      "virtuaLinkDescVersion": "1.0",
+      "connectivityType": {
+        "layerProtocol": "IPV4",
+        "flowPattern": ""
+      },
+      "virtualLinkDf": [
+        {
+          "flavourId": "mgmtnet_df",
+          "serviceAvaibilityLevel": "LEVEL_1"
+        }
+      ]
+    },
+    {
+        "virtualLinkDescId": "datanet",
+        "virtualLinkDescProvider": "NSD generator",
+        "virtuaLinkDescVersion": "1.0",
+        "connectivityType": {
+          "layerProtocol": "IPV4",
+          "flowPattern": ""
+        },
+        "virtualLinkDf": [
+          {
+            "flavourId": "datanet_df",
+            "serviceAvaibilityLevel": "LEVEL_1"
+          }
+        ]
+      }
+    ],
+    "nsDf": [
+      {
+        "nsDfId": "vsb_smartnode_df_ericsson",
+        "flavourKey": "vsb_smartnode_df_fk",
+        "vnfProfile": [
+          {
+            "vnfProfileId": "node_vnfp",
+            "vnfdId": "95b054a1-5055-4916-968a-095da9d4be14",
+            "flavourId": "node_vnf_df",
+            "instantiationLevel": "node_vnf_il",
+            "minNumberOfInstances": 1,
+            "maxNumberOfInstances": 1,
+            "nsVirtualLinkConnectivity": [
+              {
+              "virtualLinkProfileId": "mgmtnet_vlp",
+              "cpdId": [
+                "vnf-mgmt"
+              ]
+            },
+            {
+                "virtualLinkProfileId": "datanet_vlp",
+                "cpdId": [
+                  "vnf-data"
+                ]
+            }
+            ]
+          }
+        ],
+        "virtualLinkProfile": [
+          {
+          "virtualLinkProfileId": "mgmtnet_vlp",
+          "virtualLinkDescId": "mgmtnet",
+          "flavourId": "mgmtnet_df",
+          "maxBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          },
+          "minBitrateRequirements": {
+            "root": "1",
+            "leaf": "1"
+          }
+        },
+        {
+            "virtualLinkProfileId": "datanet_vlp",
+            "virtualLinkDescId": "datanet",
+            "flavourId": "datanet_df",
+            "maxBitrateRequirements": {
+              "root": "1",
+              "leaf": "1"
+            },
+            "minBitrateRequirements": {
+              "root": "1",
+              "leaf": "1"
+            }
+          }
+        ],
+        "nsInstantiationLevel": [
+          {
+            "nsLevelId": "vsb_smartnode_il_default_ericsson",
+            "description": "Default Instantiation Level",
+            "vnfToLevelMapping": [
+              {
+                "vnfProfileId": "node_vnfp",
+                "numberOfInstances": 1
+              }
+            ],
+            "virtualLinkToLevelMapping": [
+              {
+              "virtualLinkProfileId": "mgmtnet_vlp",
+              "bitRateRequirements": {
+                "root": "1",
+                "leaf": "1"
+              }
+            },
+            {
+                "virtualLinkProfileId": "datanet_vlp",
+                "bitRateRequirements": {
+                  "root": "1",
+                  "leaf": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "defaultNsInstantiationLevelId": "vsb_smartnode_il_default_ericsson"
+      }
+    ],
+    "security": {
+      "signature": "FC_NSD_SIGNATURE",
+      "algorithm": "FC_NSD_ALGORITHM",
+      "certificate": "FC_NSD_CERTIFICATE"
+    }
+  }
+
