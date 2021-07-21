@@ -50,7 +50,7 @@
   "applicationMetrics": [
     {
        "metricId":"nokia_network_metric",
-       "name":"Nookia metric",
+       "name":"Nokia metric",
        "metricCollectionType":"GAUGE",
        "unit":"ms",
        "interval":1,
