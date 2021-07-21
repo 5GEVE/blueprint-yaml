@@ -1,0 +1,19 @@
+{
+	"testcaseBlueprint": {
+		"description": "TCB for Nokia SmartCity UC",
+		"name": "Nokia_SmartCity",
+		"configurationScript": "",
+		"executionScript": "EXECUTE_COMMAND vnf.95b054a1-5055-4916-968a-095da9d4be14.extcp.vnf-mgmt.ipaddress $$user:$$password /bin/bash /home/wings/nokiaExecute.sh $$ip $$metric.topic.nokia_network_metric $$duration;",
+		"userParameters": {
+			"user": "$$user",
+			"password": "$$password",
+			"ip":"$$ip",
+			"duration": "$$duration"
+		},
+		"infrastructureParameters": {
+			"vnf.95b054a1-5055-4916-968a-095da9d4be14.extcp.vnf-mgmt.ipaddress" : "",
+			"$$metric.topic.nokia_network_metric" : ""
+		},
+		"version": "1.0"
+	}
+}

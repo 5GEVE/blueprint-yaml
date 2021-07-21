@@ -1,0 +1,64 @@
+{
+  "blueprintId": "847a95d0-9723-42bf-b2c9-40de62d2a409",
+  "version": "5.0",
+  "name": "NOKIA SmartCity UC",
+  "description": "NOKIA NS for SmartCity UC",
+  "parameters": [],
+  "atomicComponents": [
+    {
+      "componentId": "smartnode",
+      "serversNumber": 1,
+      "endPointsIds": [
+        "vnf-mgmt",
+        "vnf-data"
+      ]
+    }
+  ],
+  "endPoints": [
+    {
+         "endPointId":"vnf-mgmt",
+         "external":true,
+         "management":true,
+         "ranConnection":false
+      },
+      {
+         "endPointId":"vnf-data",
+         "external":true,
+         "management":false,
+         "ranConnection":false
+      }
+  ],
+  "connectivityServices": [
+    {
+         "name":"mgmtnet",
+         "management":true,
+         "endPointIds":[
+            "vnf-mgmt"
+         ],
+         "external":true
+      },
+      {
+         "name":"datanet",
+         "management":false,
+         "endPointIds":[
+            "vnf-data"
+         ],
+         "external":true
+      }
+  ],
+  "compatibleContextBlueprint": [],
+  "applicationMetrics": [
+    {
+       "metricId":"nokia_network_metric",
+       "name":"ACTA metric",
+       "metricCollectionType":"GAUGE",
+       "unit":"ms",
+       "interval":1,
+       "metricGraphType":"LINE",
+       "topic":"/app/nokia_network_metric"
+    }
+  ],
+  "compatibleSites": [
+    "GREECE_ATHENS"
+  ]
+}

@@ -1,0 +1,172 @@
+{
+    "nsdIdentifier": "7a1faefa-8d5f-4d82-a8cc-6baba21db170",
+    "designer": "NSD generator",
+    "version": "5.0",
+    "nsdName": "nokia_smartcity_nsd_v50",
+    "nsdInvariantId": "nokia_vnf_v50",
+    "vnfdId": [
+      "95b054a1-5055-4916-968a-095da9d4be14"
+    ],
+    "sapd": [
+      {
+        "cpdId": "mgmtnet",
+        "layerProtocol": "IPV4",
+        "cpRole": "ROOT",
+        "addressData": [
+          {
+            "addressType": "IP_ADDRESS",
+            "iPAddressAssignment": false,
+            "floatingIpActivated": false,
+            "management": true,
+            "external": true,
+            "iPAddressType": "IPv4",
+            "numberOfIpAddress": 1
+          }
+        ],
+        "sapAddressAssignment": false,
+        "nsVirtualLinkDescId": "mgmtnet"
+      },
+    {
+        "cpdId": "vnf-data",
+        "layerProtocol": "IPV4",
+        "cpRole": "ROOT",
+        "addressData": [
+          {
+            "addressType": "IP_ADDRESS",
+            "iPAddressAssignment": false,
+            "floatingIpActivated": true,
+            "management": false,
+            "iPAddressType": "IPv4",
+            "numberOfIpAddress": 1
+          }
+        ],
+        "sapAddressAssignment": false,
+        "nsVirtualLinkDescId": "datanet"
+      }
+    ],
+    "virtualLinkDesc": [
+      {
+        "virtualLinkDescId": "mgmtnet",
+        "virtualLinkDescProvider": "NSD generator",
+        "virtuaLinkDescVersion": "1.0",
+        "connectivityType": {
+          "layerProtocol": "IPV4",
+          "flowPattern": ""
+        },
+        "virtualLinkDf": [
+          {
+            "flavourId": "mgmtnet_df",
+            "serviceAvaibilityLevel": "LEVEL_1"
+          }
+        ]
+      },
+    {
+        "virtualLinkDescId": "datanet",
+        "virtualLinkDescProvider": "NSD generator",
+        "virtuaLinkDescVersion": "1.0",
+        "connectivityType": {
+          "layerProtocol": "IPV4",
+          "flowPattern": ""
+        },
+        "virtualLinkDf": [
+          {
+            "flavourId": "datanet_df",
+            "serviceAvaibilityLevel": "LEVEL_1"
+          }
+        ]
+      }
+    ],
+    "nsDf": [
+      {
+        "nsDfId": "vsb_smartnode_df_nokia",
+        "flavourKey": "vsb_smartnode_df_fk",
+        "vnfProfile": [
+          {
+            "vnfProfileId": "node_vnfp",
+            "vnfdId": "95b054a1-5055-4916-968a-095da9d4be14",
+            "flavourId": "node_vnf_df",
+            "instantiationLevel": "node_vnf_il",
+            "minNumberOfInstances": 1,
+            "maxNumberOfInstances": 1,
+            "nsVirtualLinkConnectivity": [
+              {
+                "virtualLinkProfileId": "mgmtnet_vlp",
+                "cpdId": [
+                  "vnf-mgmt"
+                ]
+              },
+              {
+                  "virtualLinkProfileId": "datanet_vlp",
+                  "cpdId": [
+                    "vnf-data"
+                  ]
+              }
+            ]
+          }
+        ],
+        "virtualLinkProfile": [
+          {
+            "virtualLinkProfileId": "mgmtnet_vlp",
+            "virtualLinkDescId": "mgmtnet",
+            "flavourId": "mgmtnet_df",
+            "maxBitrateRequirements": {
+              "root": "1",
+              "leaf": "1"
+            },
+            "minBitrateRequirements": {
+              "root": "1",
+              "leaf": "1"
+            }
+          },
+        {
+            "virtualLinkProfileId": "datanet_vlp",
+            "virtualLinkDescId": "datanet",
+            "flavourId": "datanet_df",
+            "maxBitrateRequirements": {
+              "root": "1",
+              "leaf": "1"
+            },
+            "minBitrateRequirements": {
+              "root": "1",
+              "leaf": "1"
+            }
+          }
+        ],
+        "nsInstantiationLevel": [
+          {
+            "nsLevelId": "vsb_smartnode_il_default_nokia",
+            "description": "Default Instantiation Level",
+            "vnfToLevelMapping": [
+              {
+                "vnfProfileId": "node_vnfp",
+                "numberOfInstances": 1
+              }
+            ],
+            "virtualLinkToLevelMapping": [
+              {
+                "virtualLinkProfileId": "mgmtnet_vlp",
+                "bitRateRequirements": {
+                  "root": "1",
+                  "leaf": "1"
+                }
+              },
+              {
+                  "virtualLinkProfileId": "datanet_vlp",
+                  "bitRateRequirements": {
+                    "root": "1",
+                    "leaf": "1"
+                  }
+                }
+            ]
+          }
+        ],
+        "defaultNsInstantiationLevelId": "vsb_smartnode_il_default_nokia"
+      }
+    ],
+    "security": {
+      "signature": "FC_NSD_SIGNATURE",
+      "algorithm": "FC_NSD_ALGORITHM",
+      "certificate": "FC_NSD_CERTIFICATE"
+    }
+  }
+
